@@ -1,0 +1,160 @@
+// _home.scss
+
+// Header
+// _header.scss
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem 2rem;
+  background-color: #020510;
+
+  &__logo {
+    font-size: 1.5rem;
+    font-weight: 600;
+    font-family: "Poppins", sans-serif;
+    background: radial-gradient(circle, #ff2c78, #dca4ff);
+    -webkit-background-clip: text;
+    color: transparent;
+  }
+
+  &__nav {
+    flex-grow: 1;
+    margin-left: 2rem;
+  }
+
+  &__menu {
+    list-style: none;
+    display: flex;
+    gap: 2rem;
+
+    &-item a {
+      color: #ffffff;
+      text-decoration: none;
+      font-weight: 500;
+      font-family: "Poppins", sans-serif;
+      transition: color 0.3s;
+
+      &:hover {
+        color: #ff2c78;
+      }
+    }
+  }
+
+  &__actions {
+    display: flex;
+    gap: 1.5rem;
+
+    &__link {
+      color: #ffffff;
+      text-decoration: none;
+      font-weight: 600; // Semi-bold para hacer que se vea más fuerte
+      font-family: "Poppins", sans-serif;
+      transition: color 0.3s;
+      text-decoration: none;
+
+      &:hover {
+        color: #ff2c78; // Color de hover
+      }
+    }
+
+    &__icon {
+      color: #ffffff;
+      font-size: 1.2rem;
+      cursor: pointer;
+    }
+  }
+}
+
+// main
+.main {
+  background: linear-gradient(180deg, #020510 0%, #000000 100%);
+  padding: 0; // Elimina el margen/padding de la sección principal
+  color: #ffffff;
+
+  &__top-movies {
+    text-align: center;
+    margin-top: 0; // Elimina el margen superior de esta sección
+  }
+
+  &__title {
+    font-size: 2rem;
+    font-family: "Poppins", sans-serif;
+    font-weight: 600;
+    color: #ffffff;
+  }
+}
+
+// Estilos del carrusel
+.carousel {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    padding: 2rem 0;
+
+    &__track {
+        display: flex;
+        gap: 10px; // Espacio entre las imágenes
+    }
+
+    &__slide {
+        opacity: 0.5; // Opacidad más baja para imágenes laterales
+        transform: scale(0.8); // Escala reducida para las imágenes laterales
+        transition: transform 0.5s ease, opacity 0.5s ease;
+        text-align: center;
+
+        &--center {
+            opacity: 1;
+            transform: scale(1); // Tamaño completo para la imagen central
+        }
+    }
+
+    &__image {
+        border-radius: 22px;
+        width: 220px; // Tamaño estándar para las imágenes laterales
+        height: 300px;
+        transition: transform 0.5s ease, opacity 0.5s ease;
+    }
+
+    &__slide--center .carousel__image {
+        width: 300px; // Tamaño más grande para la imagen central
+        height: 420px;
+    }
+
+    &__title {
+        margin-top: 0.5rem;
+        font-weight: bold;
+        color: #ffffff;
+    }
+
+    &__button {
+        position: absolute;
+        top: 50%;
+        transform: translateY(-50%);
+        background-color: rgba(0, 0, 0, 0.7);
+        border: none;
+        cursor: pointer;
+        width: 40px;
+        height: 60px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+
+        &--left {
+            left: 10px;
+        }
+
+        &--right {
+            right: 10px;
+        }
+
+        img {
+            width: 20px;
+            height: auto;
+        }
+    }
+}
+
