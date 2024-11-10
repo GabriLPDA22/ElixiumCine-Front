@@ -66,20 +66,22 @@ body {
 }
 .cine-detail__info-showtimes {
   display: flex;
-  flex-wrap: wrap;
+  overflow-x: auto;
   gap: 1rem;
   margin-top: 1rem;
+  padding-bottom: 1rem;
 }
 .cine-detail__info-showtimes .session {
+  flex: 0 0 auto;
   position: relative;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: flex-start;
-  padding: 1rem;
+  padding: 0.5rem;
   border: 1px solid #ff2c78;
   border-radius: 8px;
-  width: 200px;
+  width: 170px;
   color: #ffffff;
   background: rgba(0, 0, 0, 0.6);
   transition: all 0.3s ease;
@@ -97,31 +99,33 @@ body {
   color: #dcdcdc;
 }
 .cine-detail__info-showtimes .session__tag {
-  position: absolute;
-  right: -9px;
-  top: -1px;
-  background-color: #ff2c78;
-  color: #ffffff;
-  padding: 0.3rem 0.5rem;
-  font-size: 0.8rem;
-  font-weight: bold;
-  border-top-right-radius: 8px;
-  border-bottom-right-radius: 11px;
-  writing-mode: vertical-rl;
-  text-orientation: mixed;
-  height: 83px;
-}
-.cine-detail__info-showtimes .session__vose {
-  margin-top: 0.5rem;
   background-color: #ff2c78;
   color: #ffffff;
   padding: 0.2rem 0.4rem;
-  font-size: 0.7rem;
-  border-radius: 5px;
+  font-size: 0.8rem;
   font-weight: bold;
   align-self: flex-start;
 }
-.cine-detail__info-showtimes.four-sessions .session:nth-child(4) {
+.cine-detail__info-showtimes .session__tag--isense {
+  position: absolute;
+  right: -1px;
+  top: -1px;
+  padding: 0.4rem 0.5rem;
+  border-top-right-radius: 8px;
+  border-bottom-right-radius: 6px;
+  writing-mode: vertical-rl;
+  text-orientation: mixed;
+  height: 90px;
+}
+.cine-detail__info-showtimes .session__vose {
+  background-color: #ff2c78;
+  font-size: 0.7rem;
+  border-radius: 5%;
+  color: #ffffff;
+  padding: 0.2rem 0.4rem;
+  margin-top: 0.5rem;
+}
+.cine-detail__info-showtimes .session.four-sessions .session:nth-child(4) {
   order: 3;
 }
 .cine-detail__logo {
