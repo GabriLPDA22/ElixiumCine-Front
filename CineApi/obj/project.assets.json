@@ -107,6 +107,19 @@
         "frameworkReferences": [
           "Microsoft.AspNetCore.App"
         ]
+      },
+      "CineWebApp.BackEnd/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v6.0",
+        "compile": {
+          "bin/placeholder/CineWebApp.BackEnd.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/CineWebApp.BackEnd.dll": {}
+        },
+        "frameworkReferences": [
+          "Microsoft.AspNetCore.App"
+        ]
       }
     }
   },
@@ -451,10 +464,16 @@
         "swashbuckle.aspnetcore.swaggerui.6.4.0.nupkg.sha512",
         "swashbuckle.aspnetcore.swaggerui.nuspec"
       ]
+    },
+    "CineWebApp.BackEnd/1.0.0": {
+      "type": "project",
+      "path": "../cine_web_app/back_end/CineWebApp.BackEnd.csproj",
+      "msbuildProject": "../cine_web_app/back_end/CineWebApp.BackEnd.csproj"
     }
   },
   "projectFileDependencyGroups": {
     "net8.0": [
+      "CineWebApp.BackEnd >= 1.0.0",
       "Microsoft.AspNetCore.OpenApi >= 8.0.1",
       "Swashbuckle.AspNetCore >= 6.4.0"
     ]
@@ -483,7 +502,11 @@
       "frameworks": {
         "net8.0": {
           "targetAlias": "net8.0",
-          "projectReferences": {}
+          "projectReferences": {
+            "C:\\Programacion\\2DAW\\Trabajos\\Primera Evaluacion\\cine_web_app\\back_end\\CineWebApp.BackEnd.csproj": {
+              "projectPath": "C:\\Programacion\\2DAW\\Trabajos\\Primera Evaluacion\\cine_web_app\\back_end\\CineWebApp.BackEnd.csproj"
+            }
+          }
         }
       },
       "warningProperties": {

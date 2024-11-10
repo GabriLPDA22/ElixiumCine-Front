@@ -1,0 +1,12 @@
+{
+  "version": 2,
+  "dgSpecHash": "nvx/1mo8m+Y97lvhXjAhGw3ySGSS1crlCH7D3kaThfQZcng9nCZGasDcSB6Jzj5UC8anAQQm5PBNpO09rIAkOQ==",
+  "success": true,
+  "projectFilePath": "C:\\Programacion\\2DAW\\Trabajos\\Primera Evaluacion\\cine_web_app\\back_end\\CineWebApp.BackEnd.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\gabri\\.nuget\\packages\\microsoft.netcore.app.ref\\6.0.26\\microsoft.netcore.app.ref.6.0.26.nupkg.sha512",
+    "C:\\Users\\gabri\\.nuget\\packages\\microsoft.windowsdesktop.app.ref\\6.0.26\\microsoft.windowsdesktop.app.ref.6.0.26.nupkg.sha512",
+    "C:\\Users\\gabri\\.nuget\\packages\\microsoft.aspnetcore.app.ref\\6.0.26\\microsoft.aspnetcore.app.ref.6.0.26.nupkg.sha512"
+  ],
+  "logs": []
+}

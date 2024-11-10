@@ -32,3 +32,5 @@ C:\Programacion\2DAW\Trabajos\Primera Evaluacion\CineApi\obj\Debug\net8.0\refint
 C:\Programacion\2DAW\Trabajos\Primera Evaluacion\CineApi\obj\Debug\net8.0\CineApi.pdb
 C:\Programacion\2DAW\Trabajos\Primera Evaluacion\CineApi\obj\Debug\net8.0\CineApi.genruntimeconfig.cache
 C:\Programacion\2DAW\Trabajos\Primera Evaluacion\CineApi\obj\Debug\net8.0\ref\CineApi.dll
+C:\Programacion\2DAW\Trabajos\Primera Evaluacion\CineApi\bin\Debug\net8.0\CineWebApp.BackEnd.dll
+C:\Programacion\2DAW\Trabajos\Primera Evaluacion\CineApi\bin\Debug\net8.0\CineWebApp.BackEnd.pdb

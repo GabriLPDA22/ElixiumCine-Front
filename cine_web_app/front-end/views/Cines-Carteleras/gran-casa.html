@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Gran Casa - Elixium</title>
+    <link rel="stylesheet" href="/cine_web_app/front-end/css/cine-details.css" type="text/css" />
+    <link rel="stylesheet" href="/cine_web_app/front-end/css/footer.css" type="text/css" />
+    <link rel="stylesheet" href="/cine_web_app/front-end/css/header.css" type="text/css" />
+    <!-- <link
+      rel="stylesheet"
+      href="/cine_web_app/front-end/css/carrousel-top-movies.css"
+      type="text/css"
+    /> -->
+</head>
+
+<body>
+    <!-- Header -->
+    <header class="header">
+        <a href="/cine_web_app/front-end/views/home.html" class="header__logo">Elixium</a>
+        <nav class="header__nav">
+            <ul class="header__menu">
+                <li class="header__menu-item">
+                    <a href="/cine_web_app/front-end/views/Cinemas.html" class="header__menu-link">Cines</a>
+                </li>
+                <li class="header__menu-item">
+                    <a href="#" class="header__menu-link">Películas</a>
+                </li>
+                <li class="header__menu-item">
+                    <a href="#" class="header__menu-link">Promociones</a>
+                </li>
+                <li class="header__menu-item">
+                    <a href="#" class="header__menu-link">Bonos</a>
+                </li>
+            </ul>
+        </nav>
+        <div class="header__actions">
+            <a href="/cine_web_app/front-end/views/security/register.html" class="header__link"
+                style="text-decoration: none; color: white">Registrarse</a>
+            <a href="/cine_web_app/front-end/views/security/login.html" class="header__link"
+                style="text-decoration: none; color: white">Iniciar sesión</a>
+            <a href="#" class="header__icon"><i class="icon-user"></i></a>
+            <a href="#" class="header__icon"><i class="icon-search"></i></a>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="cine-detail">
+        <!-- Logo de Gran Casa en la esquina superior derecha -->
+        <img id="cinema-logo" src="/cine_web_app/front-end/images/gran-casa.svg" alt="Gran Casa Logo"
+            class="cine-detail__logo" />
+
+        <!-- Fondo e Información de la película -->
+        <div id="background-image" class="cine-detail__background"></div>
+        <div class="cine-detail__overlay"></div>
+
+        <section class="cine-detail__info">
+            <h1 id="movie-title" class="cine-detail__info-title">
+                Título de la Película
+            </h1>
+            <div id="movie-metadata" class="cine-detail__info-metadata">
+                <!-- Aquí se llenará la información con IMDb, año, duración, género -->
+            </div>
+            <p id="movie-description" class="cine-detail__info-description">
+                Descripción de la película...
+            </p>
+
+            <div id="day-selector" class="day-selector"></div>
+
+            <div id="showtimes-container" class="cine-detail__info-showtimes">
+                <div class="session">
+                    <div class="session__time">16:30</div>
+                    <div class="session__room">Sala 10 iSense</div>
+                    <div class="session__tag session__tag--isense">iSense</div>
+                </div>
+                <div class="session">
+                    <div class="session__time">18:05</div>
+                    <div class="session__room">Sala 8</div>
+                </div>
+                <div class="session">
+                    <div class="session__time">19:20</div>
+                    <div class="session__room">Sala 10 iSense</div>
+                    <div class="session__tag session__tag--isense">iSense</div>
+                    <div class="session__vose">VOSE</div>
+                    <!-- Etiqueta VOSE bajo la sala -->
+                </div>
+            </div>
+        </section>
+        <section class="cine-detail__carousel">
+            <button class="carousel__prev">&lt;</button>
+            <button class="carousel__next">&gt;</button>
+            <div class="carousel__track-container">
+              <ul id="carousel-track" class="carousel__track">
+                <li class="carousel__slide selected">
+                </li>
+                <li class="carousel__slide">
+                </li>
+                <!-- Más imágenes -->
+              </ul>
+            </div>
+          </section>
+    </main>
+
+    <!-- Script de funcionalidad de detalle del cine -->
+    <script src="/cine_web_app/front-end/js/controllers/cine-detail.js"></script>
+    <script src="/cine_web_app/front-end/js/controllers/SesionesController.js"></script>
+    <script src="/cine_web_app/front-end/js/controllers/Carruousel-cines.js"></script>
+</body>
+
+</html>
