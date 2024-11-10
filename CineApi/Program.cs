@@ -2,8 +2,10 @@ using cine_web_app.back_end.Models;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using Microsoft.AspNetCore.Identity;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -32,6 +34,54 @@ if (app.Environment.IsDevelopment())
 // app.UseHttpsRedirection();
 
 app.UseCors("PermitirFrontend");
+
+var usuarios = new List<Usuario>();
+
+// Endpoint para registrar un nuevo usuario
+app.MapPost("/api/auth/register", (Usuario nuevoUsuario) =>
+{
+    if (usuarios.Any(u => u.Correo == nuevoUsuario.Correo))
+    {
+        return Results.BadRequest("El correo ya está en uso.");
+    }
+
+    nuevoUsuario.Id = usuarios.Count + 1;
+    nuevoUsuario.ContraseñaHash = new PasswordHasher<Usuario>().HashPassword(nuevoUsuario, nuevoUsuario.Contraseña);
+    nuevoUsuario.Contraseña = null; // Elimina la contraseña en texto plano por seguridad
+    usuarios.Add(nuevoUsuario);
+
+    return Results.Ok("Usuario registrado exitosamente.");
+}).WithName("RegisterUser");
+
+
+// Endpoint para iniciar sesión
+app.MapPost("/api/auth/login", (Usuario usuario) =>
+{
+    // Busca al usuario por correo
+    var usuarioExistente = usuarios.FirstOrDefault(u => u.Correo == usuario.Correo);
+    if (usuarioExistente == null)
+    {
+        return Results.Unauthorized(); // No se encuentra el correo
+    }
+
+    // Verifica la contraseña sin procesar contra el hash almacenado
+    var passwordHasher = new PasswordHasher<Usuario>();
+    var resultado = passwordHasher.VerifyHashedPassword(usuarioExistente, usuarioExistente.ContraseñaHash, usuario.Contraseña);
+
+    if (resultado == PasswordVerificationResult.Failed)
+    {
+        return Results.Unauthorized(); // Contraseña incorrecta
+    }
+
+    return Results.Ok(new { mensaje = "Inicio de sesión exitoso", nombre = usuarioExistente.Nombre });
+}).WithName("LoginUser");
+
+
+// Nuevo Endpoint para obtener todos los usuarios registrados
+app.MapGet("/api/auth/getUsers", () =>
+{
+    return Results.Ok(usuarios);
+}).WithName("GetAllUsers");
 
 // Definir endpoint para obtener películas
 app.MapGet("/api/Movie/GetPeliculas", () =>

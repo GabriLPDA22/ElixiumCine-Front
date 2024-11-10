@@ -24,12 +24,14 @@
             </ul>
         </nav>
         <div class="header__actions">
-            <a href="/cine_web_app/front-end/views/security/register.html" class="header__link">Registrarse</a>
-            <a href="/cine_web_app/front-end/views/security/login.html" class="header__link">Iniciar sesión</a>
-            <a href="#" class="header__icon"><i class="icon-user"></i></a>
-            <a href="#" class="header__icon"><i class="icon-search"></i></a>
+            <!-- Aquí se actualizará dinámicamente según el estado de sesión -->
+            <a href="/cine_web_app/front-end/views/security/register.html" class="header__link header__register">Registrarse</a>
+            <a href="/cine_web_app/front-end/views/security/login.html" class="header__link header__login">Iniciar sesión</a>
+            <span class="header__welcome" style="display: none;">Bienvenido, <span id="user-name"></span></span>
+            <a href="#" id="logout" class="header__link" style="display: none;">Cerrar sesión</a>
         </div>
     </header>
+    
 
 
     <!-- Main Content -->
@@ -50,16 +52,16 @@
                         <li class="carousel__slide carousel__slide--side">
                             <img src="../images/Avatar_El_sentido_del_agua.jpg" alt="Avatar"
                                 class="carousel__image">
-                            <p class="carousel__title">Avatar</p>
+                            <p class="carousel__title">Avatar 2</p>
                         </li>
                         <li class="carousel__slide carousel__slide--side">
                             <img src="../images/fast_&_furious_x.jpg" alt="Fast & Furious"
                                 class="carousel__image">
-                            <p class="carousel__title">Fast & Furious</p>
+                            <p class="carousel__title">Fast & Furious X</p>
                         </li>
                         <li class="carousel__slide carousel__slide--center">
                             <img src="../images/Venom_3.jpg" alt="Venom" class="carousel__image">
-                            <p class="carousel__title">Venom</p>
+                            <p class="carousel__title">Venom The Last Dance</p>
                         </li>
                         <li class="carousel__slide carousel__slide--side">
                             <img src="../images/robot_salvaje.jpg" alt="Robot Salvaje"
@@ -69,7 +71,7 @@
                         <li class="carousel__slide carousel__slide--side">
                             <img src="../images/terrifier-3.jpg" alt="Terrifier"
                                 class="carousel__image">
-                            <p class="carousel__title">Terrifier</p>
+                            <p class="carousel__title">Terrifier 3</p>
                         </li>
                     </ul>
                 </div>

@@ -34,3 +34,4 @@ C:\Programacion\2DAW\Trabajos\Primera Evaluacion\CineApi\obj\Debug\net8.0\CineAp
 C:\Programacion\2DAW\Trabajos\Primera Evaluacion\CineApi\obj\Debug\net8.0\ref\CineApi.dll
 C:\Programacion\2DAW\Trabajos\Primera Evaluacion\CineApi\bin\Debug\net8.0\CineWebApp.BackEnd.dll
 C:\Programacion\2DAW\Trabajos\Primera Evaluacion\CineApi\bin\Debug\net8.0\CineWebApp.BackEnd.pdb
+C:\Programacion\2DAW\Trabajos\Primera Evaluacion\CineApi\bin\Debug\net8.0\System.Text.Json.dll

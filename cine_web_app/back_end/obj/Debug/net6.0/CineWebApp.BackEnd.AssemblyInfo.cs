@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("CineWebApp.BackEnd")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+2df82b7ec0a59dbeee2234b949c5a26bd250789b")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+4be2697701e30710cdf443a7006f7d4f75ae5ee2")]
 [assembly: System.Reflection.AssemblyProductAttribute("CineWebApp.BackEnd")]
 [assembly: System.Reflection.AssemblyTitleAttribute("CineWebApp.BackEnd")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

@@ -4,7 +4,6 @@ using System.Collections.Generic;
 using System.Linq;
 using cine_web_app.back_end.Models;
 
-
 namespace cine_web_app.Controllers
 {
     [ApiController]
@@ -19,32 +18,38 @@ namespace cine_web_app.Controllers
         {
             if (usuarios.Any(u => u.Correo == nuevoUsuario.Correo))
             {
-                return BadRequest("El correo ya está en uso.");
+                return BadRequest(new { mensaje = "El correo ya está en uso." });
             }
 
             nuevoUsuario.Id = usuarios.Count + 1;
-            nuevoUsuario.ContraseñaHash = passwordHasher.HashPassword(nuevoUsuario, nuevoUsuario.ContraseñaHash);
+            nuevoUsuario.ContraseñaHash = passwordHasher.HashPassword(nuevoUsuario, nuevoUsuario.Contraseña);
             usuarios.Add(nuevoUsuario);
 
-            return Ok("Usuario registrado exitosamente.");
+            return Ok(new { mensaje = "Usuario registrado exitosamente." });
         }
 
         [HttpPost("login")]
         public IActionResult Login([FromBody] Usuario usuario)
         {
+            if (usuario == null || string.IsNullOrEmpty(usuario.Correo) || string.IsNullOrEmpty(usuario.Contraseña))
+            {
+                return BadRequest(new { mensaje = "Datos incompletos." });
+            }
+
             var usuarioExistente = usuarios.FirstOrDefault(u => u.Correo == usuario.Correo);
             if (usuarioExistente == null)
             {
-                return Unauthorized("Correo o contraseña incorrectos.");
+                return Unauthorized(new { mensaje = "Correo o contraseña incorrectos." });
             }
 
-            var resultado = passwordHasher.VerifyHashedPassword(usuarioExistente, usuarioExistente.ContraseñaHash, usuario.ContraseñaHash);
+            var resultado = passwordHasher.VerifyHashedPassword(usuarioExistente, usuarioExistente.ContraseñaHash, usuario.Contraseña);
+            Console.WriteLine($"Verificación de contraseña: {resultado}");
             if (resultado == PasswordVerificationResult.Failed)
             {
-                return Unauthorized("Correo o contraseña incorrectos.");
+                return Unauthorized(new { mensaje = "Correo o contraseña incorrectos." });
             }
 
-            return Ok("Inicio de sesión exitoso.");
+            return Ok(new { mensaje = "Inicio de sesión exitoso", nombre = usuarioExistente.Nombre });
         }
     }
 }

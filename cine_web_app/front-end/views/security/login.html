@@ -6,6 +6,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Login</title>
     <link rel="stylesheet" href="/cine_web_app/front-end/css/login.css">
+    <!-- Incluye SweetAlert para los mensajes de éxito o error -->
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 </head>
 
 <body class="login-page">
@@ -15,7 +17,7 @@
         <div class="header__language">
             <button class="header__language-btn" id="language-toggle">
                 <span id="current-language">English</span>
-                <img src="/cine_web_app/front-end/images/images/globo.png" alt="Language Icon" class="header__language-icon">
+                <img src="/cine_web_app/front-end/images/globo.png" alt="Language Icon" class="header__language-icon">
             </button>
             <div class="header__language-dropdown">
                 <div class="header__language-option" data-language="es">Español</div>
@@ -23,6 +25,7 @@
         </div>
     </header>
 
+    <!-- Background Grid with Posters -->
     <!-- Background Grid with Posters -->
     <div class="background-grid">
         <div class="poster poster--1 poster--small" style="background-image: url('/cine_web_app/front-end/images/dune_parte_dos.jpg');"></div>
@@ -42,14 +45,14 @@
     <main class="auth">
         <div class="auth__form-container">
             <h2 class="auth__title" data-en="Log in" data-es="Iniciar sesión">Log in</h2>
-            <form class="auth__form">
+            <form id="login-form" class="auth__form">
                 <div class="auth__field">
-                    <label for="email" class="auth__label" data-en="Email" data-es="Correo">Email</label>
-                    <input type="email" id="email" class="auth__input" placeholder="Your email">
+                    <label for="login-email" class="auth__label" data-en="Email" data-es="Correo">Email</label>
+                    <input type="email" id="login-email" class="auth__input" placeholder="Your email">
                 </div>
                 <div class="auth__field">
-                    <label for="password" class="auth__label" data-en="Password" data-es="Contraseña">Password</label>
-                    <input type="password" id="password" class="auth__input" placeholder="Your password">
+                    <label for="login-password" class="auth__label" data-en="Password" data-es="Contraseña">Password</label>
+                    <input type="password" id="login-password" class="auth__input" placeholder="Your password">
                 </div>
                 <button type="submit" class="auth__button" data-en="Log in" data-es="Iniciar sesión">Log in</button>
                 <div class="auth__options">
@@ -61,6 +64,7 @@
             </form>
         </div>
     </main>
+    
 
     <!-- JavaScript for Login -->
     <script src="/cine_web_app/front-end/js/security/login.js"></script>

@@ -19,3 +19,4 @@ C:\Programacion\2DAW\Trabajos\Primera Evaluacion\cine_web_app\back_end\obj\Debug
 C:\Programacion\2DAW\Trabajos\Primera Evaluacion\cine_web_app\back_end\obj\Debug\net6.0\refint\CineWebApp.BackEnd.dll
 C:\Programacion\2DAW\Trabajos\Primera Evaluacion\cine_web_app\back_end\obj\Debug\net6.0\CineWebApp.BackEnd.pdb
 C:\Programacion\2DAW\Trabajos\Primera Evaluacion\cine_web_app\back_end\obj\Debug\net6.0\ref\CineWebApp.BackEnd.dll
+C:\Programacion\2DAW\Trabajos\Primera Evaluacion\cine_web_app\back_end\obj\Debug\net6.0\CineWebApp.BackEnd.csproj.AssemblyReference.cache

@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "F4SV6BIjjtEf7HrW1CM6kGtX379XkvHF88LLehgUSJOs4dgjqST+jXx4O9zqSylhaqxHoMdDw3WUGVm4fGS0HQ==",
+  "dgSpecHash": "T+z6onBXc2Bu9Gz88XCeGbsTe1nMgjehJ7St7en4M2DsfCYnXx35nQrD1Ce2xbEs6cgAT3fxVtI4DV0lbf8SHw==",
   "success": true,
   "projectFilePath": "C:\\Programacion\\2DAW\\Trabajos\\Primera Evaluacion\\CineApi\\CineApi.csproj",
   "expectedPackageFiles": [
@@ -10,7 +10,8 @@
     "C:\\Users\\gabri\\.nuget\\packages\\swashbuckle.aspnetcore\\6.4.0\\swashbuckle.aspnetcore.6.4.0.nupkg.sha512",
     "C:\\Users\\gabri\\.nuget\\packages\\swashbuckle.aspnetcore.swagger\\6.4.0\\swashbuckle.aspnetcore.swagger.6.4.0.nupkg.sha512",
     "C:\\Users\\gabri\\.nuget\\packages\\swashbuckle.aspnetcore.swaggergen\\6.4.0\\swashbuckle.aspnetcore.swaggergen.6.4.0.nupkg.sha512",
-    "C:\\Users\\gabri\\.nuget\\packages\\swashbuckle.aspnetcore.swaggerui\\6.4.0\\swashbuckle.aspnetcore.swaggerui.6.4.0.nupkg.sha512"
+    "C:\\Users\\gabri\\.nuget\\packages\\swashbuckle.aspnetcore.swaggerui\\6.4.0\\swashbuckle.aspnetcore.swaggerui.6.4.0.nupkg.sha512",
+    "C:\\Users\\gabri\\.nuget\\packages\\system.text.json\\8.0.5\\system.text.json.8.0.5.nupkg.sha512"
   ],
   "logs": []
 }
