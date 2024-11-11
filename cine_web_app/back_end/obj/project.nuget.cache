@@ -1,15 +1,15 @@
 {
   "version": 2,
-  "dgSpecHash": "YROzL/PLrY8Utsbvm0PlX/VqhT4Yi5DcD4xeo5VK391DEbPB9zoQ8VLq+eR+MdIWK7GvQZOpKiLg38i83ji3aQ==",
+  "dgSpecHash": "KR4gcLGrwJk=",
   "success": true,
-  "projectFilePath": "C:\\Programacion\\2DAW\\Trabajos\\Primera Evaluacion\\cine_web_app\\back_end\\CineWebApp.BackEnd.csproj",
+  "projectFilePath": "D:\\Gabriel\\Trabajos\\PrimeraEvaluacion\\cine_web_app\\back_end\\CineWebApp.BackEnd.csproj",
   "expectedPackageFiles": [
-    "C:\\Users\\gabri\\.nuget\\packages\\system.runtime.compilerservices.unsafe\\6.0.0\\system.runtime.compilerservices.unsafe.6.0.0.nupkg.sha512",
-    "C:\\Users\\gabri\\.nuget\\packages\\system.text.encodings.web\\8.0.0\\system.text.encodings.web.8.0.0.nupkg.sha512",
-    "C:\\Users\\gabri\\.nuget\\packages\\system.text.json\\8.0.5\\system.text.json.8.0.5.nupkg.sha512",
-    "C:\\Users\\gabri\\.nuget\\packages\\microsoft.aspnetcore.app.ref\\6.0.26\\microsoft.aspnetcore.app.ref.6.0.26.nupkg.sha512",
-    "C:\\Users\\gabri\\.nuget\\packages\\microsoft.netcore.app.ref\\6.0.26\\microsoft.netcore.app.ref.6.0.26.nupkg.sha512",
-    "C:\\Users\\gabri\\.nuget\\packages\\microsoft.windowsdesktop.app.ref\\6.0.26\\microsoft.windowsdesktop.app.ref.6.0.26.nupkg.sha512"
+    "C:\\Users\\S2-PC00\\.nuget\\packages\\system.runtime.compilerservices.unsafe\\6.0.0\\system.runtime.compilerservices.unsafe.6.0.0.nupkg.sha512",
+    "C:\\Users\\S2-PC00\\.nuget\\packages\\system.text.encodings.web\\8.0.0\\system.text.encodings.web.8.0.0.nupkg.sha512",
+    "C:\\Users\\S2-PC00\\.nuget\\packages\\system.text.json\\8.0.5\\system.text.json.8.0.5.nupkg.sha512",
+    "C:\\Users\\S2-PC00\\.nuget\\packages\\microsoft.netcore.app.ref\\6.0.31\\microsoft.netcore.app.ref.6.0.31.nupkg.sha512",
+    "C:\\Users\\S2-PC00\\.nuget\\packages\\microsoft.windowsdesktop.app.ref\\6.0.31\\microsoft.windowsdesktop.app.ref.6.0.31.nupkg.sha512",
+    "C:\\Users\\S2-PC00\\.nuget\\packages\\microsoft.aspnetcore.app.ref\\6.0.31\\microsoft.aspnetcore.app.ref.6.0.31.nupkg.sha512"
   ],
   "logs": []
 }

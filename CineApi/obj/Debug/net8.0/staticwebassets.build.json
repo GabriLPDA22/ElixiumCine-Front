@@ -1,13 +1,13 @@
 {
   "Version": 1,
-  "Hash": "s2WBAbPjQe29li5e172fRNiZWRbCCZZoFFiO0y/qk0A=",
+  "Hash": "EdGB1YZASI5LWniQG8hxpBpWAjPVNF47WYY5oEBmuoQ=",
   "Source": "CineApi",
   "BasePath": "_content/CineApi",
   "Mode": "Default",
   "ManifestType": "Build",
   "ReferencedProjectsConfiguration": [
     {
-      "Identity": "C:\\Programacion\\2DAW\\Trabajos\\Primera Evaluacion\\cine_web_app\\back_end\\CineWebApp.BackEnd.csproj",
+      "Identity": "D:\\Gabriel\\Trabajos\\PrimeraEvaluacion\\cine_web_app\\back_end\\CineWebApp.BackEnd.csproj",
       "Version": 2,
       "Source": "CineWebApp.BackEnd",
       "GetPublishAssetsTargets": "ComputeReferencedStaticWebAssetsPublishManifest;GetCurrentProjectPublishStaticWebAssetItems",
