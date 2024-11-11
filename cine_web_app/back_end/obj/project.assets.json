@@ -212,11 +212,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "D:\\Gabriel\\Trabajos\\PrimeraEvaluacion\\cine_web_app\\back_end\\CineWebApp.BackEnd.csproj",
+      "projectUniqueName": "D:\\FRAN\\Cine\\cine_web_app\\back_end\\CineWebApp.BackEnd.csproj",
       "projectName": "CineWebApp.BackEnd",
-      "projectPath": "D:\\Gabriel\\Trabajos\\PrimeraEvaluacion\\cine_web_app\\back_end\\CineWebApp.BackEnd.csproj",
+      "projectPath": "D:\\FRAN\\Cine\\cine_web_app\\back_end\\CineWebApp.BackEnd.csproj",
       "packagesPath": "C:\\Users\\S2-PC00\\.nuget\\packages\\",
-      "outputPath": "D:\\Gabriel\\Trabajos\\PrimeraEvaluacion\\cine_web_app\\back_end\\obj\\",
+      "outputPath": "D:\\FRAN\\Cine\\cine_web_app\\back_end\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"

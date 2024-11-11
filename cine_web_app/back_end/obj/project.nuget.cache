@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "KR4gcLGrwJk=",
+  "dgSpecHash": "iB6Lhluf3aI=",
   "success": true,
-  "projectFilePath": "D:\\Gabriel\\Trabajos\\PrimeraEvaluacion\\cine_web_app\\back_end\\CineWebApp.BackEnd.csproj",
+  "projectFilePath": "D:\\FRAN\\Cine\\cine_web_app\\back_end\\CineWebApp.BackEnd.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\S2-PC00\\.nuget\\packages\\system.runtime.compilerservices.unsafe\\6.0.0\\system.runtime.compilerservices.unsafe.6.0.0.nupkg.sha512",
     "C:\\Users\\S2-PC00\\.nuget\\packages\\system.text.encodings.web\\8.0.0\\system.text.encodings.web.8.0.0.nupkg.sha512",
