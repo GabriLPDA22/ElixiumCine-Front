@@ -1,25 +1,31 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Programacion\\2DAW\\Trabajos\\Primera Evaluacion\\cine_web_app\\back_end\\CineWebApp.BackEnd.csproj": {}
+    "D:\\FRAN\\Cine-main\\cine_web_app\\back_end\\CineWebApp.BackEnd.csproj": {}
   },
   "projects": {
-    "C:\\Programacion\\2DAW\\Trabajos\\Primera Evaluacion\\cine_web_app\\back_end\\CineWebApp.BackEnd.csproj": {
+    "D:\\FRAN\\Cine-main\\cine_web_app\\back_end\\CineWebApp.BackEnd.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Programacion\\2DAW\\Trabajos\\Primera Evaluacion\\cine_web_app\\back_end\\CineWebApp.BackEnd.csproj",
+        "projectUniqueName": "D:\\FRAN\\Cine-main\\cine_web_app\\back_end\\CineWebApp.BackEnd.csproj",
         "projectName": "CineWebApp.BackEnd",
-        "projectPath": "C:\\Programacion\\2DAW\\Trabajos\\Primera Evaluacion\\cine_web_app\\back_end\\CineWebApp.BackEnd.csproj",
-        "packagesPath": "C:\\Users\\gabri\\.nuget\\packages\\",
-        "outputPath": "C:\\Programacion\\2DAW\\Trabajos\\Primera Evaluacion\\cine_web_app\\back_end\\obj\\",
+        "projectPath": "D:\\FRAN\\Cine-main\\cine_web_app\\back_end\\CineWebApp.BackEnd.csproj",
+        "packagesPath": "C:\\Users\\S2-PC00\\.nuget\\packages\\",
+        "outputPath": "D:\\FRAN\\Cine-main\\cine_web_app\\back_end\\obj\\",
         "projectStyle": "PackageReference",
+        "fallbackFolders": [
+          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
+        ],
         "configFilePaths": [
-          "C:\\Users\\gabri\\AppData\\Roaming\\NuGet\\NuGet.Config"
+          "C:\\Users\\S2-PC00\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
           "net6.0"
         ],
         "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
@@ -32,6 +38,11 @@
           "warnAsError": [
             "NU1605"
           ]
+        },
+        "restoreAuditProperties": {
+          "enableAudit": "true",
+          "auditLevel": "low",
+          "auditMode": "direct"
         }
       },
       "frameworks": {
@@ -57,15 +68,15 @@
           "downloadDependencies": [
             {
               "name": "Microsoft.AspNetCore.App.Ref",
-              "version": "[6.0.26, 6.0.26]"
+              "version": "[6.0.31, 6.0.31]"
             },
             {
               "name": "Microsoft.NETCore.App.Ref",
-              "version": "[6.0.26, 6.0.26]"
+              "version": "[6.0.31, 6.0.31]"
             },
             {
               "name": "Microsoft.WindowsDesktop.App.Ref",
-              "version": "[6.0.26, 6.0.26]"
+              "version": "[6.0.31, 6.0.31]"
             }
           ],
           "frameworkReferences": {
@@ -76,7 +87,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.101\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.302\\RuntimeIdentifierGraph.json"
         }
       }
     }
