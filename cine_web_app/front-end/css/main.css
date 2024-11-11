@@ -1,91 +1,13 @@
-*,
-*::before,
-*::after {
+body {
   margin: 0;
   padding: 0;
-  box-sizing: border-box;
 }
-
-html, body {
-  height: 100%;
-  font-family: "Poppins", sans-serif;
-  color: #ffffff;
-  background-color: #000000;
-}
-
-ul, ol {
-  list-style: none;
-}
-
-img {
-  display: block;
-  max-width: 100%;
-}
-
-a {
-  color: inherit;
-  text-decoration: none;
-}
-
-/* .header {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 1rem 2rem;
-  background-color: #020510;
-}
-.header__logo {
-  font-size: 1.5rem;
-  font-weight: 600;
-  font-family: "Poppins", sans-serif;
-  background: radial-gradient(circle, #ff2c78, #dca4ff);
-  -webkit-background-clip: text;
-  color: transparent;
-}
-.header__nav {
-  flex-grow: 1;
-  margin-left: 2rem;
-}
-.header__menu {
-  list-style: none;
-  display: flex;
-  gap: 2rem;
-}
-.header__menu-item a {
-  color: #ffffff;
-  text-decoration: none;
-  font-weight: 500;
-  font-family: "Poppins", sans-serif;
-  transition: color 0.3s;
-}
-.header__menu-item a:hover {
-  color: #ff2c78;
-}
-.header__actions {
-  display: flex;
-  gap: 1.5rem;
-}
-.header__actions__link {
-  color: #ffffff;
-  text-decoration: none;
-  font-weight: 600;
-  font-family: "Poppins", sans-serif;
-  transition: color 0.3s;
-  text-decoration: none;
-}
-.header__actions__link:hover {
-  color: #ff2c78;
-}
-.header__actions__icon {
-  color: #ffffff;
-  font-size: 1.2rem;
-  cursor: pointer;
-} */
 
 .main {
   background: linear-gradient(180deg, #020510 0%, #000000 100%);
   padding: 0;
   color: #ffffff;
+  height: auto;
 }
 .main__top-movies {
   text-align: center;
@@ -96,67 +18,59 @@ a {
   font-family: "Poppins", sans-serif;
   font-weight: 600;
   color: #ffffff;
+  margin: 0;
 }
 
-.carousel {
-  position: relative;
+.about-section {
   display: flex;
-  align-items: center;
   justify-content: center;
-  overflow: hidden;
-  padding: 2rem 0;
+  align-items: center;
+  padding: 2rem;
+  background-color: rgb(0, 0, 0);
+  color: white;
 }
-.carousel__track {
-  display: flex;
-  gap: 10px;
+.about-section .about-background {
+  background-image: url("/cine_web_app/front-end/images/banner-cines.jpg");
+  background-size: cover;
+  background-position: center;
+  padding: 2rem;
+  border: 1px solid #007aff;
+  border-radius: 8px;
 }
-.carousel__slide {
-  opacity: 0.5;
-  transform: scale(0.8);
-  transition: transform 0.5s ease, opacity 0.5s ease;
+.about-section .about-content {
+  max-width: 600px;
   text-align: center;
 }
-.carousel__slide--center {
-  opacity: 1;
-  transform: scale(1);
+.about-section .about-content h2 {
+  font-size: 1.8rem;
+  margin-bottom: 1rem;
 }
-.carousel__image {
-  border-radius: 22px;
-  width: 220px;
-  height: 300px;
-  transition: transform 0.5s ease, opacity 0.5s ease;
+.about-section .about-content p {
+  font-size: 1rem;
+  line-height: 1.5;
+  margin-bottom: 2rem;
+  color: #dcdcdc;
 }
-.carousel__slide--center .carousel__image {
-  width: 300px;
-  height: 420px;
+.about-section .about-content p a {
+  color: #6da9ff;
+  text-decoration: none;
+  transition: color 0.3s;
 }
-.carousel__title {
-  margin-top: 0.5rem;
-  font-weight: bold;
-  color: #ffffff;
+.about-section .about-content p a:hover {
+  color: #ff2c78;
 }
-.carousel__button {
-  position: absolute;
-  top: 50%;
-  transform: translateY(-50%);
-  background-color: rgba(0, 0, 0, 0.7);
+.about-section .about-content .about-button {
+  padding: 0.5rem 2rem;
+  background-color: #ff2c78;
+  color: white;
   border: none;
+  border-radius: 5px;
   cursor: pointer;
-  width: 40px;
-  height: 60px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
+  font-weight: bold;
+  transition: background-color 0.3s;
 }
-.carousel__button--left {
-  left: 10px;
-}
-.carousel__button--right {
-  right: 10px;
-}
-.carousel__button img {
-  width: 20px;
-  height: auto;
+.about-section .about-content .about-button:hover {
+  background-color: #d3005a;
 }
 
 /*# sourceMappingURL=main.css.map */

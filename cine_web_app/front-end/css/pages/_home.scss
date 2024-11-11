@@ -64,11 +64,17 @@
 //   }
 // }
 
+body{
+  margin: 0;
+  padding: 0;
+}
+
 // main
 .main {
   background: linear-gradient(180deg, #020510 0%, #000000 100%);
   padding: 0; // Elimina el margen/padding de la sección principal
   color: #ffffff;
+  height: auto;
 
   &__top-movies {
     text-align: center;
@@ -80,8 +86,70 @@
     font-family: "Poppins", sans-serif;
     font-weight: 600;
     color: #ffffff;
+    margin: 0;
   }
 }
+
+.about-section {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 2rem;
+  background-color: rgb(0 0 0);
+  color: white;
+
+  .about-background {
+      background-image: url('/cine_web_app/front-end/images/banner-cines.jpg'); // Cambia esto a la ruta de tu imagen
+      background-size: cover;
+      background-position: center;
+      padding: 2rem;
+      border: 1px solid #007aff;
+      border-radius: 8px;
+  }
+
+  .about-content {
+      max-width: 600px;
+      text-align: center;
+
+      h2 {
+          font-size: 1.8rem;
+          margin-bottom: 1rem;
+      }
+
+      p {
+          font-size: 1rem;
+          line-height: 1.5;
+          margin-bottom: 2rem;
+          color: #dcdcdc;
+
+          a {
+              color: #6da9ff;
+              text-decoration: none;
+              transition: color 0.3s;
+
+              &:hover {
+                  color: #ff2c78;
+              }
+          }
+      }
+
+      .about-button {
+          padding: 0.5rem 2rem;
+          background-color: #ff2c78;
+          color: white;
+          border: none;
+          border-radius: 5px;
+          cursor: pointer;
+          font-weight: bold;
+          transition: background-color 0.3s;
+
+          &:hover {
+              background-color: #d3005a;
+          }
+      }
+  }
+}
+
 
 // // Estilos del carrusel
 // .carousel {
