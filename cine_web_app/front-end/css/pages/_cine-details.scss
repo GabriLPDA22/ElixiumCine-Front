@@ -126,10 +126,13 @@ body {
             border-bottom-right-radius: 6px;
             writing-mode: vertical-rl;
             text-orientation: mixed;
-            height: 72px;
-          }
+            height: 88px;
+            
+            @media (min-width: 2560px) and (max-width: 3000px) {
+              height: 88px;
+            }
         }
-    
+      }
         &__vose {
           background-color: #ff2c78;
           font-size: 0.7rem;

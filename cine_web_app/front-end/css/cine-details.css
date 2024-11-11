@@ -118,7 +118,12 @@ body {
   border-bottom-right-radius: 6px;
   writing-mode: vertical-rl;
   text-orientation: mixed;
-  height: 72px;
+  height: 88px;
+}
+@media (min-width: 2560px) and (max-width: 3000px) {
+  .cine-detail__info-showtimes .session__tag--isense {
+    height: 88px;
+  }
 }
 .cine-detail__info-showtimes .session__vose {
   background-color: #ff2c78;
