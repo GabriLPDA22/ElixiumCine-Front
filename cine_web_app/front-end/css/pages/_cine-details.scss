@@ -77,10 +77,9 @@ body {
 
     &-showtimes {
       display: flex;
-      overflow-x: auto; // Habilita el desplazamiento horizontal para que todas las sesiones se muestren en línea
       gap: 1rem;
       margin-top: 1rem;
-      padding-bottom: 1rem; // Espacio inferior para que el borde de las tarjetas no toque el límite
+      margin-bottom: 1rem;
     
       .session {
         flex: 0 0 auto; // Evita que las tarjetas se expandan y se ajusten en una sola fila
@@ -88,7 +87,6 @@ body {
         display: flex;
         flex-direction: column;
         justify-content: center;
-        align-items: flex-start;
         padding: 0.5rem;
         border: 1px solid #ff2c78;
         border-radius: 8px;
@@ -130,11 +128,7 @@ body {
             border-bottom-right-radius: 6px;
             writing-mode: vertical-rl;
             text-orientation: mixed;
-            height: 88px;
-            
-            @media (min-width: 2560px) and (max-width: 3000px) {
-              height: 88px;
-            }
+            height: 70px;
         }
       }
         &__vose {
