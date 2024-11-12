@@ -216,7 +216,7 @@ body {
   transform: translateX(-40px);
 }
 .cine-detail .cine-detail__carousel .carousel__next {
-  margin-left: 10px;
+  margin-left: auto;
   transform: translateX(-30px);
 }
 .cine-detail .day-selector {
