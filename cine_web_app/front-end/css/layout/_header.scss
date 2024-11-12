@@ -44,13 +44,12 @@
         &__link {
             color: #ffffff;
             text-decoration: none;
-            font-weight: 600; // Semi-bold para hacer que se vea más fuerte
+            font-weight: 600;
             font-family: "Poppins", sans-serif;
             transition: color 0.3s;
-            text-decoration: none;
 
             &:hover {
-                color: #ff2c78; // Color de hover
+                color: #ff2c78;
             }
         }
 
@@ -58,6 +57,19 @@
             color: #ffffff;
             font-size: 1.2rem;
             cursor: pointer;
+        }
+
+        // Estilos específicos para los enlaces de registro e inicio de sesión
+        .header__register,
+        .header__login {
+            color: #ffffff;
+            text-decoration: none;
+            font-weight: 600;
+            transition: color 0.3s;
+            font-family: poppins;
+            &:hover {
+                color: #ff2c78;
+            }
         }
     }
 }
