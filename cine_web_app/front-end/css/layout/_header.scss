@@ -4,6 +4,7 @@
     align-items: center;
     padding: 1rem 2rem;
     background-color: #020510;
+    position: relative;
 
     &__logo {
         font-size: 1.5rem;
@@ -14,62 +15,64 @@
         color: transparent;
     }
 
-    &__nav {
-        flex-grow: 1;
-        margin-left: 2rem;
+    &__hamburger {
+        display: none;
+        font-size: 1.5rem;
+        color: #ffffff;
+        cursor: pointer;
+    }
+
+    &__nav.overlay {
+        position: fixed;
+        top: 0;
+        left: 0;
+        height: 100%;
+        width: 250px; // Ancho del menú lateral
+        background-color: #020510;
+        transform: translateX(-100%);
+        transition: transform 0.3s ease;
+        z-index: 1000;
+        overflow-y: auto;
+    }
+
+    &.is-open .header__nav.overlay {
+        transform: translateX(0); // Hace visible el menú al deslizarlo desde la izquierda
     }
 
     &__menu {
         list-style: none;
         display: flex;
-        gap: 2rem;
+        flex-direction: column;
+        padding-top: 2rem;
 
-        &-item a {
-            color: #ffffff;
-            text-decoration: none;
-            font-weight: 500;
-            font-family: "Poppins", sans-serif;
-            transition: color 0.3s;
+        &-item {
+            margin: 1rem 0;
 
-            &:hover {
-                color: #ff2c78;
+            a {
+                color: #ffffff;
+                text-decoration: none;
+                font-weight: 500;
+                font-family: "Poppins", sans-serif;
+                display: block;
+                padding: 1rem;
+                transition: color 0.3s;
+
+                &:hover {
+                    color: #ff2c78;
+                }
             }
         }
     }
 
-    &__actions {
-        display: flex;
-        gap: 1.5rem;
-
-        &__link {
-            color: #ffffff;
-            text-decoration: none;
-            font-weight: 600;
-            font-family: "Poppins", sans-serif;
-            transition: color 0.3s;
-
-            &:hover {
-                color: #ff2c78;
-            }
-        }
-
-        &__icon {
-            color: #ffffff;
-            font-size: 1.2rem;
-            cursor: pointer;
-        }
-
-        // Estilos específicos para los enlaces de registro e inicio de sesión
-        .header__register,
-        .header__login {
-            color: #ffffff;
-            text-decoration: none;
-            font-weight: 600;
-            transition: color 0.3s;
-            font-family: poppins;
-            &:hover {
-                color: #ff2c78;
-            }
+    // Mostrar el ícono de hamburguesa solo en pantallas pequeñas
+    @media (max-width: 768px) {
+        &__hamburger {
+            display: block;
         }
     }
+}
+
+// Estilo para evitar el scroll de la página cuando el menú está activo
+body.menu-open {
+    overflow: hidden;
 }

@@ -17,26 +17,18 @@
     <!-- Header -->
     <header class="header">
         <div class="header__logo">Elixium</div>
-        <nav class="header__nav">
+        <div class="header__hamburger">&#9776;</div>
+        <nav class="header__nav overlay">
             <ul class="header__menu">
                 <li class="header__menu-item"><a href="/cine_web_app/front-end/views/Cinemas.html">Cines</a></li>
                 <li class="header__menu-item"><a href="#">Películas</a></li>
                 <li class="header__menu-item"><a href="#">Promociones</a></li>
+                <li class="header__menu-item"><a href="/cine_web_app/front-end/views/security/register.html" class="header__link header__register">Registrarse</a></li>
+                <li class="header__menu-item"><a href="/cine_web_app/front-end/views/security/login.html" class="header__link header__login">Iniciar sesión</a></li>
             </ul>
         </nav>
-        <div class="header__actions">
-            <!-- Aquí se actualizará dinámicamente según el estado de sesión -->
-            <a href="/cine_web_app/front-end/views/security/register.html"
-                class="header__link header__register">Registrarse</a>
-            <a href="/cine_web_app/front-end/views/security/login.html" class="header__link header__login">Iniciar
-                sesión</a>
-            <span class="header__welcome" style="display: none;">Bienvenido, <span id="user-name"></span></span>
-            <a href="#" id="logout" class="header__link" style="display: none;">Cerrar sesión</a>
-        </div>
     </header>
-
-
-
+    
     <!-- Main Content -->
     <main class="main">
         <!-- Sección de Top Películas -->
@@ -228,6 +220,7 @@
         </div>
     </footer>
     <script src="/cine_web_app/front-end/js/home/CarruselController.js"></script>
+    <script src="/cine_web_app/front-end/js/home/navbarresponsive.js"></script>
 </body>
 
 </html>
