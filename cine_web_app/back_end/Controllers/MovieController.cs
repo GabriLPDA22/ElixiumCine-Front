@@ -26,6 +26,7 @@ namespace cine_web_app.back_end.Controllers
                 Imagen = "/cine_web_app/front-end/images/Banner-Spiderman-no-way-home.jpg",
                 Cartel = "/cine_web_app/front-end/images/Spiderman-No-Way-Home-Cartel.jpg",
                 EdadRecomendada = 12,
+                ImagenEdadRecomendada = "/cine_web_app/front-end/images/12.jpg",
                 Sesiones = new Dictionary<string, List<Sesion>>
                 {
                     { "2024-11-11", new List<Sesion>
@@ -100,6 +101,7 @@ namespace cine_web_app.back_end.Controllers
                 Imagen = "/cine_web_app/front-end/images/X-Men_Apocalypse_Banner.jpg",
                 Cartel = "/cine_web_app/front-end/images/X-MEN_Apocalypse.jpg",
                 EdadRecomendada = 12,
+                ImagenEdadRecomendada = "/cine_web_app/front-end/images/12.jpg",
                 Sesiones = new Dictionary<string, List<Sesion>>
                 {
                     { "2024-11-11", new List<Sesion>
@@ -139,6 +141,7 @@ namespace cine_web_app.back_end.Controllers
                 Imagen = "/cine_web_app/front-end/images/Venom-3-Banner.jpg",
                 Cartel = "/cine_web_app/front-end/images/Venom_3.jpg",
                 EdadRecomendada = 12,
+                ImagenEdadRecomendada = "/cine_web_app/front-end/images/12.jpg",
                 Sesiones = new Dictionary<string, List<Sesion>>
                 {
                     { "2024-11-11", new List<Sesion>
@@ -200,9 +203,12 @@ namespace cine_web_app.back_end.Controllers
                 Genero = "Terror",
                 Duracion = "2 horas 5 minutos",
                 Calificacion = 7.5,
+                Director = "Damien Leone",
+                Actores = "Felissa Rose, Samantha Scaffidi, David Howard Thornton, Lauren LaVera, Chris Jericho, Elliott Fullam",
                 Imagen = "/cine_web_app/front-end/images/banner-terrifier-3.jpg", // Ruta del banner
                 Cartel = "/cine_web_app/front-end/images/terrifier-3.jpg", // Ruta del cartel
                 EdadRecomendada = 18, // Marcado como para mayores de 18 años
+                ImagenEdadRecomendada = "/cine_web_app/front-end/images/18.jpg",
                 Sesiones = new Dictionary<string, List<Sesion>>
                 {
                     { "2024-11-01", new List<Sesion>

@@ -11,10 +11,11 @@ body {
   flex-direction: column;
   align-items: center;
   padding: 2rem;
+  /**/
 }
 .movie__banner {
   width: 100%;
-  max-height: 700px;
+  max-height: 45vh;
   overflow: hidden;
 }
 .movie__banner-image {
@@ -47,41 +48,43 @@ body {
   font-weight: bold;
   color: #ffffff;
 }
-.movie__info-section-title {
+.movie__info-age-rating-icon {
+  width: 20px;
+  height: auto;
+}
+.movie__info-age-rating-icon-section-title {
   font-size: 1.2rem;
   font-weight: bold;
   color: #ffffff;
   margin-top: 0;
 }
-.movie__info-director, .movie__info-actors, .movie__info-description {
+.movie__info-age-rating-icon-director, .movie__info-age-rating-icon-actors, .movie__info-age-rating-icon-description {
   font-size: 1.1rem;
   font-weight: normal;
   color: #b0b0b0;
   line-height: 1.2;
 }
-.movie__additional-info {
+.movie__info__additional-info {
   flex: 1;
   display: flex;
   flex-direction: column;
 }
-.movie__additional-info-section-title {
+.movie__info__additional-info-section-title {
   font-size: 1.2rem;
   font-weight: bold;
   color: #ffffff;
   margin-top: 0;
 }
-.movie__additional-info-duration, .movie__additional-info-release-date, .movie__additional-info-genre, .movie__additional-info-rating {
+.movie__info__additional-info-duration, .movie__info__additional-info-release-date, .movie__info__additional-info-genre, .movie__info__additional-info-rating {
   font-size: 1.1rem;
   font-weight: normal;
   color: #b0b0b0;
   line-height: 1.2;
 }
-
-/**/
-.cine-detail {
+.movie .cine-detail {
   height: 1000px;
 }
-.cine-detail__background {
+.movie .cine-detail__background {
   position: absolute;
   top: 0;
   left: 0;
@@ -92,7 +95,7 @@ body {
   z-index: -1;
   transition: background-image 0.5s ease-in-out;
 }
-.cine-detail__overlay {
+.movie .cine-detail__overlay {
   position: absolute;
   top: 0;
   left: 0;
@@ -101,7 +104,7 @@ body {
   background: rgba(0, 0, 0, 0.5);
   z-index: -1;
 }
-.cine-detail__info {
+.movie .cine-detail__info {
   position: absolute;
   left: 5%;
   text-align: left;
@@ -109,42 +112,42 @@ body {
   max-width: 800px;
   padding: 1rem;
 }
-.cine-detail__info-title {
+.movie .cine-detail__info-title {
   font-size: 3rem;
   font-weight: bold;
   color: #ffffff;
   margin: 0px;
 }
-.cine-detail__info-metadata {
+.movie .cine-detail__info-metadata {
   font-size: 1.2rem;
   color: #dcdcdc;
   margin: 0.5rem 0;
 }
-.cine-detail__info-metadata span {
+.movie .cine-detail__info-metadata span {
   display: inline-block;
 }
-.cine-detail__info-metadata span:first-child {
+.movie .cine-detail__info-metadata span:first-child {
   background: #ff2c78;
   padding: 0.2rem 0.5rem;
   border-radius: 0.3rem;
   color: #fff;
   font-weight: bold;
 }
-.cine-detail__info-description {
+.movie .cine-detail__info-description {
   font-size: 1.3rem;
   color: #ffffff;
   margin-top: 1rem;
   max-width: 70%;
   min-height: 150px;
 }
-.cine-detail__info-showtimes {
+.movie .cine-detail__info-showtimes {
   display: flex;
   overflow-x: auto;
   gap: 1rem;
   margin-top: 1rem;
   padding-bottom: 1rem;
 }
-.cine-detail__info-showtimes .session {
+.movie .cine-detail__info-showtimes .session {
   flex: 0 0 auto;
   position: relative;
   display: flex;
@@ -159,19 +162,19 @@ body {
   background: rgba(0, 0, 0, 0.6);
   transition: all 0.3s ease;
 }
-.cine-detail__info-showtimes .session:hover {
+.movie .cine-detail__info-showtimes .session:hover {
   background: rgba(255, 44, 120, 0.2);
 }
-.cine-detail__info-showtimes .session__time {
+.movie .cine-detail__info-showtimes .session__time {
   font-size: 1.4rem;
   font-weight: bold;
   margin-bottom: 0.2rem;
 }
-.cine-detail__info-showtimes .session__room {
+.movie .cine-detail__info-showtimes .session__room {
   font-size: 0.9rem;
   color: #dcdcdc;
 }
-.cine-detail__info-showtimes .session__tag {
+.movie .cine-detail__info-showtimes .session__tag {
   background-color: #ff2c78;
   color: #ffffff;
   padding: 0.2rem 0.4rem;
@@ -179,7 +182,7 @@ body {
   font-weight: bold;
   align-self: flex-start;
 }
-.cine-detail__info-showtimes .session__tag--isense {
+.movie .cine-detail__info-showtimes .session__tag--isense {
   position: absolute;
   right: -1px;
   top: -1px;
@@ -190,7 +193,7 @@ body {
   text-orientation: mixed;
   height: 71px;
 }
-.cine-detail__info-showtimes .session__vose {
+.movie .cine-detail__info-showtimes .session__vose {
   background-color: #ff2c78;
   font-size: 0.7rem;
   border-radius: 5%;
@@ -198,11 +201,10 @@ body {
   padding: 0.2rem 0.4rem;
   margin-top: 0.5rem;
 }
-.cine-detail__info-showtimes .session.four-sessions .session:nth-child(4) {
+.movie .cine-detail__info-showtimes .session.four-sessions .session:nth-child(4) {
   order: 3;
 }
-
-.daily-selector {
+.movie .daily-selector {
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -213,44 +215,43 @@ body {
   gap: 100px;
   width: 800px;
 }
-.daily-selector .daily-selector__left {
+.movie .daily-selector .daily-selector__left {
   color: #b0b0b0;
 }
-.daily-selector .daily-selector__right {
+.movie .daily-selector .daily-selector__right {
   display: flex;
   gap: 3rem;
 }
-.daily-selector .daily-selector__right .location,
-.daily-selector .daily-selector__right .filter {
+.movie .daily-selector .daily-selector__right .location,
+.movie .daily-selector .daily-selector__right .filter {
   color: #b0b0b0;
   display: flex;
   align-items: center;
   gap: 0.5rem;
   cursor: pointer;
 }
-.daily-selector .daily-selector__right .location svg,
-.daily-selector .daily-selector__right .filter svg {
+.movie .daily-selector .daily-selector__right .location svg,
+.movie .daily-selector .daily-selector__right .filter svg {
   width: 0.75rem;
   height: 0.75rem;
   fill: #b0b0b0;
 }
-.daily-selector .daily-selector__right .location:hover,
-.daily-selector .daily-selector__right .filter:hover {
+.movie .daily-selector .daily-selector__right .location:hover,
+.movie .daily-selector .daily-selector__right .filter:hover {
   color: #ff2c78;
 }
-.daily-selector .daily-selector__right .location:hover svg,
-.daily-selector .daily-selector__right .filter:hover svg {
+.movie .daily-selector .daily-selector__right .location:hover svg,
+.movie .daily-selector .daily-selector__right .filter:hover svg {
   fill: #ff2c78;
 }
-
-.day-selector {
+.movie .day-selector {
   display: flex;
   justify-content: space-around;
   padding: 1rem;
   border-bottom: 1px solid rgba(255, 255, 255, 0.2);
   margin-bottom: 2%;
 }
-.day-selector .day-button {
+.movie .day-selector .day-button {
   color: #b0b0b0;
   font-size: 1rem;
   cursor: pointer;
@@ -259,16 +260,15 @@ body {
   border: none;
   transition: color 0.3s, border-bottom 0.3s;
 }
-.day-selector .day-button.active {
+.movie .day-selector .day-button.active {
   color: #ff2c78;
   font-weight: bold;
   border-bottom: 2px solid #ff2c78;
 }
-.day-selector .day-button:hover {
+.movie .day-selector .day-button:hover {
   color: #ff2c78;
 }
-
-.modal {
+.movie .modal {
   position: fixed;
   top: 0;
   left: 0;
@@ -280,10 +280,10 @@ body {
   justify-content: center;
   z-index: 1000;
 }
-.modal.hidden {
+.movie .modal.hidden {
   display: none;
 }
-.modal .modal-content {
+.movie .modal .modal-content {
   background: #07051e;
   padding: 1.5rem;
   border-radius: 8px;
@@ -291,16 +291,16 @@ body {
   max-width: 400px;
   color: #ffffff;
 }
-.modal .modal-content h2 {
+.movie .modal .modal-content h2 {
   margin-top: 0;
   color: #ff2c78;
 }
-.modal .modal-content ul {
+.movie .modal .modal-content ul {
   list-style: none;
   padding: 0;
   margin: 1rem 0;
 }
-.modal .modal-content li {
+.movie .modal .modal-content li {
   margin: 0.5rem 0;
   padding: 0.5rem;
   background-color: #333;
@@ -308,11 +308,11 @@ body {
   cursor: pointer;
   transition: background 0.3s;
 }
-.modal .modal-content li:hover {
+.movie .modal .modal-content li:hover {
   background-color: #ff2c78;
   color: #fff;
 }
-.modal .modal-content button {
+.movie .modal .modal-content button {
   padding: 0.5rem 1rem;
   background: #ff2c78;
   color: #fff;
@@ -321,7 +321,7 @@ body {
   cursor: pointer;
   transition: background 0.3s;
 }
-.modal .modal-content button:hover {
+.movie .modal .modal-content button:hover {
   background: #f80059;
 }
 

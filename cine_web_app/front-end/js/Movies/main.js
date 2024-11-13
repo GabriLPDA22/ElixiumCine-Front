@@ -12,7 +12,7 @@ async function loadMovieDetails(id) {
         if (!response.ok) {
             throw new Error(`HTTP error! Status: ${response.status}`);
         }
-        
+
         const movie = await response.json();
         console.log('Datos de la película:', movie);
 
@@ -28,6 +28,11 @@ async function loadMovieDetails(id) {
         document.getElementById('movie-genre').textContent = movie.genero;
         document.getElementById('movie-rating').textContent = movie.calificacion;
 
+        // Asigna la imagen de clasificación de edad directamente del backend
+        const ageRatingIcon = document.getElementById('age-rating-icon');
+        ageRatingIcon.src = movie.imagenEdadRecomendada;
+        ageRatingIcon.alt = `Clasificación +${movie.edadRecomendada}`;
+        
         // Renderiza los botones de días y horarios de sesiones
         renderDayButtons(movie.sesiones);
 
@@ -35,6 +40,7 @@ async function loadMovieDetails(id) {
         console.error("Error loading movie details:", error);
     }
 }
+
 
 // Función para renderizar los botones de días en el selector
 function renderDayButtons(sessions) {

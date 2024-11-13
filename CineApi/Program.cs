@@ -96,9 +96,11 @@ var peliculas = new List<Pelicula>
         Director = "Jon Watts",
         Actores = "Tom Holland, Zendaya, Benedict Cumberbatch, Jacob Batalon, Willem Dafoe, Alfred Molina, Jamie Foxx",
         Calificacion = 8.2,
+        EdadRecomendada = 12,
+        ImagenEdadRecomendada = "/cine_web_app/front-end/images/12.jpg",
         Imagen = "/cine_web_app/front-end/images/Banner-Spiderman-no-way-home.jpg",
         Cartel = "/cine_web_app/front-end/images/Spiderman-No-Way-Home-Cartel.jpg",
-        RecomendadaParaMayores = false,
+        
         Sesiones = new Dictionary<string, List<Sesion>>
         {
             { "2024-11-11", new List<Sesion>
@@ -170,9 +172,11 @@ var peliculas = new List<Pelicula>
         Actores = "James McAvoy, Michael Fassbender, Jennifer Lawrence, Oscar Isaac, Nicholas Hoult, Rose Byrne, Evan Peters, Sophie Turner",
         Duracion = "2 horas 24 minutos",
         Calificacion = 7.0,
+        EdadRecomendada = 12,
+        ImagenEdadRecomendada = "/cine_web_app/front-end/images/12.jpg",
         Imagen = "/cine_web_app/front-end/images/X-Men_Apocalypse_Banner.jpg",
         Cartel = "/cine_web_app/front-end/images/X-MEN_Apocalypse.jpg",
-        RecomendadaParaMayores = false,
+        
         Sesiones = new Dictionary<string, List<Sesion>>
         {
             { "2024-11-11", new List<Sesion>
@@ -211,7 +215,8 @@ var peliculas = new List<Pelicula>
         Calificacion = 6.4,
         Imagen = "/cine_web_app/front-end/images/Venom-3-Banner.jpg",
         Cartel = "/cine_web_app/front-end/images/Venom_3.jpg",
-        RecomendadaParaMayores = false,
+        EdadRecomendada = 12, 
+        ImagenEdadRecomendada = "/cine_web_app/front-end/images/12.jpg",
         Sesiones = new Dictionary<string, List<Sesion>>
         {
             { "2024-11-11", new List<Sesion>
@@ -265,35 +270,37 @@ var peliculas = new List<Pelicula>
                 }
             }
         }
-    }
-     new Pelicula
-    {
-        Titulo = "Terrifier 3",
-        Descripcion = "Este año la Navidad llega antes. El payaso Art desata el caos entre los desprevenidos habitantes del condado de Miles...",
-        FechaEstreno = new DateTime(2024, 10, 31),
-        Genero = "Terror",
-        Duracion = "2 horas 5 minutos",
-        Calificacion = 7.5,
-        Imagen = "/cine_web_app/front-end/images/terrifier-3.jpg", // Ruta del banner
-        Cartel = "/cine_web_app/front-end/images/Terrifier-3-Cartel.jpg", // Ruta del cartel
-        RecomendadaParaMayores = true, // Marcado como para mayores de 18 años
-        Sesiones = new Dictionary<string, List<Sesion>>
-        {
-            { "2024-11-01", new List<Sesion>
-                {
-                    new Sesion { Hora = "16:30", Sala = "5", EsISense = true, EsVOSE = false },
-                    new Sesion { Hora = "18:45", Sala = "3", EsISense = false, EsVOSE = true }
-                }
-            },
-            { "2024-11-02", new List<Sesion>
-                {
-                    new Sesion { Hora = "14:00", Sala = "8", EsISense = true, EsVOSE = true },
-                    new Sesion { Hora = "20:30", Sala = "7", EsISense = true, EsVOSE = false }
-                }
-            },
-            // Agrega más días y sesiones según sea necesario
-        }
     },
+    new Pelicula
+    {
+    Titulo = "Terrifier 3",
+    Descripcion = "Este año la Navidad llega antes. El payaso Art desata el caos entre los desprevenidos habitantes del condado de Miles...",
+    FechaEstreno = new DateTime(2024, 10, 31),
+    Genero = "Terror",
+    Duracion = "2 horas 5 minutos",
+    Calificacion = 7.5,
+    Director = "Damien Leone",
+    Actores = "Felissa Rose, Samantha Scaffidi, David Howard Thornton, Lauren LaVera, Chris Jericho, Elliott Fullam",
+    Imagen = "/cine_web_app/front-end/images/banner-terrifier-3.jpg", // Ruta del banner
+    Cartel = "/cine_web_app/front-end/images/terrifier-3.jpg", // Ruta del cartel
+    EdadRecomendada = 18, // Marcado como para mayores de 18 años
+    ImagenEdadRecomendada = "/cine_web_app/front-end/images/18.jpg",
+    Sesiones = new Dictionary<string, List<Sesion>>
+    {
+        { "2024-11-01", new List<Sesion>
+            {
+                new Sesion { Hora = "16:30", Sala = "5", EsISense = true, EsVOSE = false },
+                new Sesion { Hora = "18:45", Sala = "3", EsISense = false, EsVOSE = true }
+            }
+        },
+        { "2024-11-02", new List<Sesion>
+            {
+                new Sesion { Hora = "14:00", Sala = "8", EsISense = true, EsVOSE = true },
+                new Sesion { Hora = "20:30", Sala = "7", EsISense = true, EsVOSE = false }
+            }
+        }
+    }
+},
     
 };
 
