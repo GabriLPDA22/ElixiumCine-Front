@@ -35,7 +35,6 @@ body {
   left: 5%;
   text-align: left;
   z-index: 1;
-  max-width: 800px;
   padding: 1rem;
   padding-top: 8vh;
 }
@@ -44,6 +43,7 @@ body {
   font-weight: bold;
   color: #ffffff;
   margin: 0px;
+  max-width: 800px;
 }
 .cine-detail__info-metadata {
   font-size: 1.2rem;
@@ -63,6 +63,7 @@ body {
   margin-top: 1rem;
   max-width: 70%;
   min-height: 150px;
+  max-width: 800px;
 }
 .cine-detail__info-showtimes {
   display: flex;

@@ -35,7 +35,6 @@ body {
     left: 5%;
     text-align: left;
     z-index: 1;
-    max-width: 800px;
     padding: 1rem;
     padding-top: 8vh;
     &-title {
@@ -43,6 +42,7 @@ body {
       font-weight: bold;
       color: #ffffff;
       margin: 0px;
+      max-width: 800px;
     }
 
     &-metadata {
@@ -67,6 +67,7 @@ body {
       margin-top: 1rem;
       max-width: 70%;
       min-height: 150px;
+      max-width: 800px;
     }
 
     &-showtimes {
