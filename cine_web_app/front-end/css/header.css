@@ -71,6 +71,11 @@
   color: #ff2c78;
 }
 
+@media (min-width: 768px) {
+  .header--responsive {
+    display: none;
+  }
+}
 @media (max-width: 768px) {
   .header--desktop {
     display: none;
@@ -79,7 +84,6 @@
     display: block;
   }
   .header__nav {
-    display: none;
     margin-left: 0;
   }
   .header__nav.overlay {

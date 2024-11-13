@@ -82,8 +82,11 @@
     }
 }
 
-// Estilos específicos para pantallas pequeñas
-
+@media (min-width: 768px) {
+.header--responsive{
+    display: none;
+}
+}
 @media (max-width: 768px) {
 
     .header--desktop {
@@ -95,7 +98,6 @@
     }
 
     .header__nav {
-        display: none; // Oculta el menú en móvil por defecto
         margin-left: 0;
     }
 
