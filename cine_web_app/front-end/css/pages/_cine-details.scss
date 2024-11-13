@@ -12,12 +12,8 @@ body {
 .cine-detail {
   display: flex;
   &__background {
-    position: absolute;
-    top: 0;
-    left: 0;
     width: 100%;
-    height: 100vh;
-    
+    height: 90vh;
     background-size: cover;
     background-position: center;
     z-index: -1;
@@ -55,8 +51,6 @@ body {
       margin: 0.5rem 0;
 
       span {
-        display: inline-block;
-
         &:first-child {
           background: #ff2c78;
           padding: 0.2rem 0.5rem;
@@ -150,10 +144,9 @@ body {
   }
 
   &__logo {
-    position: static;
+    position: absolute;
     right: 20px;
     width: 150px;
-    z-index: 2;
     margin-top: 15px;
     margin-left: 90%;
   }
@@ -167,7 +160,6 @@ body {
 
     .carousel__track-container {
       overflow: hidden;
-      width: 80%;
       position: relative;
     }
 
@@ -190,8 +182,7 @@ body {
 
       img {
         width: 200px;
-        height: auto;
-        max-height: 300px;
+        height: 300px;
         border-radius: 10px;
         transition: transform 0.3s ease;
       }
