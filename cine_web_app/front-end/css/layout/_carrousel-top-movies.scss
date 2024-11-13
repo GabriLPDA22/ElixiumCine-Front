@@ -1,3 +1,4 @@
+
 .carousel {
     position: relative;
     display: flex;
@@ -17,6 +18,7 @@
         transform: scale(0.8);
         transition: transform 0.5s ease, opacity 0.5s ease;
         text-align: center;
+        list-style: none;
 
         &--center {
             opacity: 1;
