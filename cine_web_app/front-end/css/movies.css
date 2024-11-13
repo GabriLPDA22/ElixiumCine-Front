@@ -188,12 +188,7 @@ body {
   border-bottom-right-radius: 6px;
   writing-mode: vertical-rl;
   text-orientation: mixed;
-  height: 88px;
-}
-@media (min-width: 2560px) and (max-width: 3000px) {
-  .cine-detail__info-showtimes .session__tag--isense {
-    height: 88px;
-  }
+  height: 71px;
 }
 .cine-detail__info-showtimes .session__vose {
   background-color: #ff2c78;
@@ -327,7 +322,7 @@ body {
   transition: background 0.3s;
 }
 .modal .modal-content button:hover {
-  background: rgb(248, 0, 89.327014218);
+  background: #f80059;
 }
 
 /*# sourceMappingURL=movies.css.map */

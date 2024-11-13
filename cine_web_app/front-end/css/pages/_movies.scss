@@ -224,11 +224,11 @@ body{
             border-bottom-right-radius: 6px;
             writing-mode: vertical-rl;
             text-orientation: mixed;
-            height: 88px;
+            height: 71px;
 
-            @media (min-width: 2560px) and (max-width: 3000px) {
-              height: 88px;
-            }
+            // @media(max-width: 2000px) {
+            //   height: 88px;
+            // }
           }
         }
         &__vose {

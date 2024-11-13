@@ -16,6 +16,7 @@ namespace cine_web_app.back_end.Models
         public string Cartel { get; set; }
         public string Director { get; set; }
         public string Actores { get; set; }
+        public int EdadRecomendada { get; set; }
         
         // Agregar la propiedad Sesiones para almacenar las sesiones por fecha
         public Dictionary<string, List<Sesion>> Sesiones { get; set; }

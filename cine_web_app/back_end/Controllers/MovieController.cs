@@ -25,6 +25,7 @@ namespace cine_web_app.back_end.Controllers
                 Calificacion = 8.2,
                 Imagen = "/cine_web_app/front-end/images/Banner-Spiderman-no-way-home.jpg",
                 Cartel = "/cine_web_app/front-end/images/Spiderman-No-Way-Home-Cartel.jpg",
+                EdadRecomendada = 12,
                 Sesiones = new Dictionary<string, List<Sesion>>
                 {
                     { "2024-11-11", new List<Sesion>
@@ -98,6 +99,7 @@ namespace cine_web_app.back_end.Controllers
                 Calificacion = 7.0,
                 Imagen = "/cine_web_app/front-end/images/X-Men_Apocalypse_Banner.jpg",
                 Cartel = "/cine_web_app/front-end/images/X-MEN_Apocalypse.jpg",
+                EdadRecomendada = 12,
                 Sesiones = new Dictionary<string, List<Sesion>>
                 {
                     { "2024-11-11", new List<Sesion>
@@ -136,6 +138,7 @@ namespace cine_web_app.back_end.Controllers
                 Calificacion = 6.4,
                 Imagen = "/cine_web_app/front-end/images/Venom-3-Banner.jpg",
                 Cartel = "/cine_web_app/front-end/images/Venom_3.jpg",
+                EdadRecomendada = 12,
                 Sesiones = new Dictionary<string, List<Sesion>>
                 {
                     { "2024-11-11", new List<Sesion>
@@ -186,6 +189,32 @@ namespace cine_web_app.back_end.Controllers
                             new Sesion { Hora = "15:00", Sala = "8", EsISense = false, EsVOSE = true },
                             new Sesion { Hora = "18:30", Sala = "5", EsISense = true, EsVOSE = false },
                             new Sesion { Hora = "21:15", Sala = "2", EsISense = true, EsVOSE = true }
+                        }
+                    }
+                }
+            },
+            new Pelicula{
+                Titulo = "Terrifier 3",
+                Descripcion = "Este año la Navidad llega antes. El payaso Art desata el caos entre los desprevenidos habitantes del condado de Miles...",
+                FechaEstreno = new DateTime(2024, 10, 31),
+                Genero = "Terror",
+                Duracion = "2 horas 5 minutos",
+                Calificacion = 7.5,
+                Imagen = "/cine_web_app/front-end/images/banner-terrifier-3.jpg", // Ruta del banner
+                Cartel = "/cine_web_app/front-end/images/terrifier-3.jpg", // Ruta del cartel
+                EdadRecomendada = 18, // Marcado como para mayores de 18 años
+                Sesiones = new Dictionary<string, List<Sesion>>
+                {
+                    { "2024-11-01", new List<Sesion>
+                        {
+                            new Sesion { Hora = "16:30", Sala = "5", EsISense = true, EsVOSE = false },
+                            new Sesion { Hora = "18:45", Sala = "3", EsISense = false, EsVOSE = true }
+                        }
+                    },
+                    { "2024-11-02", new List<Sesion>
+                        {
+                            new Sesion { Hora = "14:00", Sala = "8", EsISense = true, EsVOSE = true },
+                            new Sesion { Hora = "20:30", Sala = "7", EsISense = true, EsVOSE = false }
                         }
                     }
                 }
