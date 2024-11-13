@@ -9,6 +9,7 @@
 .carousel__track {
   display: flex;
   gap: 10px;
+  transition: transform 0.5s ease;
 }
 .carousel__slide {
   opacity: 0.5;
@@ -47,6 +48,7 @@
   display: flex;
   align-items: center;
   justify-content: center;
+  z-index: 1;
 }
 .carousel__button--left {
   left: 10px;
@@ -57,6 +59,26 @@
 .carousel__button img {
   width: 20px;
   height: auto;
+}
+@media (max-width: 768px) {
+  .carousel__slide {
+    min-width: 100%;
+    flex: 0 0 auto;
+  }
+  .carousel__image {
+    width: 100%;
+    max-width: 240px;
+    max-height: 320px;
+  }
+}
+@media (max-width: 480px) {
+  .carousel {
+    padding: 1rem 0;
+  }
+  .carousel__image {
+    max-width: 180px;
+    max-height: 240px;
+  }
 }
 
 /*# sourceMappingURL=carrousel-top-movies.css.map */

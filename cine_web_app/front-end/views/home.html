@@ -14,8 +14,26 @@
 
 <body>
 
-    <!-- Header -->
-    <header class="header">
+    <!-- Navbar para pantallas grandes -->
+    <header class="header header--desktop">
+        <div class="header__logo">Elixium</div>
+        <nav class="header__nav">
+            <ul class="header__menu">
+                <li class="header__menu-item"><a href="/cine_web_app/front-end/views/Cinemas.html">Cines</a></li>
+                <li class="header__menu-item"><a href="#">Películas</a></li>
+                <li class="header__menu-item"><a href="#">Promociones</a></li>
+            </ul>
+        </nav>
+        <div class="header__actions">
+            <a href="/cine_web_app/front-end/views/security/register.html"
+                class="header__link header__register">Registrarse</a>
+            <a href="/cine_web_app/front-end/views/security/login.html" class="header__link header__login">Iniciar
+                sesión</a>
+        </div>
+    </header>
+
+    <!-- Navbar responsive para móviles -->
+    <header class="header header--responsive">
         <div class="header__logo">Elixium</div>
         <div class="header__hamburger">&#9776;</div>
         <nav class="header__nav overlay">
@@ -23,12 +41,19 @@
                 <li class="header__menu-item"><a href="/cine_web_app/front-end/views/Cinemas.html">Cines</a></li>
                 <li class="header__menu-item"><a href="#">Películas</a></li>
                 <li class="header__menu-item"><a href="#">Promociones</a></li>
-                <li class="header__menu-item"><a href="/cine_web_app/front-end/views/security/register.html" class="header__link header__register">Registrarse</a></li>
-                <li class="header__menu-item"><a href="/cine_web_app/front-end/views/security/login.html" class="header__link header__login">Iniciar sesión</a></li>
+                <li class="header__menu-item"><a href="/cine_web_app/front-end/views/security/register.html"
+                        class="header__link header__register">Registrarse</a></li>
+                <li class="header__menu-item"><a href="/cine_web_app/front-end/views/security/login.html"
+                        class="header__link header__login">Iniciar sesión</a></li>
             </ul>
         </nav>
     </header>
-    
+
+
+
+
+
+
     <!-- Main Content -->
     <main class="main">
         <!-- Sección de Top Películas -->
@@ -49,31 +74,6 @@
                         <!-- Las películas se cargarán dinámicamente aquí -->
                     </ul>
                 </div>
-
-                <!-- <div class="carousel__track-container">
-                    <ul class="carousel__track">
-                        <li class="carousel__slide carousel__slide--side">
-                            <img src="../images/Avatar_El_sentido_del_agua.jpg" alt="Avatar" class="carousel__image">
-                            <p class="carousel__title">Avatar 2</p>
-                        </li>
-                        <li class="carousel__slide carousel__slide--side">
-                            <img src="../images/fast_&_furious_x.jpg" alt="Fast & Furious" class="carousel__image">
-                            <p class="carousel__title">Fast & Furious X</p>
-                        </li>
-                        <li class="carousel__slide carousel__slide--center">
-                            <img src="../images/Venom_3.jpg" alt="Venom" class="carousel__image">
-                            <p class="carousel__title">Venom The Last Dance</p>
-                        </li>
-                        <li class="carousel__slide carousel__slide--side">
-                            <img src="../images/robot_salvaje.jpg" alt="Robot Salvaje" class="carousel__image">
-                            <p class="carousel__title">Robot Salvaje</p>
-                        </li>
-                        <li class="carousel__slide carousel__slide--side">
-                            <img src="../images/terrifier-3.jpg" alt="Terrifier" class="carousel__image">
-                            <p class="carousel__title">Terrifier 3</p>
-                        </li>
-                    </ul>
-                </div> -->
 
                 <!-- Botón derecho -->
                 <button class="carousel__button carousel__button--right">

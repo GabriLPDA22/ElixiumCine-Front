@@ -57,12 +57,16 @@ async function loadMovies() {
     }
 }
 
+// Función para detectar si estamos en modo móvil
+function isMobile() {
+    return window.innerWidth <= 768; // Ajuste para dispositivos móviles
+}
 
 function initializeCarousel() {
     const slides = Array.from(document.querySelectorAll('.carousel__slide'));
     const nextButton = document.querySelector('.carousel__button--right');
     const prevButton = document.querySelector('.carousel__button--left');
-    let currentIndex = 2; // La imagen central inicial
+    let currentIndex = isMobile() ? 0 : 2; // Ajuste de la imagen central inicial dependiendo del dispositivo
 
     function updateSlideClasses() {
         slides.forEach((slide, index) => {
@@ -75,16 +79,21 @@ function initializeCarousel() {
                 slide.classList.add('carousel__slide--side');
             }
         });
+
+        // Ajusta el desplazamiento en el track para mantener la imagen centrada
+        const slideWidth = slides[0].getBoundingClientRect().width;
+        const track = document.getElementById('carousel-track');
+        track.style.transform = `translateX(-${slideWidth * currentIndex}px)`;
     }
 
     function moveToNextSlide() {
-        // Rotar el índice de la imagen central hacia la derecha
+        // Ajusta el índice central hacia la derecha
         currentIndex = (currentIndex + 1) % slides.length;
         updateSlideClasses();
     }
 
     function moveToPreviousSlide() {
-        // Rotar el índice de la imagen central hacia la izquierda
+        // Ajusta el índice central hacia la izquierda
         currentIndex = (currentIndex - 1 + slides.length) % slides.length;
         updateSlideClasses();
     }
@@ -94,6 +103,12 @@ function initializeCarousel() {
 
     // Inicializar las clases de las imágenes
     updateSlideClasses();
+
+    // Actualiza el carrusel cuando cambia el tamaño de la pantalla
+    window.addEventListener('resize', () => {
+        currentIndex = isMobile() ? 0 : 2;
+        updateSlideClasses();
+    });
 }
 
 // Llama a la función para cargar las películas cuando la página se carga

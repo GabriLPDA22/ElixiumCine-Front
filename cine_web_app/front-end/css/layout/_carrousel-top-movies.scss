@@ -1,4 +1,3 @@
-// Estilos del carrusel
 .carousel {
     position: relative;
     display: flex;
@@ -9,30 +8,31 @@
 
     &__track {
         display: flex;
-        gap: 10px; // Espacio entre las imágenes
+        gap: 10px;
+        transition: transform 0.5s ease;
     }
 
     &__slide {
-        opacity: 0.5; // Opacidad más baja para imágenes laterales
-        transform: scale(0.8); // Escala reducida para las imágenes laterales
+        opacity: 0.5;
+        transform: scale(0.8);
         transition: transform 0.5s ease, opacity 0.5s ease;
         text-align: center;
 
         &--center {
             opacity: 1;
-            transform: scale(1); // Tamaño completo para la imagen central
+            transform: scale(1);
         }
     }
 
     &__image {
         border-radius: 22px;
-        width: 220px; // Tamaño estándar para las imágenes laterales
+        width: 220px;
         height: 300px;
         transition: transform 0.5s ease, opacity 0.5s ease;
     }
 
     &__slide--center .carousel__image {
-        width: 300px; // Tamaño más grande para la imagen central
+        width: 300px;
         height: 420px;
     }
 
@@ -54,6 +54,7 @@
         display: flex;
         align-items: center;
         justify-content: center;
+        z-index: 1;
 
         &--left {
             left: 10px;
@@ -66,6 +67,29 @@
         img {
             width: 20px;
             height: auto;
+        }
+    }
+
+    // Media queries para pantallas móviles
+    @media (max-width: 768px) {
+        &__slide {
+            min-width: 100%; // Ocupa todo el ancho en móvil para mostrar solo una película
+            flex: 0 0 auto;
+        }
+
+        &__image {
+            width: 100%;
+            max-width: 240px;
+            max-height: 320px;
+        }
+    }
+
+    @media (max-width: 480px) {
+        padding: 1rem 0;
+
+        &__image {
+            max-width: 180px;
+            max-height: 240px;
         }
     }
 }
