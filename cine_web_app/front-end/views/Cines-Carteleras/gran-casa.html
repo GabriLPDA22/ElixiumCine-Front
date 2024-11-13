@@ -19,33 +19,40 @@
 
 <body>
     <!-- Header -->
-    <header class="header">
+    <header class="header header--desktop">
         <a href="/cine_web_app/front-end/views/home.html" class="header__logo">Elixium</a>
         <nav class="header__nav">
             <ul class="header__menu">
-                <li class="header__menu-item">
-                    <a href="/cine_web_app/front-end/views/Cinemas.html" class="header__menu-link">Cines</a>
-                </li>
-                <li class="header__menu-item">
-                    <a href="#" class="header__menu-link">Películas</a>
-                </li>
-                <li class="header__menu-item">
-                    <a href="#" class="header__menu-link">Promociones</a>
-                </li>
-                <li class="header__menu-item">
-                    <a href="#" class="header__menu-link">Bonos</a>
-                </li>
+                <li class="header__menu-item"><a href="/cine_web_app/front-end/views/Cinemas.html">Cines</a></li>
+                <li class="header__menu-item"><a href="#">Películas</a></li>
+                <li class="header__menu-item"><a href="#">Promociones</a></li>
             </ul>
         </nav>
         <div class="header__actions">
-            <a href="/cine_web_app/front-end/views/security/register.html" class="header__link"
-                style="text-decoration: none; color: white">Registrarse</a>
-            <a href="/cine_web_app/front-end/views/security/login.html" class="header__link"
-                style="text-decoration: none; color: white">Iniciar sesión</a>
-            <a href="#" class="header__icon"><i class="icon-user"></i></a>
-            <a href="#" class="header__icon"><i class="icon-search"></i></a>
+            <a href="/cine_web_app/front-end/views/security/register.html"
+                class="header__link header__register">Registrarse</a>
+            <a href="/cine_web_app/front-end/views/security/login.html" class="header__link header__login">Iniciar
+                sesión</a>
         </div>
     </header>
+
+    <!-- Navbar responsive para móviles -->
+    <header class="header header--responsive">
+        <a href="/cine_web_app/front-end/views/home.html" class="header__logo">Elixium</a>
+        <div class="header__hamburger">&#9776;</div>
+        <nav class="header__nav overlay">
+            <ul class="header__menu">
+                <li class="header__menu-item"><a href="/cine_web_app/front-end/views/Cinemas.html">Cines</a></li>
+                <li class="header__menu-item"><a href="#">Películas</a></li>
+                <li class="header__menu-item"><a href="#">Promociones</a></li>
+                <li class="header__menu-item"><a href="/cine_web_app/front-end/views/security/register.html"
+                        class="header__link header__register">Registrarse</a></li>
+                <li class="header__menu-item"><a href="/cine_web_app/front-end/views/security/login.html"
+                        class="header__link header__login">Iniciar sesión</a></li>
+            </ul>
+        </nav>
+    </header>
+
     <img id="cinema-logo" src="/cine_web_app/front-end/images/gran-casa.svg" alt="Gran Casa Logo"
     class="cine-detail__logo" />
     
@@ -173,6 +180,7 @@
     <script src="/cine_web_app/front-end/js/controllers/cine-detail.js"></script>
     <script src="/cine_web_app/front-end/js/controllers/SesionesController.js"></script>
     <script src="/cine_web_app/front-end/js/controllers/Carruousel-cines.js"></script>
+    <script src="/cine_web_app/front-end/js/home/navbarresponsive.js"></script>
 </body>
 
 </html>
