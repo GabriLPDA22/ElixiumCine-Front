@@ -73,7 +73,6 @@
     // Media queries para pantallas móviles
     @media (max-width: 768px) {
         &__slide {
-            min-width: 100%; // Ocupa todo el ancho en móvil para mostrar solo una película
             flex: 0 0 auto;
         }
 
