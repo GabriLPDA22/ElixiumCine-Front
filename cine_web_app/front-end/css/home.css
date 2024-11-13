@@ -135,4 +135,15 @@ body {
   border-radius: 8px;
 }
 
+@media (max-width: 768px) {
+  .offers-section__grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    max-width: 400px;
+  }
+  .offer-card {
+    padding: 0.5rem;
+  }
+}
+
 /*# sourceMappingURL=home.css.map */
