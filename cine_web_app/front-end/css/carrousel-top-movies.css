@@ -63,7 +63,6 @@
 }
 @media (max-width: 768px) {
   .carousel__slide {
-    min-width: 100%;
     flex: 0 0 auto;
   }
   .carousel__image {
