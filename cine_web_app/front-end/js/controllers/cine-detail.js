@@ -116,7 +116,7 @@ document.addEventListener("DOMContentLoaded", () => {
                 slide.classList.add("selected");
                 renderMovieDetails(movie);
             });
-
+            
             slide.appendChild(img);
             track.appendChild(slide);
         });

@@ -170,13 +170,12 @@ body {
     }
 
     .carousel__slide {
-      opacity: 0.5;
-      transition: opacity 0.3s ease, transform 0.3s ease;
+      filter: brightness(50%);    
       margin-right: 30px;
       cursor: pointer;
 
       &.selected {
-        opacity: 1;
+        filter: brightness(100%);
         transform: scale(1.1);
         /* Agranda la imagen seleccionada */
       }
