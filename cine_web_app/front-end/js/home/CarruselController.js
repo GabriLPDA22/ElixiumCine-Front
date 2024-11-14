@@ -16,7 +16,15 @@ async function loadMovies() {
         const carouselTrack = document.getElementById('carousel-track');
         carouselTrack.innerHTML = ''; // Limpia el carrusel antes de añadir las películas
 
+        const movieIds = new Set(); // Conjunto para almacenar IDs únicos de películas
+
         movies.forEach((movie, index) => {
+            // Si el ID de la película ya está en el conjunto, saltamos esta iteración
+            if (movieIds.has(movie.id)) return;
+            
+            // Agrega el ID de la película al conjunto para evitar duplicados
+            movieIds.add(movie.id);
+
             // Crea un elemento de lista para cada película
             const listItem = document.createElement('li');
             listItem.classList.add('carousel__slide');
@@ -37,7 +45,6 @@ async function loadMovies() {
 
             // Evento de clic para redirigir a la página de detalles de la película
             img.addEventListener("click", () => {
-                // Redirecciona a la página de detalle de la película con el ID de la película en la URL
                 window.location.href = `movies.html?id=${movie.id}`;
             });
 
@@ -56,6 +63,7 @@ async function loadMovies() {
         console.error("Error loading movies:", error);
     }
 }
+
 
 // Función para detectar si estamos en modo móvil
 function isMobile() {
