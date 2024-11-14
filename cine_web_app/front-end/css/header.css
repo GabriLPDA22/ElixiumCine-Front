@@ -62,9 +62,7 @@
 .header__actions .header__login {
   color: #ffffff;
   text-decoration: none;
-  font-weight: 600;
   transition: color 0.3s;
-  font-family: poppins;
 }
 .header__actions .header__register:hover,
 .header__actions .header__login:hover {

@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Selecciona tus Asientos</title>
+    <link rel="stylesheet" href="../css/header.css">
+    <link rel="stylesheet" href="../css/butacas.css">
+</head>
+
+<body>
+    <header class="header header--desktop">
+        <a href="/cine_web_app/front-end/views/home.html" class="header__logo">Elixium</a>
+        <nav class="header__nav">
+            <ul class="header__menu">
+                <li class="header__menu-item"><a href="/cine_web_app/front-end/views/Cinemas.html">Cines</a></li>
+                <li class="header__menu-item"><a href="#">Películas</a></li>
+                <li class="header__menu-item"><a href="#">Promociones</a></li>
+            </ul>
+        </nav>
+        <div class="header__actions">
+            <a href="/cine_web_app/front-end/views/security/register.html"
+                class="header__link header__register">Registrarse</a>
+            <a href="/cine_web_app/front-end/views/security/login.html" class="header__link header__login">Iniciar
+                sesión</a>
+        </div>
+    </header>
+
+    <main class="seat-selection">
+        <section class="seat-selection__details">
+            <h2 class="movie__title">VENOM: EL ÚLTIMO BAILE</h2>
+            <div class="movie__session-info">
+                <p>Cine: Puerto Venecia</p>
+                <p>Sesión: 05 nov, 18:30</p>
+            </div>
+        </section>
+        
+        <h3>Elige tus Asientos</h3>
+        
+        <!-- Leyenda de asientos -->
+        <div class="seat-selection__legend">
+            <span class="seat available"></span> Disponible
+            <span class="seat selected"></span> Seleccionado
+        </div>
+
+        <!-- Contenedor centrado para el mapa de asientos -->
+        <div class="seat-map-container">
+            <div class="seat-map" id="seat-map">
+                <!-- Aquí se generarán los asientos dinámicamente con JavaScript -->
+            </div>
+        </div>
+
+        <div class="seat-selection__footer">
+            <p>Butacas seleccionadas: <span id="selected-seats">No se ha seleccionado ninguna butaca</span></p>
+            <button id="continue-btn" class="continue-btn">Continuar</button>
+        </div>
+    </main>
+
+    <script src="../js/butacas.js"></script>
+</body>
+
+</html>

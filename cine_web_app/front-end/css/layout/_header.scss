@@ -72,14 +72,12 @@
         .header__login {
             color: #ffffff;
             text-decoration: none;
-            font-weight: 600;
             transition: color 0.3s;
-            font-family: poppins;
             &:hover {
                 color: #ff2c78;
             }
         }
-    }
+    } 
 }
 
 @media (min-width: 768px) {

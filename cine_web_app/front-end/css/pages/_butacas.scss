@@ -1,0 +1,88 @@
+// Variables de colores
+$background-color: #10141e;
+$text-color: #ffffff;
+$button-color: #ff3f34;
+$seat-available-color: #bfbfbf;
+$seat-selected-color: #0fbcf9;
+
+// Estilos globales
+body {
+    font-family: Arial, sans-serif;
+    background-color: $background-color;
+    color: $text-color;
+}
+
+.seat-selection {
+    &__details {
+        text-align: center;
+        padding: 20px;
+    }
+
+    &__legend {
+        display: flex;
+        justify-content: center;
+        gap: 15px;
+        padding: 10px;
+        font-size: 14px;
+
+        .seat {
+            width: 20px;
+            height: 20px;
+            display: inline-block;
+            margin-right: 5px;
+            border-radius: 3px;
+        }
+    }
+
+    &__footer {
+        text-align: center;
+        padding: 20px;
+
+        #selected-seats {
+            font-weight: bold;
+        }
+    }
+}
+
+// Clases para los asientos
+.seat {
+    width: 20px;
+    height: 20px;
+    display: inline-block;
+    margin-right: 5px;
+    border-radius: 3px;
+    cursor: pointer;
+
+    &.available {
+        background-color: $seat-available-color;
+    }
+
+    &.selected {
+        background-color: $seat-selected-color;
+    }
+}
+
+// Estilo del mapa de asientos
+.seat-map {
+    display: grid;
+    grid-template-columns: repeat(30, 20px); // Ajusta el número de columnas según la disposición de asientos
+    gap: 5px;
+    justify-content: center;
+    padding: 20px;
+}
+
+// Estilo del botón de continuar
+.continue-btn {
+    background-color: $button-color;
+    color: $text-color;
+    border: none;
+    padding: 10px 20px;
+    cursor: pointer;
+    font-weight: bold;
+    font-size: 16px;
+    border-radius: 5px;
+
+    &:hover {
+        background-color: darken($button-color, 10%);
+    }
+}
