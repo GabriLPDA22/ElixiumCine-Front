@@ -58,7 +58,8 @@
             <div class="movie__info">
                 <div class="calificacion" style="display: flex; gap:20px;">
                     <h2 id="movie-title" class="movie__title">Título de la Película</h2>
-                    <img id="age-rating-icon" src="" alt="Clasificación de Edad" class="age-rating-icon" style="height: 30px;" width="20px">
+                    <img id="age-rating-icon" src="" alt="Clasificación de Edad" class="age-rating-icon"
+                        style="height: 30px;" width="20px">
                 </div>
                 <p class="movie__section-title">Directores</p>
                 <p id="movie-director" class="movie__director"></p>
@@ -77,7 +78,7 @@
                 <p class="movie__section-title">Calificación</p>
                 <p id="movie-rating" class="movie__rating"></p>
             </div>
-            
+
         </section>
 
         <div class="daily-selector">
@@ -102,31 +103,32 @@
                 <button onclick="closeCinemaModal()">Cerrar</button>
             </div>
         </div>
-        
 
+
+        <!-- Contenedor de los botones para los días -->
         <div class="day-selector" id="day-selector">
-            <button class="day-button active">HOY</button>
-            <button class="day-button">mar 5 nov</button>
-            <button class="day-button">mie 6 nov</button>
-            <button class="day-button">jue 7 nov</button>
+            <button class="day-button active" onclick="selectDay('2024-11-11')">lun, 11 nov</button>
+            <button class="day-button" onclick="selectDay('2024-11-12')">mar, 12 nov</button>
+            <button class="day-button" onclick="selectDay('2024-11-13')">mié, 13 nov</button>
+            <button class="day-button" onclick="selectDay('2024-11-14')">jue, 14 nov</button>
         </div>
 
         <div id="showtimes-container" class="cine-detail__info-showtimes">
             <div class="session">
-                <div class="session__time">16:30</div>
-                <div class="session__room">Sala 10 iSense</div>
-                <div class="session__tag session__tag--isense">iSense</div>
+                <div class="session__time"></div>
+                <div class="session__room"></div>
+                <div class="session__tag session__tag--isense"></div>
             </div>
             <div class="session">
-                <div class="session__time">18:05</div>
-                <div class="session__room">Sala 8</div>
+                <div class="session__time"></div>
+                <div class="session__room"></div>
             </div>
             <div class="session">
-                <div class="session__time">19:20</div>
-                <div class="session__room">Sala 10 iSense</div>
+                <div class="session__time"></div>
+                <div class="session__room"></div>
                 <div class="session__tags">
-                    <div class="session__tag session__tag--isense">iSense</div>
-                    <div class="session__tag session__tag--vose">VOSE</div>
+                    <div class="session__tag session__tag--isense"></div>
+                    <div class="session__tag session__tag--vose"></div>
                 </div>
             </div>
         </div>

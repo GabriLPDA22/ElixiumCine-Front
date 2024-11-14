@@ -5,16 +5,23 @@ $section-title-weight: bold;
 $detail-text-weight: normal;
 $detail-text-size: 1.1rem;
 $section-title-size: 1.2rem;
+$primary-bg: #07051e;
+$secondary-bg: #07051e;
+$text-color: #ffffff;
+$subtle-text-color: #b0b0b0;
+$highlight-color: #ff2c78;
+$border-color: rgba(255, 255, 255, 0.2);
 
+// Estilos globales
 body {
   margin: 0;
   padding: 0;
   font-family: "Poppins", sans-serif;
   background-color: rgb(5, 7, 19);
-  color: #ffffff;
+  color: $text-white;
 }
 
-// Estilos de la sección de película
+// Estilos de la película
 .movie {
   display: flex;
   flex-direction: column;
@@ -181,6 +188,7 @@ body {
         gap: 1rem;
         margin-top: 1rem;
         padding-bottom: 1rem; // Espacio inferior para que el borde de las tarjetas no toque el límite
+        
 
         .session {
           flex: 0 0 auto; // Evita que las tarjetas se expandan y se ajusten en una sola fila
@@ -230,10 +238,6 @@ body {
               writing-mode: vertical-rl;
               text-orientation: mixed;
               height: 71px;
-
-              // @media(max-width: 2000px) {
-              //   height: 88px;
-              // }
             }
           }
 
