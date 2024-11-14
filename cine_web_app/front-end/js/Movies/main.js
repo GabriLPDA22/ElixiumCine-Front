@@ -50,43 +50,46 @@ async function renderShowtimesByCinema() {
 
         const cine = await response.json();
         showtimesContainer.innerHTML = "";
-        
+
         let haySesiones = false;
-        cine.peliculas.forEach(pelicula => {
-            if (pelicula.sesiones && pelicula.sesiones[diaSeleccionado]) {
-                haySesiones = true;
-                pelicula.sesiones[diaSeleccionado].forEach(sesion => {
-                    const sessionDiv = document.createElement("div");
-                    sessionDiv.classList.add("session");
 
-                    const timeDiv = document.createElement("div");
-                    timeDiv.classList.add("session__time");
-                    timeDiv.textContent = sesion.hora;
-                    sessionDiv.appendChild(timeDiv);
+        // Filtra para obtener solo la película con el ID que seleccionaste
+        const peliculaSeleccionada = cine.peliculas.find(pelicula => pelicula.id === parseInt(movieId));
+        
+        // Verificar que la película existe y tiene sesiones en el día seleccionado
+        if (peliculaSeleccionada && peliculaSeleccionada.sesiones && peliculaSeleccionada.sesiones[diaSeleccionado]) {
+            haySesiones = true;
+            peliculaSeleccionada.sesiones[diaSeleccionado].forEach(sesion => {
+                const sessionDiv = document.createElement("div");
+                sessionDiv.classList.add("session");
 
-                    const roomDiv = document.createElement("div");
-                    roomDiv.classList.add("session__room");
-                    roomDiv.textContent = `Sala ${sesion.sala} ${sesion.esISense ? "iSense" : ""}`;
-                    sessionDiv.appendChild(roomDiv);
+                const timeDiv = document.createElement("div");
+                timeDiv.classList.add("session__time");
+                timeDiv.textContent = sesion.hora;
+                sessionDiv.appendChild(timeDiv);
 
-                    if (sesion.esVOSE) {
-                        const voseDiv = document.createElement("div");
-                        voseDiv.classList.add("session__tag", "session__tag--vose");
-                        voseDiv.textContent = "VOSE";
-                        sessionDiv.appendChild(voseDiv);
-                    }
+                const roomDiv = document.createElement("div");
+                roomDiv.classList.add("session__room");
+                roomDiv.textContent = `Sala ${sesion.sala} ${sesion.esISense ? "iSense" : ""}`;
+                sessionDiv.appendChild(roomDiv);
 
-                    if (sesion.esISense) {
-                        const isenseTag = document.createElement("div");
-                        isenseTag.classList.add("session__tag", "session__tag--isense");
-                        isenseTag.textContent = "iSense";
-                        sessionDiv.appendChild(isenseTag);
-                    }
+                if (sesion.esVOSE) {
+                    const voseDiv = document.createElement("div");
+                    voseDiv.classList.add("session__tag", "session__tag--vose");
+                    voseDiv.textContent = "VOSE";
+                    sessionDiv.appendChild(voseDiv);
+                }
 
-                    showtimesContainer.appendChild(sessionDiv);
-                });
-            }
-        });
+                if (sesion.esISense) {
+                    const isenseTag = document.createElement("div");
+                    isenseTag.classList.add("session__tag", "session__tag--isense");
+                    isenseTag.textContent = "iSense";
+                    sessionDiv.appendChild(isenseTag);
+                }
+
+                showtimesContainer.appendChild(sessionDiv);
+            });
+        }
 
         if (!haySesiones) showtimesContainer.innerHTML = "<p>No hay sesiones disponibles para este día.</p>";
     } catch (error) {
@@ -94,6 +97,7 @@ async function renderShowtimesByCinema() {
         showtimesContainer.innerHTML = "<p>Error al cargar las sesiones. Intenta de nuevo más tarde.</p>";
     }
 }
+
 
 // Abre el modal para selección de cine
 function openCinemaModal() {
