@@ -42,7 +42,14 @@ async function loadMovieDetails(id) {
     }
 }
 
-// Renderiza las sesiones para un día específico de un cine
+// Función para redirigir a la página de selección de asientos con los datos de la sesión seleccionada
+function redirectToSeatSelection(title, cinemaId, date, time, room) {
+    console.log(`Redirigiendo con title: ${title}, cinemaId: ${cinemaId}, date: ${date}, time: ${time}, room: ${room}`);
+    // Redirige a la página de selección de asientos con los datos en la URL
+    window.location.href = `/cine_web_app/front-end/views/butacas.html?title=${encodeURIComponent(title)}&cineId=${encodeURIComponent(cinemaId)}&date=${encodeURIComponent(date)}&time=${encodeURIComponent(time)}&room=${encodeURIComponent(room)}`;
+}
+
+// Modifica renderShowtimesByCinema para usar la función redirectToSeatSelection
 async function renderShowtimesByCinema() {
     try {
         const response = await fetch(`http://localhost:5006/api/Cine/GetCineConPeliculas?cineId=${cineSeleccionado}`);
@@ -86,6 +93,17 @@ async function renderShowtimesByCinema() {
                     isenseTag.textContent = "iSense";
                     sessionDiv.appendChild(isenseTag);
                 }
+
+                // Agrega el evento de clic para redirigir a la selección de asientos
+                sessionDiv.addEventListener("click", () => {
+                    redirectToSeatSelection(
+                        peliculaSeleccionada.titulo,
+                        cine.nombre, // Nombre del cine
+                        diaSeleccionado, // Día seleccionado
+                        sesion.hora, // Hora de la sesión
+                        sesion.sala // Sala de la sesión
+                    );
+                });
 
                 showtimesContainer.appendChild(sessionDiv);
             });
@@ -203,3 +221,14 @@ if (movieId) {
 } else {
     console.error("No se encontró un ID de película en la URL.");
 }
+
+// Obtener los parámetros de la URL
+function getQueryParams() {
+    const params = new URLSearchParams(window.location.search);
+    return {
+        cineId: params.get('cineId'),
+        movieId: params.get('movieId'),
+        sessionId: params.get('sessionId')
+    };
+}
+

@@ -1,12 +1,63 @@
 body {
   font-family: Arial, sans-serif;
-  background-color: #10141e;
+  background-color: #020510;
   color: #ffffff;
 }
 
 .seat-selection__details {
+  background-size: cover;
+  background-position: center;
+  color: #ffffff;
+  padding: 2rem;
+  position: relative;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
   text-align: center;
-  padding: 20px;
+  height: 300px;
+}
+.seat-selection__details .details-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.6);
+  z-index: 1;
+}
+.seat-selection__details .movie__title {
+  font-size: 2.5rem;
+  font-weight: bold;
+  text-transform: uppercase;
+  color: #ffffff;
+  display: flex;
+  flex-direction: row;
+  z-index: 2;
+}
+.seat-selection__details .movie__session-info {
+  display: flex;
+  flex-direction: row-reverse;
+  gap: 20px;
+  font-size: 1rem;
+  text-align: right;
+  color: #ffffff;
+  z-index: 2;
+}
+.seat-selection__details .movie__session-info p {
+  margin: 0.3rem 0;
+}
+.seat-selection__details .back-link {
+  position: absolute;
+  top: 1rem;
+  left: 1rem;
+  color: #ffffff;
+  font-size: 1.2rem;
+  text-decoration: none;
+  z-index: 2;
+}
+.seat-selection__details .back-link:hover {
+  color: white;
 }
 .seat-selection__legend {
   display: flex;
@@ -64,7 +115,7 @@ body {
   border-radius: 5px;
 }
 .continue-btn:hover {
-  background-color: #ff0f01;
+  background-color: rgb(255, 14.763546798, 1);
 }
 
 /*# sourceMappingURL=butacas.css.map */
