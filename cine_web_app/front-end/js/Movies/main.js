@@ -42,11 +42,13 @@ async function loadMovieDetails(id) {
     }
 }
 
-function redirectToSeatSelection(movieId, cinemaId, date, time, room) {
-    console.log(`Redirigiendo con movieId: ${movieId}, cinemaId: ${cinemaId}, date: ${date}, time: ${time}, room: ${room}`);
+
+function redirectToSeatSelection(movieTitle, cineName, date, time, room) {
+    console.log(`Redirigiendo con movieTitle: ${movieTitle}, cineName: ${cineName}, date: ${date}, time: ${time}, room: ${room}`);
     // Redirige a la página de selección de asientos con los datos en la URL
-    window.location.href = `/cine_web_app/front-end/views/butacas.html?movieId=${encodeURIComponent(movieId)}&cineId=${encodeURIComponent(cinemaId)}&date=${encodeURIComponent(date)}&time=${encodeURIComponent(time)}&room=${encodeURIComponent(room)}`;
+    window.location.href = `/cine_web_app/front-end/views/butacas.html?movieTitle=${encodeURIComponent(movieTitle)}&cineName=${encodeURIComponent(cineName)}&date=${encodeURIComponent(date)}&time=${encodeURIComponent(time)}&room=${encodeURIComponent(room)}`;
 }
+
 // Modifica renderShowtimesByCinema para usar la función redirectToSeatSelection
 async function renderShowtimesByCinema() {
     try {
@@ -60,7 +62,7 @@ async function renderShowtimesByCinema() {
 
         // Filtra para obtener solo la película con el ID que seleccionaste
         const peliculaSeleccionada = cine.peliculas.find(pelicula => pelicula.id === parseInt(movieId));
-        
+
         // Verificar que la película existe y tiene sesiones en el día seleccionado
         if (peliculaSeleccionada && peliculaSeleccionada.sesiones && peliculaSeleccionada.sesiones[diaSeleccionado]) {
             haySesiones = true;

@@ -2,6 +2,7 @@
 $background-color: #10141e;
 $text-color: #ffffff;
 $button-color: #ff3f34;
+$link-color: #007bff;
 $seat-available-color: #bfbfbf;
 $seat-selected-color: #0fbcf9;
 
@@ -18,68 +19,160 @@ h3 {
     text-align: center;
     margin-top: 10px;
     margin-bottom: 20px;
-    color: #ffffff;
+    color: $text-color;
 }
 
+// Estilos específicos para la sección de detalles de la película
+.movie-details {
+    position: relative;
+    color: $text-color;
+    height: 350px;
+    display: flex;
+    align-items: center;
+    padding: 0 2rem;
+    overflow: hidden;
+    background-color: rgba(0, 0, 0, 0.6);
+
+    &__backdrop {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        z-index: -1;
+
+        .movie-details__background-image {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            opacity: 3;
+            filter: blur(4px); // Desenfoque para la imagen de fondo
+        }
+    }
+
+    &__content-wrapper {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        position: relative;
+        z-index: 1;
+        width: 100%;
+        padding: 1rem;
+    }
+
+    &__info-wrapper {
+        &--poster {
+            .movie-title {
+                .movie-title__text {
+                    font-size: 3rem;
+                    font-weight: bold;
+                    text-transform: uppercase;
+                    color: $text-color;
+                    margin-bottom: 10px;
+                    letter-spacing: 0.1rem;
+                    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5); // Sombra para destacar
+                }
+            }
+        }
+    }
+
+    &__session-info {
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-start;
+        align-items: flex-end;
+        padding: 1rem;
+        color: $text-color;
+        font-size: 1.2rem;
+
+        .session-info-container {
+            .session-details {
+                font-size: 1.1rem;
+                color: $text-color;
+                text-align: right;
+
+                p {
+                    margin: 0.5rem 0;
+                    line-height: 1.4;
+                }
+            }
+        }
+    }
+}
+
+// Estilos del botón de retroceso
+.booking-go-back {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    color: $link-color;
+    font-size: 1rem;
+    text-decoration: none;
+    padding: 0.5rem 1rem;
+    margin-left: 2rem;
+    margin-top: 10px;
+
+    &:hover {
+        text-decoration: underline;
+        color: lighten($link-color, 10%);
+    }
+
+    &__arrow {
+        width: 20px;
+        height: 20px;
+        fill: $link-color;
+    }
+}
+
+// Estilos para la selección de asientos
 .seat-selection {
     &__details {
         position: relative;
         color: $text-color;
-        height: 300px;
+        height: 350px;
         display: flex;
         align-items: center;
         padding: 0 2rem;
+        background-color: rgba(0, 0, 0, 0.6);
+        overflow: hidden;
 
-        .background-banner {
+        .background-image {
             position: absolute;
             top: 0;
             left: 0;
-            right: 0;
-            bottom: 0;
-            background-size: cover;
-            background-position: center;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
             z-index: -1;
-            opacity: 0; // Empieza con opacidad cero y cambia a 1 en el JS
-            transition: opacity 0.5s ease-in-out;
-        }
-
-        .back-button {
-            position: absolute;
-            top: 1rem;
-            left: 1rem;
-            color: $text-color;
-            font-size: 1.2rem;
-            background: none;
-            border: none;
-            cursor: pointer;
-            z-index: 2;
-
-            &:hover {
-                color: lighten($text-color, 10%);
-            }
+            opacity: 0.5;
+            filter: blur(4px);
         }
 
         .info-container {
             position: relative;
             z-index: 1;
             padding: 1rem;
-            color: white;
+            color: $text-color;
+            text-align: left;
 
             .movie__title {
-                font-size: 2.5rem;
+                font-size: 2.8rem;
                 font-weight: bold;
                 text-transform: uppercase;
                 color: $text-color;
                 margin-bottom: 10px;
+                letter-spacing: 0.1rem;
             }
 
             .movie__session-info {
-                font-size: 1rem;
+                font-size: 1.2rem;
                 color: $text-color;
-                text-align: right;
+                text-align: left;
+                margin-top: 5px;
 
                 p {
-                    margin: 0;
+                    margin: 0.5rem 0;
+                    line-height: 1.4;
                 }
             }
         }
@@ -129,15 +222,6 @@ h3 {
     }
 }
 
-// Estilo del mapa de asientos
-.seat-map {
-    display: grid;
-    grid-template-columns: repeat(30, 20px);
-    gap: 5px;
-    justify-content: center;
-    padding: 20px;
-}
-
 // Estilo del botón de continuar
 .continue-btn {
     background-color: $button-color;
@@ -152,4 +236,13 @@ h3 {
     &:hover {
         background-color: darken($button-color, 10%);
     }
+}
+
+// Estilo del mapa de asientos
+.seat-map {
+    display: grid;
+    grid-template-columns: repeat(30, 20px);
+    gap: 5px;
+    justify-content: center;
+    padding: 20px;
 }

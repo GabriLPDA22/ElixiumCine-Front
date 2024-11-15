@@ -11,6 +11,7 @@
 </head>
 
 <body>
+    <!-- Encabezado principal -->
     <header class="header header--desktop">
         <a href="/cine_web_app/front-end/views/home.html" class="header__logo">Elixium</a>
         <nav class="header__nav">
@@ -21,29 +22,48 @@
             </ul>
         </nav>
         <div class="header__actions">
-            <a href="/cine_web_app/front-end/views/security/register.html"
-                class="header__link header__register">Registrarse</a>
-            <a href="/cine_web_app/front-end/views/security/login.html" class="header__link header__login">Iniciar
-                sesión</a>
+            <a href="/cine_web_app/front-end/views/security/register.html" class="header__link header__register">Registrarse</a>
+            <a href="/cine_web_app/front-end/views/security/login.html" class="header__link header__login">Iniciar sesión</a>
         </div>
     </header>
 
-    <!-- Botón de retroceso -->
-    <button class="back-button" onclick="history.back()">Atrás</button>
-
     <!-- Sección de detalles de la película con imagen de fondo -->
     <main class="seat-selection">
-        <section class="seat-selection__details">
-            <div class="background-banner"></div>
-            <div class="info-container">
-                <h2 class="movie__title"></h2>
-                <div class="movie__session-info">
-                    <!-- La información de la sesión se insertará aquí -->
+        <section class="movie-details">
+            <div class="movie-details__backdrop">
+                <!-- Imagen de fondo de la película -->
+                <img src="" alt="Banner de la película" class="movie-details__background-image">
+            </div>
+
+            <div class="movie-details__content-wrapper flex">
+                <div class="movie-details__info-wrapper movie-details__info-wrapper--poster">
+                    <div class="movie-title">
+                        <h2 class="movie-title__text movie__title"></h2>
+                    </div>
+                </div>
+
+                <div class="movie-details__session-info">
+                    <div class="session-info-container">
+                        <div class="session-details">
+                            <!-- La información de la sesión (cine, fecha y sala) se insertará aquí -->
+                        </div>
+                    </div>
                 </div>
             </div>
         </section>
 
-        <h3>Elige tus Asientos</h3>
+        <!-- Botón de retroceso -->
+        <a href="#" class="back-button-container flex" onclick="history.back()" style="text-decoration: none; color: #ff2c78;" >
+            <svg class="back-button__icon">
+                <use xlink:href="#back-icon"></use>
+            </svg>
+            <span>Atrás</span>
+        </a>
+
+        <!-- Título de selección de asientos -->
+        <section class="seat-selection-title" id="seat-selection-section">
+            <h3 class="seat-selection-title__text">Elige tus Asientos</h3>
+        </section>
 
         <!-- Leyenda de asientos -->
         <div class="seat-selection__legend">
