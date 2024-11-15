@@ -8,14 +8,75 @@ $seat-selected-color: #0fbcf9;
 // Estilos globales
 body {
     font-family: Arial, sans-serif;
-    background-color: $background-color;
+    background-color: #020510;
     color: $text-color;
 }
 
 .seat-selection {
     &__details {
+        background-size: cover;
+        background-position: center;
+        color: $text-color;
+        padding: 2rem;
+        position: relative;
+        display: flex;
+        flex-direction: row; // Para que los elementos hijos estén en fila
+        align-items: center;
+        justify-content: space-between;
         text-align: center;
-        padding: 20px;
+        height: 300px;
+
+        // Capa oscura encima de la imagen
+        .details-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0, 0, 0, 0.6);
+            z-index: 1;
+        }
+
+        // Título de la película
+        .movie__title {
+            font-size: 2.5rem;
+            font-weight: bold;
+            text-transform: uppercase;
+            color: $text-color;
+            display: flex;
+            flex-direction: row; // Asegura que el texto del título esté en línea
+            z-index: 2;
+        }
+
+        // Información del cine y sesión
+        .movie__session-info {
+            display: flex;
+            flex-direction: row-reverse; // Para que el último elemento esté alineado a la derecha
+            gap: 20px; // Espaciado entre los elementos
+            font-size: 1rem;
+            text-align: right;
+            color: $text-color;
+            z-index: 2;
+
+            p {
+                margin: 0.3rem 0;
+            }
+        }
+
+        // Botón de atrás a la izquierda
+        .back-link {
+            position: absolute;
+            top: 1rem;
+            left: 1rem;
+            color: $text-color;
+            font-size: 1.2rem;
+            text-decoration: none;
+            z-index: 2;
+
+            &:hover {
+                color: lighten($text-color, 10%);
+            }
+        }
     }
 
     &__legend {
