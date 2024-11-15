@@ -2,8 +2,8 @@
 function getQueryParams() {
     const params = new URLSearchParams(window.location.search);
     return {
-        title: params.get('title'),
-        cinema: params.get('cinema'),
+        movieId: params.get('movieId'),
+        cinemaId: params.get('cineId'),
         date: params.get('date'),
         time: params.get('time'),
         room: params.get('room')
@@ -12,17 +12,17 @@ function getQueryParams() {
 
 // Función para obtener y cargar la información de la selección de asientos desde el backend
 async function loadSeatSelectionInfo() {
-    const { title, cinema, date, time, room } = getQueryParams();
+    const { movieId, cinemaId, date, time, room } = getQueryParams();
 
     // Verificar si los parámetros existen
-    if (!title || !cinema || !date || !time || !room) {
+    if (!movieId || !cinemaId || !date || !time || !room) {
         console.error("Faltan parámetros en la URL");
         return;
     }
 
     try {
         // Realizar la solicitud al backend para obtener la información de la sesión y el banner
-        const response = await fetch(`http://localhost:5006/api/Cine/GetSeatSelectionInfo?cineId=${cinema}&movieId=${title}&sessionDate=${date}&sessionTime=${time}`);
+        const response = await fetch(`http://localhost:5006/api/Cine/GetSeatSelectionInfo?cineId=${cinemaId}&movieId=${movieId}&sessionDate=${date}&sessionTime=${time}`);
         
         if (!response.ok) throw new Error("Error al obtener la información de la sesión");
 
@@ -38,7 +38,7 @@ async function loadSeatSelectionInfo() {
 
         // Configurar el banner de fondo
         const bannerElement = document.querySelector('.seat-selection__details');
-        bannerElement.style.backgroundImage = `url(${data.BannerImage})`;
+        bannerElement.style.backgroundImage = `url(${data.BannerImage})`; // Aquí utilizamos "BannerImage" que es lo que llega desde el backend
 
     } catch (error) {
         console.error("Error:", error);

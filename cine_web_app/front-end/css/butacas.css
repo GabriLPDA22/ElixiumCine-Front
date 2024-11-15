@@ -4,60 +4,69 @@ body {
   color: #ffffff;
 }
 
-.seat-selection__details {
-  background-size: cover;
-  background-position: center;
-  color: #ffffff;
-  padding: 2rem;
-  position: relative;
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  justify-content: space-between;
+h3 {
+  font-size: 2.5rem;
+  font-weight: bold;
   text-align: center;
-  height: 300px;
+  margin-top: 10px;
+  margin-bottom: 20px;
+  color: #ffffff;
 }
-.seat-selection__details .details-overlay {
+
+.seat-selection__details {
+  position: relative;
+  color: #ffffff;
+  height: 300px;
+  display: flex;
+  align-items: center;
+  padding: 0 2rem;
+}
+.seat-selection__details .background-banner {
   position: absolute;
   top: 0;
   left: 0;
   right: 0;
   bottom: 0;
-  background: rgba(0, 0, 0, 0.6);
-  z-index: 1;
+  background-size: cover;
+  background-position: center;
+  z-index: -1;
+  opacity: 0;
+  transition: opacity 0.5s ease-in-out;
 }
-.seat-selection__details .movie__title {
-  font-size: 2.5rem;
-  font-weight: bold;
-  text-transform: uppercase;
-  color: #ffffff;
-  display: flex;
-  flex-direction: row;
-  z-index: 2;
-}
-.seat-selection__details .movie__session-info {
-  display: flex;
-  flex-direction: row-reverse;
-  gap: 20px;
-  font-size: 1rem;
-  text-align: right;
-  color: #ffffff;
-  z-index: 2;
-}
-.seat-selection__details .movie__session-info p {
-  margin: 0.3rem 0;
-}
-.seat-selection__details .back-link {
+.seat-selection__details .back-button {
   position: absolute;
   top: 1rem;
   left: 1rem;
   color: #ffffff;
   font-size: 1.2rem;
-  text-decoration: none;
+  background: none;
+  border: none;
+  cursor: pointer;
   z-index: 2;
 }
-.seat-selection__details .back-link:hover {
+.seat-selection__details .back-button:hover {
   color: white;
+}
+.seat-selection__details .info-container {
+  position: relative;
+  z-index: 1;
+  padding: 1rem;
+  color: white;
+}
+.seat-selection__details .info-container .movie__title {
+  font-size: 2.5rem;
+  font-weight: bold;
+  text-transform: uppercase;
+  color: #ffffff;
+  margin-bottom: 10px;
+}
+.seat-selection__details .info-container .movie__session-info {
+  font-size: 1rem;
+  color: #ffffff;
+  text-align: right;
+}
+.seat-selection__details .info-container .movie__session-info p {
+  margin: 0;
 }
 .seat-selection__legend {
   display: flex;

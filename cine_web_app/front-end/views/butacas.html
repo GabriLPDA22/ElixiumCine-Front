@@ -28,18 +28,23 @@
         </div>
     </header>
 
+    <!-- Botón de retroceso -->
+    <button class="back-button" onclick="history.back()">Atrás</button>
+
+    <!-- Sección de detalles de la película con imagen de fondo -->
     <main class="seat-selection">
-        <main class="seat-selection">
-            <section class="seat-selection__details">
-                <h2 class="movie__title">VENOM: EL ÚLTIMO BAILE</h2>
+        <section class="seat-selection__details">
+            <div class="background-banner"></div>
+            <div class="info-container">
+                <h2 class="movie__title"></h2>
                 <div class="movie__session-info">
-                    <p>Cine: Puerto Venecia</p>
-                    <p>Sesión: 05 nov, 18:30</p>
+                    <!-- La información de la sesión se insertará aquí -->
                 </div>
-            </section>
-        
+            </div>
+        </section>
+
         <h3>Elige tus Asientos</h3>
-        
+
         <!-- Leyenda de asientos -->
         <div class="seat-selection__legend">
             <span class="seat available"></span> Disponible

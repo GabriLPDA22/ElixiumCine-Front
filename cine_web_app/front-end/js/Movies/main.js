@@ -42,13 +42,11 @@ async function loadMovieDetails(id) {
     }
 }
 
-// Función para redirigir a la página de selección de asientos con los datos de la sesión seleccionada
-function redirectToSeatSelection(title, cinemaId, date, time, room) {
-    console.log(`Redirigiendo con title: ${title}, cinemaId: ${cinemaId}, date: ${date}, time: ${time}, room: ${room}`);
+function redirectToSeatSelection(movieId, cinemaId, date, time, room) {
+    console.log(`Redirigiendo con movieId: ${movieId}, cinemaId: ${cinemaId}, date: ${date}, time: ${time}, room: ${room}`);
     // Redirige a la página de selección de asientos con los datos en la URL
-    window.location.href = `/cine_web_app/front-end/views/butacas.html?title=${encodeURIComponent(title)}&cineId=${encodeURIComponent(cinemaId)}&date=${encodeURIComponent(date)}&time=${encodeURIComponent(time)}&room=${encodeURIComponent(room)}`;
+    window.location.href = `/cine_web_app/front-end/views/butacas.html?movieId=${encodeURIComponent(movieId)}&cineId=${encodeURIComponent(cinemaId)}&date=${encodeURIComponent(date)}&time=${encodeURIComponent(time)}&room=${encodeURIComponent(room)}`;
 }
-
 // Modifica renderShowtimesByCinema para usar la función redirectToSeatSelection
 async function renderShowtimesByCinema() {
     try {
