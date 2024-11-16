@@ -17,28 +17,33 @@ function getQueryParams() {
 }
 
 // Función para obtener y cargar la información de la selección de asientos desde el backend
-async function loadSeatSelectionInfo() {
-    const { movieTitle, cinemaName, date, time, room } = getQueryParams();
+// Función para cargar la información de la película en la página de compra como invitado
+async function loadGuestPurchaseInfo() {
+    const params = new URLSearchParams(window.location.search);
+    const movieTitle = params.get('movieTitle');
+    const cinemaName = params.get('cineName');
+    const date = params.get('date');
+    const time = params.get('time');
+    const room = params.get('room');
 
     if (!movieTitle || !cinemaName || !date || !time || !room) {
-        console.error("Faltan parámetros en la URL");
+        console.error("Faltan parámetros en la URL para cargar la información.");
         return;
     }
 
     try {
         const response = await fetch(`http://localhost:5006/api/Cine/GetSeatSelectionInfo?cineName=${encodeURIComponent(cinemaName)}&movieTitle=${encodeURIComponent(movieTitle)}&sessionDate=${encodeURIComponent(date)}&sessionTime=${encodeURIComponent(time)}`);
         
-        if (!response.ok) throw new Error("Error al obtener la información de la sesión");
+        if (!response.ok) throw new Error("Error al obtener la información de la sesión.");
 
         const data = await response.json();
-        console.log("Datos de la API:", data);
 
-        // Actualiza el contenido HTML utilizando los datos de la API
+        // Actualiza el contenido de la página
         document.querySelector('.movie-title__text').textContent = data.movieTitle || "SIN TÍTULO";
         document.querySelector('.session-details').innerHTML = `
-            <p>Cine: ${data.cineName || "Sin nombre de cine"}</p>
-            <p>Sesión: ${data.sessionDate || "Fecha no disponible"}, ${data.sessionTime || "Hora no disponible"}</p>
-            <p>Sala: ${data.room || "Sala no disponible"}</p>
+            <p>CINE: ${data.cineName || "Sin nombre de cine"}</p>
+            <p>SESIÓN: ${data.sessionDate || "Fecha no disponible"}, ${data.sessionTime || "Hora no disponible"}</p>
+            <p>SALA: ${data.room || "Sala no disponible"}</p>
         `;
 
         // Configurar la imagen del banner
@@ -48,9 +53,9 @@ async function loadSeatSelectionInfo() {
         }
 
     } catch (error) {
-        console.error("Error:", error);
+        console.error("Error al cargar la información de la película:", error);
     }
 }
 
 // Llamar a la función cuando la página cargue
-window.onload = loadSeatSelectionInfo;
+window.onload = loadGuestPurchaseInfo;

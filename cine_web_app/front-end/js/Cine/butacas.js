@@ -26,8 +26,6 @@ document.addEventListener('DOMContentLoaded', function () {
     ];
     
 
-
-    // Generar el mapa de asientos basado en `seatLayout`
     seatLayout.forEach((row, rowIndex) => {
         row.forEach((seat, seatIndex) => {
             const seatElement = document.createElement('div');
@@ -37,13 +35,12 @@ document.addEventListener('DOMContentLoaded', function () {
                 seatElement.dataset.seatNumber = `${rowIndex}-${seatIndex}`;
                 seatElement.addEventListener('click', () => toggleSeatSelection(seatElement));
             } else {
-                seatElement.classList.add('empty'); // Clase para espacio vacío
+                seatElement.classList.add('empty');
             }
             seatMapContainer.appendChild(seatElement);
         });
     });
 
-    // Función para seleccionar y deseleccionar asientos
     function toggleSeatSelection(seat) {
         if (seat.classList.contains('available')) {
             seat.classList.toggle('selected');
@@ -57,7 +54,6 @@ document.addEventListener('DOMContentLoaded', function () {
         }
     }
 
-    // Actualizar el texto de asientos seleccionados
     function updateSelectedSeatsDisplay() {
         selectedSeatsDisplay.textContent = selectedSeats.length
             ? selectedSeats.join(', ')
@@ -66,9 +62,14 @@ document.addEventListener('DOMContentLoaded', function () {
 
     continueBtn.addEventListener('click', () => {
         if (selectedSeats.length) {
-            alert(`Asientos seleccionados: ${selectedSeats.join(', ')}`);
+            // Obtener los parámetros de la URL actual
+            const params = new URLSearchParams(window.location.search);
+    
+            // Redirigir al login con los parámetros en la URL
+            window.location.href = `/cine_web_app/front-end/views/security/login-guest.html?${params.toString()}`;
         } else {
             alert('Selecciona al menos un asiento');
         }
     });
+    
 });
