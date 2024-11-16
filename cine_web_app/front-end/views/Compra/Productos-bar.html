@@ -60,7 +60,11 @@
             Compra ahora tus productos de bar y podrás recogerlos el día de la sesión en una cola rápida especial en el
             bar del cine.
         </p>
-        <a href="#" class="products-bar__allergies">Alérgenos y recogida de productos</a>
+        <button type="button" class="products-bar__allergies" id="allergies-button">
+            Alérgenos y recogida de productos
+        </button>
+
+
 
         <!-- Contenedor de categorías -->
         <nav class="products-bar__categories">
@@ -86,6 +90,24 @@
             <button id="continue-btn" class="continue-btn">Continuar</button>
         </div>
 
+        <div id="modal" class="modal">
+            <div class="modal__content">
+                <button id="modal-close" class="modal__close-btn">&times;</button>
+                <h2>ALÉRGENOS Y RECOGIDA DE PRODUCTOS</h2>
+                <p>
+                    Consulta aquí la <a href="/cine_web_app/front-end/views/Compra/Alergenos.html" target="_blank">lista de alérgenos</a> de nuestros productos de bar.
+                </p>
+                <h3>¿Cómo recojo mi pedido?</h3>
+                <ol>
+                    <li><strong>Haz tu pedido online:</strong> Elige tu menú favorito, las palomitas, los snacks y la bebida.</li>
+                    <li><strong>Avísanos cuando estés en el cine:</strong> Haz clic en el enlace de recogida del pedido que aparece en el email que te llegó con las entradas para que vayamos preparando todo.</li>
+                    <li><strong>¡Todo cocina!</strong> Acércate al bar para recoger tu pedido y ¡a disfrutar!</li>
+                </ol>
+            </div>
+        </div>
+        
+
+
     </main>
 
     <script>
@@ -95,9 +117,9 @@
             // Información de la película
             document.querySelector('.movie-title__text').textContent = params.get('movieTitle') || "SIN TÍTULO";
             document.querySelector('.session-details').innerHTML = `
-                <p>CINE: ${params.get('cineName') || "Sin cine"}</p>
-                <p>SESIÓN: ${params.get('date') || "Fecha no disponible"}, ${params.get('time') || "Hora no disponible"}</p>
-            `;
+        <p>CINE: ${params.get('cineName') || "Sin cine"}</p>
+        <p>SESIÓN: ${params.get('date') || "Fecha no disponible"}, ${params.get('time') || "Hora no disponible"}</p>
+    `;
 
             const bannerImageElement = document.querySelector('.movie-details__background-image');
             if (bannerImageElement) {
@@ -118,8 +140,8 @@
 
                     if (productos.length === 0) {
                         productsContainer.innerHTML = `
-                            <p class="no-products-message">No hay productos disponibles en esta categoría.</p>
-                        `;
+                    <p class="no-products-message">No hay productos disponibles en esta categoría.</p>
+                `;
                         return;
                     }
 
@@ -127,16 +149,16 @@
                         const productCard = document.createElement('div');
                         productCard.className = 'product-card__button';
                         productCard.innerHTML = `
-                            <div class="product-card__image-container">
-                                <img src="${product.imagenUrl}" alt="${product.nombre}" class="product-card__image">
-                            </div>
-                            <div class="product-card__details">
-                                <span class="product-card__name">${product.nombre}</span>
-                                <span class="product-card__price">${product.precio.toFixed(2)} €</span>
-                                <button class="product-card__add-button">Añadir a tu compra</button>
-                            </div>
-                            <p class="product-card__description">Consulta los alérgenos en nuestra web o pregunta al personal.</p>
-                        `;
+                    <div class="product-card__image-container">
+                        <img src="${product.imagenUrl}" alt="${product.nombre}" class="product-card__image">
+                    </div>
+                    <div class="product-card__details">
+                        <span class="product-card__name">${product.nombre}</span>
+                        <span class="product-card__price">${product.precio.toFixed(2)} €</span>
+                        <button class="product-card__add-button">Añadir a tu compra</button>
+                    </div>
+                    <p class="product-card__description">Consulta los alérgenos en nuestra web o pregunta al personal.</p>
+                `;
                         productsContainer.appendChild(productCard);
                     });
                 } catch (error) {
@@ -186,6 +208,34 @@
             // Cargar categorías
             await loadCategories();
 
+            // Modal Logic
+            const allergiesButton = document.getElementById("allergies-button");
+            const modal = document.getElementById("modal");
+            const modalClose = document.getElementById("modal-close");
+
+            // Función para abrir el modal
+            const openModal = () => {
+                modal.classList.add("visible");
+                document.body.style.overflow = "hidden"; // Evita el scroll en el fondo
+            };
+
+            // Función para cerrar el modal
+            const closeModal = () => {
+                modal.classList.remove("visible");
+                document.body.style.overflow = "auto"; // Restaura el scroll
+            };
+
+            // Evento para abrir el modal al hacer clic en el botón
+            allergiesButton.addEventListener("click", openModal);
+
+            // Evento para cerrar el modal al hacer clic en el botón de cerrar
+            modalClose.addEventListener("click", closeModal);
+
+            // Cerrar el modal al hacer clic fuera del contenido
+            modal.addEventListener("click", (e) => {
+                if (e.target === modal) closeModal();
+            });
+
             // Botón continuar
             const continueButton = document.getElementById("continue-btn");
             if (continueButton) {
@@ -194,6 +244,7 @@
                 });
             }
         });
+
     </script>
 
 

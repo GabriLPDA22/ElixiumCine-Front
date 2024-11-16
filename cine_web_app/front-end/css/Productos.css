@@ -1,3 +1,4 @@
+@charset "UTF-8";
 body {
   margin: 0;
   padding: 0;
@@ -59,6 +60,7 @@ body {
   padding: 2rem;
   background-color: #0b0d1c;
   color: #ffffff;
+  text-align: center;
 }
 .products-bar__title {
   text-align: center;
@@ -73,16 +75,18 @@ body {
   color: #aaaaaa;
 }
 .products-bar__allergies {
-  display: block;
-  text-align: center;
+  background-color: transparent;
+  color: #007bff; /* Color azul */
+  border: none;
   font-size: 1rem;
-  margin-bottom: 2rem;
-  color: #007bff;
-  text-decoration: none;
   font-weight: bold;
+  text-decoration: underline;
+  cursor: pointer;
+  padding: 0;
 }
 .products-bar__allergies:hover {
-  text-decoration: underline;
+  text-decoration: none;
+  color: #0056b3; /* Un azul más oscuro para el hover */
 }
 .products-bar__categories {
   margin-bottom: 2rem;
@@ -207,6 +211,89 @@ body {
 }
 .continue-btn:hover {
   background-color: #df3f79;
+}
+
+.modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+  background-color: rgba(0, 0, 0, 0.7);
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.3s ease, visibility 0.3s ease;
+}
+.modal.visible {
+  opacity: 1;
+  visibility: visible;
+}
+.modal__overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.7);
+}
+.modal__content {
+  position: relative;
+  background-color: #1c1e2b;
+  padding: 2rem;
+  border-radius: 10px;
+  box-shadow: 0 0 15px rgba(0, 0, 0, 0.5);
+  max-width: 600px;
+  width: 90%;
+  color: #ffffff;
+  text-align: center;
+}
+.modal__content h2 {
+  font-size: 2rem;
+  color: #ff2c78;
+  margin-bottom: 1rem;
+}
+.modal__content p {
+  margin-bottom: 1rem;
+  font-size: 1rem;
+  color: #cccccc;
+}
+.modal__content p a {
+  color: #007bff;
+  text-decoration: none;
+}
+.modal__content p a:hover {
+  text-decoration: underline;
+}
+.modal__content ol {
+  text-align: left;
+  margin: 1rem 0;
+  color: #dddddd;
+  padding-left: 1.5rem;
+}
+.modal__content ol li {
+  margin-bottom: 0.8rem;
+  font-size: 1rem;
+}
+.modal__content ol li strong {
+  color: #ffffff;
+}
+.modal__close-btn {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  background: none;
+  border: none;
+  font-size: 1.5rem;
+  color: #ffffff;
+  cursor: pointer;
+  transition: color 0.3s;
+}
+.modal__close-btn:hover {
+  color: #ff2c78;
 }
 
 /*# sourceMappingURL=Productos.css.map */
