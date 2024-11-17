@@ -56,8 +56,7 @@
         <h1 class="cines__title">NUESTROS CINES</h1>
         <div class="cines__grid">
 
-            <!-- Enlace para Gran Casa -->
-            <a href="../views/Cines-Carteleras/gran-casa.html" class="cines__link">
+            <a id="linkGranCasa" href="../views/Cines-Carteleras/gran-casa.html?cine=Gran Casa" class="cines__link">
                 <div class="cines__card" style="background-image: url('../images/gran-casa.jpg');">
                     <h2 class="cines__card-title">GRAN CASA</h2>
                     <p class="cines__card-description">
@@ -67,11 +66,8 @@
                     </p>
                 </div>
             </a>
-
-            <!-- Enlace para Puerto Venecia -->
-            <a href="../views/Cines-Carteleras/puerto-venecia.html" class="cines__link">
-                <div class="cines__card"
-                    style="background-image: url('../images/puerto-venecia.jpg');">
+            <a id="linkPuertoVenecia" class="cines__link" href="../Cines-Carteleras/cine-detail.html?cine=1">
+                <div class="cines__card" style="background-image: url('../images/puerto-venecia.jpg');">
                     <h2 class="cines__card-title">PUERTO VENECIA</h2>
                     <p class="cines__card-description">
                         <strong>Butacas reclinables de lujo:</strong> Para una experiencia de máximo confort. <br>
@@ -80,11 +76,8 @@
                     </p>
                 </div>
             </a>
-
-            <!-- Enlace para Torre Outlet -->
-            <a href="../views/Cines-Carteleras/torre-outlet.html" class="cines__link">
-                <div class="cines__card"
-                    style="background-image: url('../images/torre-outlet.jpg');">
+            <a id="linkTorreOutlet" class="cines__link">
+                <div class="cines__card" style="background-image: url('../images/torre-outlet.jpg');">
                     <h2 class="cines__card-title">TORRE OUTLET</h2>
                     <p class="cines__card-description">
                         <strong>Sala estándar:</strong> Para los amantes del cine tradicional. <br>
@@ -94,11 +87,8 @@
                     </p>
                 </div>
             </a>
-
-            <!-- Enlace para Casco Antiguo -->
-            <a href="../views/Cines-Carteleras/casco-antiguo.html" class="cines__link">
-                <div class="cines__card"
-                    style="background-image: url('../images/casco-antiguo.jpg');">
+            <a id="linkCascoAntiguo" class="cines__link">
+                <div class="cines__card" style="background-image: url('../images/casco-antiguo.jpg');">
                     <h2 class="cines__card-title">CASCO ANTIGUO</h2>
                     <p class="cines__card-description">
                         <strong>Salas VIP:</strong> Asientos exclusivos tipo lounge. <br>
@@ -107,7 +97,6 @@
                     </p>
                 </div>
             </a>
-
         </div>
     </main>
 
@@ -179,4 +168,29 @@
 
 </body>
 <script src="/cine_web_app/front-end/js/home/navbarresponsive.js"></script>
+
+<script>
+document.addEventListener("DOMContentLoaded", () => {
+    const cines = [
+        { id: "linkGranCasa", name: "gran-casa", cineId: 2 },
+        { id: "linkPuertoVenecia", name: "puerto-venecia", cineId: 1 },
+        { id: "linkTorreOutlet", name: "torre-outlet", cineId: 3 },
+        { id: "linkCascoAntiguo", name: "casco-antiguo", cineId: 4 },
+    ];
+
+    // Recorre todos los cines definidos en el array
+    cines.forEach((cine) => {
+        const linkElement = document.getElementById(cine.id);
+        if (linkElement) {
+            // Actualiza el atributo href dinámicamente
+            linkElement.href = `../views/Cines-Carteleras/${cine.name}.html?cineId=${cine.cineId}`;
+        } else {
+            console.error(`El elemento con id ${cine.id} no existe en el DOM.`);
+        }
+    });
+});
+
+
+</script>
+
 </html>
