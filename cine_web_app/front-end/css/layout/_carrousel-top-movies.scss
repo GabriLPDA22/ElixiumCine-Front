@@ -1,4 +1,3 @@
-
 .carousel {
     position: relative;
     display: flex;
@@ -9,11 +8,13 @@
 
     &__track {
         display: flex;
-        gap: 10px;
+        justify-content: center; // Asegura que las diapositivas estén centradas
         transition: transform 0.5s ease;
+        will-change: transform;
     }
 
     &__slide {
+        flex: 0 0 auto;
         opacity: 0.5;
         transform: scale(0.8);
         transition: transform 0.5s ease, opacity 0.5s ease;
@@ -72,7 +73,7 @@
         }
     }
 
-    // Media queries para pantallas móviles
+    // Responsividad
     @media (max-width: 768px) {
         &__slide {
             flex: 0 0 auto;

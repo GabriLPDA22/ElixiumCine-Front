@@ -11,7 +11,6 @@ async function loadMovies() {
         }
 
         const movies = await response.json();
-        console.log('Datos de películas:', movies);
 
         const carouselTrack = document.getElementById('carousel-track');
         carouselTrack.innerHTML = ''; // Limpia el carrusel antes de añadir las películas
@@ -19,32 +18,21 @@ async function loadMovies() {
         const movieIds = new Set(); // Conjunto para almacenar IDs únicos de películas
 
         movies.forEach((movie, index) => {
-            // Si el ID de la película ya está en el conjunto, saltamos esta iteración
-            if (movieIds.has(movie.id)) return;
-            
-            // Agrega el ID de la película al conjunto para evitar duplicados
+            if (movieIds.has(movie.id)) return; // Evitar duplicados
             movieIds.add(movie.id);
 
             // Crea un elemento de lista para cada película
             const listItem = document.createElement('li');
             listItem.classList.add('carousel__slide');
 
-            // Si quieres hacer que el elemento central tenga una clase especial
-            if (index === 2) { // Elige el elemento central
-                listItem.classList.add('carousel__slide--center');
-            } else {
-                listItem.classList.add('carousel__slide--side');
-            }
-
             // Imagen de la película
             const img = document.createElement('img');
             img.src = movie.cartel; // Usa movie.cartel directamente
             img.alt = movie.titulo;
             img.classList.add('carousel__image');
-            console.log('Ruta de la imagen:', img.src);
 
-            // Evento de clic para redirigir a la página de detalles de la película
-            img.addEventListener("click", () => {
+            // Redirección al hacer clic
+            img.addEventListener('click', () => {
                 window.location.href = `movies.html?id=${movie.id}`;
             });
 
@@ -58,14 +46,12 @@ async function loadMovies() {
             carouselTrack.appendChild(listItem);
         });
 
-        initializeCarousel(); // Inicializa el carrusel una vez que las películas estén cargadas
+        initializeCarousel(); // Inicializa el carrusel
     } catch (error) {
         console.error("Error loading movies:", error);
     }
 }
 
-
-// Función para detectar si estamos en modo móvil
 function isMobile() {
     return window.innerWidth <= 768; // Ajuste para dispositivos móviles
 }
@@ -74,13 +60,12 @@ function initializeCarousel() {
     const slides = Array.from(document.querySelectorAll('.carousel__slide'));
     const nextButton = document.querySelector('.carousel__button--right');
     const prevButton = document.querySelector('.carousel__button--left');
-    let currentIndex = isMobile() ? 0 : 2; // Ajuste de la imagen central inicial dependiendo del dispositivo
+    const track = document.getElementById('carousel-track');
+    let currentIndex = isMobile() ? 0 : Math.floor(slides.length / 2); // Centraliza la imagen inicial
 
     function updateSlideClasses() {
         slides.forEach((slide, index) => {
             slide.classList.remove('carousel__slide--center', 'carousel__slide--side');
-
-            // Aplicar la clase "center" solo al slide en currentIndex
             if (index === currentIndex) {
                 slide.classList.add('carousel__slide--center');
             } else {
@@ -88,20 +73,17 @@ function initializeCarousel() {
             }
         });
 
-        // Ajusta el desplazamiento en el track para mantener la imagen centrada
         const slideWidth = slides[0].getBoundingClientRect().width;
-        const track = document.getElementById('carousel-track');
+        track.style.transition = 'transform 0.5s ease'; // Transición fluida
         track.style.transform = `translateX(-${slideWidth * currentIndex}px)`;
     }
 
     function moveToNextSlide() {
-        // Ajusta el índice central hacia la derecha
         currentIndex = (currentIndex + 1) % slides.length;
         updateSlideClasses();
     }
 
     function moveToPreviousSlide() {
-        // Ajusta el índice central hacia la izquierda
         currentIndex = (currentIndex - 1 + slides.length) % slides.length;
         updateSlideClasses();
     }
@@ -109,15 +91,13 @@ function initializeCarousel() {
     nextButton.addEventListener('click', moveToNextSlide);
     prevButton.addEventListener('click', moveToPreviousSlide);
 
-    // Inicializar las clases de las imágenes
-    updateSlideClasses();
-
-    // Actualiza el carrusel cuando cambia el tamaño de la pantalla
     window.addEventListener('resize', () => {
-        currentIndex = isMobile() ? 0 : 2;
+        currentIndex = isMobile() ? 0 : Math.floor(slides.length / 2);
         updateSlideClasses();
     });
+
+    updateSlideClasses(); // Configura el carrusel inicialmente
 }
 
-// Llama a la función para cargar las películas cuando la página se carga
+// Llama a la función para cargar las películas
 document.addEventListener('DOMContentLoaded', loadMovies);
