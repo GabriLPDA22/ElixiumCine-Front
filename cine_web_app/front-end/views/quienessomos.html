@@ -1,24 +1,22 @@
 <!DOCTYPE html>
 <html lang="es">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Detalles de la Película</title>
-    <!-- <link rel="stylesheet" href="../css/home.css"> Compilación del SCSS -->
+    <title>Quiénes Somos</title>
+    <link rel="stylesheet" href="../css/quienessomos.css">
     <link rel="stylesheet" href="../css/header.css">
-    <link rel="stylesheet" href="../css/movies.css">
     <link rel="stylesheet" href="../css/footer.css">
-    <link rel="stylesheet" href="../css/Scrollbar.css">
+    <script src="/cine_web_app/front-end/js/home/navbarresponsive.js"></script>
 </head>
-
 <body>
+    <!-- Navbar para pantallas grandes -->
     <header class="header header--desktop">
-        <a href="/cine_web_app/front-end/views/home.html" class="header__logo">Elixium</a>
+        <div class="header__logo">Elixium</div>
         <nav class="header__nav">
             <ul class="header__menu">
                 <li class="header__menu-item"><a href="/cine_web_app/front-end/views/Cinemas.html">Cines</a></li>
-                <li class="header__menu-item"><a href="#">Películas</a></li>
+                <li class="header__menu-item"><a href="../views/Allmovies.html">Películas</a></li>
                 <li class="header__menu-item"><a href="#">Promociones</a></li>
             </ul>
         </nav>
@@ -32,7 +30,7 @@
 
     <!-- Navbar responsive para móviles -->
     <header class="header header--responsive">
-        <a href="/cine_web_app/front-end/views/home.html" class="header__logo">Elixium</a>
+        <div class="header__logo">Elixium</div>
         <div class="header__hamburger">&#9776;</div>
         <nav class="header__nav overlay">
             <ul class="header__menu">
@@ -46,96 +44,46 @@
             </ul>
         </nav>
     </header>
-
-    <main class="movie">
-        <div class="movie__banner">
-            <img id="movie-banner" src="" alt="Banner de la película" class="movie__banner-image">
-        </div>
-        <section class="movie__details">
-            <div class="movie__poster">
-                <img id="movie-poster" src="" alt="Cartel de la película" class="movie__poster-image">
+    <main class="main">
+        <section class="about">
+            <div class="about__container">
+                <h2 class="about__title">Nuestra Historia</h2>
+                <p class="about__description">
+                    Desde nuestros inicios, hemos trabajado con pasión para acercar el cine a todas las personas. Nuestro compromiso es ofrecer una experiencia cinematográfica inolvidable, combinando las últimas tecnologías con un ambiente acogedor. Nacimos con el sueño de convertirnos en el punto de encuentro para los amantes del séptimo arte, y hoy seguimos innovando para hacer de cada visita algo único.
+                </p>
             </div>
-            <div class="movie__info">
-                <div class="calificacion" style="display: flex; gap:20px;">
-                    <h2 id="movie-title" class="movie__title">Título de la Película</h2>
-                    <img id="age-rating-icon" src="" alt="Clasificación de Edad" class="age-rating-icon"
-                        style="height: 30px;" width="20px">
-                </div>
-                <p class="movie__section-title">Directores</p>
-                <p id="movie-director" class="movie__director"></p>
-                <p class="movie__section-title">Actores</p>
-                <p id="movie-actors" class="movie__actors"></p>
-                <p class="movie__section-title">Sinopsis</p>
-                <p id="movie-description" class="movie__description"></p>
-            </div>
-            <div class="movie__additional-info">
-                <p class="movie__section-title">Duración</p>
-                <p id="movie-duration" class="movie__duration"></p>
-                <p class="movie__section-title">Fecha de Estreno</p>
-                <p id="movie-release-date" class="movie__release-date"></p>
-                <p class="movie__section-title">Género</p>
-                <p id="movie-genre" class="movie__genre"></p>
-                <p class="movie__section-title">Calificación</p>
-                <p id="movie-rating" class="movie__rating"></p>
-            </div>
-
         </section>
 
-        <div class="daily-selector">
-            <div class="daily-selector__left">Mostrarme horarios para:</div>
-            <div class="daily-selector__right">
-                <div class="location" onclick="openCinemaModal()">
-                    <span>Seleccionar cine</span>
-                    <svg> <!-- Icono de localización --> </svg>
-                </div>
-                <div class="filter">
-                    <span>Filtrar por</span>
-                    <svg> <!-- Icono de filtro (opcional) --> </svg>
-                </div>
+        <section class="about">
+            <div class="about__container">
+                <h2 class="about__title">Nuestros Valores</h2>
+                <p class="about__description">
+                    Creemos que el cine es más que entretenimiento: es una forma de conectar, de soñar y de explorar nuevas perspectivas. Por eso, nuestros valores fundamentales son:
+                </p>
             </div>
-        </div>
+        </section>
 
-        <!-- Modal para seleccionar cine -->
-        <div id="cinema-modal" class="modal hidden">
-            <div class="modal-content">
-                <h2>Selecciona un Cine</h2>
-                <ul id="cinema-list"></ul> <!-- Aquí se listarán los cines -->
-                <button onclick="closeCinemaModal()">Cerrar</button>
+        <section class="team">
+            <h2 class="team__title">Conoce a nuestro equipo</h2>
+            <div class="team__list">
+                <article class="team__member">
+                    <img src="/cine_web_app/front-end/images/Gabriel.jpg" alt="Juan Pérez" class="team__member-photo">
+                    <h3 class="team__member-name">Gabriel Saiz</h3>
+                    <p class="team__member-role">Director de Operaciones</p>
+                </article>
+                <article class="team__member">
+                    <img src="/cine_web_app/front-end/images/Fran.jpg" alt="María Gómez" class="team__member-photo">
+                    <h3 class="team__member-name">Francisco Villa</h3>
+                    <p class="team__member-role">Jefe de Desarrollo</p>
+                </article>
+                <article class="team__member">
+                    <img src="/cine_web_app/front-end/images/Hermenegildo.jpg" alt="Carlos López" class="team__member-photo">
+                    <h3 class="team__member-name">Hermenegildo Garroguerricaechevarria</h3>
+                    <p class="team__member-role">Director de Marketing</p>
+                </article>
             </div>
-        </div>
-
-
-        <!-- Contenedor de los botones para los días -->
-        <div class="day-selector" id="day-selector">
-            <button class="day-button active" onclick="selectDay('2024-11-11')">lun, 11 nov</button>
-            <button class="day-button" onclick="selectDay('2024-11-12')">mar, 12 nov</button>
-            <button class="day-button" onclick="selectDay('2024-11-13')">mié, 13 nov</button>
-            <button class="day-button" onclick="selectDay('2024-11-14')">jue, 14 nov</button>
-        </div>
-
-        <div id="showtimes-container" class="cine-detail__info-showtimes">
-            <div class="session">
-                <div class="session__time"></div>
-                <div class="session__room"></div>
-                <div class="session__tag session__tag--isense"></div>
-            </div>
-            <div class="session">
-                <div class="session__time"></div>
-                <div class="session__room"></div>
-            </div>
-            <div class="session">
-                <div class="session__time"></div>
-                <div class="session__room"></div>
-                <div class="session__tags">
-                    <div class="session__tag session__tag--isense"></div>
-                    <div class="session__tag session__tag--vose"></div>
-                </div>
-            </div>
-        </div>
-
-
+        </section>
     </main>
-
     <footer class="footer">
         <div class="footer__social">
             <a class="social-icon" href="https://www.facebook.com/cinesa.es" target="_blank" aria-label="Facebook">
@@ -201,8 +149,5 @@
         </div>
     </footer>
 
-    <script src="../js/Movies/main.js"></script>
-        
 </body>
-
 </html>

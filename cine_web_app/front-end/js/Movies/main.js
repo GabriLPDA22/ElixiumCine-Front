@@ -176,23 +176,31 @@ async function loadDaysAndSessions() {
 
         daySelector.innerHTML = "";
 
-        const fechasUnicas = new Set();
+        const fechasUnicas = new Set(); // Crear un conjunto para almacenar fechas únicas
 
+        // Iterar sobre todas las películas
         cine.peliculas.forEach((pelicula) => {
             console.log(`Cargando sesiones para: ${pelicula.titulo}`);
-            const sesionesPorCine = pelicula.sesiones["Gran Casa"]; // Cambiar si el cine no es "Gran Casa"
-            if (!sesionesPorCine) return;
 
+            // Verificar si la película tiene sesiones en el cine seleccionado
+            const sesionesPorCine = pelicula.sesiones["Gran Casa"]; // Cambiar "Gran Casa" por el nombre de tu cine si es necesario
+            if (!sesionesPorCine) {
+                console.warn(`No hay sesiones disponibles para ${pelicula.titulo} en Gran Casa.`);
+                return;
+            }
+
+            // Añadir las fechas de las sesiones al conjunto
             Object.keys(sesionesPorCine).forEach((day) => {
                 if (/^\d{4}-\d{2}-\d{2}$/.test(day)) {
-                    fechasUnicas.add(day);
+                    fechasUnicas.add(day); // Añadir fecha al conjunto (Set garantiza unicidad)
                 } else {
                     console.warn(`Fecha inválida: ${day}`);
                 }
             });
         });
 
-        [...fechasUnicas].sort().forEach((day, index) => {
+        // Crear botones para las fechas únicas
+        [...fechasUnicas].forEach((day, index) => {
             const dayButton = document.createElement("button");
             dayButton.classList.add("day-button");
             if (index === 0) {
@@ -220,24 +228,18 @@ async function loadDaysAndSessions() {
 
 
 
-
 // Función para formatear la fecha de manera adecuada
 function formatDate(dateString) {
-    if (!/^\d{4}-\d{2}-\d{2}$/.test(dateString)) {
-        console.error("Fecha inválida:", dateString);
-        return "Fecha inválida";
-    }
-
-    const date = new Date(dateString);
-    if (isNaN(date.getTime())) {
-        console.error("Fecha inválida después de crear el objeto Date:", dateString);
-        return "Fecha inválida";
-    }
-
     const options = { weekday: 'short', day: 'numeric', month: 'short' };
-    return date.toLocaleDateString("es-ES", options);
-}
+    const date = new Date(dateString);
 
+    if (isNaN(date.getTime())) { 
+        console.error("Fecha inválida después de crear el objeto Date:", dateString);
+        return "Fecha inválida"; 
+    }
+
+    return date.toLocaleDateString("es-ES", options); // Formatear fecha al idioma español
+}
 
 
 
@@ -249,7 +251,6 @@ if (movieId) {
 }
 
 // Obtener los parámetros de la URL
-// Obtener los parámetros de la URL
 function getQueryParams() {
     const params = new URLSearchParams(window.location.search);
     return {
@@ -259,72 +260,42 @@ function getQueryParams() {
     };
 }
 
-async function renderShowtimesByCinema() {
-    try {
-        const response = await fetch(`http://localhost:5006/api/Cine/GetCineConPeliculas?cineId=${cineSeleccionado}`);
-        if (!response.ok) throw new Error('Error al cargar las películas del cine');
+function renderShowtimes(pelicula, sesiones, day) {
+    showtimesContainer.innerHTML = "";
 
-        const cine = await response.json();
-        showtimesContainer.innerHTML = "";
-
-        const peliculaSeleccionada = cine.peliculas.find(pelicula => pelicula.id === parseInt(movieId));
-        if (!peliculaSeleccionada) {
-            showtimesContainer.innerHTML = "<p>No se encontró la película seleccionada.</p>";
-            return;
-        }
-
-        const sesionesPorDia = peliculaSeleccionada.sesiones["Gran Casa"]?.[diaSeleccionado];
-        if (!Array.isArray(sesionesPorDia) || sesionesPorDia.length === 0) {
-            showtimesContainer.innerHTML = "<p>No hay sesiones disponibles para este día.</p>";
-            return;
-        }
-
-        sesionesPorDia.forEach(sesion => {
-            const sessionDiv = document.createElement("div");
-            sessionDiv.classList.add("session");
-
-            const timeDiv = document.createElement("div");
-            timeDiv.classList.add("session__time");
-            timeDiv.textContent = sesion.hora;
-            sessionDiv.appendChild(timeDiv);
-
-            const roomDiv = document.createElement("div");
-            roomDiv.classList.add("session__room");
-            roomDiv.textContent = `Sala ${sesion.sala} ${sesion.esISense ? "iSense" : ""}`;
-            sessionDiv.appendChild(roomDiv);
-
-            if (sesion.esVOSE) {
-                const voseDiv = document.createElement("div");
-                voseDiv.classList.add("session__tag", "session__tag--vose");
-                voseDiv.textContent = "VOSE";
-                sessionDiv.appendChild(voseDiv);
-            }
-
-            if (sesion.esISense) {
-                const isenseDiv = document.createElement("div");
-                isenseDiv.classList.add("session__tag", "session__tag--isense");
-                isenseDiv.textContent = "iSense";
-                sessionDiv.appendChild(isenseDiv);
-            }
-
-            // Agrega evento para redirigir a la URL con los parámetros corregidos
-            sessionDiv.addEventListener("click", () => {
-                const queryParams = new URLSearchParams({
-                    cineName: cine.nombre, // Asegúrate de que este valor coincida exactamente con el backend
-                    movieTitle: peliculaSeleccionada.titulo, // Cambiado de "movieName" a "movieTitle"
-                    date: diaSeleccionado,
-                    time: sesion.hora,
-                    room: sesion.sala
-                });
-            
-                window.location.href = `/cine_web_app/front-end/views/butacas.html?${queryParams.toString()}`;
-            });
-            
-
-            showtimesContainer.appendChild(sessionDiv);
-        });
-    } catch (error) {
-        console.error("Error al cargar las sesiones del cine:", error);
-        showtimesContainer.innerHTML = "<p>Error al cargar las sesiones. Intenta de nuevo más tarde.</p>";
+    if (sesiones.length === 0) {
+        showtimesContainer.innerHTML = `<p>No hay sesiones disponibles para ${pelicula.titulo} en ${day}.</p>`;
+        return;
     }
+
+    sesiones.forEach((sesion) => {
+        const sessionDiv = document.createElement("div");
+        sessionDiv.classList.add("session");
+
+        const timeDiv = document.createElement("div");
+        timeDiv.classList.add("session__time");
+        timeDiv.textContent = sesion.hora;
+        sessionDiv.appendChild(timeDiv);
+
+        const roomDiv = document.createElement("div");
+        roomDiv.classList.add("session__room");
+        roomDiv.textContent = `Sala ${sesion.sala} ${sesion.esISense ? "iSense" : ""}`;
+        sessionDiv.appendChild(roomDiv);
+
+        if (sesion.esVOSE) {
+            const voseDiv = document.createElement("div");
+            voseDiv.classList.add("session__tag", "session__tag--vose");
+            voseDiv.textContent = "VOSE";
+            sessionDiv.appendChild(voseDiv);
+        }
+
+        if (sesion.esISense) {
+            const isenseDiv = document.createElement("div");
+            isenseDiv.classList.add("session__tag", "session__tag--isense");
+            isenseDiv.textContent = "iSense";
+            sessionDiv.appendChild(isenseDiv);
+        }
+
+        showtimesContainer.appendChild(sessionDiv);
+    });
 }
