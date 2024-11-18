@@ -60,13 +60,12 @@ async function renderShowtimesByCinema() {
 
         let haySesiones = false;
 
-        // Filtra para obtener solo la película con el ID que seleccionaste
+        // Filtrar película seleccionada
         const peliculaSeleccionada = cine.peliculas.find(pelicula => pelicula.id === parseInt(movieId));
 
-        // Verificar que la película existe y tiene sesiones en el día seleccionado
         if (peliculaSeleccionada && peliculaSeleccionada.sesiones) {
-            console.log('Sesiones disponibles:', peliculaSeleccionada.sesiones);  // Depuración de las sesiones
-            
+            console.log('Sesiones disponibles:', peliculaSeleccionada.sesiones);
+
             const sesionesPorDia = peliculaSeleccionada.sesiones[diaSeleccionado];
 
             if (Array.isArray(sesionesPorDia) && sesionesPorDia.length > 0) {
@@ -99,14 +98,13 @@ async function renderShowtimesByCinema() {
                         sessionDiv.appendChild(isenseTag);
                     }
 
-                    // Agrega el evento de clic para redirigir a la selección de asientos
                     sessionDiv.addEventListener("click", () => {
                         redirectToSeatSelection(
                             peliculaSeleccionada.titulo,
-                            cine.nombre, // Nombre del cine
-                            diaSeleccionado, // Día seleccionado
-                            sesion.hora, // Hora de la sesión
-                            sesion.sala // Sala de la sesión
+                            cine.nombre,
+                            diaSeleccionado,
+                            sesion.hora,
+                            sesion.sala
                         );
                     });
 
@@ -123,6 +121,7 @@ async function renderShowtimesByCinema() {
         showtimesContainer.innerHTML = "<p>Error al cargar las sesiones. Intenta de nuevo más tarde.</p>";
     }
 }
+
 
 // Abre el modal para selección de cine
 function openCinemaModal() {
@@ -188,16 +187,36 @@ async function loadDaysAndSessions() {
 
         const cine = await response.json();
         daySelector.innerHTML = "";
-        const days = Object.keys(cine.peliculas[0].sesiones); // Obtener los días de la primera película
 
+        // Verificar que hay películas y sesiones
+        if (!cine.peliculas || cine.peliculas.length === 0) {
+            console.error("No se encontraron películas para el cine seleccionado.");
+            return;
+        }
+
+        // Obtener días de las sesiones (primera película como referencia)
+        const peliculaSeleccionada = cine.peliculas[0];
+        if (!peliculaSeleccionada.sesiones) {
+            console.error("No se encontraron sesiones para la película seleccionada.");
+            return;
+        }
+
+        const days = Object.keys(peliculaSeleccionada.sesiones);
+
+        // Crear botones para los días
         days.forEach((day, index) => {
+            if (!isValidDate(day)) {
+                console.warn(`Fecha inválida encontrada y descartada: ${day}`);
+                return;
+            }
+
             const dayButton = document.createElement("button");
             dayButton.classList.add("day-button");
             if (index === 0) {
                 dayButton.classList.add("active");
-                diaSeleccionado = day;
+                diaSeleccionado = day; // Seleccionar automáticamente el primer día
             }
-            dayButton.textContent = formatDate(day); // Formatear la fecha para mostrarla en el botón
+            dayButton.textContent = formatDate(day);
             dayButton.dataset.date = day;
 
             dayButton.addEventListener("click", () => {
@@ -210,11 +229,17 @@ async function loadDaysAndSessions() {
             daySelector.appendChild(dayButton);
         });
 
-        renderShowtimesByCinema(); // Renderiza las sesiones del primer día por defecto
+        // Renderizar sesiones para el primer día por defecto
+        if (diaSeleccionado) {
+            renderShowtimesByCinema();
+        } else {
+            console.error("No hay días válidos disponibles para mostrar sesiones.");
+        }
     } catch (error) {
         console.error("Error al cargar días y sesiones:", error);
     }
 }
+
 
 // Función para formatear la fecha de manera adecuada
 function formatDate(dateString) {

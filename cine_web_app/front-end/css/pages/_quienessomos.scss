@@ -1,0 +1,88 @@
+// Variables de colores
+$primary-color: #FF2C78; // Rosa principal
+$gray-dark: #ACACAC;     // Gris oscuro
+$gray-light: #D9D9D9;    // Gris claro
+$bg-dark: #1D1731;       // Fondo oscuro
+$text-color: $gray-light;
+
+// Estilo global
+body {
+  font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+  background-color: $bg-dark;
+  color: $text-color;
+}
+
+.main {
+  // Sección de historia y valores
+  .about {
+    margin: 40px 0;
+    text-align: center;
+
+    &__container {
+      width: 90%;
+      max-width: 800px;
+      margin: 0 auto;
+    }
+
+    &__title {
+      color: $primary-color;
+      margin-bottom: 20px;
+      font-size: 1.8rem;
+    }
+
+    &__description {
+      line-height: 1.6;
+      font-size: 1rem;
+      color: $text-color;
+    }
+  }
+
+  // Sección de equipo
+  .team {
+    text-align: center;
+    padding: 40px 0;
+
+    &__title {
+      color: $primary-color;
+      font-size: 1.8rem;
+      margin-bottom: 30px;
+    }
+
+    &__list {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 20px;
+    }
+
+    &__member {
+      background: $gray-dark;
+      border: 1px solid $gray-light;
+      border-radius: 8px;
+      width: 280px;
+      padding: 20px;
+      text-align: center;
+
+      &-photo {
+        width: 100px;
+        height: 100px;
+        border-radius: 50%;
+        margin-bottom: 10px;
+        border: 2px solid $primary-color;
+      }
+
+      &-name {
+        margin: 10px 0 5px;
+        font-size: 1.2rem;
+        color: white;
+      }
+
+      &-role {
+        font-size: 0.9rem;
+        color: $text-color;
+      }
+    }
+  }
+}
