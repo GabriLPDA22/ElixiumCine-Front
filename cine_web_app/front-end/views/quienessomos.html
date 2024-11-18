@@ -7,14 +7,16 @@
     <link rel="stylesheet" href="../css/quienessomos.css">
     <link rel="stylesheet" href="../css/header.css">
     <link rel="stylesheet" href="../css/footer.css">
+    <script src="/cine_web_app/front-end/js/home/navbarresponsive.js"></script>
 </head>
 <body>
+    <!-- Navbar para pantallas grandes -->
     <header class="header header--desktop">
-        <a href="/cine_web_app/front-end/views/home.html" class="header__logo">Elixium</a>
+        <div class="header__logo">Elixium</div>
         <nav class="header__nav">
             <ul class="header__menu">
                 <li class="header__menu-item"><a href="/cine_web_app/front-end/views/Cinemas.html">Cines</a></li>
-                <li class="header__menu-item"><a href="#">Películas</a></li>
+                <li class="header__menu-item"><a href="../views/Allmovies.html">Películas</a></li>
                 <li class="header__menu-item"><a href="#">Promociones</a></li>
             </ul>
         </nav>
@@ -24,6 +26,23 @@
             <a href="/cine_web_app/front-end/views/security/login.html" class="header__link header__login">Iniciar
                 sesión</a>
         </div>
+    </header>
+
+    <!-- Navbar responsive para móviles -->
+    <header class="header header--responsive">
+        <div class="header__logo">Elixium</div>
+        <div class="header__hamburger">&#9776;</div>
+        <nav class="header__nav overlay">
+            <ul class="header__menu">
+                <li class="header__menu-item"><a href="/cine_web_app/front-end/views/Cinemas.html">Cines</a></li>
+                <li class="header__menu-item"><a href="#">Películas</a></li>
+                <li class="header__menu-item"><a href="#">Promociones</a></li>
+                <li class="header__menu-item"><a href="/cine_web_app/front-end/views/security/register.html"
+                        class="header__link header__register">Registrarse</a></li>
+                <li class="header__menu-item"><a href="/cine_web_app/front-end/views/security/login.html"
+                        class="header__link header__login">Iniciar sesión</a></li>
+            </ul>
+        </nav>
     </header>
     <main class="main">
         <section class="about">
@@ -48,17 +67,17 @@
             <h2 class="team__title">Conoce a nuestro equipo</h2>
             <div class="team__list">
                 <article class="team__member">
-                    <img src="https://via.placeholder.com/100" alt="Juan Pérez" class="team__member-photo">
+                    <img src="/cine_web_app/front-end/images/Gabriel.jpg" alt="Juan Pérez" class="team__member-photo">
                     <h3 class="team__member-name">Gabriel Saiz</h3>
                     <p class="team__member-role">Director de Operaciones</p>
                 </article>
                 <article class="team__member">
-                    <img src="https://via.placeholder.com/100" alt="María Gómez" class="team__member-photo">
+                    <img src="/cine_web_app/front-end/images/Fran.jpg" alt="María Gómez" class="team__member-photo">
                     <h3 class="team__member-name">Francisco Villa</h3>
                     <p class="team__member-role">Jefe de Desarrollo</p>
                 </article>
                 <article class="team__member">
-                    <img src="https://via.placeholder.com/100" alt="Carlos López" class="team__member-photo">
+                    <img src="/cine_web_app/front-end/images/Hermenegildo.jpg" alt="Carlos López" class="team__member-photo">
                     <h3 class="team__member-name">Hermenegildo Garroguerricaechevarria</h3>
                     <p class="team__member-role">Director de Marketing</p>
                 </article>
