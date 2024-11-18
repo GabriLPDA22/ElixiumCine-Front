@@ -111,28 +111,56 @@ document.addEventListener("DOMContentLoaded", () => {
 
     function setupCarousel(peliculas) {
         const track = document.getElementById("carousel-track");
+        const prevButton = document.querySelector(".carousel__prev");
+        const nextButton = document.querySelector(".carousel__next");
         track.innerHTML = "";
-
+        let currentIndex = 0;
+    
+        // Crear los slides del carrusel
         peliculas.forEach((movie, index) => {
             const slide = document.createElement("li");
             slide.classList.add("carousel__slide");
             if (index === 0) slide.classList.add("selected");
-
+    
             const img = document.createElement("img");
             img.src = movie.cartel;
             img.alt = movie.titulo;
             img.classList.add("carousel__image");
-
+    
             img.addEventListener("click", () => {
                 document.querySelectorAll(".carousel__slide").forEach(slide => slide.classList.remove("selected"));
                 slide.classList.add("selected");
                 renderMovieDetails(movie);
+                currentIndex = index; // Actualizamos el índice actual
             });
-
+    
             slide.appendChild(img);
             track.appendChild(slide);
         });
+    
+        // Función para actualizar el carrusel
+        function updateCarousel(index) {
+            const slides = document.querySelectorAll(".carousel__slide");
+            slides.forEach(slide => slide.classList.remove("selected"));
+            slides[index].classList.add("selected");
+            renderMovieDetails(peliculas[index]);
+            currentIndex = index;
+        }
+    
+        // Evento para botón "anterior"
+        prevButton.addEventListener("click", () => {
+            if (currentIndex > 0) {
+                updateCarousel(currentIndex - 1);
+            }
+        });
+    
+        // Evento para botón "siguiente"
+        nextButton.addEventListener("click", () => {
+            if (currentIndex < peliculas.length - 1) {
+                updateCarousel(currentIndex + 1);
+            }
+        });
     }
-
+    
     fetchMovies();
 });
