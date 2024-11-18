@@ -220,7 +220,8 @@ async function renderShowtimesByCinema() {
             return;
         }
 
-        const sesionesPorDia = peliculaSeleccionada.sesiones["Gran Casa"]?.[diaSeleccionado];
+        // Utiliza el nombre del cine seleccionado dinámicamente
+        const sesionesPorDia = peliculaSeleccionada.sesiones[cine.nombre]?.[diaSeleccionado];
         if (!Array.isArray(sesionesPorDia) || sesionesPorDia.length === 0) {
             showtimesContainer.innerHTML = "<p>No hay sesiones disponibles para este día.</p>";
             return;
@@ -257,8 +258,8 @@ async function renderShowtimesByCinema() {
             // Agrega evento para redirigir a la URL con los parámetros corregidos
             sessionDiv.addEventListener("click", () => {
                 const queryParams = new URLSearchParams({
-                    cineName: cine.nombre, // Asegúrate de que este valor coincida exactamente con el backend
-                    movieTitle: peliculaSeleccionada.titulo, // Cambiado de "movieName" a "movieTitle"
+                    cineName: cine.nombre, // Usa dinámicamente el nombre del cine
+                    movieTitle: peliculaSeleccionada.titulo,
                     date: diaSeleccionado,
                     time: sesion.hora,
                     room: sesion.sala
@@ -266,7 +267,6 @@ async function renderShowtimesByCinema() {
 
                 window.location.href = `/cine_web_app/front-end/views/butacas.html?${queryParams.toString()}`;
             });
-
 
             showtimesContainer.appendChild(sessionDiv);
         });
