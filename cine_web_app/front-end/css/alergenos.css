@@ -5,6 +5,11 @@ body {
   background-color: #0b0d1c;
 }
 
+h2 {
+  text-align: center;
+  color: #ffffff;
+}
+
 .allergen-list {
   list-style: none;
   margin: 0;
@@ -66,4 +71,4 @@ body {
   margin-bottom: 0.5rem;
 }
 
-/*# sourceMappingURL=alergneos.css.map */
+/*# sourceMappingURL=alergenos.css.map */

@@ -49,72 +49,6 @@ function redirectToSeatSelection(movieTitle, cineName, date, time, room) {
     window.location.href = `/cine_web_app/front-end/views/butacas.html?movieTitle=${encodeURIComponent(movieTitle)}&cineName=${encodeURIComponent(cineName)}&date=${encodeURIComponent(date)}&time=${encodeURIComponent(time)}&room=${encodeURIComponent(room)}`;
 }
 
-// Modifica renderShowtimesByCinema para usar la función redirectToSeatSelection
-async function renderShowtimesByCinema() {
-    try {
-        const response = await fetch(`http://localhost:5006/api/Cine/GetCineConPeliculas?cineId=${cineSeleccionado}`);
-        if (!response.ok) throw new Error('Error al cargar las películas del cine');
-
-        const cine = await response.json();
-        showtimesContainer.innerHTML = "";
-
-        let haySesiones = false;
-
-        // Filtrar película seleccionada
-        const peliculaSeleccionada = cine.peliculas.find(pelicula => pelicula.id === parseInt(movieId));
-
-        if (peliculaSeleccionada && peliculaSeleccionada.sesiones) {
-            console.log('Sesiones disponibles:', peliculaSeleccionada.sesiones);
-
-            const sesionesPorDia = peliculaSeleccionada.sesiones[diaSeleccionado];
-
-            if (Array.isArray(sesionesPorDia) && sesionesPorDia.length > 0) {
-                haySesiones = true;
-                sesionesPorDia.forEach(sesion => {
-                    const sessionDiv = document.createElement("div");
-                    sessionDiv.classList.add("session");
-
-            const timeDiv = document.createElement("div");
-            timeDiv.classList.add("session__time");
-            timeDiv.textContent = sesion.hora;
-            sessionDiv.appendChild(timeDiv);
-
-            const roomDiv = document.createElement("div");
-            roomDiv.classList.add("session__room");
-            roomDiv.textContent = `Sala ${sesion.sala} ${sesion.esISense ? "iSense" : ""}`;
-            sessionDiv.appendChild(roomDiv);
-
-            if (sesion.esVOSE) {
-                const voseDiv = document.createElement("div");
-                voseDiv.classList.add("session__tag", "session__tag--vose");
-                voseDiv.textContent = "VOSE";
-                sessionDiv.appendChild(voseDiv);
-            }
-
-                    if (sesion.esISense) {
-                        const isenseTag = document.createElement("div");
-                        isenseTag.classList.add("session__tag", "session__tag--isense");
-                        isenseTag.textContent = "iSense";
-                        sessionDiv.appendChild(isenseTag);
-                    }
-
-                    sessionDiv.addEventListener("click", () => {
-                        redirectToSeatSelection(
-                            peliculaSeleccionada.titulo,
-                            cine.nombre,
-                            diaSeleccionado,
-                            sesion.hora,
-                            sesion.sala
-                        );
-                    });
-
-            showtimesContainer.appendChild(sessionDiv);
-        });
-    } catch (error) {
-        console.error("Error al cargar las sesiones del cine:", error);
-        showtimesContainer.innerHTML = "<p>Error al cargar las sesiones. Intenta de nuevo más tarde.</p>";
-    }
-}
 
 
 
@@ -185,28 +119,23 @@ async function loadDaysAndSessions() {
 
         daySelector.innerHTML = "";
 
-        // Verificar que hay películas y sesiones
-        if (!cine.peliculas || cine.peliculas.length === 0) {
-            console.error("No se encontraron películas para el cine seleccionado.");
-            return;
-        }
+        const fechasUnicas = new Set();
 
-        // Obtener días de las sesiones (primera película como referencia)
-        const peliculaSeleccionada = cine.peliculas[0];
-        if (!peliculaSeleccionada.sesiones) {
-            console.error("No se encontraron sesiones para la película seleccionada.");
-            return;
-        }
+        cine.peliculas.forEach((pelicula) => {
+            console.log(`Cargando sesiones para: ${pelicula.titulo}`);
+            const sesionesPorCine = pelicula.sesiones["Gran Casa"]; // Cambiar si el cine no es "Gran Casa"
+            if (!sesionesPorCine) return;
 
-        const days = Object.keys(peliculaSeleccionada.sesiones);
+            Object.keys(sesionesPorCine).forEach((day) => {
+                if (/^\d{4}-\d{2}-\d{2}$/.test(day)) {
+                    fechasUnicas.add(day);
+                } else {
+                    console.warn(`Fecha inválida: ${day}`);
+                }
+            });
+        });
 
-        // Crear botones para los días
-        days.forEach((day, index) => {
-            if (!isValidDate(day)) {
-                console.warn(`Fecha inválida encontrada y descartada: ${day}`);
-                return;
-            }
-
+        [...fechasUnicas].sort().forEach((day, index) => {
             const dayButton = document.createElement("button");
             dayButton.classList.add("day-button");
             if (index === 0) {
@@ -241,16 +170,21 @@ async function loadDaysAndSessions() {
 
 // Función para formatear la fecha de manera adecuada
 function formatDate(dateString) {
-    const options = { weekday: 'short', day: 'numeric', month: 'short' };
-    const date = new Date(dateString);
-
-    if (isNaN(date.getTime())) { 
-        console.error("Fecha inválida después de crear el objeto Date:", dateString);
-        return "Fecha inválida"; 
+    if (!/^\d{4}-\d{2}-\d{2}$/.test(dateString)) {
+        console.error("Fecha inválida:", dateString);
+        return "Fecha inválida";
     }
 
-    return date.toLocaleDateString("es-ES", options); // Formatear fecha al idioma español
+    const date = new Date(dateString);
+    if (isNaN(date.getTime())) {
+        console.error("Fecha inválida después de crear el objeto Date:", dateString);
+        return "Fecha inválida";
+    }
+
+    const options = { weekday: 'short', day: 'numeric', month: 'short' };
+    return date.toLocaleDateString("es-ES", options);
 }
+
 
 
 
@@ -262,6 +196,7 @@ if (movieId) {
 }
 
 // Obtener los parámetros de la URL
+// Obtener los parámetros de la URL
 function getQueryParams() {
     const params = new URLSearchParams(window.location.search);
     return {
@@ -271,42 +206,73 @@ function getQueryParams() {
     };
 }
 
-function renderShowtimes(pelicula, sesiones, day) {
-    showtimesContainer.innerHTML = "";
+async function renderShowtimesByCinema() {
+    try {
+        const response = await fetch(`http://localhost:5006/api/Cine/GetCineConPeliculas?cineId=${cineSeleccionado}`);
+        if (!response.ok) throw new Error('Error al cargar las películas del cine');
 
-    if (sesiones.length === 0) {
-        showtimesContainer.innerHTML = `<p>No hay sesiones disponibles para ${pelicula.titulo} en ${day}.</p>`;
-        return;
+        const cine = await response.json();
+        showtimesContainer.innerHTML = "";
+
+        const peliculaSeleccionada = cine.peliculas.find(pelicula => pelicula.id === parseInt(movieId));
+        if (!peliculaSeleccionada) {
+            showtimesContainer.innerHTML = "<p>No se encontró la película seleccionada.</p>";
+            return;
+        }
+
+        const sesionesPorDia = peliculaSeleccionada.sesiones["Gran Casa"]?.[diaSeleccionado];
+        if (!Array.isArray(sesionesPorDia) || sesionesPorDia.length === 0) {
+            showtimesContainer.innerHTML = "<p>No hay sesiones disponibles para este día.</p>";
+            return;
+        }
+
+        sesionesPorDia.forEach(sesion => {
+            const sessionDiv = document.createElement("div");
+            sessionDiv.classList.add("session");
+
+            const timeDiv = document.createElement("div");
+            timeDiv.classList.add("session__time");
+            timeDiv.textContent = sesion.hora;
+            sessionDiv.appendChild(timeDiv);
+
+            const roomDiv = document.createElement("div");
+            roomDiv.classList.add("session__room");
+            roomDiv.textContent = `Sala ${sesion.sala} ${sesion.esISense ? "iSense" : ""}`;
+            sessionDiv.appendChild(roomDiv);
+
+            if (sesion.esVOSE) {
+                const voseDiv = document.createElement("div");
+                voseDiv.classList.add("session__tag", "session__tag--vose");
+                voseDiv.textContent = "VOSE";
+                sessionDiv.appendChild(voseDiv);
+            }
+
+            if (sesion.esISense) {
+                const isenseDiv = document.createElement("div");
+                isenseDiv.classList.add("session__tag", "session__tag--isense");
+                isenseDiv.textContent = "iSense";
+                sessionDiv.appendChild(isenseDiv);
+            }
+
+            // Agrega evento para redirigir a la URL con los parámetros corregidos
+            sessionDiv.addEventListener("click", () => {
+                const queryParams = new URLSearchParams({
+                    cineName: cine.nombre, // Asegúrate de que este valor coincida exactamente con el backend
+                    movieTitle: peliculaSeleccionada.titulo, // Cambiado de "movieName" a "movieTitle"
+                    date: diaSeleccionado,
+                    time: sesion.hora,
+                    room: sesion.sala
+                });
+
+                window.location.href = `/cine_web_app/front-end/views/butacas.html?${queryParams.toString()}`;
+            });
+
+
+            showtimesContainer.appendChild(sessionDiv);
+        });
+
+    } catch (error) {
+        console.error("Error al cargar las sesiones del cine:", error);
+        showtimesContainer.innerHTML = "<p>Error al cargar las sesiones. Intenta de nuevo más tarde.</p>";
     }
-
-    sesiones.forEach((sesion) => {
-        const sessionDiv = document.createElement("div");
-        sessionDiv.classList.add("session");
-
-        const timeDiv = document.createElement("div");
-        timeDiv.classList.add("session__time");
-        timeDiv.textContent = sesion.hora;
-        sessionDiv.appendChild(timeDiv);
-
-        const roomDiv = document.createElement("div");
-        roomDiv.classList.add("session__room");
-        roomDiv.textContent = `Sala ${sesion.sala} ${sesion.esISense ? "iSense" : ""}`;
-        sessionDiv.appendChild(roomDiv);
-
-        if (sesion.esVOSE) {
-            const voseDiv = document.createElement("div");
-            voseDiv.classList.add("session__tag", "session__tag--vose");
-            voseDiv.textContent = "VOSE";
-            sessionDiv.appendChild(voseDiv);
-        }
-
-        if (sesion.esISense) {
-            const isenseDiv = document.createElement("div");
-            isenseDiv.classList.add("session__tag", "session__tag--isense");
-            isenseDiv.textContent = "iSense";
-            sessionDiv.appendChild(isenseDiv);
-        }
-
-        showtimesContainer.appendChild(sessionDiv);
-    });
 }
