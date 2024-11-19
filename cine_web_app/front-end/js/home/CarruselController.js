@@ -75,7 +75,7 @@ function initializeCarousel() {
 
         const slideWidth = slides[0].getBoundingClientRect().width;
         track.style.transition = 'transform 0.5s ease'; // Transición fluida
-        track.style.transform = `translateX(-${slideWidth * currentIndex}px)`;
+        // track.style.transform = `translateX(-${slideWidth * currentIndex}px)`;
     }
 
     function moveToNextSlide() {
