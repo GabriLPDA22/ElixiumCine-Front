@@ -196,7 +196,6 @@ if (movieId) {
 }
 
 // Obtener los parámetros de la URL
-// Obtener los parámetros de la URL
 function getQueryParams() {
     const params = new URLSearchParams(window.location.search);
     return {
