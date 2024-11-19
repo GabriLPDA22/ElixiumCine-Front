@@ -1,5 +1,5 @@
 body {
-  font-family: Arial, sans-serif;
+  font-family: "Poppins", sans-serif;
   background-color: #020510;
   color: #ffffff;
 }
@@ -78,7 +78,7 @@ h3 {
   display: flex;
   align-items: center;
   gap: 8px;
-  color: #007bff;
+  color: #ff2c78;
   font-size: 1rem;
   text-decoration: none;
   padding: 0.5rem 1rem;
@@ -87,12 +87,12 @@ h3 {
 }
 .booking-go-back:hover {
   text-decoration: underline;
-  color: #3395ff;
+  color: #ff5f99;
 }
 .booking-go-back__arrow {
   width: 20px;
   height: 20px;
-  fill: #007bff;
+  fill: #ff2c78;
 }
 
 .seat-selection__details {
@@ -147,6 +147,10 @@ h3 {
   gap: 15px;
   padding: 10px;
   font-size: 14px;
+  border-top: 1px solid #4e5a6c;
+  border-bottom: 1px solid #4e5a6c;
+  margin-left: 25%;
+  margin-right: 25%;
 }
 .seat-selection__legend .seat {
   width: 20px;
@@ -175,11 +179,11 @@ h3 {
   background-color: #bfbfbf;
 }
 .seat.selected {
-  background-color: #0fbcf9;
+  background-color: #ff2c78;
 }
 
 .continue-btn {
-  background-color: #ff3f34;
+  background-color: #ff2c78;
   color: #ffffff;
   border: none;
   padding: 10px 20px;
@@ -189,7 +193,7 @@ h3 {
   border-radius: 5px;
 }
 .continue-btn:hover {
-  background-color: #ff0f01;
+  background-color: #f80059;
 }
 
 .seat-map {
@@ -198,6 +202,30 @@ h3 {
   gap: 5px;
   justify-content: center;
   padding: 20px;
+}
+
+.screen {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 20px 0;
+}
+.screen__svg {
+  width: 100%;
+  max-width: 910px;
+  height: auto;
+}
+.screen__background {
+  fill: #e0e0e0;
+  stroke: #b0b0b0;
+  stroke-width: 2;
+}
+.screen__text {
+  font-size: 15px;
+  font-weight: bold;
+  fill: #333;
+  font-family: "Poppins", sans-serif;
+  text-transform: uppercase;
 }
 
 /*# sourceMappingURL=butacas.css.map */

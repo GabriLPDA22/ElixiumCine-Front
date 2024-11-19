@@ -1,14 +1,14 @@
 // Variables de colores
 $background-color: #10141e;
 $text-color: #ffffff;
-$button-color: #ff3f34;
-$link-color: #007bff;
+$button-color: #ff2c78;
+$link-color: #ff2c78;
 $seat-available-color: #bfbfbf;
-$seat-selected-color: #0fbcf9;
+$seat-selected-color: #ff2c78;
 
 // Estilos globales
 body {
-    font-family: Arial, sans-serif;
+    font-family: "Poppins", sans-serif;
     background-color: #020510;
     color: $text-color;
 }
@@ -184,6 +184,10 @@ h3 {
         gap: 15px;
         padding: 10px;
         font-size: 14px;
+        border-top: 1px solid #4e5a6c;
+        border-bottom: 1px solid #4e5a6c;
+        margin-left: 25%;
+        margin-right: 25%;
 
         .seat {
             width: 20px;
@@ -246,3 +250,31 @@ h3 {
     justify-content: center;
     padding: 20px;
 }
+
+.screen {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 20px 0;
+
+    &__svg {
+        width: 100%;
+        max-width: 910px;
+        height: auto;
+    }
+
+    &__background {
+        fill: #e0e0e0; // Color de fondo del trapecio
+        stroke: #b0b0b0; // Borde del trapecio
+        stroke-width: 2;
+    }
+
+    &__text {
+        font-size: 15px;
+        font-weight: bold;
+        fill: #333; // Color del texto
+        font-family: "Poppins", sans-serif;
+        text-transform: uppercase; // Texto en mayúsculas
+    }
+}
+
