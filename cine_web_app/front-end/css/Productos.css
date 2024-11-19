@@ -296,4 +296,28 @@ body {
   color: #ff2c78;
 }
 
+.total-display {
+  background-color: #0b0d1c;
+  color: white;
+  padding: 10px 20px;
+  border-radius: 10px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
+}
+.total-display span {
+  font-size: 1.2rem;
+  font-weight: 600;
+}
+.total-display .total-label {
+  font-size: 1.5rem;
+  font-weight: bold;
+}
+.total-display .total-value {
+  color: #df3f79;
+  font-size: 1.5rem;
+  font-weight: bold;
+}
+
 /*# sourceMappingURL=Productos.css.map */

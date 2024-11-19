@@ -354,3 +354,30 @@ body {
 }
 
 
+.total-display {
+  background-color: #0b0d1c; // Fondo oscuro
+  color: white; // Texto principal en blanco
+  padding: 10px 20px; // Espaciado interno
+  border-radius: 10px; // Bordes redondeados
+  display: flex;
+  justify-content: space-between; // Espaciado entre "Total:" y el precio
+  align-items: center; // Alinear elementos verticalmente
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2); // Sombra sutil
+
+  span {
+    font-size: 1.2rem; // Tamaño del texto estándar
+    font-weight: 600; // Peso del texto
+  }
+
+  .total-label {
+    font-size: 1.5rem; // Tamaño del texto "Total:"
+    font-weight: bold; // Destacar el texto
+  }
+
+  .total-value {
+    color: #df3f79; // Color destacado para el precio
+    font-size: 1.5rem; // Tamaño destacado para el precio
+    font-weight: bold; // Resaltar el precio
+  }
+}
+

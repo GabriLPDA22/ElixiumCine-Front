@@ -84,9 +84,9 @@
 
         </section>
 
-        <div class="total-line">
-            <span>Total</span>
-            <span>0,00 €</span>
+        <div id="total-container" class="total-display">
+            <span class="total-label">Total:</span>
+            <span id="total-value" class="total-value">0.00 €</span>
         </div>
 
         <!-- Botón de continuar -->
@@ -99,17 +99,20 @@
                 <button id="modal-close" class="modal__close-btn">&times;</button>
                 <h2>ALÉRGENOS Y RECOGIDA DE PRODUCTOS</h2>
                 <p>
-                    Consulta aquí la <a href="/cine_web_app/front-end/views/Compra/Alergenos.html" target="_blank">lista de alérgenos</a> de nuestros productos de bar.
+                    Consulta aquí la <a href="/cine_web_app/front-end/views/Compra/Alergenos.html" target="_blank">lista
+                        de alérgenos</a> de nuestros productos de bar.
                 </p>
                 <h3>¿Cómo recojo mi pedido?</h3>
                 <ol>
-                    <li><strong>Haz tu pedido online:</strong> Elige tu menú favorito, las palomitas, los snacks y la bebida.</li>
-                    <li><strong>Avísanos cuando estés en el cine:</strong> Haz clic en el enlace de recogida del pedido que aparece en el email que te llegó con las entradas para que vayamos preparando todo.</li>
+                    <li><strong>Haz tu pedido online:</strong> Elige tu menú favorito, las palomitas, los snacks y la
+                        bebida.</li>
+                    <li><strong>Avísanos cuando estés en el cine:</strong> Haz clic en el enlace de recogida del pedido
+                        que aparece en el email que te llegó con las entradas para que vayamos preparando todo.</li>
                     <li><strong>¡Todo cocina!</strong> Acércate al bar para recoger tu pedido y ¡a disfrutar!</li>
                 </ol>
             </div>
         </div>
-        
+
 
 
     </main>
@@ -117,23 +120,39 @@
     <script>
         document.addEventListener("DOMContentLoaded", async () => {
             const params = new URLSearchParams(window.location.search);
-    
-            // Información de la película
+
+            // Referencias de elementos
             const movieTitleElement = document.querySelector('.movie-title__text');
             const sessionDetailsElement = document.querySelector('.session-details');
             const bannerImageElement = document.querySelector('.movie-details__background-image');
-    
+            const totalValueElement = document.getElementById('total-value'); // Elemento para mostrar el total
+
+            // Renderizar el precio de las entradas desde los parámetros de la URL
+            let ticketTotal = parseFloat(params.get('totalPrice')) || 0; // Precio total inicial de las entradas
+            let cartTotal = ticketTotal; // Inicializar el total del carrito con el precio de las entradas
+
+            // Función para actualizar el total en la interfaz
+            const updateTotalDisplay = () => {
+                if (totalValueElement) {
+                    totalValueElement.textContent = `${cartTotal.toFixed(2)} €`;
+                }
+            };
+
+            // Inicializar total en la interfaz
+            updateTotalDisplay();
+
+            // Mostrar información de la película
             if (movieTitleElement) {
                 movieTitleElement.textContent = params.get('movieTitle') || "SIN TÍTULO";
             }
-    
+
             if (sessionDetailsElement) {
                 sessionDetailsElement.innerHTML = `
-                    <p>CINE: ${params.get('cineName') || "Sin cine"}</p>
-                    <p>SESIÓN: ${params.get('date') || "Fecha no disponible"}, ${params.get('time') || "Hora no disponible"}</p>
-                `;
+            <p>CINE: ${params.get('cineName') || "Sin cine"}</p>
+            <p>SESIÓN: ${params.get('date') || "Fecha no disponible"}, ${params.get('time') || "Hora no disponible"}</p>
+        `;
             }
-    
+
             if (bannerImageElement) {
                 const bannerImage = params.get('bannerImage');
                 if (bannerImage) {
@@ -142,66 +161,76 @@
                     console.warn("No se proporcionó una imagen de banner.");
                 }
             }
-    
+
             const productsContainer = document.querySelector('.products-bar__items');
             const categoriesContainer = document.querySelector('.products-bar__categories ul');
-    
+
             // Función para cargar productos por categoría
             const loadProducts = async (category = "") => {
                 try {
                     const response = await fetch(`http://localhost:5006/api/Productos/GetProductos?categoria=${encodeURIComponent(category)}`);
                     if (!response.ok) throw new Error("Error al cargar productos del bar");
-    
+
                     const productos = await response.json();
                     if (!productsContainer) {
                         console.error("Contenedor de productos no encontrado.");
                         return;
                     }
-    
+
                     productsContainer.innerHTML = ""; // Limpiar productos previos
-    
+
                     if (productos.length === 0) {
                         productsContainer.innerHTML = `
-                            <p class="no-products-message">No hay productos disponibles en esta categoría.</p>
-                        `;
+                    <p class="no-products-message">No hay productos disponibles en esta categoría.</p>
+                `;
                         return;
                     }
-    
+
                     productos.forEach(product => {
                         const productCard = document.createElement('div');
                         productCard.className = 'product-card__button';
                         productCard.innerHTML = `
-                            <div class="product-card__image-container">
-                                <img src="${product.imagenUrl}" alt="${product.nombre}" class="product-card__image">
-                            </div>
-                            <div class="product-card__details">
-                                <span class="product-card__name">${product.nombre}</span>
-                                <span class="product-card__price">${product.precio.toFixed(2)} €</span>
-                                <button class="product-card__add-button">Añadir a tu compra</button>
-                            </div>
-                            <p class="product-card__description">Consulta los alérgenos en nuestra web o pregunta al personal.</p>
-                        `;
+                    <div class="product-card__image-container">
+                        <img src="${product.imagenUrl}" alt="${product.nombre}" class="product-card__image">
+                    </div>
+                    <div class="product-card__details">
+                        <span class="product-card__name">${product.nombre}</span>
+                        <span class="product-card__price">${product.precio.toFixed(2)} €</span>
+                        <button class="product-card__add-button" data-price="${product.precio.toFixed(2)}">Añadir a tu compra</button>
+                    </div>
+                    <p class="product-card__description">Consulta los alérgenos en nuestra web o pregunta al personal.</p>
+                `;
                         productsContainer.appendChild(productCard);
+                    });
+
+                    // Añadir eventos a los botones "Añadir a tu compra"
+                    const addButtons = document.querySelectorAll('.product-card__add-button');
+                    addButtons.forEach(button => {
+                        button.addEventListener('click', () => {
+                            const productPrice = parseFloat(button.getAttribute('data-price')); // Obtener el precio del producto
+                            cartTotal += productPrice; // Actualizar el total del carrito
+                            updateTotalDisplay(); // Actualizar el total en la interfaz
+                        });
                     });
                 } catch (error) {
                     console.error("Error al cargar productos:", error);
                 }
             };
-    
+
             // Función para cargar categorías
             const loadCategories = async () => {
                 try {
                     const response = await fetch("http://localhost:5006/api/Productos/GetCategorias");
                     if (!response.ok) throw new Error("Error al cargar categorías");
-    
+
                     const categorias = await response.json();
                     if (!categoriesContainer) {
                         console.error("Contenedor de categorías no encontrado.");
                         return;
                     }
-    
+
                     categoriesContainer.innerHTML = ""; // Limpiar categorías previas
-    
+
                     categorias.forEach(category => {
                         const categoryItem = document.createElement("li");
                         const categoryLink = document.createElement("a");
@@ -209,7 +238,7 @@
                         categoryLink.href = "#";
                         categoryLink.className = "category-link";
                         categoryLink.dataset.category = category;
-    
+
                         // Al hacer clic en una categoría, cargar productos de esa categoría
                         categoryLink.addEventListener("click", async (e) => {
                             e.preventDefault();
@@ -217,11 +246,11 @@
                             document.querySelectorAll(".category-link").forEach(link => link.classList.remove("active"));
                             categoryLink.classList.add("active");
                         });
-    
+
                         categoryItem.appendChild(categoryLink);
                         categoriesContainer.appendChild(categoryItem);
                     });
-    
+
                     // Seleccionar la primera categoría por defecto
                     if (categorias.length > 0) {
                         const firstCategoryLink = categoriesContainer.querySelector('.category-link');
@@ -234,52 +263,23 @@
                     console.error("Error al cargar categorías:", error);
                 }
             };
-    
+
             // Cargar categorías
             await loadCategories();
-    
-            // Modal Logic
-            const allergiesButton = document.getElementById("allergies-button");
-            const modal = document.getElementById("modal");
-            const modalClose = document.getElementById("modal-close");
-    
-            if (allergiesButton && modal && modalClose) {
-                // Función para abrir el modal
-                const openModal = () => {
-                    modal.classList.add("visible");
-                    document.body.style.overflow = "hidden"; // Evita el scroll en el fondo
-                };
-    
-                // Función para cerrar el modal
-                const closeModal = () => {
-                    modal.classList.remove("visible");
-                    document.body.style.overflow = "auto"; // Restaura el scroll
-                };
-    
-                // Evento para abrir el modal al hacer clic en el botón
-                allergiesButton.addEventListener("click", openModal);
-    
-                // Evento para cerrar el modal al hacer clic en el botón de cerrar
-                modalClose.addEventListener("click", closeModal);
-    
-                // Cerrar el modal al hacer clic fuera del contenido
-                modal.addEventListener("click", (e) => {
-                    if (e.target === modal) closeModal();
-                });
-            } else {
-                console.warn("No se encontraron elementos para el modal.");
-            }
-    
+
             // Botón continuar
             const continueButton = document.getElementById("continue-btn");
             if (continueButton) {
                 continueButton.addEventListener("click", () => {
+                    params.set('cartTotal', cartTotal.toFixed(2));
                     window.location.href = `/cine_web_app/front-end/views/summary.html?${params.toString()}`;
                 });
             }
         });
+
+
     </script>
-    
+
 
 
 
