@@ -36,7 +36,6 @@ h3 {
   height: 100%;
   object-fit: cover;
   opacity: 3;
-  filter: blur(4px);
 }
 .movie-details__content-wrapper {
   display: flex;
@@ -88,7 +87,7 @@ h3 {
 }
 .booking-go-back:hover {
   text-decoration: underline;
-  color: rgb(51, 149.4, 255);
+  color: #3395ff;
 }
 .booking-go-back__arrow {
   width: 20px;
@@ -190,7 +189,7 @@ h3 {
   border-radius: 5px;
 }
 .continue-btn:hover {
-  background-color: rgb(255, 14.763546798, 1);
+  background-color: #ff0f01;
 }
 
 .seat-map {
