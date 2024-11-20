@@ -320,4 +320,10 @@ body {
   font-weight: bold;
 }
 
-/*# sourceMappingURL=Productos.css.map */
+.quantity-display {
+  font-size: 18px;
+  font-weight: bold;
+  color: #df3f79;
+}
+
+/*# sourceMappingURL=productos.css.map */
