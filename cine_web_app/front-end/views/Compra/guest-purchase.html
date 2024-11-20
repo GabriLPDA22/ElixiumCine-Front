@@ -58,111 +58,79 @@
     <!-- Sección principal para la compra como invitado -->
     <main class="guest-purchase">
         <section class="ticket-selection">
-            <h2 class="section-title">TUS ENTRADAS</h2>
-            <div class="promo-code">
-                <label for="promo-code-input">Introduce tu código promocional</label>
-                <input type="text" id="promo-code-input" placeholder="Código promocional">
-            </div>
+            <h2 class="section-title">DETALLES DE TU COMPRA</h2>
             <div class="ticket-table">
                 <div class="table-row table-header">
                     <span>ARTÍCULO</span>
                     <span>PRECIO</span>
-                    <span>CANTIDAD</span>
-                    <span>TOTAL</span>
-                </div>
-                <div class="table-row">
-                    <span>-Especial Online</span>
-                    <span>6,90 €</span>
-                    <div class="quantity-selector">
-                        <button class="decrement">-</button>
-                        <span class="quantity">0</span>
-                        <button class="increment">+</button>
-                    </div>
-                    <span>0,00 €</span>
                 </div>
             </div>
         </section>
         <section class="total-summary">
             <div class="total-line">
                 <span>Total</span>
-                <span>0,00 €</span>
-            </div>
-            <div class="ticket-status">
-                <p class="extra-info" id="selected-count">Entradas seleccionadas: 0/0</p>
+                <span id="final-total">0,00 €</span>
             </div>
             <p class="extra-info">Gastos de gestión, IVA y recargos incluidos <a href="#">ver detalles</a></p>
-            <button id="continue-to-bar" class="continue-btn" disabled>Ir a Productos Bar</button>
+            <button id="finalize-purchase" class="continue-btn">Continuar</button>
         </section>
     </main>
+    
+    
 
 
     <script>
         document.addEventListener('DOMContentLoaded', function () {
-            const incrementBtn = document.querySelector('.increment');
-            const decrementBtn = document.querySelector('.decrement');
-            const quantityDisplay = document.querySelector('.quantity');
-            const totalDisplay = document.querySelector('.total-line span:last-child');
-            const selectedCountDisplay = document.getElementById('selected-count');
-            const continueToBarBtn = document.getElementById('continue-to-bar');
-    
-            const pricePerTicket = 6.9; // Precio por entrada
-            let quantity = 0;
-    
-            // Obtener el parámetro `seats` de la URL
+            const ticketTable = document.querySelector('.ticket-table');
+            const totalSummary = document.getElementById('final-total');
+        
+            // Obtener parámetros de la URL
             const params = new URLSearchParams(window.location.search);
-            const selectedSeats = params.get('seats') ? params.get('seats').split(',') : [];
-            const maxSeats = selectedSeats.length; // El máximo de entradas es igual al número de asientos seleccionados
-    
-            if (maxSeats <= 0) {
-                alert("No has seleccionado entradas. Verifica la URL.");
-                return;
+            const seats = params.get('seats') ? params.get('seats').split(',') : [];
+            const totalPrice = parseFloat(params.get('totalPrice')) || 0; // Precio de las entradas
+            const cartProducts = params.get('cartProducts') ? JSON.parse(params.get('cartProducts')) : []; // Productos del carrito
+            const cartTotal = parseFloat(params.get('cartTotal')) || 0; // Total de la compra (entradas + productos)
+        
+            // Renderizar entradas
+            function renderTickets() {
+                const ticketRow = document.createElement('div');
+                ticketRow.classList.add('table-row');
+                ticketRow.innerHTML = `
+                    <span>${seats.length}x Entrada</span>
+                    <span>${totalPrice.toFixed(2)} €</span>
+                `;
+                ticketTable.appendChild(ticketRow);
             }
-    
-            // Inicializar el contador en el HTML
-            function updateDisplay() {
-                quantityDisplay.textContent = quantity; // Actualiza el contador de cantidad seleccionada
-                totalDisplay.textContent = `${(quantity * pricePerTicket).toFixed(2)} €`; // Calcula el total
-                selectedCountDisplay.textContent = `Entradas seleccionadas: ${quantity}/${maxSeats}`; // Muestra cantidad seleccionada
-                toggleContinueButton(); // Actualiza el botón de continuar
+        
+            // Renderizar productos
+            function renderProducts() {
+                cartProducts.forEach(product => {
+                    const productRow = document.createElement('div');
+                    productRow.classList.add('table-row');
+                    productRow.innerHTML = `
+                        <span>${product.quantity}x ${product.name}</span>
+                        <span>${(product.price * product.quantity).toFixed(2)} €</span>
+                    `;
+                    ticketTable.appendChild(productRow);
+                });
             }
-    
-            // Habilitar/deshabilitar el botón de continuar
-            function toggleContinueButton() {
-                continueToBarBtn.disabled = quantity !== maxSeats; // Activa solo si el número seleccionado es igual al requerido
+        
+            // Mostrar el total final
+            function renderTotal() {
+                // Aquí usamos directamente `cartTotal`, ya que incluye entradas + productos
+                totalSummary.textContent = `${cartTotal.toFixed(2)} €`;
             }
-    
-            // Aumentar la cantidad
-            incrementBtn.addEventListener('click', () => {
-                if (quantity < maxSeats) {
-                    quantity++;
-                    updateDisplay();
-                } else {
-                    alert(`No puedes seleccionar más de ${maxSeats} entradas.`);
-                }
-            });
-    
-            // Disminuir la cantidad
-            decrementBtn.addEventListener('click', () => {
-                if (quantity > 0) {
-                    quantity--;
-                    updateDisplay();
-                }
-            });
-    
-            // Redirigir a la página de productos de bar con los parámetros de URL
-            continueToBarBtn.addEventListener('click', () => {
-                if (quantity === maxSeats) {
-                    params.set('totalTickets', quantity);
-                    params.set('totalPrice', (quantity * pricePerTicket).toFixed(2));
-                    window.location.href = `/cine_web_app/front-end/views/Compra/Productos-bar.html?${params.toString()}`;
-                } else {
-                    alert('Selecciona todas las entradas antes de continuar.');
-                }
-            });
-    
-            // Inicializar la visualización
-            updateDisplay();
+        
+            // Renderizar la página completa
+            function renderPage() {
+                renderTickets();  // Muestra las entradas
+                renderProducts(); // Muestra los productos
+                renderTotal();    // Muestra el total directamente desde `cartTotal`
+            }
+        
+            renderPage(); // Inicia el renderizado
         });
+        
     </script>
     
 

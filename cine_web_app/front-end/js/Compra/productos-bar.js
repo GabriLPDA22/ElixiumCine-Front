@@ -1,28 +1,28 @@
 document.addEventListener("DOMContentLoaded", async () => {
     const params = new URLSearchParams(window.location.search);
 
-    // Information about the movie
+    // Información de la película
     const movieTitleElement = document.querySelector('.movie-title__text');
     const sessionDetailsElement = document.querySelector('.session-details');
     const bannerImageElement = document.querySelector('.movie-details__background-image');
     const totalDisplay = document.getElementById('total-value');
 
-    // Initialize ticket price and cart total
-    let ticketTotal = parseFloat(params.get('totalPrice')) || 0;
-    let cartTotal = ticketTotal;
-    const cartItems = {}; // Object to track quantities of each product
+    // Inicializar totales
+    let ticketTotal = parseFloat(params.get('totalPrice')) || 0; // Precio de las entradas
+    let cartTotal = ticketTotal; // Precio total del carrito (entradas + productos)
+    const cartItems = {}; // Objeto para almacenar los productos seleccionados
 
-    // Function to update the total display
+    // Función para actualizar el total visual
     const updateTotalDisplay = () => {
         if (totalDisplay) {
             totalDisplay.textContent = `${cartTotal.toFixed(2)} €`;
         }
     };
 
-    // Initialize total display
+    // Inicializar la visualización del total
     updateTotalDisplay();
 
-    // Render movie information
+    // Renderizar información de la película
     if (movieTitleElement) {
         movieTitleElement.textContent = params.get('movieTitle') || "SIN TÍTULO";
     }
@@ -38,31 +38,29 @@ document.addEventListener("DOMContentLoaded", async () => {
         const bannerImage = params.get('bannerImage');
         if (bannerImage) {
             bannerImageElement.src = bannerImage;
-        } else {
-            console.warn("No banner image provided.");
         }
     }
 
     const productsContainer = document.querySelector('.products-bar__items');
     const categoriesContainer = document.querySelector('.products-bar__categories ul');
 
-    // Load products by category
+    // Función para cargar productos por categoría
     const loadProducts = async (category = "") => {
         try {
             const response = await fetch(`http://localhost:5006/api/Productos/GetProductos?categoria=${encodeURIComponent(category)}`);
-            if (!response.ok) throw new Error("Failed to load bar products.");
+            if (!response.ok) throw new Error("Error al cargar productos del bar.");
 
             const products = await response.json();
             if (!productsContainer) {
-                console.error("Products container not found.");
+                console.error("Contenedor de productos no encontrado.");
                 return;
             }
 
-            productsContainer.innerHTML = ""; // Clear previous products
+            productsContainer.innerHTML = ""; // Limpia productos previos
 
             if (products.length === 0) {
                 productsContainer.innerHTML = `
-                    <p class="no-products-message">No products available in this category.</p>
+                    <p class="no-products-message">No hay productos disponibles en esta categoría.</p>
                 `;
                 return;
             }
@@ -78,66 +76,72 @@ document.addEventListener("DOMContentLoaded", async () => {
                         <span class="product-card__name">${product.nombre}</span>
                         <span class="product-card__price">${product.precio.toFixed(2)} €</span>
                         <div class="product-card__quantity">
-                            <button class="product-card__add-button" data-id="${product.id}" data-price="${product.precio}" data-action="decrease">-</button>
+                            <button class="product-card__add-button" data-id="${product.id}" data-name="${product.nombre}" data-price="${product.precio}" data-action="decrease">-</button>
                             <span class="quantity-display" data-id="${product.id}">x0</span>
-                            <button class="product-card__add-button" data-id="${product.id}" data-price="${product.precio}" data-action="increase">+</button>
+                            <button class="product-card__add-button" data-id="${product.id}" data-name="${product.nombre}" data-price="${product.precio}" data-action="increase">+</button>
                         </div>
                     </div>
-                    <p class="product-card__description">Check allergens on our website or ask staff.</p>
+                    <p class="product-card__description">Consulta los alérgenos en nuestra web o pregunta al personal.</p>
                 `;
                 productsContainer.appendChild(productCard);
             });
 
-            // Add events to "Add" and "Remove" buttons
+            // Añadir eventos a los botones "Añadir" y "Quitar"
             const addButtons = document.querySelectorAll('.product-card__add-button');
             addButtons.forEach(button => {
                 button.addEventListener('click', () => {
                     const productId = button.dataset.id;
+                    const productName = button.dataset.name;
                     const productPrice = parseFloat(button.dataset.price);
                     const action = button.dataset.action;
                     const quantityDisplay = document.querySelector(`.quantity-display[data-id="${productId}"]`);
 
+                    // Inicializar producto en el carrito si no existe
                     if (!cartItems[productId]) {
-                        cartItems[productId] = 0;
+                        cartItems[productId] = { id: productId, name: productName, price: productPrice, quantity: 0 };
                     }
 
+                    // Incrementar o decrementar la cantidad
                     if (action === "increase") {
-                        cartItems[productId]++;
+                        cartItems[productId].quantity++;
                         cartTotal += productPrice;
-                    } else if (action === "decrease" && cartItems[productId] > 0) {
-                        cartItems[productId]--;
+                    } else if (action === "decrease" && cartItems[productId].quantity > 0) {
+                        cartItems[productId].quantity--;
                         cartTotal -= productPrice;
                     }
 
-                    if (cartItems[productId] < 0) {
-                        cartItems[productId] = 0;
+                    // Evitar cantidades negativas
+                    if (cartItems[productId].quantity < 0) {
+                        cartItems[productId].quantity = 0;
                     }
 
+                    // Actualizar visualización de la cantidad
                     if (quantityDisplay) {
-                        quantityDisplay.textContent = `x${cartItems[productId]}`;
+                        quantityDisplay.textContent = `x${cartItems[productId].quantity}`;
                     }
 
+                    // Actualizar el total visual
                     updateTotalDisplay();
                 });
             });
         } catch (error) {
-            console.error("Error loading products:", error);
+            console.error("Error al cargar productos:", error);
         }
     };
 
-    // Load categories
+    // Función para cargar categorías
     const loadCategories = async () => {
         try {
             const response = await fetch("http://localhost:5006/api/Productos/GetCategorias");
-            if (!response.ok) throw new Error("Failed to load categories.");
+            if (!response.ok) throw new Error("Error al cargar categorías.");
 
             const categories = await response.json();
             if (!categoriesContainer) {
-                console.error("Categories container not found.");
+                console.error("Contenedor de categorías no encontrado.");
                 return;
             }
 
-            categoriesContainer.innerHTML = ""; // Clear previous categories
+            categoriesContainer.innerHTML = ""; // Limpia categorías previas
 
             categories.forEach(category => {
                 const categoryItem = document.createElement("li");
@@ -147,9 +151,10 @@ document.addEventListener("DOMContentLoaded", async () => {
                 categoryLink.className = "category-link";
                 categoryLink.dataset.category = category;
 
+                // Al hacer clic en una categoría, cargar productos de esa categoría
                 categoryLink.addEventListener("click", async (e) => {
                     e.preventDefault();
-                    await loadProducts(category); // Filter products by category
+                    await loadProducts(category); // Filtrar por categoría seleccionada
                     document.querySelectorAll(".category-link").forEach(link => link.classList.remove("active"));
                     categoryLink.classList.add("active");
                 });
@@ -158,7 +163,7 @@ document.addEventListener("DOMContentLoaded", async () => {
                 categoriesContainer.appendChild(categoryItem);
             });
 
-            // Load products from the first category by default
+            // Cargar productos de la primera categoría por defecto
             if (categories.length > 0) {
                 const firstCategoryLink = categoriesContainer.querySelector('.category-link');
                 if (firstCategoryLink) {
@@ -167,18 +172,23 @@ document.addEventListener("DOMContentLoaded", async () => {
                 }
             }
         } catch (error) {
-            console.error("Error loading categories:", error);
+            console.error("Error al cargar categorías:", error);
         }
     };
 
-    // Load categories and initialize
+    // Cargar categorías y productos iniciales
     await loadCategories();
 
-    // Continue Button
+    // Botón "Continuar"
     const continueButton = document.getElementById("continue-btn");
     if (continueButton) {
         continueButton.addEventListener("click", () => {
-            params.set('cartTotal', cartTotal.toFixed(2));
+            // Filtrar los productos con cantidad > 0 y serializar
+            const selectedProducts = Object.values(cartItems).filter(product => product.quantity > 0);
+            params.set('cartProducts', JSON.stringify(selectedProducts)); // Almacenar productos seleccionados en la URL
+            params.set('cartTotal', cartTotal.toFixed(2)); // Almacenar el total del carrito
+
+            // Redirigir a la página de compra
             window.location.href = `/cine_web_app/front-end/views/Compra/guest-purchase.html?${params.toString()}`;
         });
     }
