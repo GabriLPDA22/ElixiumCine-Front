@@ -222,10 +222,11 @@ h3 {
     display: inline-block;
     margin-right: 5px;
     border-radius: 3px;
-    cursor: pointer;
+    
 
     &.available {
         background-color: $seat-available-color;
+        cursor: pointer;
     }
 
     &.selected {

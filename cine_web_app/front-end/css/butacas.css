@@ -178,10 +178,10 @@ h3 {
   display: inline-block;
   margin-right: 5px;
   border-radius: 3px;
-  cursor: pointer;
 }
 .seat.available {
   background-color: #bfbfbf;
+  cursor: pointer;
 }
 .seat.selected {
   background-color: #ff2c78;

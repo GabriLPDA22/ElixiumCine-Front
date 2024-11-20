@@ -179,7 +179,7 @@ document.addEventListener("DOMContentLoaded", async () => {
     if (continueButton) {
         continueButton.addEventListener("click", () => {
             params.set('cartTotal', cartTotal.toFixed(2));
-            window.location.href = `/cine_web_app/front-end/views/summary.html?${params.toString()}`;
+            window.location.href = `/cine_web_app/front-end/views/Compra/guest-purchase.html?${params.toString()}`;
         });
     }
 });
