@@ -56,25 +56,21 @@ const API_BASE_URL = 'http://localhost:5006/api/Butacas'; // URL de la API
 // ==========================================================
 // Inicialización de las butacas en el backend
 // ==========================================================
-
-/**
- * Inicializa las butacas en el backend enviando su estado inicial.
- */
 async function inicializarButacas() {
     const butacasIniciales = seatLayout.flatMap((row, rowIndex) =>
         row.map((seat, colIndex) => {
             if (seat === 1) {
                 const isVip = vipSeats[rowIndex][colIndex] === 1; // Determina si es VIP
                 return {
-                    id: `${rowIndex}-${colIndex}`, // ID único para el asiento
-                    descripcion: `${rowIndex}-${colIndex}`, // Coordenadas como descripción
-                    estaOcupado: false, // Inicia como desocupado
-                    categoria: isVip ? "VIP" : "Estandar", // Define si es VIP o estándar
-                    suplemento: isVip ? 5 : 0 // Aplica suplemento solo para VIP
+                    id: `${rowIndex}-${colIndex}`,
+                    descripcion: `${rowIndex}-${colIndex}`,
+                    estaOcupado: false,
+                    categoria: isVip ? "VIP" : "Estandar",
+                    suplemento: isVip ? 5 : 0
                 };
             }
             return null;
-        }).filter(Boolean) // Filtra valores nulos
+        }).filter(Boolean)
     );
 
     try {
@@ -83,7 +79,7 @@ async function inicializarButacas() {
             headers: {
                 'Content-Type': 'application/json',
             },
-            body: JSON.stringify(butacasIniciales), // Envía las butacas al backend
+            body: JSON.stringify(butacasIniciales),
         });
 
         if (!response.ok) {
@@ -102,17 +98,14 @@ async function inicializarButacas() {
 // Cargar las butacas desde el backend y renderizarlas
 // ==========================================================
 
-/**
- * Carga las butacas desde el backend y las renderiza en el mapa.
- */
 async function cargarButacas() {
     try {
         const response = await fetch(`${API_BASE_URL}/GetButacas`);
         if (!response.ok) throw new Error("Error al cargar las butacas");
 
-        const butacas = await response.json(); // Obtiene el estado de las butacas
-        renderSeatMap(butacas); // Renderiza el mapa de asientos
-        restoreSelectedSeatsFromURL(); // Restaura los asientos seleccionados desde la URL
+        const butacas = await response.json();
+        renderSeatMap(butacas);
+        restoreSelectedSeatsFromURL();
     } catch (error) {
         console.error("Error al cargar las butacas:", error.message);
         alert("No se pudo cargar el estado de las butacas.");
@@ -120,11 +113,8 @@ async function cargarButacas() {
     }
 }
 
-/**
- * Renderiza el mapa de asientos en el contenedor `seatMapContainer`.
- */
 function renderSeatMap(butacas) {
-    seatMapContainer.innerHTML = ""; // Limpia el contenedor antes de renderizar
+    seatMapContainer.innerHTML = "";
 
     seatLayout.forEach((row, rowIndex) => {
         row.forEach((seat, colIndex) => {
@@ -132,30 +122,30 @@ function renderSeatMap(butacas) {
             seatElement.classList.add('seat');
 
             if (seat === 1) {
-                const coord = `${rowIndex}-${colIndex}`; // Coordenadas del asiento
+                const coord = `${rowIndex}-${colIndex}`;
                 const butaca = butacas.find(b => b.descripcion === coord);
-                const isVip = vipSeats[rowIndex][colIndex] === 1; // Detecta si es VIP
+                const isVip = vipSeats[rowIndex][colIndex] === 1;
 
                 if (butaca) {
                     if (butaca.estaOcupado) {
-                        seatElement.classList.add('reserved'); // Marca como ocupada
+                        seatElement.classList.add('reserved');
                     } else {
                         seatElement.classList.add('available');
-                        seatElement.dataset.seatId = coord; // Define el ID del asiento
-                        seatElement.dataset.categoria = isVip ? "VIP" : "Estandar"; // Define la categoría
+                        seatElement.dataset.seatId = coord;
+                        seatElement.dataset.categoria = isVip ? "VIP" : "Estandar";
 
                         if (isVip) {
-                            seatElement.classList.add('vip-seat'); // Aplica estilo VIP
+                            seatElement.classList.add('vip-seat');
                         }
 
                         seatElement.addEventListener('click', () => toggleSeatSelection(seatElement));
                     }
                 }
             } else {
-                seatElement.classList.add('empty'); // Marca el espacio como vacío
+                seatElement.classList.add('empty');
             }
 
-            seatMapContainer.appendChild(seatElement); // Añade el asiento al contenedor
+            seatMapContainer.appendChild(seatElement);
         });
     });
 }
@@ -164,44 +154,42 @@ function renderSeatMap(butacas) {
 // Gestión de la selección de asientos
 // ==========================================================
 
-/**
- * Alterna la selección de un asiento.
- */
 function toggleSeatSelection(seat) {
     if (seat.classList.contains('available')) {
         seat.classList.toggle('selected');
         const seatId = seat.dataset.seatId;
         const isVip = seat.dataset.categoria === "VIP";
-        const price = isVip ? 8.10 : 6.90; // Define el precio según la categoría
+        const price = isVip ? 8.10 : 6.90;
 
         if (seat.classList.contains('selected')) {
-            selectedSeats.push({ id: seatId, price }); // Agrega el asiento con su precio
+            selectedSeats.push({ id: seatId, price });
         } else {
-            selectedSeats = selectedSeats.filter(seat => seat.id !== seatId); // Elimina del array
+            selectedSeats = selectedSeats.filter(seat => seat.id !== seatId);
         }
 
-        updateSelectedSeatsDisplay(); // Actualiza el texto en pantalla
-        updateURLWithSelectedSeats(); // Actualiza la URL con los asientos seleccionados
+        updateSelectedSeatsDisplay();
+        updateURLWithSelectedSeats();
     }
 }
 
-
-/**
- * Actualiza la URL con los asientos seleccionados.
- */
 function updateURLWithSelectedSeats() {
     const params = new URLSearchParams(window.location.search);
-    params.set('seats', selectedSeats.map(seat => seat.id).join(',')); // Solo guarda las IDs en la URL
+
+    params.set('seats', selectedSeats.map(seat => seat.id).join(','));
+
+    const vipCount = selectedSeats.filter(seat => {
+        const seatElement = document.querySelector(`[data-seat-id="${seat.id}"]`);
+        return seatElement && seatElement.dataset.categoria === "VIP";
+    }).length;
+
+    params.set('vipCount', vipCount);
+
     window.history.replaceState({}, '', `${window.location.pathname}?${params.toString()}`);
 }
 
-
-/**
- * Restaura los asientos seleccionados desde la URL.
- */
 function restoreSelectedSeatsFromURL() {
     const params = new URLSearchParams(window.location.search);
-    const savedSeats = params.get('seats'); // Obtener el parámetro "seats" de la URL
+    const savedSeats = params.get('seats');
 
     if (savedSeats) {
         const seatIds = savedSeats.split(',');
@@ -209,71 +197,63 @@ function restoreSelectedSeatsFromURL() {
             const seatElement = document.querySelector(`[data-seat-id="${seatId}"]`);
             if (seatElement && seatElement.classList.contains('available')) {
                 const isVip = seatElement.dataset.categoria === "VIP";
-                const price = isVip ? 8.10 : 6.90; // Define el precio según la categoría
+                const price = isVip ? 8.10 : 6.90;
 
-                seatElement.classList.add('selected'); // Marca como seleccionado
-                selectedSeats.push({ id: seatId, price }); // Añade al array actual de seleccionados
+                seatElement.classList.add('selected');
+                selectedSeats.push({ id: seatId, price });
             }
         });
 
-        updateSelectedSeatsDisplay(); // Actualiza el texto en pantalla
+        updateSelectedSeatsDisplay();
     }
 }
-
 
 // ==========================================================
 // Visualización de los asientos seleccionados
 // ==========================================================
 
-/**
- * Actualiza el texto que muestra los asientos seleccionados.
- */
 function updateSelectedSeatsDisplay() {
-    const totalPrice = selectedSeats.reduce((total, seat) => total + seat.price, 0); // Calcula el precio total
+    const totalPrice = selectedSeats.reduce((total, seat) => total + seat.price, 0);
 
     selectedSeatsDisplay.textContent = selectedSeats.length
         ? `Butacas seleccionadas: ${selectedSeats.map(seat => seat.id).join(', ')} | Precio total: €${totalPrice.toFixed(2)}`
         : 'No se ha seleccionado ninguna butaca';
 }
 
-
 // ==========================================================
 // Evento del botón "Continuar"
 // ==========================================================
 
-/**
- * Maneja el evento del botón "Continuar".
- */
 continueBtn.addEventListener('click', () => {
     if (selectedSeats.length) {
         const params = new URLSearchParams(window.location.search);
 
-        // Añadir los IDs de los asientos seleccionados
         params.set('seats', selectedSeats.map(seat => seat.id).join(','));
 
-        // Calcular el precio total de las butacas seleccionadas
-        const totalPrice = selectedSeats.reduce((total, seat) => total + seat.price, 0);
-        params.set('totalPrice', totalPrice.toFixed(2)); // Guardar el precio total con 2 decimales
+        const vipCount = selectedSeats.filter(seat => {
+            const seatElement = document.querySelector(`[data-seat-id="${seat.id}"]`);
+            return seatElement && seatElement.dataset.categoria === "VIP";
+        }).length;
 
-        // Redirigir al login con los parámetros actualizados
+        params.set('vipCount', vipCount);
+
+        const totalPrice = selectedSeats.reduce((total, seat) => total + seat.price, 0);
+        params.set('totalPrice', totalPrice.toFixed(2));
+
         window.location.href = `/cine_web_app/front-end/views/security/login-guest.html?${params.toString()}`;
     } else {
         alert('Selecciona al menos un asiento');
     }
 });
 
-
 // ==========================================================
 // Inicialización de la página
 // ==========================================================
 
-/**
- * Inicializa la página al cargar.
- */
 document.addEventListener('DOMContentLoaded', async function () {
     try {
-        await inicializarButacas(); // Inicializa las butacas en el backend
-        await cargarButacas(); // Carga y renderiza las butacas
+        await inicializarButacas();
+        await cargarButacas();
     } catch (error) {
         console.error("Error durante la inicialización o carga:", error.message);
     }
