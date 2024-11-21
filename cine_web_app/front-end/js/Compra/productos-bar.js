@@ -176,8 +176,42 @@ document.addEventListener("DOMContentLoaded", async () => {
         }
     };
 
+
     // Cargar categorías y productos iniciales
     await loadCategories();
+
+    // Modal Logic
+    const allergiesButton = document.getElementById("allergies-button");
+    const modal = document.getElementById("modal");
+    const modalClose = document.getElementById("modal-close");
+
+    if (allergiesButton && modal && modalClose) {
+        // Función para abrir el modal
+        const openModal = () => {
+            modal.classList.add("visible");
+            document.body.style.overflow = "hidden"; // Evita el scroll en el fondo
+        };
+
+        // Función para cerrar el modal
+        const closeModal = () => {
+            modal.classList.remove("visible");
+            document.body.style.overflow = "auto"; // Restaura el scroll
+        };
+
+        // Evento para abrir el modal al hacer clic en el botón
+        allergiesButton.addEventListener("click", openModal);
+
+        // Evento para cerrar el modal al hacer clic en el botón de cerrar
+        modalClose.addEventListener("click", closeModal);
+
+        // Cerrar el modal al hacer clic fuera del contenido
+        modal.addEventListener("click", (e) => {
+            if (e.target === modal) closeModal();
+        });
+    } else {
+        console.warn("No se encontraron elementos para el modal.");
+    }
+
 
     // Botón "Continuar"
     const continueButton = document.getElementById("continue-btn");
