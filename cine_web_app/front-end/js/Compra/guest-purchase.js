@@ -15,13 +15,17 @@ document.addEventListener('DOMContentLoaded', function () {
     const normalPrice = normalCount * 6.90; // Precio de las entradas normales
     const vipPrice = vipCount * 8.10; // Precio de las entradas VIP
 
+    // URLs de imágenes para entradas normales y VIP
+    const normalTicketImage = '/path/to/normal-ticket-image.jpg'; // Imagen para entradas normales
+    const vipTicketImage = '/path/to/vip-ticket-image.jpg'; // Imagen para entradas VIP
+
     // Renderizar entradas normales
     function renderNormalTickets() {
         if (normalCount > 0) {
             const normalRow = document.createElement('div');
             normalRow.classList.add('table-row');
             normalRow.innerHTML = `
-                <span>${normalCount}x Entrada Normal</span>
+                <span><img src="${normalTicketImage}" alt="Entrada Normal" class="ticket-image"> ${normalCount}x Entrada Normal</span>
                 <span>${normalPrice.toFixed(2)} €</span>
             `;
             ticketTable.appendChild(normalRow);
@@ -34,7 +38,7 @@ document.addEventListener('DOMContentLoaded', function () {
             const vipRow = document.createElement('div');
             vipRow.classList.add('table-row');
             vipRow.innerHTML = `
-                <span>${vipCount}x Entrada VIP</span>
+                <span><img src="${vipTicketImage}" alt="Entrada VIP" class="ticket-image"> ${vipCount}x Entrada VIP</span>
                 <span>${vipPrice.toFixed(2)} €</span>
             `;
             ticketTable.appendChild(vipRow);
@@ -47,7 +51,7 @@ document.addEventListener('DOMContentLoaded', function () {
             const productRow = document.createElement('div');
             productRow.classList.add('table-row');
             productRow.innerHTML = `
-                <span>${product.quantity}x ${product.name}</span>
+                <span><img src="${product.imagenUrl}" alt="${product.name}" class="product-image"> ${product.quantity}x ${product.name}</span>
                 <span>${(product.price * product.quantity).toFixed(2)} €</span>
             `;
             ticketTable.appendChild(productRow);
