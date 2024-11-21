@@ -13,12 +13,6 @@ body {
     color: $text-color;
 }
 
-.vip-seat {
-    background-color: gold;
-    border: 2px solid orange;
-}
-
-
 h3 {
     font-size: 2.5rem;
     font-weight: bold;
@@ -222,7 +216,14 @@ h3 {
     display: inline-block;
     margin-right: 5px;
     border-radius: 3px;
+
+    &.seat--vip{
+        border: 2px solid orange;
+    } 
     
+    &.seat--no-vip{
+        border: 2px solid $seat-available-color;
+    }
 
     &.available {
         background-color: $seat-available-color;
@@ -232,6 +233,9 @@ h3 {
     &.selected {
         background-color: $seat-selected-color;
     }
+
+
+
 }
 
 // Estilo del botón de continuar
@@ -254,7 +258,7 @@ h3 {
 .seat-map {
     display: grid;
     grid-template-columns: repeat(30, 20px);
-    gap: 5px;
+    gap: 7px;
     justify-content: center;
     padding: 20px;
 }

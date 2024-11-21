@@ -135,7 +135,9 @@ function renderSeatMap(butacas) {
                         seatElement.dataset.categoria = isVip ? "VIP" : "Estandar";
 
                         if (isVip) {
-                            seatElement.classList.add('vip-seat');
+                            seatElement.classList.add('seat--vip');
+                        }else{
+                            seatElement.classList.add('seat--no-vip');
                         }
 
                         seatElement.addEventListener('click', () => toggleSeatSelection(seatElement));
