@@ -16,8 +16,8 @@ document.addEventListener('DOMContentLoaded', function () {
     const vipPrice = vipCount * 8.10; // Precio de las entradas VIP
 
     // URLs de imágenes para entradas normales y VIP
-    const normalTicketImage = '/path/to/normal-ticket-image.jpg'; // Imagen para entradas normales
-    const vipTicketImage = '/path/to/vip-ticket-image.jpg'; // Imagen para entradas VIP
+    const normalTicketImage = '/cine_web_app/front-end/images/Ticket-Normal.svg'; // Imagen para entradas normales
+    const vipTicketImage = '/cine_web_app/front-end/images/Ticket-Vip.svg'; // Imagen para entradas VIP
 
     // Renderizar entradas normales
     function renderNormalTickets() {
@@ -25,12 +25,18 @@ document.addEventListener('DOMContentLoaded', function () {
             const normalRow = document.createElement('div');
             normalRow.classList.add('table-row');
             normalRow.innerHTML = `
-                <span><img src="${normalTicketImage}" alt="Entrada Normal" class="ticket-image"> ${normalCount}x Entrada Normal</span>
+                <span>
+                    <img src="${normalTicketImage}" 
+                         alt="Entrada Normal" 
+                         style="width: 40px; height: auto; margin-right: 10px; vertical-align: middle;">
+                    ${normalCount}x Entrada Normal
+                </span>
                 <span>${normalPrice.toFixed(2)} €</span>
             `;
             ticketTable.appendChild(normalRow);
         }
     }
+    
 
     // Renderizar entradas VIP
     function renderVipTickets() {
@@ -38,25 +44,46 @@ document.addEventListener('DOMContentLoaded', function () {
             const vipRow = document.createElement('div');
             vipRow.classList.add('table-row');
             vipRow.innerHTML = `
-                <span><img src="${vipTicketImage}" alt="Entrada VIP" class="ticket-image"> ${vipCount}x Entrada VIP</span>
+                <span>
+                    <img src="${vipTicketImage}" 
+                         alt="Entrada VIP" 
+                         style="width: 40px; height: auto; margin-right: 10px; vertical-align: middle;">
+                    ${vipCount}x Entrada VIP
+                </span>
                 <span>${vipPrice.toFixed(2)} €</span>
             `;
             ticketTable.appendChild(vipRow);
         }
     }
+    
+
+
+    
 
     // Renderizar productos
     function renderProducts() {
+        console.log('cartProducts:', cartProducts); // Depuración: Verificar contenido de cartProducts
         cartProducts.forEach(product => {
+            console.log('Producto:', product); // Depuración: Verificar cada producto
+    
+            // Verifica si la URL de la imagen está disponible, sino utiliza una imagen predeterminada
+            const imageUrl = product.imagenUrl && product.imagenUrl.trim() !== ''
+                ? product.imagenUrl
+                : '/path/to/default-image.jpg'; // Cambia esta ruta por tu imagen predeterminada
+    
             const productRow = document.createElement('div');
             productRow.classList.add('table-row');
             productRow.innerHTML = `
-                <span><img src="${product.imagenUrl}" alt="${product.name}" class="product-image"> ${product.quantity}x ${product.name}</span>
+                <span>
+                    <img src="${imageUrl}" alt="${product.name}" class="product-image"> 
+                    ${product.quantity}
+                </span>
                 <span>${(product.price * product.quantity).toFixed(2)} €</span>
             `;
             ticketTable.appendChild(productRow);
         });
     }
+    
 
     // Mostrar el total final
     function renderTotal() {

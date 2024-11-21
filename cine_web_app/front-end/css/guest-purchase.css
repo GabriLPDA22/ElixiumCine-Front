@@ -167,4 +167,11 @@ main.guest-purchase .total-summary .continue-btn:hover {
   object-fit: cover;
 }
 
+.ticket-image {
+  width: 40px; /* Cambia el tamaño según sea necesario */
+  height: auto; /* Mantiene la proporción de la imagen */
+  margin-right: 10px; /* Añade espacio entre la imagen y el texto */
+  vertical-align: middle; /* Alinea la imagen con el texto */
+}
+
 /*# sourceMappingURL=guest-purchase.css.map */
