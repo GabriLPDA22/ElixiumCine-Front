@@ -1,3 +1,4 @@
+@charset "UTF-8";
 body {
   margin: 0;
   padding: 0;
@@ -11,24 +12,6 @@ main.guest-purchase {
   justify-content: flex-start;
   padding: 3.12rem;
   background-color: #0b0d1c;
-}
-main.guest-purchase .movie-details {
-  text-align: center;
-  margin-bottom: 2rem;
-}
-main.guest-purchase .movie-details .movie-title {
-  font-size: 2.5rem;
-  font-weight: bold;
-  margin-bottom: 1rem;
-}
-main.guest-purchase .movie-details .movie-session-info {
-  font-size: 1.2rem;
-}
-main.guest-purchase .movie-details .movie-session-info p {
-  margin: 0.5rem 0;
-}
-main.guest-purchase .movie-details .movie-session-info p strong {
-  font-weight: bold;
 }
 main.guest-purchase .ticket-selection {
   width: 100%;
@@ -44,73 +27,33 @@ main.guest-purchase .ticket-selection .section-title {
   border-bottom: 2px solid #ff2c78;
   padding-bottom: 0.5rem;
   margin-bottom: 1rem;
-  text-align: left;
+  text-align: center; /* Cambiado para centrar el título */
   color: #ff2c78;
 }
-main.guest-purchase .ticket-selection .promo-code {
-  margin-bottom: 1.5rem;
-}
-main.guest-purchase .ticket-selection .promo-code label {
-  display: block;
-  font-weight: bold;
-  margin-bottom: 0.5rem;
-  color: #ffffff;
-}
-main.guest-purchase .ticket-selection .promo-code input {
-  width: 100%;
-  padding: 0.5rem;
-  border: 1px solid #444;
-  border-radius: 4px;
-  background-color: #1c1e2b;
-  color: #fff;
-}
-main.guest-purchase .ticket-selection .ticket-table .table-header {
-  display: flex;
-  justify-content: space-between;
-  font-weight: bold;
-  padding: 0.5rem;
-  border-bottom: 1px solid #444;
-  color: #ffffff;
-}
+main.guest-purchase .ticket-selection .ticket-table .table-header,
 main.guest-purchase .ticket-selection .ticket-table .table-row {
   display: flex;
   justify-content: space-between;
-  align-items: center;
-  padding: 0.5rem;
+  padding: 0.8rem 1rem;
+  font-size: 1.2rem;
   border-bottom: 1px solid #444;
+}
+main.guest-purchase .ticket-selection .ticket-table .table-header {
+  font-weight: bold;
+  border-bottom: 2px solid #ff2c78;
+  color: #ffffff;
+}
+main.guest-purchase .ticket-selection .ticket-table .table-row {
   color: #ffffff;
 }
 main.guest-purchase .ticket-selection .ticket-table .table-row:last-child {
   border-bottom: none;
 }
-main.guest-purchase .ticket-selection .ticket-table .table-row .quantity-selector {
-  display: flex;
-  align-items: center;
-}
-main.guest-purchase .ticket-selection .ticket-table .table-row .quantity-selector button {
-  background-color: #1c1e2b;
-  border: 1px solid #444;
-  color: #fff;
-  padding: 0.5rem;
-  width: 30px;
-  height: 30px;
-  border-radius: 4px;
-  cursor: pointer;
-  font-size: 1rem;
-  text-align: center;
-}
-main.guest-purchase .ticket-selection .ticket-table .table-row .quantity-selector button:hover {
-  background-color: #ff2c78;
-}
-main.guest-purchase .ticket-selection .ticket-table .table-row .quantity-selector .quantity {
-  margin: 0 0.5rem;
-  font-size: 1.2rem;
-}
 main.guest-purchase .total-summary {
   margin-top: 2rem;
-  text-align: center;
   width: 100%;
   max-width: 900px;
+  text-align: center;
 }
 main.guest-purchase .total-summary .total-line {
   display: flex;
@@ -130,6 +73,22 @@ main.guest-purchase .total-summary .extra-info a {
 }
 main.guest-purchase .total-summary .extra-info a:hover {
   text-decoration: underline;
+}
+main.guest-purchase .total-summary .continue-btn {
+  display: inline-block;
+  padding: 0.8rem 2rem;
+  background-color: #ff2c78;
+  color: #ffffff;
+  font-size: 1.2rem;
+  font-weight: bold;
+  text-align: center;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+main.guest-purchase .total-summary .continue-btn:hover {
+  background-color: #e02267;
 }
 
 .movie-details {
@@ -154,7 +113,7 @@ main.guest-purchase .total-summary .extra-info a:hover {
   justify-content: space-between;
   align-items: center;
   position: relative;
-  margin-top: -150px; /* Superpone contenido sobre el fondo */
+  margin-top: -150px;
   padding: 0 2rem;
   z-index: 2;
 }
@@ -203,4 +162,9 @@ main.guest-purchase .total-summary .extra-info a:hover {
   background-color: #e02267;
 }
 
-/*# sourceMappingURL=purchse-guest.css.map */
+.ticket-table img {
+  border-radius: 4px;
+  object-fit: cover;
+}
+
+/*# sourceMappingURL=guest-purchase.css.map */
