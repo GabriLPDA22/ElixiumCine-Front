@@ -76,65 +76,9 @@
         </section>
     </main>
     
-    
-
-
-    <script>
-        document.addEventListener('DOMContentLoaded', function () {
-            const ticketTable = document.querySelector('.ticket-table');
-            const totalSummary = document.getElementById('final-total');
-        
-            // Obtener parámetros de la URL
-            const params = new URLSearchParams(window.location.search);
-            const seats = params.get('seats') ? params.get('seats').split(',') : [];
-            const totalPrice = parseFloat(params.get('totalPrice')) || 0; // Precio de las entradas
-            const cartProducts = params.get('cartProducts') ? JSON.parse(params.get('cartProducts')) : []; // Productos del carrito
-            const cartTotal = parseFloat(params.get('cartTotal')) || 0; // Total de la compra (entradas + productos)
-        
-            // Renderizar entradas
-            function renderTickets() {
-                const ticketRow = document.createElement('div');
-                ticketRow.classList.add('table-row');
-                ticketRow.innerHTML = `
-                    <span>${seats.length}x Entrada</span>
-                    <span>${totalPrice.toFixed(2)} €</span>
-                `;
-                ticketTable.appendChild(ticketRow);
-            }
-        
-            // Renderizar productos
-            function renderProducts() {
-                cartProducts.forEach(product => {
-                    const productRow = document.createElement('div');
-                    productRow.classList.add('table-row');
-                    productRow.innerHTML = `
-                        <span>${product.quantity}x ${product.name}</span>
-                        <span>${(product.price * product.quantity).toFixed(2)} €</span>
-                    `;
-                    ticketTable.appendChild(productRow);
-                });
-            }
-        
-            // Mostrar el total final
-            function renderTotal() {
-                // Aquí usamos directamente `cartTotal`, ya que incluye entradas + productos
-                totalSummary.textContent = `${cartTotal.toFixed(2)} €`;
-            }
-        
-            // Renderizar la página completa
-            function renderPage() {
-                renderTickets();  // Muestra las entradas
-                renderProducts(); // Muestra los productos
-                renderTotal();    // Muestra el total directamente desde `cartTotal`
-            }
-        
-            renderPage(); // Inicia el renderizado
-        });
-        
-    </script>
-    
 
     <script src="/cine_web_app/front-end/js/Cine/SeatSelection.js"></script>
+    <script src="/cine_web_app/front-end/js/Compra/guest-purchase.js"></script>
 </body>
 
 </html>
