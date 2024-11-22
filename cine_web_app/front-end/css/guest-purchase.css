@@ -179,4 +179,52 @@ main.guest-purchase .total-summary .continue-btn:hover {
   object-fit: cover;
 }
 
+.customer-info {
+  width: 100%;
+  max-width: 900px;
+  margin: 2rem auto;
+}
+.customer-info .section-title {
+  font-size: 1.8rem;
+  font-weight: bold;
+  color: #ff2c78;
+  text-align: center;
+  margin-bottom: 2rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05rem;
+}
+.customer-info .form-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 20px;
+}
+.customer-info .form-row .form-group {
+  flex: 1;
+}
+.customer-info .form-row .form-group label {
+  display: block;
+  font-size: 1rem;
+  font-weight: bold;
+  margin-bottom: 0.5rem;
+  color: #ffffff;
+}
+.customer-info .form-row .form-group input {
+  width: 100%;
+  padding: 8px 0;
+  font-size: 1rem;
+  border: none;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.3);
+  background-color: transparent;
+  color: #ffffff;
+  transition: border-color 0.3s ease;
+}
+.customer-info .form-row .form-group input:focus {
+  border-color: #ff2c78;
+  outline: none;
+}
+.customer-info .form-row + .form-row {
+  margin-top: 1.5rem;
+}
+
 /*# sourceMappingURL=guest-purchase.css.map */

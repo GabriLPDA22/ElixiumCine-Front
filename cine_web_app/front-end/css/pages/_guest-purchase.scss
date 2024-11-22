@@ -1,3 +1,10 @@
+// Variables de colores
+$text-light: #ffffff;
+$primary-color: #ff2c78;
+$input-border: rgba(255, 255, 255, 0.3);
+$input-focus: $primary-color;
+
+
 body {
   margin: 0;
   padding: 0;
@@ -204,3 +211,61 @@ main.guest-purchase {
   height:100px;
   object-fit: cover;
 }
+
+// Contenedor principal
+.customer-info {
+  width: 100%;
+  max-width: 900px;
+  margin: 2rem auto;
+
+  .section-title {
+    font-size: 1.8rem;
+    font-weight: bold;
+    color: $primary-color;
+    text-align: center;
+    margin-bottom: 2rem;
+    text-transform: uppercase;
+    letter-spacing: 0.05rem;
+  }
+
+  .form-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start; // Alineación superior para evitar "escalera"
+    gap: 20px; // Separación horizontal entre los elementos
+
+    .form-group {
+      flex: 1;
+
+      label {
+        display: block;
+        font-size: 1rem;
+        font-weight: bold;
+        margin-bottom: 0.5rem; // Espaciado entre el label y el input
+        color: $text-light;
+      }
+
+      input {
+        width: 100%;
+        padding: 8px 0;
+        font-size: 1rem;
+        border: none;
+        border-bottom: 1px solid $input-border;
+        background-color: transparent;
+        color: $text-light;
+        transition: border-color 0.3s ease;
+
+        &:focus {
+          border-color: $input-focus;
+          outline: none;
+        }
+      }
+    }
+  }
+
+  // Espaciado uniforme entre filas de la tabla
+  .form-row + .form-row {
+    margin-top: 1.5rem;
+  }
+}
+
