@@ -37,17 +37,23 @@ main.guest-purchase .ticket-selection .ticket-table .table-row {
   padding: 0.8rem 1rem;
   font-size: 1.2rem;
   border-bottom: 1px solid #444;
+  align-items: center;
+  color: #ffffff;
+  gap: 20px;
+}
+main.guest-purchase .ticket-selection .ticket-table .table-header:last-child,
+main.guest-purchase .ticket-selection .ticket-table .table-row:last-child {
+  border-bottom: none;
+}
+main.guest-purchase .ticket-selection .ticket-table .table-row span {
+  display: flex;
+  align-items: center;
+  gap: 20px;
 }
 main.guest-purchase .ticket-selection .ticket-table .table-header {
   font-weight: bold;
   border-bottom: 2px solid #ff2c78;
   color: #ffffff;
-}
-main.guest-purchase .ticket-selection .ticket-table .table-row {
-  color: #ffffff;
-}
-main.guest-purchase .ticket-selection .ticket-table .table-row:last-child {
-  border-bottom: none;
 }
 main.guest-purchase .total-summary {
   margin-top: 2rem;
@@ -164,6 +170,12 @@ main.guest-purchase .total-summary .continue-btn:hover {
 
 .ticket-table img {
   border-radius: 4px;
+  object-fit: cover;
+}
+
+.product-image {
+  width: 100px;
+  height: 100px;
   object-fit: cover;
 }
 

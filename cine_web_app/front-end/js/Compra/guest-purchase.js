@@ -1,4 +1,4 @@
-document.addEventListener('DOMContentLoaded', function () {
+document.addEventListener('DOMContentLoaded', async function () {
     const ticketTable = document.querySelector('.ticket-table');
     const totalSummary = document.getElementById('final-total');
 
@@ -7,25 +7,101 @@ document.addEventListener('DOMContentLoaded', function () {
     const seats = params.get('seats') ? params.get('seats').split(',') : [];
     const totalPrice = parseFloat(params.get('totalPrice')) || 0; // Precio de las entradas
     const vipCount = parseInt(params.get('vipCount')) || 0; // Número de entradas VIP
-    const cartProducts = params.get('cartProducts') ? JSON.parse(params.get('cartProducts')) : []; // Productos del carrito
+    const productParam = params.get('products'); // Cadena de productos (IDs y cantidades)
     const cartTotal = parseFloat(params.get('cartTotal')) || 0; // Total de la compra (entradas + productos)
 
-    // Cálculo de entradas normales
-    const normalCount = seats.length - vipCount; // Diferencia entre el total de entradas y las VIP
-    const normalPrice = normalCount * 6.90; // Precio de las entradas normales
-    const vipPrice = vipCount * 8.10; // Precio de las entradas VIP
+    // Parsear el parámetro 'products' del URL
+    function parseProducts(productParam) {
+        const productData = [];
+        if (!productParam) return productData;
 
-    // URLs de imágenes para entradas normales y VIP
-    const normalTicketImage = '/path/to/normal-ticket-image.jpg'; // Imagen para entradas normales
-    const vipTicketImage = '/path/to/vip-ticket-image.jpg'; // Imagen para entradas VIP
+        // Usar una expresión regular para capturar múltiples "id" y "quantity"
+        const regex = /id=(\d+)&quantity=(\d+)/g;
+        let match;
+
+        while ((match = regex.exec(productParam)) !== null) {
+            productData.push({
+                id: parseInt(match[1]), // Captura el ID del producto
+                quantity: parseInt(match[2]) // Captura la cantidad del producto
+            });
+        }
+
+        return productData;
+    }
+
+    const parsedProducts = parseProducts(productParam); // [{ id: 1, quantity: 1 }, { id: 2, quantity: 1 }]
+
+    // Obtener solo las IDs para el fetch
+    const productIds = parsedProducts.map(p => p.id);
+
+    // Función para hacer fetch de los productos por sus IDs
+    async function fetchProductDetails(productIds) {
+        try {
+            if (productIds.length === 0) {
+                console.warn("No se encontraron IDs de productos en el URL.");
+                return [];
+            }
+
+            // Hacer fetch de los productos desde el backend
+            const url = `http://localhost:5006/api/Productos/GetProductos?ids=${productIds.join(',')}`;
+            console.log("URL construida para fetch:", url);
+
+            const response = await fetch(url);
+            if (!response.ok) {
+                console.error("Error en la respuesta del servidor:", response.status, response.statusText);
+                throw new Error("Error al obtener los detalles de los productos.");
+            }
+
+            const products = await response.json();
+            console.log("Productos obtenidos del backend:", products);
+
+            // Filtrar los productos para que solo queden los que están en el URL
+            return products.filter(product => productIds.includes(product.id));
+        } catch (error) {
+            console.error("Detalles del error al obtener productos:", error);
+            return [];
+        }
+    }
+
+    // Combinar productos con cantidades
+    function combineProductsWithQuantities(products, parsedProducts) {
+        return products.map(product => {
+            const quantity = parsedProducts.find(p => p.id === product.id)?.quantity || 1;
+            return {
+                ...product,
+                quantity // Asignar la cantidad correspondiente
+            };
+        });
+    }
+
+    // Renderizar productos
+    function renderProducts(products) {
+        products.forEach(product => {
+            const productRow = document.createElement('div');
+            productRow.classList.add('table-row');
+            productRow.innerHTML = `
+                <span>
+                    <img src="${product.imagenUrl}" class="product-image">
+                    <div class="test">${product.quantity}x ${product.nombre}</div>
+                </span>
+                <span>${(product.precio * product.quantity).toFixed(2)} €</span>
+            `;
+            ticketTable.appendChild(productRow);
+        });
+    }
 
     // Renderizar entradas normales
     function renderNormalTickets() {
+        const normalCount = seats.length - vipCount; // Diferencia entre total de entradas y las VIP
+        const normalPrice = normalCount * 6.90; // Precio de las entradas normales
         if (normalCount > 0) {
             const normalRow = document.createElement('div');
             normalRow.classList.add('table-row');
             normalRow.innerHTML = `
-                <span><img src="${normalTicketImage}" alt="Entrada Normal" class="ticket-image"> ${normalCount}x Entrada Normal</span>
+                <span>
+                    <img src="/cine_web_app/front-end/images/ticket-normal.svg" alt="Entrada Normal" class="ticket-image">
+                    ${normalCount}x Entrada Normal
+                </span>
                 <span>${normalPrice.toFixed(2)} €</span>
             `;
             ticketTable.appendChild(normalRow);
@@ -34,28 +110,19 @@ document.addEventListener('DOMContentLoaded', function () {
 
     // Renderizar entradas VIP
     function renderVipTickets() {
+        const vipPrice = vipCount * 8.10; // Precio de las entradas VIP
         if (vipCount > 0) {
             const vipRow = document.createElement('div');
             vipRow.classList.add('table-row');
             vipRow.innerHTML = `
-                <span><img src="${vipTicketImage}" alt="Entrada VIP" class="ticket-image"> ${vipCount}x Entrada VIP</span>
+                <span>
+                    <img src="/cine_web_app/front-end/images/ticket-vip.svg" alt="Entrada VIP" class="ticket-image">
+                    ${vipCount}x Entrada VIP
+                </span>
                 <span>${vipPrice.toFixed(2)} €</span>
             `;
             ticketTable.appendChild(vipRow);
         }
-    }
-
-    // Renderizar productos
-    function renderProducts() {
-        cartProducts.forEach(product => {
-            const productRow = document.createElement('div');
-            productRow.classList.add('table-row');
-            productRow.innerHTML = `
-                <span><img src="${product.imagenUrl}" alt="${product.name}" class="product-image"> ${product.quantity}x ${product.name}</span>
-                <span>${(product.price * product.quantity).toFixed(2)} €</span>
-            `;
-            ticketTable.appendChild(productRow);
-        });
     }
 
     // Mostrar el total final
@@ -64,12 +131,17 @@ document.addEventListener('DOMContentLoaded', function () {
     }
 
     // Renderizar la página completa
-    function renderPage() {
-        renderNormalTickets(); // Muestra las entradas normales
-        renderVipTickets();    // Muestra las entradas VIP
-        renderProducts();      // Muestra los productos
-        renderTotal();         // Muestra el total directamente desde `cartTotal`
+    async function renderPage() {
+        renderNormalTickets();
+        renderVipTickets();
+
+        // Obtener y mostrar productos desde la API
+        const products = await fetchProductDetails(productIds);
+        const combinedProducts = combineProductsWithQuantities(products, parsedProducts);
+        renderProducts(combinedProducts);
+
+        renderTotal(); // Muestra el total directamente desde `cartTotal`
     }
 
-    renderPage(); // Inicia el renderizado
+    await renderPage(); // Inicia el renderizado
 });

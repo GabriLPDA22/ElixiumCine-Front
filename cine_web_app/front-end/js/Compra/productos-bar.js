@@ -212,18 +212,25 @@ document.addEventListener("DOMContentLoaded", async () => {
         console.warn("No se encontraron elementos para el modal.");
     }
 
+// Botón "Continuar"
+const continueButton = document.getElementById("continue-btn");
+if (continueButton) {
+    continueButton.addEventListener("click", () => {
+        // Filtrar los productos con cantidad > 0
+        const selectedProducts = Object.values(cartItems).filter(product => product.quantity > 0);
 
-    // Botón "Continuar"
-    const continueButton = document.getElementById("continue-btn");
-    if (continueButton) {
-        continueButton.addEventListener("click", () => {
-            // Filtrar los productos con cantidad > 0 y serializar
-            const selectedProducts = Object.values(cartItems).filter(product => product.quantity > 0);
-            params.set('cartProducts', JSON.stringify(selectedProducts)); // Almacenar productos seleccionados en la URL
-            params.set('cartTotal', cartTotal.toFixed(2)); // Almacenar el total del carrito
+        // Crear un string con las id y cantidades
+        const productsParam = selectedProducts.map(product => {
+            return `id=${product.id}&quantity=${product.quantity}`;
+        }).join('&'); // Une con '&' para formar el formato de la URL
 
-            // Redirigir a la página de compra
-            window.location.href = `/cine_web_app/front-end/views/Compra/guest-purchase.html?${params.toString()}`;
-        });
-    }
+        // Añadir al objeto de parámetros
+        params.set('products', productsParam);
+        params.set('cartTotal', cartTotal.toFixed(2)); // También almacena el total del carrito
+
+        // Redirigir a la página de compra con los nuevos parámetros
+        window.location.href = `/cine_web_app/front-end/views/Compra/guest-purchase.html?${params.toString()}`;
+    });
+}
+
 });
