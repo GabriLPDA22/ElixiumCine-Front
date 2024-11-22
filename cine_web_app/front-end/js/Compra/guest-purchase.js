@@ -107,6 +107,7 @@ document.addEventListener('DOMContentLoaded', async function () {
             ticketTable.appendChild(normalRow);
         }
     }
+    
 
     // Renderizar entradas VIP
     function renderVipTickets() {
