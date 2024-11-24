@@ -1,33 +1,24 @@
 <!DOCTYPE html>
-<html lang="es">
+<html lang="en">
 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Elixium - Top Películas</title>
-    <link rel="stylesheet" href="../css/home.css">
-    <link rel="stylesheet" href="../css/footer.css">
-    <link rel="stylesheet" href="../css/header.css">
-    <link rel="stylesheet" href="../css/carrousel-top-movies.css">
-    <link rel="stylesheet" href="../css/Scrollbar.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.carousel.min.css">
-    <link rel="stylesheet"
-        href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.theme.default.min.css">
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.min.js"></script>
-
+    <title>Promociones</title>
+    <link rel="stylesheet" href="/cine_web_app/front-end/css/header.css">
+    <link rel="stylesheet" href="/cine_web_app/front-end/css/footer.css">
+    <link rel="stylesheet" href="/cine_web_app/front-end/css/Promociones.css">
 </head>
 
 <body>
-
     <!-- Navbar para pantallas grandes -->
     <header class="header header--desktop">
-        <div class="header__logo">Elixium</div>
+        <a href="/cine_web_app/front-end/views/home.html" class="header__logo">Elixium</a>
         <nav class="header__nav">
             <ul class="header__menu">
                 <li class="header__menu-item"><a href="/cine_web_app/front-end/views/Cinemas.html">Cines</a></li>
-                <li class="header__menu-item"><a href="../views/Allmovies.html">Películas</a></li>
-                <li class="header__menu-item"><a href="/cine_web_app/front-end/views/Promociones.html">Promociones</a></li>
+                <li class="header__menu-item"><a href="#">Películas</a></li>
+                <li class="header__menu-item"><a href="#">Promociones</a></li>
             </ul>
         </nav>
         <div class="header__actions">
@@ -40,7 +31,7 @@
 
     <!-- Navbar responsive para móviles -->
     <header class="header header--responsive">
-        <div class="header__logo">Elixium</div>
+        <a href="/cine_web_app/front-end/views/home.html" class="header__logo">Elixium</a>
         <div class="header__hamburger">&#9776;</div>
         <nav class="header__nav overlay">
             <ul class="header__menu">
@@ -55,102 +46,66 @@
         </nav>
     </header>
 
-    <!-- Main Content -->
-    <main class="main">
-        <!-- Sección de Top Películas -->
-        <section class="main__top-movies">
-            <h2 class="main__title">Top Películas</h2>
-            <div class="carousel">
-                <!-- Botón izquierdo -->
-                <button class="carousel__button carousel__button--left">
-                    <span class="carousel__button-content">
-                        <img src="/cine_web_app/front-end/images/left-arrow.png" alt="Left Arrow">
-                    </span>
-                </button>
 
-                <!-- Carrusel de películas -->
-                <div class="carousel__track-container">
-                    <ul class="carousel__track" id="carousel-track">
-                        <!-- Las películas se cargarán dinámicamente aquí -->
-                    </ul>
-                </div>
 
-                <!-- Botón derecho -->
-                <button class="carousel__button carousel__button--right">
-                    <span class="carousel__button-content">
-                        <img src="/cine_web_app/front-end/images/right-arrow.png" alt="Right Arrow">
-                    </span>
-                </button>
+    <div class="promotions">
+        <div class="promotions__header">
+            <h2 class="promotions__title">Promociones</h2>
+            <div class="promotions__filters">
+                <button class="promotions__filter promotions__filter--active" data-filter="all">Todas</button>
+                <button class="promotions__filter" data-filter="offer">Ofertas</button>
+                <button class="promotions__filter" data-filter="gift">Sorteos y regalos</button>
             </div>
-        </section>
+        </div>
 
-        <!-- Sección de ¿Quiénes somos? -->
-        <section class="about-section">
-            <div class="about-section__background">
-                <div class="about-section__content">
-                    <h2 class="about-section__title">¿Quiénes somos?</h2>
-                    <p class="about-section__description">
-                        Nos dedicamos a ofrecerte lo mejor del cine, acercándote a las últimas
-                        estrenos, críticas, y todo lo que necesitas saber sobre el séptimo arte.
-                        Brindamos una experiencia única y completa, para que cada visita sea
-                        una nueva oportunidad de disfrutar y descubrir lo que más te apasiona
-                        en la pantalla grande.
+        <div class="promotions__list">
+            <!-- Tarjeta 1 -->
+            <div class="promotion-card" data-category="offer">
+                <img class="promotion-card__image" src="ruta-de-la-imagen-1.jpg" alt="Promoción Wicked">
+                <div class="promotion-card__content">
+                    <h3 class="promotion-card__title">
+                        COMPRA YA TU ENTRADA ONLINE PARA UNA SESIÓN IMAX Y GANA UN SET DE LEGO® WICKED
+                    </h3>
+                    <p class="promotion-card__description">
+                        Participa en el sorteo con "Wicked" y podrás conseguir un set de LEGO® Wicked.
                     </p>
-                    <button class="about-section__button">Ver Más</button>
+                    <p class="promotion-card__date">El sorteo termina el: 24/11/2024</p>
                 </div>
+                <button class="promotion-card__button">¡Participar!</button>
             </div>
-        </section>
 
-        <section class="offers-section">
-            <h2 class="offers-section__title">Ofertas</h2>
-            <div class="offers-section__grid">
-                <!-- Tarjeta de oferta -->
-                <div class="offer-card">
-                    <div class="offer-card__content">
-                        <h3 class="offer-card__title">Entrada gratis en tu cumpleaños</h3>
-                        <p class="offer-card__description">
-                            Regístrate en nuestra página y recibe una entrada gratis en el mes de tu cumpleaños si traes
-                            a 3 amigos contigo.
-                        </p>
-                    </div>
-                    <img src="/cine_web_app/front-end/images/cumpleanos.png" alt="Palomitas de maíz" class="offer-card__image">
+            <!-- Tarjeta 2 -->
+            <div class="promotion-card" data-category="gift">
+                <img class="promotion-card__image" src="ruta-de-la-imagen-2.jpg" alt="Promoción Wicked">
+                <div class="promotion-card__content">
+                    <h3 class="promotion-card__title">
+                        ¡SER EL PRIMERO EN VER "WICKED" TIENE PREMIO!
+                    </h3>
+                    <p class="promotion-card__description">
+                        ¿Preparado para ver Wicked? Conoce a las brujas de Oz y consigue varios premios inspirados en la
+                        película.
+                    </p>
+                    <p class="promotion-card__date">La oferta termina el: 24/11/2024</p>
                 </div>
-
-                <!-- Repetir tarjeta de oferta para otras tres tarjetas -->
-                <div class="offer-card">
-                    <div class="offer-card__content">
-                        <h3 class="offer-card__title">Estreno Joker con amigos</h3>
-                        <p class="offer-card__description">
-                            Unete a nosotros en el estreno del Joker este 11 de noviembre y trae a un amigo para tener 50% descuento en el primer menu joker funko que compreis.
-                        </p>
-                    </div>
-                    <img src="/cine_web_app/front-end/images/ofertajoker.png" alt="Palomitas de maíz" class="offer-card__image">
-                </div>
-
-                <div class="offer-card">
-                    <div class="offer-card__content">
-                        <h3 class="offer-card__title">Llavero de Película</h3>
-                        <p class="offer-card__description">
-                            Al asistir al estreno de ciertas películas seleccionadas, ¡llévate un llavero exclusivo de la película completamente gratis! (Hasta agotar existencias).
-                        </p>
-                    </div>
-                    <img src="/cine_web_app/front-end/images/Oferta-Llavero.png" alt="Palomitas de maíz" class="offer-card__image">
-                </div>
-
-                <div class="offer-card">
-                    <div class="offer-card__content">
-                        <h3 class="offer-card__title">Póster de Estreno</h3>
-                        <p class="offer-card__description">
-                            Asiste el primer día del estreno y recibe un póster oficial de la película como recuerdo. Una forma de celebrar tu pasión por el cine.
-                        </p>
-                    </div>
-                    <img src="/cine_web_app/front-end/images/Oferta-Poster.png" alt="Palomitas de maíz" class="offer-card__image">
-                </div>
+                <button class="promotion-card__button">¡Lo quiero!</button>
             </div>
-        </section>
 
-    </main>
-
+            <!-- Tarjeta 3 -->
+            <div class="promotion-card" data-category="offer">
+                <img class="promotion-card__image" src="ruta-de-la-imagen-3.jpg" alt="Promoción Vaiana">
+                <div class="promotion-card__content">
+                    <h3 class="promotion-card__title">
+                        ¡SER DE LOS PRIMEROS EN VER VAIANA 2 TIENE PREMIO!
+                    </h3>
+                    <p class="promotion-card__description">
+                        Compra ya tus entradas para Vaiana 2 y podrás llevarte una carta Lorcana exclusiva de regalo.
+                    </p>
+                    <p class="promotion-card__date">La oferta termina el: 01/12/2024</p>
+                </div>
+                <button class="promotion-card__button">¡Participar!</button>
+            </div>
+        </div>
+    </div>
 
     <footer class="footer">
         <div class="footer__social">
@@ -216,8 +171,40 @@
             </ul>
         </div>
     </footer>
-    <script src="/cine_web_app/front-end/js/home/CarruselController.js"></script>
-    <script src="/cine_web_app/front-end/js/home/navbarresponsive.js"></script>
+
 </body>
+<script src="/cine_web_app/front-end/js/home/navbarresponsive.js"></script>
+
+<script>
+    document.addEventListener("DOMContentLoaded", () => {
+        const filters = document.querySelectorAll('.promotions__filter');
+        const cards = document.querySelectorAll('.promotion-card');
+
+        filters.forEach(filter => {
+            filter.addEventListener('click', () => {
+                // Eliminar la clase activa de todos los filtros
+                filters.forEach(f => f.classList.remove('promotions__filter--active'));
+
+                // Activar el filtro actual
+                filter.classList.add('promotions__filter--active');
+
+                // Obtener el filtro seleccionado
+                const filterValue = filter.getAttribute('data-filter');
+
+                // Mostrar/ocultar tarjetas según el filtro
+                cards.forEach(card => {
+                    const cardCategory = card.getAttribute('data-category');
+
+                    if (filterValue === 'all' || cardCategory === filterValue) {
+                        card.style.display = 'grid'; // Mostrar
+                    } else {
+                        card.style.display = 'none'; // Ocultar
+                    }
+                });
+            });
+        });
+    });
+
+</script>
 
 </html>

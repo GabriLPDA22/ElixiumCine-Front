@@ -114,7 +114,7 @@ h3 {
 
     &:hover {
         text-decoration: underline;
-        color: lighten($link-color, 10%);
+        color: $link-color;
     }
 
     &__arrow {
@@ -250,17 +250,20 @@ h3 {
     border-radius: 5px;
 
     &:hover {
-        background-color: darken($button-color, 10%);
+        background-color: $button-color;
     }
 }
 
 // Estilo del mapa de asientos
-.seat-map {
+#seat-map {
     display: grid;
-    grid-template-columns: repeat(30, 20px);
-    gap: 7px;
+    grid-template-columns: repeat(30, 1fr); // Siempre 30 columnas
+    gap: 7px; // Espaciado original
     justify-content: center;
-    padding: 20px;
+    width: 100%; // Ajusta al ancho disponible
+    max-width: 910px; // Máximo ancho para pantallas grandes
+    margin: 0 auto; // Centrado horizontal
+    transition: transform 0.3s ease-in-out; // Suaviza la transición al cambiar la escala
 }
 
 .screen {
@@ -288,5 +291,76 @@ h3 {
         font-family: "Poppins", sans-serif;
         text-transform: uppercase; // Texto en mayúsculas
     }
+}
+
+
+// Media queries para dispositivos móviles
+@media (max-width: 480px) {
+    .seat-map {
+        display: grid;
+        grid-template-columns: repeat(30, 1fr); // Mantén siempre 30 columnas como en seatLayout
+        gap: 3px; // Ajusta el espacio entre butacas
+        justify-content: center; // Centrado horizontal
+        width: 100%; // Asegura que el mapa ocupe todo el ancho del dispositivo móvil
+        transform: scale(0.8); // Escala proporcionalmente el mapa completo
+        transform-origin: top center; // Mantén el centro al escalar
+        padding: 10px;
+    }
+
+    .seat {
+        aspect-ratio: 1 / 1; // Garantiza proporciones cuadradas
+        background-color: $seat-available-color; // Color estándar para asientos disponibles
+        width: 10px; // Tamaño reducido para pantallas pequeñas
+        height: 10px;
+        border-radius: 2px; // Borde redondeado más pequeño
+        border: 1px solid #444;
+
+        &.vip {
+            border: 1px solid orange; // Borde especial para asientos VIP
+        }
+
+        &.selected {
+            background-color: $seat-selected-color; // Color para asientos seleccionados
+        }
+
+        &.reserved {
+            background-color: #444; // Color para asientos ocupados
+            cursor: not-allowed;
+        }
+    }
+
+    .screen {
+        text-align: center;
+        margin: 15px 0;
+        font-size: 0.8rem; // Tamaño reducido para la etiqueta de pantalla
+        color: $text-color;
+    }
+
+    .continue-btn {
+        margin: 15px auto;
+        display: block;
+        width: 90%; // Botón amplio para móviles
+        max-width: 300px;
+        font-size: 12px;
+        padding: 8px;
+    }
+
+    .movie-details__info-wrapper--poster .movie-title .movie-title__text {
+        color: #ffffff;
+        letter-spacing: 0;
+        font-size: 2.5rem;
+    }
+
+    .movie-details__content-wrapper {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .movie-details__session-info .session-info-container .session-details {
+        font-size: 1.1rem;
+        color: #ffffff;
+        text-align: left;
+    }
+
 }
 

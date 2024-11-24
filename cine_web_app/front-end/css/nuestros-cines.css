@@ -12,7 +12,7 @@ body {
   color: #ffffff;
 }
 
-/* .header {
+.header {
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -65,7 +65,7 @@ body {
   color: #ffffff;
   font-size: 1.2rem;
   cursor: pointer;
-} */
+}
 
 .banner__image {
   width: 100%;
@@ -122,10 +122,11 @@ body {
   z-index: 2;
 }
 
-.cines__link {
-  text-decoration: none;
-  color: inherit;
-  display: block;
+@media (max-width: 768px) {
+  .cines__grid {
+    grid-template-columns: 1fr;
+    gap: 1rem;
+  }
 }
 
 /*# sourceMappingURL=nuestros-cines.css.map */

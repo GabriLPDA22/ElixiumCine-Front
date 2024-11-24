@@ -87,7 +87,7 @@ h3 {
 }
 .booking-go-back:hover {
   text-decoration: underline;
-  color: #ff5f99;
+  color: #ff2c78;
 }
 .booking-go-back__arrow {
   width: 20px;
@@ -199,15 +199,18 @@ h3 {
   border-radius: 5px;
 }
 .continue-btn:hover {
-  background-color: #f80059;
+  background-color: #ff2c78;
 }
 
-.seat-map {
+#seat-map {
   display: grid;
-  grid-template-columns: repeat(30, 20px);
+  grid-template-columns: repeat(30, 1fr);
   gap: 7px;
   justify-content: center;
-  padding: 20px;
+  width: 100%;
+  max-width: 910px;
+  margin: 0 auto;
+  transition: transform 0.3s ease-in-out;
 }
 
 .screen {
@@ -232,6 +235,65 @@ h3 {
   fill: #333;
   font-family: "Poppins", sans-serif;
   text-transform: uppercase;
+}
+
+@media (max-width: 480px) {
+  .seat-map {
+    display: grid;
+    grid-template-columns: repeat(30, 1fr);
+    gap: 3px;
+    justify-content: center;
+    width: 100%;
+    transform: scale(0.8);
+    transform-origin: top center;
+    padding: 10px;
+  }
+  .seat {
+    aspect-ratio: 1/1;
+    background-color: #bfbfbf;
+    width: 10px;
+    height: 10px;
+    border-radius: 2px;
+    border: 1px solid #444;
+  }
+  .seat.vip {
+    border: 1px solid orange;
+  }
+  .seat.selected {
+    background-color: #ff2c78;
+  }
+  .seat.reserved {
+    background-color: #444;
+    cursor: not-allowed;
+  }
+  .screen {
+    text-align: center;
+    margin: 15px 0;
+    font-size: 0.8rem;
+    color: #ffffff;
+  }
+  .continue-btn {
+    margin: 15px auto;
+    display: block;
+    width: 90%;
+    max-width: 300px;
+    font-size: 12px;
+    padding: 8px;
+  }
+  .movie-details__info-wrapper--poster .movie-title .movie-title__text {
+    color: #ffffff;
+    letter-spacing: 0;
+    font-size: 2.5rem;
+  }
+  .movie-details__content-wrapper {
+    flex-direction: column;
+    align-items: center;
+  }
+  .movie-details__session-info .session-info-container .session-details {
+    font-size: 1.1rem;
+    color: #ffffff;
+    text-align: left;
+  }
 }
 
 /*# sourceMappingURL=butacas.css.map */

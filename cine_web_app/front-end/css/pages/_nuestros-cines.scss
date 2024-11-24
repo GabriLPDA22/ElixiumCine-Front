@@ -142,3 +142,12 @@ body {
         z-index: 2;
     }
 }
+
+
+// Responsive para móviles
+@media (max-width: 768px) {
+  .cines__grid {
+    grid-template-columns: 1fr; // Una sola columna
+    gap: 1rem; // Opcional: reducir el espacio entre tarjetas
+  }
+}

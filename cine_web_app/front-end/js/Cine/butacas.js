@@ -260,3 +260,37 @@ document.addEventListener('DOMContentLoaded', async function () {
         console.error("Error durante la inicialización o carga:", error.message);
     }
 });
+
+
+// ==========================================================
+//  Movil
+// ==========================================================
+
+// Detectar si es móvil
+function isMobile() {
+    return window.innerWidth <= 480; // Ajusta el ancho máximo según lo necesario
+}
+
+// Aplicar escala al mapa en móviles
+function adjustMapForMobile() {
+    const seatMapContainer = document.getElementById('seat-map');
+    if (isMobile()) {
+        seatMapContainer.style.transform = 'scale(0.8)'; // Ajusta el tamaño del mapa
+        seatMapContainer.style.transformOrigin = 'top center'; // Centrado
+        seatMapContainer.style.width = '100%'; // Asegura que no haya desbordamientos
+    } else {
+        seatMapContainer.style.transform = ''; // Resetea la escala para pantallas grandes
+        seatMapContainer.style.width = ''; // Resetea el ancho
+    }
+}
+
+// Escuchar cambios en el tamaño de la ventana
+window.addEventListener('resize', adjustMapForMobile);
+
+// Aplicar ajustes al cargar la página
+document.addEventListener('DOMContentLoaded', () => {
+    adjustMapForMobile();
+    // Mantén las funciones de inicialización aquí
+    inicializarButacas();
+    cargarButacas();
+});
