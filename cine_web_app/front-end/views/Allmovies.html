@@ -8,9 +8,14 @@
     <link rel="stylesheet" href="../css/home.css">
     <link rel="stylesheet" href="../css/footer.css">
     <link rel="stylesheet" href="../css/header.css">
-    <link rel="stylesheet" href="../css/carrousel-top-movies.css">
+     <link rel="stylesheet" href="../css/carrousel-top-movies.css"> 
     <link rel="stylesheet" href="../css/Scrollbar.css">
     <link rel="stylesheet" href="/cine_web_app/front-end/css/AllMovies.css">
+
+    <!-- CSS de Owl Carousel -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.carousel.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.theme.default.min.css">
+
 </head>
 
 <body>
@@ -63,15 +68,14 @@
                         <img src="/cine_web_app/front-end/images/left-arrow.png" alt="Left Arrow">
                     </span>
                 </button>
-
-                <!-- Carrusel de películas -->
+    
                 <!-- Carrusel de películas -->
                 <div class="carousel__track-container">
-                    <ul class="carousel__track" id="carousel-track">
+                    <ul class="carousel__track owl-carousel" id="carousel-track">
                         <!-- Las películas se cargarán dinámicamente aquí -->
                     </ul>
                 </div>
-
+    
                 <!-- Botón derecho -->
                 <button class="carousel__button carousel__button--right">
                     <span class="carousel__button-content">
@@ -81,6 +85,7 @@
             </div>
         </section>
     </main>
+    
 
     <h2>Todas las Películas</h2>
 
@@ -173,5 +178,9 @@
 <script src="/cine_web_app/front-end/js/home/CarruselController.js"></script>
 <script src="/cine_web_app/front-end/js/home/navbarresponsive.js"></script>
 <script src="/cine_web_app/front-end/js/Movies/main-allmovies.js"></script>
+
+<!-- JS de jQuery y Owl Carousel -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.min.js"></script>
 
 </html>

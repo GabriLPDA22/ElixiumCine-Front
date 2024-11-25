@@ -3,55 +3,69 @@
   display: flex;
   align-items: center;
   justify-content: center;
+  width: 100%;
   overflow: hidden;
-  padding: 2rem 0;
+}
+.carousel__track-container {
+  width: 90%;
+  max-width: 1700px;
+  overflow: hidden;
 }
 .carousel__track {
   display: flex;
-  justify-content: center;
-  transition: transform 0.5s ease;
-  will-change: transform;
+  align-items: center;
+  padding: 10px;
 }
-.carousel__slide {
+.carousel__track .carousel__slide {
   flex: 0 0 auto;
-  opacity: 0.5;
-  transform: scale(0.8);
-  transition: transform 0.5s ease, opacity 0.5s ease;
   text-align: center;
+  padding: 0 8px;
+  opacity: 0.6;
+  transform: scale(0.9);
+  transition: all 0.3s ease;
   list-style: none;
 }
-.carousel__slide--center {
+.carousel__track .carousel__slide.active {
   opacity: 1;
   transform: scale(1);
 }
-.carousel__image {
-  border-radius: 22px;
-  width: 220px;
-  height: 300px;
-  transition: transform 0.5s ease, opacity 0.5s ease;
+.carousel__track .carousel__slide .carousel__image {
+  width: 250px;
+  height: 350px;
+  object-fit: cover;
+  border-radius: 15px;
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.5);
+  transition: transform 0.3s ease;
+  margin: auto;
 }
-.carousel__slide--center .carousel__image {
-  width: 300px;
-  height: 420px;
-}
-.carousel__title {
-  margin-top: 0.5rem;
+.carousel__track .carousel__slide .carousel__title {
+  margin-top: 0.8rem;
+  font-size: 0.9rem;
   font-weight: bold;
   color: #ffffff;
 }
 .carousel__button {
   position: absolute;
   top: 50%;
-  transform: translateY(-50%);
-  background-color: rgba(0, 0, 0, 0.7);
+  background: #ffffff;
   border: none;
   cursor: pointer;
   width: 40px;
-  height: 60px;
+  height: 40px;
   display: flex;
   align-items: center;
   justify-content: center;
-  z-index: 1;
+  z-index: 10;
+  border-radius: 50%;
+}
+.carousel__button:hover {
+  background-color: #ff2c78;
+  transform: scale(1.1);
+}
+.carousel__button img {
+  width: 15px;
+  height: 15px;
+  filter: invert(1);
 }
 .carousel__button--left {
   left: 10px;
@@ -59,28 +73,30 @@
 .carousel__button--right {
   right: 10px;
 }
-.carousel__button img {
-  width: 20px;
-  height: auto;
+
+.owl-carousel {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transform: translate3d(0, 0, 0);
 }
-@media (max-width: 768px) {
-  .carousel__slide {
-    flex: 0 0 auto;
-  }
-  .carousel__image {
-    width: 100%;
-    max-width: 240px;
-    max-height: 320px;
-  }
+
+.owl-stage {
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
-@media (max-width: 480px) {
-  .carousel {
-    padding: 1rem 0;
-  }
-  .carousel__image {
-    max-width: 180px;
-    max-height: 240px;
-  }
+
+.owl-item {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: transform 0.3s ease;
+}
+
+.owl-nav,
+.owl-dots {
+  display: none;
 }
 
 /*# sourceMappingURL=carrousel-top-movies.css.map */

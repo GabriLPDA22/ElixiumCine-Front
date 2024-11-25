@@ -3,95 +3,112 @@
     display: flex;
     align-items: center;
     justify-content: center;
+    width: 100%;
     overflow: hidden;
-    padding: 2rem 0;
+
+    &__track-container {
+        width: 90%;
+        max-width: 1700px;
+        overflow: hidden;
+    }
 
     &__track {
         display: flex;
-        justify-content: center; // Asegura que las diapositivas estén centradas
-        transition: transform 0.5s ease;
-        will-change: transform;
-    }
+        align-items: center;
+        padding: 10px;
 
-    &__slide {
-        flex: 0 0 auto;
-        opacity: 0.5;
-        transform: scale(0.8);
-        transition: transform 0.5s ease, opacity 0.5s ease;
-        text-align: center;
-        list-style: none;
+        .carousel__slide {
+            flex: 0 0 auto;
+            text-align: center;
+            padding: 0 8px; // Espaciado ajustado para 5 elementos
+            opacity: 0.6;
+            transform: scale(0.9);
+            transition: all 0.3s ease;
+            list-style: none;
 
-        &--center {
-            opacity: 1;
-            transform: scale(1);
+            &.active {
+                opacity: 1;
+                transform: scale(1);
+            }
+
+            .carousel__image {
+                width: 250px; // Tamaño adaptado para mostrar 5 elementos
+                height: 350px; // Mantiene proporción
+                object-fit: cover;
+                border-radius: 15px;
+                box-shadow: 0 10px 20px rgba(0, 0, 0, 0.5);
+                transition: transform 0.3s ease;
+                margin: auto; // Centra la imagen dentro del contenedor
+            }
+
+            .carousel__title {
+                margin-top: 0.8rem;
+                font-size: 0.9rem;
+                font-weight: bold;
+                color: #ffffff;
+            }
         }
-    }
-
-    &__image {
-        border-radius: 22px;
-        width: 220px;
-        height: 300px;
-        transition: transform 0.5s ease, opacity 0.5s ease;
-    }
-
-    &__slide--center .carousel__image {
-        width: 300px;
-        height: 420px;
-    }
-
-    &__title {
-        margin-top: 0.5rem;
-        font-weight: bold;
-        color: #ffffff;
     }
 
     &__button {
         position: absolute;
         top: 50%;
-        transform: translateY(-50%);
-        background-color: rgba(0, 0, 0, 0.7);
+        background: #ffffff;
         border: none;
         cursor: pointer;
-        width: 40px;
-        height: 60px;
+        width: 40px; // Ajustamos el tamaño de los botones
+        height: 40px;
         display: flex;
         align-items: center;
         justify-content: center;
-        z-index: 1;
+        z-index: 10;
+        border-radius: 50%;
+
+        &:hover {
+            background-color: #ff2c78;
+            transform: scale(1.1);
+        }
+
+        img {
+            width: 15px; // Ajustamos el tamaño del ícono
+            height: 15px;
+            filter: invert(1); // Icono visible en fondo oscuro
+        }
 
         &--left {
-            left: 10px;
+            left: 10px; // Colocamos las flechas visibles
         }
 
         &--right {
             right: 10px;
         }
-
-        img {
-            width: 20px;
-            height: auto;
-        }
-    }
-
-    // Responsividad
-    @media (max-width: 768px) {
-        &__slide {
-            flex: 0 0 auto;
-        }
-
-        &__image {
-            width: 100%;
-            max-width: 240px;
-            max-height: 320px;
-        }
-    }
-
-    @media (max-width: 480px) {
-        padding: 1rem 0;
-
-        &__image {
-            max-width: 180px;
-            max-height: 240px;
-        }
     }
 }
+
+// Owl Carousel adjustments
+.owl-carousel {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transform: translate3d(0, 0, 0); // Suaviza animaciones y transformaciones
+}
+
+.owl-stage {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.owl-item {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: transform 0.3s ease;
+}
+
+.owl-nav,
+.owl-dots {
+    display: none; // Ocultar controles predeterminados de Owl Carousel
+}
+
+

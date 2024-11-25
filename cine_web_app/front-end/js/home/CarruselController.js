@@ -17,17 +17,17 @@ async function loadMovies() {
 
         const movieIds = new Set(); // Conjunto para almacenar IDs únicos de películas
 
-        movies.forEach((movie, index) => {
+        movies.forEach(movie => {
             if (movieIds.has(movie.id)) return; // Evitar duplicados
             movieIds.add(movie.id);
 
             // Crea un elemento de lista para cada película
             const listItem = document.createElement('li');
-            listItem.classList.add('carousel__slide');
+            listItem.classList.add('carousel__slide', 'item'); // Añade clase necesaria para Owl Carousel
 
             // Imagen de la película
             const img = document.createElement('img');
-            img.src = movie.cartel; // Usa movie.cartel directamente
+            img.src = movie.cartel;
             img.alt = movie.titulo;
             img.classList.add('carousel__image');
 
@@ -46,57 +46,44 @@ async function loadMovies() {
             carouselTrack.appendChild(listItem);
         });
 
-        initializeCarousel(); // Inicializa el carrusel
+        initializeCarousel(); // Inicializa el carrusel con Owl Carousel
     } catch (error) {
         console.error("Error loading movies:", error);
     }
 }
 
-function isMobile() {
-    return window.innerWidth <= 768; // Ajuste para dispositivos móviles
-}
-
 function initializeCarousel() {
-    const slides = Array.from(document.querySelectorAll('.carousel__slide'));
-    const nextButton = document.querySelector('.carousel__button--right');
-    const prevButton = document.querySelector('.carousel__button--left');
-    const track = document.getElementById('carousel-track');
-    let currentIndex = isMobile() ? 0 : Math.floor(slides.length / 2); // Centraliza la imagen inicial
+    const track = $('#carousel-track');
+    const isMobile = window.innerWidth <= 768; // Detectar si es móvil
 
-    function updateSlideClasses() {
-        slides.forEach((slide, index) => {
-            slide.classList.remove('carousel__slide--center', 'carousel__slide--side');
-            if (index === currentIndex) {
-                slide.classList.add('carousel__slide--center');
-            } else {
-                slide.classList.add('carousel__slide--side');
-            }
-        });
-
-        const slideWidth = slides[0].getBoundingClientRect().width;
-        track.style.transition = 'transform 0.5s ease'; // Transición fluida
-        // track.style.transform = `translateX(-${slideWidth * currentIndex}px)`;
-    }
-
-    function moveToNextSlide() {
-        currentIndex = (currentIndex + 1) % slides.length;
-        updateSlideClasses();
-    }
-
-    function moveToPreviousSlide() {
-        currentIndex = (currentIndex - 1 + slides.length) % slides.length;
-        updateSlideClasses();
-    }
-
-    nextButton.addEventListener('click', moveToNextSlide);
-    prevButton.addEventListener('click', moveToPreviousSlide);
-
-    window.addEventListener('resize', () => {
-        currentIndex = isMobile() ? 0 : Math.floor(slides.length / 2);
-        updateSlideClasses();
+    // Inicializar Owl Carousel
+    track.owlCarousel({
+        loop: true,
+        margin: 10,
+        nav: false, // Siempre deshabilitamos la navegación por defecto
+        mouseDrag: isMobile, // Habilitar drag solo en móvil
+        touchDrag: isMobile, // Habilitar drag táctil solo en móvil
+        responsive: {
+            0: { items: 1 }, // 1 elemento en pantallas pequeñas
+            600: { items: 2 }, // 2 elementos en pantallas medianas
+            1000: { items: 3 }, // 3 elementos en pantallas grandes
+            1200: { items: 5 } // 5 elementos en pantallas muy grandes
+        }
     });
 
-    updateSlideClasses(); // Configura el carrusel inicialmente
+    if (!isMobile) {
+        // Si no es móvil, conectamos los botones personalizados
+        $('.carousel__button--right').click(function () {
+            track.trigger('next.owl.carousel'); // Navegar al siguiente elemento
+        });
+
+        $('.carousel__button--left').click(function () {
+            track.trigger('prev.owl.carousel'); // Navegar al elemento anterior
+        });
+    } else {
+        // Ocultar las flechas en móvil
+        $('.carousel__button--left, .carousel__button--right').hide();
+    }
 }
 
 // Llama a la función para cargar las películas

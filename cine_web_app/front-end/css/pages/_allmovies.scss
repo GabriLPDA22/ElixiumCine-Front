@@ -106,3 +106,13 @@ h2{
   color: $highlight-color;
   margin: 20px 0;
 }
+
+
+
+@media (max-width: 480px) {
+   .movies__filters{
+    display: flex;
+    flex-direction: column;
+    margin: 20px 20px;
+   }
+}
