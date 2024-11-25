@@ -1,4 +1,6 @@
 document.addEventListener("DOMContentLoaded", () => {
+    const daySelector = document.getElementById("day-selector");
+
     async function fetchMovies() {
         try {
             const response = await fetch("http://localhost:5006/api/Movie/GetPeliculas");
@@ -11,32 +13,34 @@ document.addEventListener("DOMContentLoaded", () => {
                     index === self.findIndex((m) => m.titulo === movie.titulo)
             );
 
-            setupCarousel(peliculasUnicas);
             renderMovieDetails(peliculasUnicas[0]); // Mostrar la primera película inicialmente
+            setupCarousel(peliculasUnicas);
         } catch (error) {
             console.error("Error:", error);
         }
     }
 
     function renderMovieDetails(movie) {
-        // Actualiza el título, metadata y descripción
-        document.querySelector("#movie-title").textContent = movie.titulo;
-        document.querySelector("#movie-metadata").innerHTML = `
-            <span>IMDB ${movie.calificacion}</span> | 
-            <span>${movie.fechaEstreno.slice(0, 10)}</span> | 
-            <span>${movie.duracion}</span> | 
-            <span>${movie.genero}</span>
+        document.querySelector(".cine-detail__info-title").textContent = movie.titulo;
+        document.querySelector(".cine-detail__info-metadata").innerHTML = `
+            <span>IMDB ${movie.calificacion}</span> | <span>${movie.fechaEstreno.slice(0, 10)}</span> | <span>${movie.duracion}</span> | <span>${movie.genero}</span>
         `;
-        document.querySelector("#movie-description").textContent = movie.descripcion;
+        document.querySelector(".cine-detail__info-description").textContent = movie.descripcion;
 
-        // Actualiza el fondo del banner dinámicamente
-        const background = document.querySelector("#background-image");
+        const background = document.querySelector(".cine-detail__background");
         background.style.backgroundImage = `url(${movie.imagen})`;
-        background.style.transition = "background-image 0.5s ease-in-out"; // Transición suave
+        background.style.opacity = "1";
+
+        // Filtrar sesiones de cine
+        const granCasaSessions = movie.sesiones["Gran Casa"];
+        if (granCasaSessions) {
+            renderDayButtons(granCasaSessions);
+        } else {
+            daySelector.innerHTML = "<p>No hay sesiones disponibles para este cine.</p>";
+        }
     }
 
-    function setupDayButtons(sessions) {
-        const daySelector = document.getElementById("day-selector");
+    function renderDayButtons(sessions) {
         daySelector.innerHTML = "";
         const days = Object.keys(sessions);
 
@@ -73,17 +77,21 @@ document.addEventListener("DOMContentLoaded", () => {
                 const sessionDiv = document.createElement("div");
                 sessionDiv.classList.add("session");
 
+                // Hora de la sesión
                 const timeDiv = document.createElement("div");
                 timeDiv.classList.add("session__time");
                 timeDiv.textContent = session.hora;
 
+                // Sala de la sesión
                 const roomDiv = document.createElement("div");
                 roomDiv.classList.add("session__room");
                 roomDiv.textContent = `Sala ${session.sala} ${session.esISense ? "iSense" : ""}`;
 
+                // Ensamblar la tarjeta de sesión
                 sessionDiv.appendChild(timeDiv);
                 sessionDiv.appendChild(roomDiv);
 
+                // Etiqueta VOSE (si aplica)
                 if (session.esVOSE) {
                     const voseDiv = document.createElement("div");
                     voseDiv.classList.add("session__tag", "session__tag--vose");
@@ -91,6 +99,7 @@ document.addEventListener("DOMContentLoaded", () => {
                     sessionDiv.appendChild(voseDiv);
                 }
 
+                // Etiqueta iSense (si aplica)
                 if (session.esISense) {
                     const isenseTag = document.createElement("div");
                     isenseTag.classList.add("session__tag", "session__tag--isense");
@@ -98,6 +107,20 @@ document.addEventListener("DOMContentLoaded", () => {
                     sessionDiv.appendChild(isenseTag);
                 }
 
+                // Agregar evento para redirigir con los parámetros correctos
+                sessionDiv.addEventListener("click", () => {
+                    const queryParams = new URLSearchParams({
+                        cineName: "Gran Casa", // Sustituir con el nombre dinámicamente
+                        movieTitle: "Spider-Man: No Way Home", // Sustituir con el título dinámicamente
+                        date: date,
+                        time: encodeURIComponent(session.hora),
+                        room: session.sala,
+                    });
+
+                    window.location.href = `/cine_web_app/front-end/views/butacas.html?${queryParams.toString()}`;
+                });
+
+                // Añadir la tarjeta de sesión al contenedor
                 showtimesContainer.appendChild(sessionDiv);
             });
         } else {
@@ -110,11 +133,10 @@ document.addEventListener("DOMContentLoaded", () => {
         const isMobile = window.innerWidth <= 768; // Detectar si es móvil
 
         // Crear los slides del carrusel dinámicamente
-        track.empty();
         peliculas.forEach((movie, index) => {
             const slide = `
-                <li class="carousel__slide ${index === 0 ? "selected" : ""}" data-index="${index}">
-                    <a href="movie-details.html?id=${movie.id}" class="carousel__link">
+                <li class="carousel__slide" data-index="${index}" data-title="${movie.titulo}" data-id="${movie.id}">
+                    <a href="/cine_web_app/front-end/views/movies.html?id=${movie.id}" class="carousel__link">
                         <img src="${movie.cartel}" alt="${movie.titulo}" class="carousel__image">
                     </a>
                 </li>`;
@@ -129,10 +151,10 @@ document.addEventListener("DOMContentLoaded", () => {
             mouseDrag: isMobile, // Habilitar drag solo en móvil
             touchDrag: isMobile, // Habilitar drag táctil solo en móvil
             responsive: {
-                0: { items: 1 }, // 1 elemento en pantallas pequeñas
-                600: { items: 2 }, // 2 elementos en pantallas medianas
-                1000: { items: 3 }, // 3 elementos en pantallas más grandes
-                1200: { items: 7 }, // 5 elementos en pantallas grandes
+                0: { items: 1 },
+                600: { items: 2 },
+                1000: { items: 3 },
+                1200: { items: 7 },
             },
             navText: [
                 `<button class="carousel__button carousel__button--left">
@@ -150,7 +172,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
         // Actualizar fondo y destacar slide activo
         track.on("changed.owl.carousel", function (event) {
-            const currentIndex = event.item.index - event.relatedTarget._clones.length / 2; // Calcula índice real
+            const currentIndex = event.item.index - event.relatedTarget._clones.length / 2;
             const realIndex = (currentIndex + peliculas.length) % peliculas.length; // Evita valores negativos
             const currentMovie = peliculas[realIndex];
 
