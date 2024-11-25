@@ -104,17 +104,22 @@ body {
   font-size: 0.8rem;
   font-weight: bold;
   align-self: flex-start;
+  border-radius: 4px;
 }
 .cine-detail__info-showtimes .session__tag--isense {
   position: absolute;
-  right: -1px;
-  top: -1px;
+  right: 0;
+  top: 0;
   padding: 0.4rem 0.5rem;
   border-top-right-radius: 8px;
   border-bottom-right-radius: 6px;
   writing-mode: vertical-rl;
   text-orientation: mixed;
   height: 71px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
 }
 .cine-detail__info-showtimes .session__vose {
   background-color: #ff2c78;
@@ -123,6 +128,7 @@ body {
   color: #ffffff;
   padding: 0.2rem 0.4rem;
   margin-top: 0.5rem;
+  align-self: flex-start;
 }
 .cine-detail__info-showtimes .session.four-sessions .session:nth-child(4) {
   order: 3;

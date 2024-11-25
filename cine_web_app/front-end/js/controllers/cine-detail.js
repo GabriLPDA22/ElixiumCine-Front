@@ -1,6 +1,4 @@
 document.addEventListener("DOMContentLoaded", () => {
-    const daySelector = document.getElementById("day-selector");
-
     async function fetchMovies() {
         try {
             const response = await fetch("http://localhost:5006/api/Movie/GetPeliculas");
@@ -13,33 +11,32 @@ document.addEventListener("DOMContentLoaded", () => {
                     index === self.findIndex((m) => m.titulo === movie.titulo)
             );
 
-            renderMovieDetails(peliculasUnicas[0]); // Mostrar la primera película inicialmente
             setupCarousel(peliculasUnicas);
+            renderMovieDetails(peliculasUnicas[0]); // Mostrar la primera película inicialmente
         } catch (error) {
             console.error("Error:", error);
         }
     }
 
     function renderMovieDetails(movie) {
-        document.querySelector(".cine-detail__info-title").textContent = movie.titulo;
-        document.querySelector(".cine-detail__info-metadata").innerHTML = `
-            <span>IMDB ${movie.calificacion}</span> | <span>${movie.fechaEstreno.slice(0, 10)}</span> | <span>${movie.duracion}</span> | <span>${movie.genero}</span>
+        // Actualiza el título, metadata y descripción
+        document.querySelector("#movie-title").textContent = movie.titulo;
+        document.querySelector("#movie-metadata").innerHTML = `
+            <span>IMDB ${movie.calificacion}</span> | 
+            <span>${movie.fechaEstreno.slice(0, 10)}</span> | 
+            <span>${movie.duracion}</span> | 
+            <span>${movie.genero}</span>
         `;
-        document.querySelector(".cine-detail__info-description").textContent = movie.descripcion;
+        document.querySelector("#movie-description").textContent = movie.descripcion;
 
-        const background = document.querySelector(".cine-detail__background");
+        // Actualiza el fondo del banner dinámicamente
+        const background = document.querySelector("#background-image");
         background.style.backgroundImage = `url(${movie.imagen})`;
-        background.style.opacity = "1";
-
-        const granCasaSessions = movie.sesiones["Gran Casa"];
-        if (granCasaSessions) {
-            renderDayButtons(granCasaSessions);
-        } else {
-            daySelector.innerHTML = "<p>No hay sesiones disponibles para este cine.</p>";
-        }
+        background.style.transition = "background-image 0.5s ease-in-out"; // Transición suave
     }
 
-    function renderDayButtons(sessions) {
+    function setupDayButtons(sessions) {
+        const daySelector = document.getElementById("day-selector");
         daySelector.innerHTML = "";
         const days = Object.keys(sessions);
 
@@ -114,10 +111,10 @@ document.addEventListener("DOMContentLoaded", () => {
 
         // Crear los slides del carrusel dinámicamente
         track.empty();
-        peliculas.forEach((movie) => {
+        peliculas.forEach((movie, index) => {
             const slide = `
-                <li class="carousel__slide">
-                    <a href="/cine_web_app/front-end/views/movies.html?id=${movie.id}" class="carousel__link">
+                <li class="carousel__slide ${index === 0 ? "selected" : ""}" data-index="${index}">
+                    <a href="movie-details.html?id=${movie.id}" class="carousel__link">
                         <img src="${movie.cartel}" alt="${movie.titulo}" class="carousel__image">
                     </a>
                 </li>`;
@@ -135,8 +132,7 @@ document.addEventListener("DOMContentLoaded", () => {
                 0: { items: 1 }, // 1 elemento en pantallas pequeñas
                 600: { items: 2 }, // 2 elementos en pantallas medianas
                 1000: { items: 3 }, // 3 elementos en pantallas más grandes
-                1200: { items: 7 }, // 7 elementos en pantallas grandes
-
+                1200: { items: 7 }, // 5 elementos en pantallas grandes
             },
             navText: [
                 `<button class="carousel__button carousel__button--left">
@@ -150,6 +146,20 @@ document.addEventListener("DOMContentLoaded", () => {
                     </span>
                  </button>`
             ],
+        });
+
+        // Actualizar fondo y destacar slide activo
+        track.on("changed.owl.carousel", function (event) {
+            const currentIndex = event.item.index - event.relatedTarget._clones.length / 2; // Calcula índice real
+            const realIndex = (currentIndex + peliculas.length) % peliculas.length; // Evita valores negativos
+            const currentMovie = peliculas[realIndex];
+
+            // Actualiza el fondo y los detalles
+            renderMovieDetails(currentMovie);
+
+            // Resaltar slide activo
+            $(".carousel__slide").removeClass("selected");
+            $(`.carousel__slide[data-index="${realIndex}"]`).addClass("selected");
         });
 
         // Flechas personalizadas para escritorio
