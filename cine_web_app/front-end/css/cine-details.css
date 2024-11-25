@@ -1,4 +1,3 @@
-@charset "UTF-8";
 body {
   font-family: "Poppins", sans-serif;
   color: #fff;
@@ -134,78 +133,6 @@ body {
   width: 150px;
   margin-top: 15px;
   margin-left: 90%;
-}
-.cine-detail .cine-detail__carousel {
-  z-index: 1;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: 100%;
-  /* Oculta los puntos de navegación si se están generando automáticamente */
-  /* Oculta cualquier otro tipo de indicadores */
-}
-.cine-detail .cine-detail__carousel .carousel__track-container {
-  overflow: hidden;
-  position: relative;
-}
-.cine-detail .cine-detail__carousel .carousel__track {
-  display: flex;
-  transition: transform 0.3s ease-in-out;
-}
-.cine-detail .cine-detail__carousel .carousel__slide {
-  filter: brightness(50%);
-  margin-right: 30px;
-  cursor: pointer;
-}
-.cine-detail .cine-detail__carousel .carousel__slide.selected {
-  filter: brightness(100%);
-  transform: scale(1.1);
-  /* Agranda la imagen seleccionada */
-}
-.cine-detail .cine-detail__carousel .carousel__slide img {
-  width: 200px;
-  height: 300px;
-  border-radius: 10px;
-  transition: transform 0.3s ease;
-}
-.cine-detail .cine-detail__carousel .carousel__track-container::-webkit-scrollbar,
-.cine-detail .cine-detail__carousel .carousel__track-container::-webkit-scrollbar-thumb,
-.cine-detail .cine-detail__carousel .carousel__track-container::-webkit-scrollbar-track {
-  display: none;
-}
-.cine-detail .cine-detail__carousel .carousel__track-container ul {
-  list-style-type: none;
-  padding: 0;
-  margin: 0;
-}
-.cine-detail .cine-detail__carousel .carousel__prev,
-.cine-detail .cine-detail__carousel .carousel__next {
-  background: rgba(255, 255, 255, 0.1);
-  border: 1px solid rgba(255, 255, 255, 0.6);
-  border-radius: 20%;
-  width: 40px;
-  height: 40px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 1.5rem;
-  color: #ffffff;
-  cursor: pointer;
-  transition: all 0.3s ease;
-  position: relative;
-  z-index: 3;
-}
-.cine-detail .cine-detail__carousel .carousel__prev:hover,
-.cine-detail .cine-detail__carousel .carousel__next:hover {
-  background: rgba(255, 255, 255, 0.2);
-}
-.cine-detail .cine-detail__carousel .carousel__prev {
-  margin-right: 10px;
-  transform: translateX(-40px);
-}
-.cine-detail .cine-detail__carousel .carousel__next {
-  margin-left: auto;
-  transform: translateX(-30px);
 }
 .cine-detail .day-selector {
   display: flex;

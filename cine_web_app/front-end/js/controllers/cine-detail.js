@@ -7,7 +7,7 @@ document.addEventListener("DOMContentLoaded", () => {
             if (!response.ok) throw new Error("Error al obtener detalles de las películas");
             const peliculas = await response.json();
 
-            // Filtrar las películas duplicadas por su título (o cualquier campo único como "id")
+            // Filtrar las películas duplicadas por su título
             const peliculasUnicas = peliculas.filter(
                 (movie, index, self) =>
                     index === self.findIndex((m) => m.titulo === movie.titulo)
@@ -29,9 +29,8 @@ document.addEventListener("DOMContentLoaded", () => {
 
         const background = document.querySelector(".cine-detail__background");
         background.style.backgroundImage = `url(${movie.imagen})`;
-        background.style.opacity = '1';
+        background.style.opacity = "1";
 
-        // Filtrar únicamente las sesiones de "Gran Casa"
         const granCasaSessions = movie.sesiones["Gran Casa"];
         if (granCasaSessions) {
             renderDayButtons(granCasaSessions);
@@ -52,7 +51,7 @@ document.addEventListener("DOMContentLoaded", () => {
             dayButton.dataset.date = day;
 
             dayButton.addEventListener("click", () => {
-                document.querySelectorAll(".day-button").forEach(btn => btn.classList.remove("active"));
+                document.querySelectorAll(".day-button").forEach((btn) => btn.classList.remove("active"));
                 dayButton.classList.add("active");
                 renderShowtimes(sessions, day);
             });
@@ -64,7 +63,7 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
     function formatDate(dateString) {
-        const options = { weekday: 'short', day: 'numeric', month: 'short' };
+        const options = { weekday: "short", day: "numeric", month: "short" };
         return new Date(dateString).toLocaleDateString("es-ES", options);
     }
 
@@ -73,7 +72,7 @@ document.addEventListener("DOMContentLoaded", () => {
         showtimesContainer.innerHTML = "";
 
         if (sessions[date]) {
-            sessions[date].forEach(session => {
+            sessions[date].forEach((session) => {
                 const sessionDiv = document.createElement("div");
                 sessionDiv.classList.add("session");
 
@@ -110,57 +109,59 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
     function setupCarousel(peliculas) {
-        const track = document.getElementById("carousel-track");
-        const prevButton = document.querySelector(".carousel__prev");
-        const nextButton = document.querySelector(".carousel__next");
-        track.innerHTML = "";
-        let currentIndex = 0;
-    
-        // Crear los slides del carrusel
-        peliculas.forEach((movie, index) => {
-            const slide = document.createElement("li");
-            slide.classList.add("carousel__slide");
-            if (index === 0) slide.classList.add("selected");
-    
-            const img = document.createElement("img");
-            img.src = movie.cartel;
-            img.alt = movie.titulo;
-            img.classList.add("carousel__image");
-    
-            img.addEventListener("click", () => {
-                document.querySelectorAll(".carousel__slide").forEach(slide => slide.classList.remove("selected"));
-                slide.classList.add("selected");
-                renderMovieDetails(movie);
-                currentIndex = index; // Actualizamos el índice actual
+        const track = $("#carousel-track");
+        const isMobile = window.innerWidth <= 768; // Detectar si es móvil
+
+        // Crear los slides del carrusel dinámicamente
+        track.empty();
+        peliculas.forEach((movie) => {
+            const slide = `
+                <li class="carousel__slide">
+                    <a href="/cine_web_app/front-end/views/movies.html?id=${movie.id}" class="carousel__link">
+                        <img src="${movie.cartel}" alt="${movie.titulo}" class="carousel__image">
+                    </a>
+                </li>`;
+            track.append(slide);
+        });
+
+        // Inicializar Owl Carousel
+        track.addClass("owl-carousel").owlCarousel({
+            loop: true,
+            margin: 10,
+            nav: !isMobile, // Mostrar botones de navegación solo en escritorio
+            mouseDrag: isMobile, // Habilitar drag solo en móvil
+            touchDrag: isMobile, // Habilitar drag táctil solo en móvil
+            responsive: {
+                0: { items: 1 }, // 1 elemento en pantallas pequeñas
+                600: { items: 2 }, // 2 elementos en pantallas medianas
+                1000: { items: 3 }, // 3 elementos en pantallas más grandes
+                1200: { items: 7 }, // 7 elementos en pantallas grandes
+
+            },
+            navText: [
+                `<button class="carousel__button carousel__button--left">
+                    <span class="carousel__button-content">
+                        <img src="/cine_web_app/front-end/images/left-arrow.png" alt="Left Arrow">
+                    </span>
+                 </button>`,
+                `<button class="carousel__button carousel__button--right">
+                    <span class="carousel__button-content">
+                        <img src="/cine_web_app/front-end/images/right-arrow.png" alt="Right Arrow">
+                    </span>
+                 </button>`
+            ],
+        });
+
+        // Flechas personalizadas para escritorio
+        if (!isMobile) {
+            $(".carousel__button--left").on("click", function () {
+                track.trigger("prev.owl.carousel");
             });
-    
-            slide.appendChild(img);
-            track.appendChild(slide);
-        });
-    
-        // Función para actualizar el carrusel
-        function updateCarousel(index) {
-            const slides = document.querySelectorAll(".carousel__slide");
-            slides.forEach(slide => slide.classList.remove("selected"));
-            slides[index].classList.add("selected");
-            renderMovieDetails(peliculas[index]);
-            currentIndex = index;
+            $(".carousel__button--right").on("click", function () {
+                track.trigger("next.owl.carousel");
+            });
         }
-    
-        // Evento para botón "anterior"
-        prevButton.addEventListener("click", () => {
-            if (currentIndex > 0) {
-                updateCarousel(currentIndex - 1);
-            }
-        });
-    
-        // Evento para botón "siguiente"
-        nextButton.addEventListener("click", () => {
-            if (currentIndex < peliculas.length - 1) {
-                updateCarousel(currentIndex + 1);
-            }
-        });
     }
-    
+
     fetchMovies();
 });

@@ -1,0 +1,136 @@
+.cine-detail__carousel {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    padding: 1rem 0;
+
+    .carousel__track-container {
+        width: 90%;
+        max-width: 1700px;
+        overflow: hidden;
+        position: relative;
+    }
+
+    .carousel__track {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+
+        .carousel__slide {
+            flex: 0 0 auto;
+            text-align: center;
+            transition: transform 0.3s ease, opacity 0.3s ease;
+            padding: 0 10px;
+            list-style: none;
+
+            &.selected {
+                opacity: 1;
+                transform: scale(1);
+            }
+
+            .carousel__link {
+                display: block;
+                text-decoration: none;
+                color: inherit;
+
+                .carousel__image {
+                    width: 160px;
+                    height: 240px;
+                    object-fit: cover;
+                    border-radius: 10px;
+                    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+                    transition: transform 0.3s ease;
+
+                    &:hover {
+                        transform: scale(1.05);
+                        box-shadow: 0 6px 12px rgba(0, 0, 0, 0.4);
+                    }
+                }
+            }
+        }
+    }
+
+
+    // Ocultar botones en móvil
+    @media (max-width: 768px) {
+        .carousel__prev,
+        .carousel__next {
+            display: none;
+        }
+    }
+}
+
+// Owl Carousel Modificaciones
+.owl-carousel {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.owl-stage {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.owl-item {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: transform 0.3s ease;
+}
+
+.owl-nav,
+.owl-dots {
+    display: none; // Ocultar controles predeterminados de Owl Carousel
+}
+
+
+.carousel__button {
+    position: absolute;
+    top: 50%;
+    background: rgba(255, 255, 255, 0.9); // Fondo blanco con transparencia
+    border: none;
+    cursor: pointer;
+    width: 50px; // Botones más grandes para mejor interacción
+    height: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 10;
+    border-radius: 50%;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.15); // Sutil sombra para el botón
+
+    &:hover {
+        background-color: #ff2c78; // Color de fondo al pasar el ratón
+        transform: scale(1.15); // Ligero aumento al hover
+        box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3); // Sombra más profunda en hover
+    }
+
+    .carousel__button-content img {
+        width: 20px;
+        height: auto;
+        filter: invert(0.7); // Oscurece ligeramente el icono
+        transition: all 0.3s ease;
+    }
+
+    &:hover .carousel__button-content img {
+        filter: invert(1); // Hace el icono completamente blanco al hover
+    }
+
+    &--left {
+        left: -30px; // Ajusta la posición izquierda
+    }
+
+    &--right {
+        right: -30px; // Ajusta la posición derecha
+    }
+
+    // Animación de clic para una experiencia más interactiva
+    &:active {
+        transform: scale(1);
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+    }
+}
