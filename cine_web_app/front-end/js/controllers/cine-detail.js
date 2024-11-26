@@ -113,9 +113,10 @@ document.addEventListener("DOMContentLoaded", () => {
                         cineName: "Gran Casa", // Sustituir con el nombre dinámicamente
                         movieTitle: "Spider-Man: No Way Home", // Sustituir con el título dinámicamente
                         date: date,
-                        time: encodeURIComponent(session.hora),
+                        time: session.hora,
                         room: session.sala,
                     });
+                    console.log(queryParams);
 
                     window.location.href = `/cine_web_app/front-end/views/butacas.html?${queryParams.toString()}`;
                 });
