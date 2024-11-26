@@ -17,6 +17,7 @@ body {
   width: 100%;
   max-height: 45vh;
   overflow: hidden;
+  display: none;
 }
 .movie__banner-image {
   width: 100%;
@@ -25,10 +26,9 @@ body {
 .movie__details {
   display: flex;
   align-items: flex-start;
-  gap: 2rem;
-  padding: 2rem;
   width: 100%;
-  max-width: 1200px;
+  max-width: 320px;
+  flex-direction: column;
 }
 .movie__poster {
   flex-shrink: 0;
@@ -324,6 +324,21 @@ body {
 }
 .movie .modal .modal-content button:hover {
   background: #f80059;
+}
+
+@media (min-width: 480px) {
+  .movie__details {
+    display: flex;
+    align-items: flex-start;
+    gap: 2rem;
+    padding: 2rem;
+    width: 100%;
+    max-width: 1200px;
+    flex-direction: row;
+  }
+  .movie__banner {
+    display: block;
+  }
 }
 
 /*# sourceMappingURL=movies.css.map */
