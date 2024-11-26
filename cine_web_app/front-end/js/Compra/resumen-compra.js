@@ -50,7 +50,7 @@ function populateSummary() {
 
 // Función para extraer IDs de productos del parámetro 'products'
 function extractProductIds(productParam) {
-    const productMatches = productParam.match(/id=(\d+)/g) || [];
+    const productMatches = productParam ? productParam.match(/id=(\d+)/g) : [];
     return productMatches.map(match => parseInt(match.split('=')[1], 10));
 }
 
@@ -110,7 +110,6 @@ function fetchProductData(productIds) {
             return response.json();
         })
         .then(data => {
-            // Filtrar y mostrar sólo los productos que coinciden con los IDs de la URL
             const productContainer = document.querySelector('.purchase-summary__product-list');
             if (productContainer) {
                 productContainer.innerHTML = ''; // Limpiar cualquier contenido previo
@@ -129,5 +128,127 @@ function fetchProductData(productIds) {
         });
 }
 
-// Llamar a la función para rellenar los datos
+// Función para crear el pedido
+async function createOrder() {
+    const params = getQueryParams();
+
+    // Parsear los productos desde los parámetros de la URL
+    const parsedProducts = parseProducts(params.products);
+
+    // Obtener detalles de los productos desde la API
+    const products = await fetchProductDetails(parsedProducts.map(p => p.id));
+
+    // Calcular el número de entradas normales
+    const totalSeats = params.seats ? params.seats.split(',').length : 0;
+    const vipCount = parseInt(params.vipCount) || 0;
+    const normalCount = totalSeats - vipCount; // Entradas normales = Total - VIP
+
+    // Crear el objeto del pedido
+    const pedidoData = {
+        nombreCliente: params.name || 'No disponible',
+        emailCliente: params.email || 'No disponible',
+        telefonoCliente: params.phone || 'No disponible',
+        tituloPelicula: params.movieTitle || 'Título no disponible',
+        cine: params.cineName || 'No disponible',
+        fecha: params.date || 'No disponible',
+        hora: params.time || 'No disponible',
+        sala: params.room || 'No disponible',
+        butacasReservadas: params.seats ? params.seats.split(',') : [],
+        totalPago: parseFloat(params.cartTotal) || 0,
+        entradas: [
+            {
+                tipo: 'Normal',
+                cantidad: normalCount,
+                precioUnitario: 6.9,
+                precioTotal: normalCount * 6.9,
+            },
+            {
+                tipo: 'VIP',
+                cantidad: vipCount,
+                precioUnitario: 8.1,
+                precioTotal: vipCount * 8.1,
+            },
+        ],
+        productos: parsedProducts.map(p => {
+            const productDetails = products.find(product => product.id === p.id);
+            return {
+                id: p.id,
+                cantidad: p.quantity,
+                nombre: productDetails ? productDetails.nombre : 'Desconocido',
+                precio: productDetails ? productDetails.precio : 0,
+            };
+        }),
+    };
+
+    console.log('Enviando datos del pedido a la API:', JSON.stringify(pedidoData, null, 2));
+
+    fetch('http://localhost:5006/api/Pedido/CreatePedido', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(pedidoData),
+    })
+        .then(response => {
+            if (!response.ok) {
+                throw new Error(`Error al crear el pedido: ${response.statusText}`);
+            }
+            return response.json();
+        })
+        .then(data => {
+            console.log('Pedido creado con éxito:', data);
+        })
+        .catch(error => {
+            console.error('Error al crear el pedido:', error);
+        });
+}
+
+// Función para parsear los productos desde la URL
+function parseProducts(productParam) {
+    const productData = [];
+    if (!productParam) return productData;
+
+    const regex = /id=(\d+)&quantity=(\d+)/g;
+    let match;
+
+    while ((match = regex.exec(productParam)) !== null) {
+        productData.push({
+            id: parseInt(match[1], 10),
+            quantity: parseInt(match[2], 10),
+        });
+    }
+
+    return productData;
+}
+
+// Función para obtener los detalles de productos
+async function fetchProductDetails(productIds) {
+    if (!productIds || productIds.length === 0) return [];
+    const apiUrl = `http://localhost:5006/api/Productos/GetProductos?ids=${productIds.join(',')}`;
+    try {
+        const response = await fetch(apiUrl);
+        if (!response.ok) throw new Error('Error al obtener los detalles de los productos.');
+        return await response.json();
+    } catch (error) {
+        console.error('Error al cargar los productos:', error);
+        return [];
+    }
+}
+
+// Función para obtener los parámetros de la URL
+function getQueryParams() {
+    const params = {};
+    const queryString = window.location.search.slice(1);
+    const pairs = queryString.split('&');
+    pairs.forEach(pair => {
+        const [key, value] = pair.split('=');
+        params[decodeURIComponent(key)] = decodeURIComponent(value.replace(/\+/g, ' '));
+    });
+    return params;
+}
+
+// Llamar a la función para rellenar el resumen
 populateSummary();
+
+// Crear el pedido automáticamente cuando la página se cargue
+document.addEventListener('DOMContentLoaded', createOrder);

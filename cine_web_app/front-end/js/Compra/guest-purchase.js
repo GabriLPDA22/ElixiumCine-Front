@@ -148,47 +148,41 @@ document.addEventListener('DOMContentLoaded', async function () {
 });
 
 
-
 document.getElementById('finalize-purchase').addEventListener('click', function (e) {
-    // Obtener todos los campos del formulario
     const fields = document.querySelectorAll('.customer-info input');
     let isValid = true;
     let queryParams = [];
 
-    // Iterar sobre los campos para verificar si están llenos
+    // Validar campos del formulario
     fields.forEach(field => {
         if (field.value.trim() === '') {
             isValid = false;
-            // Marcar el campo como inválido visualmente
-            field.style.borderColor = '#ff2c78'; // Color de error
+            field.style.borderColor = '#ff2c78';
             field.style.boxShadow = '0 0 5px rgba(255, 44, 120, 0.5)';
         } else {
-            // Restaurar el estilo si está lleno
             field.style.borderColor = 'rgba(255, 255, 255, 0.3)';
             field.style.boxShadow = 'none';
-            // Agregar los datos a los parámetros de la URL
             queryParams.push(`${encodeURIComponent(field.name)}=${encodeURIComponent(field.value)}`);
         }
     });
 
-    // Si algún campo está vacío, evitar la acción del botón y mostrar un mensaje
     if (!isValid) {
         e.preventDefault();
         alert('Por favor, rellena todos los campos antes de continuar.');
     } else {
-        // Obtener los parámetros existentes de la URL actual
+        // Agregar parámetros adicionales
         const currentParams = new URLSearchParams(window.location.search);
-
-        // Agregar los nuevos parámetros de usuario
         queryParams.forEach(param => {
             const [key, value] = param.split('=');
-            currentParams.set(key, decodeURIComponent(value)); // Agregar o reemplazar parámetros
+            currentParams.set(key, decodeURIComponent(value));
         });
 
-        // Reconstruir la URL con todos los parámetros
+        // Redirigir a la página de resumen con todos los parámetros
         const newQueryString = currentParams.toString();
         window.location.href = `Sumary.html?${newQueryString}`;
     }
 });
+
+
 
   
