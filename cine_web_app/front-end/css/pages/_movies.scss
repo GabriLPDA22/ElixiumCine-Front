@@ -32,6 +32,7 @@ body {
     width: 100%;
     max-height: 45vh;
     overflow: hidden;
+    display: none;
 
     &-image {
       width: 100%;
@@ -42,10 +43,10 @@ body {
   &__details {
     display: flex;
     align-items: flex-start;
-    gap: 2rem;
-    padding: 2rem;
     width: 100%;
-    max-width: 1200px;
+    max-width: 320px;
+    flex-direction: column;
+
   }
 
   &__poster {
@@ -188,7 +189,7 @@ body {
         gap: 1rem;
         margin-top: 1rem;
         padding-bottom: 1rem; // Espacio inferior para que el borde de las tarjetas no toque el límite
-        
+
 
         .session {
           flex: 0 0 auto; // Evita que las tarjetas se expandan y se ajusten en una sola fila
@@ -205,7 +206,7 @@ body {
           background: rgba(0, 0, 0, 0.6);
           transition: all 0.3s ease;
           cursor: pointer;
- 
+
           &:hover {
             background: rgba(255, 44, 120, 0.2);
           }
@@ -409,4 +410,22 @@ body {
       }
     }
   }
+}
+
+
+@media (min-width: 480px) {
+  .movie__details {
+    display: flex;
+    align-items: flex-start;
+    gap: 2rem;
+    padding: 2rem;
+    width: 100%;
+    max-width: 1200px;
+    flex-direction: row;
+  }
+
+  .movie__banner{
+    display: block;
+  }
+
 }
