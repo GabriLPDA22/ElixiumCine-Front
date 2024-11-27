@@ -86,7 +86,7 @@ async function inicializarButacas() {
             const error = await response.text();
             throw new Error(error);
         }
-
+        cargarButacas();
         console.log("Butacas inicializadas correctamente.");
     } catch (error) {
         console.error("Error al inicializar las butacas:", error);
@@ -251,16 +251,16 @@ continueBtn.addEventListener('click', () => {
 // ==========================================================
 // Inicialización de la página
 // ==========================================================
-
+/*
 document.addEventListener('DOMContentLoaded', async function () {
     try {
         await inicializarButacas();
-        await cargarButacas();
+        // await cargarButacas();
     } catch (error) {
         console.error("Error durante la inicialización o carga:", error.message);
     }
 });
-
+*/
 
 // ==========================================================
 //  Movil
@@ -292,5 +292,6 @@ document.addEventListener('DOMContentLoaded', () => {
     adjustMapForMobile();
     // Mantén las funciones de inicialización aquí
     inicializarButacas();
-    cargarButacas();
+    // cargarButacas();
+
 });
