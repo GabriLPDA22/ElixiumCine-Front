@@ -1,16 +1,11 @@
-// Reset global
-*,
-*::before,
-*::after {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-}
 
 body {
     font-family: "Poppins", sans-serif;
     background-color: #1b1b2f;
     color: #ffffff;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
 }
 
 // Header Styles
