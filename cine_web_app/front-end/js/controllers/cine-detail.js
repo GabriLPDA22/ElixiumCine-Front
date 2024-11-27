@@ -148,7 +148,6 @@ document.addEventListener("DOMContentLoaded", () => {
         track.addClass("owl-carousel").owlCarousel({
             loop: true,
             margin: 10,
-            nav: !isMobile, // Mostrar botones de navegación solo en escritorio
             mouseDrag: isMobile, // Habilitar drag solo en móvil
             touchDrag: isMobile, // Habilitar drag táctil solo en móvil
             responsive: {
@@ -156,19 +155,7 @@ document.addEventListener("DOMContentLoaded", () => {
                 600: { items: 2 },
                 1000: { items: 3 },
                 1200: { items: 7 },
-            },
-            navText: [
-                `<button class="carousel__button carousel__button--left">
-                    <span class="carousel__button-content">
-                        <img src="/cine_web_app/front-end/images/left-arrow.png" alt="Left Arrow">
-                    </span>
-                 </button>`,
-                `<button class="carousel__button carousel__button--right">
-                    <span class="carousel__button-content">
-                        <img src="/cine_web_app/front-end/images/right-arrow.png" alt="Right Arrow">
-                    </span>
-                 </button>`
-            ],
+            }
         });
 
         // Actualizar fondo y destacar slide activo

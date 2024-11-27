@@ -5,50 +5,53 @@ body {
   margin: 0;
   padding: 0;
   overflow-x: hidden;
-  max-width: 100vw;
-  max-height: 100vh;
 }
 
 .cine-detail {
   display: flex;
+  flex-direction: column; /* Mobile-first */
+  position: relative;
 
   &__background {
     width: 100%;
-    height: 90vh;
+    height: 50vh;
     background-size: cover;
     background-position: center;
     z-index: -1;
-    transition: background-image 0.5s ease-in-out;
   }
 
-  &__overlay {
+  &__logo {
     position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100vh;
-    background: rgba(0, 0, 0, 0.5);
-    z-index: -1;
+    top: 10px;
+    right: 20px;
+    width: 150px;
+    z-index: 10;
+
+    @media (min-width: 1024px) {
+      top: 20px;
+      right: 40px;
+      width: 180px;
+    }
   }
 
   &__info {
-    position: absolute;
-    left: 5%;
-    text-align: left;
-    z-index: 1;
+    position: relative;
     padding: 1rem;
-    padding-top: 8vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    z-index: 5; /* Asegura que está encima del fondo */
 
     &-title {
-      font-size: 3rem;
+      font-size: 2rem;
       font-weight: bold;
+      text-align: center;
       color: #ffffff;
-      margin: 0px;
-      max-width: 800px;
+      margin-bottom: 0.5rem;
     }
 
     &-metadata {
-      font-size: 1.2rem;
+      font-size: 1rem;
       color: #dcdcdc;
       margin: 0.5rem 0;
 
@@ -57,30 +60,28 @@ body {
           background: #ff2c78;
           padding: 0.2rem 0.5rem;
           border-radius: 0.3rem;
-          color: #fff;
           font-weight: bold;
         }
       }
     }
 
     &-description {
-      font-size: 1.3rem;
+      font-size: 1.2rem;
       color: #ffffff;
       margin-top: 1rem;
-      max-width: 70%;
-      min-height: 150px;
-      max-width: 800px;
+      text-align: center;
+      max-width: 80%; /* Limita el ancho en móviles */
     }
 
     &-showtimes {
       display: flex;
+      flex-wrap: wrap;
       gap: 1rem;
-      margin-top: 1rem;
-      margin-bottom: 1rem;
+      justify-content: center;
+      margin-top: 1.5rem;
 
       .session {
-        flex: 0 0 auto;
-        position: relative;
+        position: relative; /* Hace que los elementos posicionados dentro estén relativos a este contenedor */
         display: flex;
         flex-direction: column;
         justify-content: center;
@@ -88,81 +89,60 @@ body {
         border: 1px solid #ff2c78;
         border-radius: 8px;
         width: 170px;
-        color: #ffffff;
         background: rgba(0, 0, 0, 0.6);
-        transition: all 0.3s ease;
         cursor: pointer;
-
+        transition: all 0.3s ease;
+      
         &:hover {
           background: rgba(255, 44, 120, 0.2);
         }
-
-        &__time {
+      
+        .session__time {
           font-size: 1.4rem;
           font-weight: bold;
           margin-bottom: 0.2rem;
+          text-align: center;
         }
-
-        &__room {
+      
+        .session__room {
           font-size: 0.9rem;
           color: #dcdcdc;
+          text-align: center;
         }
-
-        &__tag {
+      
+        .session__tag {
           background-color: #ff2c78;
           color: #ffffff;
           padding: 0.2rem 0.4rem;
           font-size: 0.8rem;
           font-weight: bold;
-          align-self: flex-start;
           border-radius: 4px;
-
+          align-self: center; /* Centra etiquetas adicionales dentro de la tarjeta */
+      
           &--isense {
-            position: absolute;
-            right: 0;
+            position: absolute; /* Relativo al contenedor `.session` */
             top: 0;
+            right: 0; /* Anclado a la esquina superior derecha */
+            writing-mode: vertical-rl;
+            text-orientation: mixed;
+            height: auto;
             padding: 0.4rem 0.5rem;
             border-top-right-radius: 8px;
             border-bottom-right-radius: 6px;
-            writing-mode: vertical-rl;
-            text-orientation: mixed;
-            height: 71px;
             display: flex;
-            align-items: center;
             justify-content: center;
+            align-items: center;
             text-align: center;
           }
         }
-
-        &__vose {
-          background-color: #ff2c78;
-          font-size: 0.7rem;
-          border-radius: 5%;
-          color: #ffffff;
-          padding: 0.2rem 0.4rem;
-          margin-top: 0.5rem; // Espaciado entre etiquetas
-          align-self: flex-start;
-        }
-
-        &.four-sessions {
-          .session:nth-child(4) {
-            order: 3;
-          }
-        }
       }
+      
     }
-  }
-
-  &__logo {
-    position: absolute;
-    right: 20px;
-    width: 150px;
-    margin-top: 15px;
-    margin-left: 90%;
   }
 
   .day-selector {
     display: flex;
+    justify-content: center;
     gap: 1rem;
     margin-top: 1.5rem;
 
@@ -183,6 +163,50 @@ body {
       &:hover {
         color: #ff2c78;
       }
+    }
+  }
+}
+
+/* Escritorio */
+@media (min-width: 1024px) {
+  .cine-detail {
+    flex-direction: row;
+
+    &__background {
+      height: 100vh;
+    }
+
+    &__info {
+      position: absolute;
+      top: 5vh;
+      left: 5vw;
+      align-items: flex-start;
+      text-align: left;
+      padding: 0;
+
+      &-title {
+        font-size: 3rem;
+      }
+
+      &-description {
+        font-size: 1.5rem;
+        max-width: 800px;
+        min-height: 200px;
+        text-align: left;
+      }
+
+      &-showtimes {
+        justify-content: flex-start;
+        gap: 2rem; /* Más espacio entre las sesiones */
+      }
+    }
+
+    &__logo {
+      width: 200px;
+    }
+
+    .day-selector {
+      justify-content: flex-start; /* Alineado al inicio en escritorio */
     }
   }
 }
