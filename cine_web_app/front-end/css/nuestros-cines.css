@@ -82,6 +82,9 @@ body {
   max-width: 1200px;
   margin: 0 auto;
 }
+.cines__link {
+  text-decoration: none;
+}
 
 .cines__card {
   position: relative;
