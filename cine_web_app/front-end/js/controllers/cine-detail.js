@@ -1,5 +1,7 @@
 document.addEventListener("DOMContentLoaded", () => {
     const daySelector = document.getElementById("day-selector");
+    const showtimesContainer = document.getElementById("showtimes-container");
+    let diaSeleccionado; // Variable para almacenar el día actualmente seleccionado
 
     async function fetchMovies() {
         try {
@@ -31,10 +33,14 @@ document.addEventListener("DOMContentLoaded", () => {
         background.style.backgroundImage = `url(${movie.imagen})`;
         background.style.opacity = "1";
 
-        // Filtrar sesiones de cine
-        const granCasaSessions = movie.sesiones["Gran Casa"];
-        if (granCasaSessions) {
-            renderDayButtons(granCasaSessions);
+        // Renderizar sesiones para el cine actual
+        const urlParams = new URLSearchParams(window.location.search);
+        const cineId = urlParams.get("cineId"); // Captura cineId dinámicamente
+        const cineName = movie.sesiones && Object.keys(movie.sesiones).find(key => key.includes("Gran Casa")); // Ejemplo para detectar dinámicamente
+        const sessions = cineName ? movie.sesiones[cineName] : null;
+
+        if (sessions) {
+            renderDayButtons(sessions);
         } else {
             daySelector.innerHTML = "<p>No hay sesiones disponibles para este cine.</p>";
         }
@@ -54,79 +60,76 @@ document.addEventListener("DOMContentLoaded", () => {
             dayButton.addEventListener("click", () => {
                 document.querySelectorAll(".day-button").forEach((btn) => btn.classList.remove("active"));
                 dayButton.classList.add("active");
+
+                diaSeleccionado = day; // Actualiza el día seleccionado
                 renderShowtimes(sessions, day);
             });
 
             daySelector.appendChild(dayButton);
         });
 
+        // Renderiza la primera sesión por defecto
+        diaSeleccionado = days[0];
         renderShowtimes(sessions, days[0]);
+    }
+
+    function renderShowtimes(sessions, day) {
+        showtimesContainer.innerHTML = "";
+        const sesionesPorDia = sessions[day];
+
+        if (!Array.isArray(sesionesPorDia) || sesionesPorDia.length === 0) {
+            showtimesContainer.innerHTML = "<p>No hay sesiones disponibles para este día.</p>";
+            return;
+        }
+
+        sesionesPorDia.forEach((sesion) => {
+            const sessionDiv = document.createElement("div");
+            sessionDiv.classList.add("session");
+
+            const timeDiv = document.createElement("div");
+            timeDiv.classList.add("session__time");
+            timeDiv.textContent = sesion.hora;
+            sessionDiv.appendChild(timeDiv);
+
+            const roomDiv = document.createElement("div");
+            roomDiv.classList.add("session__room");
+            roomDiv.textContent = `Sala ${sesion.sala} ${sesion.esISense ? "iSense" : ""}`;
+            sessionDiv.appendChild(roomDiv);
+
+            if (sesion.esVOSE) {
+                const voseDiv = document.createElement("div");
+                voseDiv.classList.add("session__tag", "session__tag--vose");
+                voseDiv.textContent = "VOSE";
+                sessionDiv.appendChild(voseDiv);
+            }
+
+            if (sesion.esISense) {
+                const isenseDiv = document.createElement("div");
+                isenseDiv.classList.add("session__tag", "session__tag--isense");
+                isenseDiv.textContent = "iSense";
+                sessionDiv.appendChild(isenseDiv);
+            }
+
+            sessionDiv.addEventListener("click", () => {
+                const queryParams = new URLSearchParams({
+                    cineName: "Gran Casa", // Cambia según el cine seleccionado dinámicamente
+                    movieTitle: document.querySelector(".cine-detail__info-title").textContent,
+                    date: diaSeleccionado || day,
+                    time: sesion.hora,
+                    room: sesion.sala,
+                });
+
+                // Redirigir a la página de butacas
+                window.location.href = `/cine_web_app/front-end/views/butacas.html?${queryParams.toString()}`;
+            });
+
+            showtimesContainer.appendChild(sessionDiv);
+        });
     }
 
     function formatDate(dateString) {
         const options = { weekday: "short", day: "numeric", month: "short" };
         return new Date(dateString).toLocaleDateString("es-ES", options);
-    }
-
-    function renderShowtimes(sessions, date) {
-        const showtimesContainer = document.getElementById("showtimes-container");
-        showtimesContainer.innerHTML = "";
-
-        if (sessions[date]) {
-            sessions[date].forEach((session) => {
-                const sessionDiv = document.createElement("div");
-                sessionDiv.classList.add("session");
-
-                // Hora de la sesión
-                const timeDiv = document.createElement("div");
-                timeDiv.classList.add("session__time");
-                timeDiv.textContent = session.hora;
-
-                // Sala de la sesión
-                const roomDiv = document.createElement("div");
-                roomDiv.classList.add("session__room");
-                roomDiv.textContent = `Sala ${session.sala} ${session.esISense ? "iSense" : ""}`;
-
-                // Ensamblar la tarjeta de sesión
-                sessionDiv.appendChild(timeDiv);
-                sessionDiv.appendChild(roomDiv);
-
-                // Etiqueta VOSE (si aplica)
-                if (session.esVOSE) {
-                    const voseDiv = document.createElement("div");
-                    voseDiv.classList.add("session__tag", "session__tag--vose");
-                    voseDiv.textContent = "VOSE";
-                    sessionDiv.appendChild(voseDiv);
-                }
-
-                // Etiqueta iSense (si aplica)
-                if (session.esISense) {
-                    const isenseTag = document.createElement("div");
-                    isenseTag.classList.add("session__tag", "session__tag--isense");
-                    isenseTag.textContent = "iSense";
-                    sessionDiv.appendChild(isenseTag);
-                }
-
-                // Agregar evento para redirigir con los parámetros correctos
-                sessionDiv.addEventListener("click", () => {
-                    const queryParams = new URLSearchParams({
-                        cineName: "Gran Casa", // Sustituir con el nombre dinámicamente
-                        movieTitle: "Spider-Man: No Way Home", // Sustituir con el título dinámicamente
-                        date: date,
-                        time: session.hora,
-                        room: session.sala,
-                    });
-                    console.log(queryParams);
-
-                    window.location.href = `/cine_web_app/front-end/views/butacas.html?${queryParams.toString()}`;
-                });
-
-                // Añadir la tarjeta de sesión al contenedor
-                showtimesContainer.appendChild(sessionDiv);
-            });
-        } else {
-            showtimesContainer.innerHTML = "<p>No hay sesiones para esta fecha.</p>";
-        }
     }
 
     function setupCarousel(peliculas) {
@@ -144,35 +147,30 @@ document.addEventListener("DOMContentLoaded", () => {
             track.append(slide);
         });
 
-        // Inicializar Owl Carousel
         track.addClass("owl-carousel").owlCarousel({
             loop: true,
             margin: 10,
-            mouseDrag: isMobile, // Habilitar drag solo en móvil
-            touchDrag: isMobile, // Habilitar drag táctil solo en móvil
+            mouseDrag: isMobile,
+            touchDrag: isMobile,
             responsive: {
                 0: { items: 1 },
                 600: { items: 2 },
                 1000: { items: 3 },
                 1200: { items: 7 },
-            }
+            },
         });
 
-        // Actualizar fondo y destacar slide activo
         track.on("changed.owl.carousel", function (event) {
             const currentIndex = event.item.index - event.relatedTarget._clones.length / 2;
-            const realIndex = (currentIndex + peliculas.length) % peliculas.length; // Evita valores negativos
+            const realIndex = (currentIndex + peliculas.length) % peliculas.length;
             const currentMovie = peliculas[realIndex];
 
-            // Actualiza el fondo y los detalles
             renderMovieDetails(currentMovie);
 
-            // Resaltar slide activo
             $(".carousel__slide").removeClass("selected");
             $(`.carousel__slide[data-index="${realIndex}"]`).addClass("selected");
         });
 
-        // Flechas personalizadas para escritorio
         if (!isMobile) {
             $(".carousel__button--left").on("click", function () {
                 track.trigger("prev.owl.carousel");
