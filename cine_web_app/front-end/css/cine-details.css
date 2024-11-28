@@ -79,13 +79,13 @@ body {
   display: flex;
   flex-direction: column;
   justify-content: center;
-  padding: 0.5rem;
   border: 1px solid #ff2c78;
   border-radius: 8px;
   width: 170px;
   background: rgba(0, 0, 0, 0.6);
   cursor: pointer;
   transition: all 0.3s ease;
+  min-height: 85px;
 }
 .cine-detail__info-showtimes .session:hover {
   background: rgba(255, 44, 120, 0.2);
@@ -94,12 +94,12 @@ body {
   font-size: 1.4rem;
   font-weight: bold;
   margin-bottom: 0.2rem;
-  text-align: center;
+  padding-left: 10px;
 }
 .cine-detail__info-showtimes .session .session__room {
   font-size: 0.9rem;
   color: #dcdcdc;
-  text-align: center;
+  padding-left: 10px;
 }
 .cine-detail__info-showtimes .session .session__tag {
   background-color: #ff2c78;
@@ -107,8 +107,8 @@ body {
   padding: 0.2rem 0.4rem;
   font-size: 0.8rem;
   font-weight: bold;
-  border-radius: 4px;
-  align-self: center; /* Centra etiquetas adicionales dentro de la tarjeta */
+  max-width: 39px;
+  margin-left: 10px;
 }
 .cine-detail__info-showtimes .session .session__tag--isense {
   position: absolute; /* Relativo al contenedor `.session` */
@@ -124,6 +124,7 @@ body {
   justify-content: center;
   align-items: center;
   text-align: center;
+  height: 72px;
 }
 .cine-detail .day-selector {
   display: flex;

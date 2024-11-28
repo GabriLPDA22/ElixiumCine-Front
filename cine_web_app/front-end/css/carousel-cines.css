@@ -16,6 +16,7 @@
   display: flex;
   align-items: center;
   justify-content: center;
+  gap: 10px;
 }
 .cine-detail__carousel .carousel__track .carousel__slide {
   flex: 0 0 auto;
@@ -24,7 +25,10 @@
   list-style: none;
 }
 .cine-detail__carousel .carousel__track .carousel__slide .carousel__link {
-  display: block;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
   text-decoration: none;
   color: inherit;
 }
@@ -34,6 +38,7 @@
   object-fit: cover;
   border-radius: 10px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  margin: 0 auto;
 }
 .cine-detail__carousel .carousel__track .carousel__slide .carousel__link .carousel__image:hover {
   transform: scale(1.05);
@@ -76,6 +81,11 @@
 @media (max-width: 768px) {
   .cine-detail__carousel .carousel__button {
     display: none;
+  }
+  .cine-detail__carousel .carousel__track {
+    flex-direction: column;
+    align-items: center;
+    padding: 0;
   }
 }
 
