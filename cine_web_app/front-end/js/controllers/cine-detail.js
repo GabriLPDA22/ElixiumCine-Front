@@ -135,6 +135,7 @@ document.addEventListener("DOMContentLoaded", () => {
     function setupCarousel(peliculas) {
         const track = $("#carousel-track");
         const isMobile = window.innerWidth <= 768; // Detectar si es móvil
+        const isMacScreen = window.innerWidth > 1440; // Detectar si es pantalla Mac o grande
 
         // Crear los slides del carrusel dinámicamente
         peliculas.forEach((movie, index) => {
@@ -149,14 +150,15 @@ document.addEventListener("DOMContentLoaded", () => {
 
         track.addClass("owl-carousel").owlCarousel({
             loop: true,
-            margin: 10,
+            margin: isMacScreen ? 20 : 10, // Margen mayor en pantallas grandes
             mouseDrag: isMobile,
             touchDrag: isMobile,
             responsive: {
                 0: { items: 1 },
                 600: { items: 2 },
                 1000: { items: 3 },
-                1200: { items: 7 },
+                1440: { items: 5 }, // Ajuste para pantallas grandes (Mac)
+                1920: { items: 7 }, // Ajuste para pantallas ultra anchas
             },
         });
 
