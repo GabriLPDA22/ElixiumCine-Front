@@ -117,7 +117,7 @@ function fetchProductData(productIds) {
                     const product = data.find(product => product.id === productId);
                     if (product) {
                         const productElement = document.createElement('p');
-                        productElement.innerHTML = `<strong>Producto:</strong> ${product.nombre}`;
+                        productElement.innerHTML = `${product.nombre}`;
                         productContainer.appendChild(productElement);
                     }
                 });
