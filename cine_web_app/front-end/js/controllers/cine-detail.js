@@ -136,14 +136,18 @@ document.addEventListener("DOMContentLoaded", () => {
         const track = $("#carousel-track");
         const isMobile = window.innerWidth <= 768; // Detectar si es móvil
 
+        // Obtener el cineId de la URL actual
+        const urlParams = new URLSearchParams(window.location.search);
+        const cineId = urlParams.get('cineId');
+
         // Crear los slides del carrusel dinámicamente
         peliculas.forEach((movie, index) => {
             const slide = `
-                <li class="carousel__slide" data-index="${index}" data-title="${movie.titulo}" data-id="${movie.id}">
-                    <a href="/cine_web_app/front-end/views/movies.html?id=${movie.id}" class="carousel__link">
-                        <img src="${movie.cartel}" alt="${movie.titulo}" class="carousel__image">
-                    </a>
-                </li>`;
+        <li class="carousel__slide" data-index="${index}" data-title="${movie.titulo}" data-id="${movie.id}">
+            <a href="/cine_web_app/front-end/views/movies.html?id=${movie.id}&cineId=${cineId}" class="carousel__link">
+                <img src="${movie.cartel}" alt="${movie.titulo}" class="carousel__image">
+            </a>
+        </li>`;
             track.append(slide);
         });
 

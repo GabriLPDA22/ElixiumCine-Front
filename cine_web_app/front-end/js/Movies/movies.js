@@ -1,6 +1,7 @@
-// Obtén el ID de la película de la URL
+// Obtén el ID de la película y el cine desde la URL
 const urlParams = new URLSearchParams(window.location.search);
-const movieId = urlParams.get('id');
+const movieId = urlParams.get('id'); // ID de la película
+const cineId = urlParams.get('cineId'); // ID del cine
 
 // Variables globales
 let cineSeleccionado = null;
@@ -9,14 +10,14 @@ const daySelector = document.getElementById("day-selector");
 const showtimesContainer = document.getElementById("showtimes-container");
 
 // Oculta los elementos relacionados con sesiones y días al cargar la página
-daySelector.style.display = "none";
-showtimesContainer.style.display = "none";
+if (daySelector) daySelector.style.display = "none";
+if (showtimesContainer) showtimesContainer.style.display = "none";
 
 // Función para cargar los detalles de la película
 async function loadMovieDetails(id) {
     try {
         const response = await fetch(`http://localhost:5006/api/Movie/GetPeliculaById?id=${id}`);
-        if (!response.ok) throw new Error(`HTTP error! Status: ${response.status}`);
+        if (!response.ok) throw new Error(`Error al obtener la película: ${response.status}`);
 
         const movie = await response.json();
         console.log('Datos de la película:', movie);
@@ -33,24 +34,46 @@ async function loadMovieDetails(id) {
         document.getElementById('movie-genre').textContent = movie.genero;
         document.getElementById('movie-rating').textContent = movie.calificacion;
 
-        // Imagen de clasificación de edad
         const ageRatingIcon = document.getElementById('age-rating-icon');
         ageRatingIcon.src = movie.imagenEdadRecomendada;
         ageRatingIcon.alt = `Clasificación +${movie.edadRecomendada}`;
     } catch (error) {
-        console.error("Error loading movie details:", error);
+        console.error("Error al cargar los detalles de la película:", error);
     }
 }
 
+// Función para cargar el nombre del cine y actualizar la UI
+async function fetchCinemaName(cineId) {
+    try {
+        if (!cineId) {
+            console.warn("No se detectó cineId en la URL.");
+            showtimesContainer.innerHTML = "<p>Por favor, selecciona un cine para ver las sesiones disponibles.</p>";
+            return;
+        }
 
-function redirectToSeatSelection(movieTitle, cineName, date, time, room) {
-    console.log(`Redirigiendo con movieTitle: ${movieTitle}, cineName: ${cineName}, date: ${date}, time: ${time}, room: ${room}`);
-    // Redirige a la página de selección de asientos con los datos en la URL
-    window.location.href = `/cine_web_app/front-end/views/butacas.html?movieTitle=${encodeURIComponent(movieTitle)}&cineName=${encodeURIComponent(cineName)}&date=${encodeURIComponent(date)}&time=${encodeURIComponent(time)}&room=${encodeURIComponent(room)}`;
+        const response = await fetch(`http://localhost:5006/api/Cine/GetCineById?cineId=${cineId}`);
+        if (!response.ok) throw new Error('Error al obtener el cine');
+
+        const cine = await response.json();
+        console.log("Cine encontrado:", cine);
+
+        // Actualizar la UI con el nombre del cine
+        const locationSpan = document.querySelector(".location span");
+        if (locationSpan) locationSpan.textContent = cine.nombre;
+
+        // Guardar el nombre del cine seleccionado
+        cineSeleccionado = cine.nombre;
+
+        // Mostrar elementos relacionados con sesiones
+        if (daySelector) daySelector.style.display = "flex";
+        if (showtimesContainer) showtimesContainer.style.display = "flex";
+
+        // Cargar los días y las sesiones del cine seleccionado
+        loadDaysAndSessions(cine.id);
+    } catch (error) {
+        console.error("Error al obtener el cine:", error);
+    }
 }
-
-
-
 
 // Abre el modal para selección de cine
 function openCinemaModal() {
@@ -59,13 +82,13 @@ function openCinemaModal() {
     loadCinemas();
 }
 
-// Cierra el modal de cine
+// Cierra el modal de selección de cine
 function closeCinemaModal() {
     document.getElementById("cinema-modal").classList.add("hidden");
     document.body.style.overflow = "auto";
 }
 
-// Cargar cines desde el backend
+// Cargar la lista de cines desde el backend
 async function loadCinemas() {
     try {
         const response = await fetch('http://localhost:5006/api/Cine/GetCines');
@@ -92,46 +115,47 @@ async function loadCinemas() {
     }
 }
 
-// Seleccionar cine y actualizar la UI
-function selectCinema(cinemaName, cinemaId) {
-    cineSeleccionado = cinemaId;
-    document.querySelector(".location span").textContent = cinemaName;
+// Seleccionar un cine y actualizar la interfaz
+async function selectCinema(cinemaName, cinemaId) {
+    try {
+        cineSeleccionado = cinemaName; // Actualizar el cine seleccionado globalmente
+        document.querySelector(".location span").textContent = cinemaName; // Actualizar en la interfaz
 
-    // Muestra los elementos y carga las sesiones una vez se ha seleccionado el cine
-    if (cineSeleccionado) {
-        daySelector.style.display = "flex";
-        showtimesContainer.style.display = "flex";
-        loadDaysAndSessions(); // Cargar los días y las sesiones del cine seleccionado
-    } else {
-        daySelector.style.display = "none";
-        showtimesContainer.style.display = "none";
+        // Mostrar los elementos de día y sesiones
+        if (daySelector) daySelector.style.display = "flex";
+        if (showtimesContainer) showtimesContainer.style.display = "flex";
+
+        // Cargar los días y las sesiones del cine seleccionado
+        await loadDaysAndSessions(cinemaId);
+    } catch (error) {
+        console.error("Error al seleccionar el cine:", error);
     }
 }
 
 // Cargar los días y las sesiones
-async function loadDaysAndSessions() {
+async function loadDaysAndSessions(cineId) {
     try {
-        const response = await fetch(`http://localhost:5006/api/Cine/GetCineConPeliculas?cineId=${cineSeleccionado}`);
+        if (!cineId) {
+            console.error("No se detectó cineId.");
+            showtimesContainer.innerHTML = "<p>Por favor, selecciona un cine para ver las sesiones disponibles.</p>";
+            daySelector.innerHTML = "";
+            return;
+        }
+
+        const response = await fetch(`http://localhost:5006/api/Cine/GetCineConPeliculas?cineId=${cineId}`);
         if (!response.ok) throw new Error('Error al cargar las películas del cine');
 
         const cine = await response.json();
-        console.log("Películas desde el backend:", cine.peliculas);
-
         daySelector.innerHTML = "";
 
         const fechasUnicas = new Set();
 
-        cine.peliculas.forEach((pelicula) => {
-            console.log(`Cargando sesiones para: ${pelicula.titulo}`);
-            const sesionesPorCine = pelicula.sesiones["Gran Casa"]; // Cambiar si el cine no es "Gran Casa"
+        cine.peliculas.forEach(pelicula => {
+            const sesionesPorCine = pelicula.sesiones[cineSeleccionado];
             if (!sesionesPorCine) return;
 
-            Object.keys(sesionesPorCine).forEach((day) => {
-                if (/^\d{4}-\d{2}-\d{2}$/.test(day)) {
-                    fechasUnicas.add(day);
-                } else {
-                    console.warn(`Fecha inválida: ${day}`);
-                }
+            Object.keys(sesionesPorCine).forEach(day => {
+                fechasUnicas.add(day);
             });
         });
 
@@ -143,135 +167,128 @@ async function loadDaysAndSessions() {
                 diaSeleccionado = day; // Seleccionar automáticamente el primer día
             }
             dayButton.textContent = formatDate(day);
-            dayButton.textContent = formatDate(day);
             dayButton.dataset.date = day;
 
             dayButton.addEventListener("click", () => {
                 document.querySelectorAll(".day-button").forEach(btn => btn.classList.remove("active"));
                 dayButton.classList.add("active");
-                diaSeleccionado = day;
-                renderShowtimesByCinema(); // Renderiza las sesiones del día seleccionado
+
+                renderShowtimesByDate(day, cineId); // Renderizar las sesiones del día seleccionado
             });
 
             daySelector.appendChild(dayButton);
         });
 
-        // Renderizar sesiones para el primer día por defecto
-        if (diaSeleccionado) {
-            renderShowtimesByCinema();
-        } else {
-            console.error("No hay días válidos disponibles para mostrar sesiones.");
-        }
+        // Renderizar las sesiones del primer día por defecto
+        if (fechasUnicas.size > 0) renderShowtimesByDate([...fechasUnicas][0], cineId);
     } catch (error) {
         console.error("Error al cargar días y sesiones:", error);
     }
 }
 
-
-// Función para formatear la fecha de manera adecuada
-function formatDate(dateString) {
-    if (!/^\d{4}-\d{2}-\d{2}$/.test(dateString)) {
-        console.error("Fecha inválida:", dateString);
-        return "Fecha inválida";
-    }
-
-    const date = new Date(dateString);
-    if (isNaN(date.getTime())) {
-        console.error("Fecha inválida después de crear el objeto Date:", dateString);
-        return "Fecha inválida";
-    }
-
-    const options = { weekday: 'short', day: 'numeric', month: 'short' };
-    return date.toLocaleDateString("es-ES", options);
-}
-
-
-
-
-// Carga los detalles de la película al abrir la página
-if (movieId) {
-    loadMovieDetails(movieId);
-} else {
-    console.error("No se encontró un ID de película en la URL.");
-}
-
-// Obtener los parámetros de la URL
-function getQueryParams() {
-    const params = new URLSearchParams(window.location.search);
-    return {
-        cineId: params.get('cineId'),
-        movieId: params.get('movieId'),
-        sessionId: params.get('sessionId')
-    };
-}
-
-async function renderShowtimesByCinema() {
+// Renderizar sesiones por fecha
+async function renderShowtimesByDate(day, cineId) {
     try {
-        const response = await fetch(`http://localhost:5006/api/Cine/GetCineConPeliculas?cineId=${cineSeleccionado}`);
-        if (!response.ok) throw new Error('Error al cargar las películas del cine');
+        if (!cineId) {
+            console.error("No se encontró cineId para renderizar las sesiones.");
+            return;
+        }
+
+        const response = await fetch(`http://localhost:5006/api/Cine/GetCineConPeliculas?cineId=${cineId}`);
+        if (!response.ok) throw new Error('Error al cargar las sesiones del cine');
 
         const cine = await response.json();
         showtimesContainer.innerHTML = "";
 
         const peliculaSeleccionada = cine.peliculas.find(pelicula => pelicula.id === parseInt(movieId));
         if (!peliculaSeleccionada) {
+            console.error("No se encontró la película seleccionada.");
             showtimesContainer.innerHTML = "<p>No se encontró la película seleccionada.</p>";
             return;
         }
 
-        // Utiliza el nombre del cine seleccionado dinámicamente
-        const sesionesPorDia = peliculaSeleccionada.sesiones[cine.nombre]?.[diaSeleccionado];
-        if (!Array.isArray(sesionesPorDia) || sesionesPorDia.length === 0) {
+        const sesiones = peliculaSeleccionada.sesiones[cineSeleccionado]?.[day];
+        if (!sesiones || sesiones.length === 0) {
+            console.log("No hay sesiones disponibles para este día.");
             showtimesContainer.innerHTML = "<p>No hay sesiones disponibles para este día.</p>";
             return;
         }
 
-        sesionesPorDia.forEach(sesion => {
+        sesiones.forEach(sesion => {
             const sessionDiv = document.createElement("div");
             sessionDiv.classList.add("session");
 
             const timeDiv = document.createElement("div");
             timeDiv.classList.add("session__time");
             timeDiv.textContent = sesion.hora;
-            sessionDiv.appendChild(timeDiv);
 
             const roomDiv = document.createElement("div");
             roomDiv.classList.add("session__room");
-            roomDiv.textContent = `Sala ${sesion.sala} ${sesion.esISense ? "iSense" : ""}`;
-            sessionDiv.appendChild(roomDiv);
+            roomDiv.textContent = `Sala ${sesion.sala}`;
+
+            const tagsDiv = document.createElement("div");
+            tagsDiv.classList.add("session__tags");
 
             if (sesion.esVOSE) {
-                const voseDiv = document.createElement("div");
-                voseDiv.classList.add("session__tag", "session__tag--vose");
-                voseDiv.textContent = "VOSE";
-                sessionDiv.appendChild(voseDiv);
+                const voseTag = document.createElement("div");
+                voseTag.classList.add("session__tag", "session__tag--vose");
+                voseTag.textContent = "VOSE";
+                tagsDiv.appendChild(voseTag);
             }
 
             if (sesion.esISense) {
-                const isenseDiv = document.createElement("div");
-                isenseDiv.classList.add("session__tag", "session__tag--isense");
-                isenseDiv.textContent = "iSense";
-                sessionDiv.appendChild(isenseDiv);
+                const isenseTag = document.createElement("div");
+                isenseTag.classList.add("session__tag", "session__tag--isense");
+                isenseTag.textContent = "iSense";
+                tagsDiv.appendChild(isenseTag);
             }
 
-            // Agrega evento para redirigir a la URL con los parámetros corregidos
-            sessionDiv.addEventListener("click", () => {
-                const queryParams = new URLSearchParams({
-                    cineName: cine.nombre, // Usa dinámicamente el nombre del cine
-                    movieTitle: peliculaSeleccionada.titulo,
-                    date: diaSeleccionado,
-                    time: sesion.hora,
-                    room: sesion.sala
-                });
+            sessionDiv.appendChild(timeDiv);
+            sessionDiv.appendChild(roomDiv);
+            sessionDiv.appendChild(tagsDiv);
 
-                window.location.href = `/cine_web_app/front-end/views/butacas.html?${queryParams.toString()}`;
+            sessionDiv.addEventListener("click", () => {
+                redirectToSeatSelection(
+                    peliculaSeleccionada.titulo,
+                    cineSeleccionado,
+                    day,
+                    sesion.hora,
+                    sesion.sala
+                );
             });
 
             showtimesContainer.appendChild(sessionDiv);
         });
-
     } catch (error) {
-        console.error("Error al cargar las sesiones del cine:", error);
+        console.error("Error al renderizar sesiones:", error);
         showtimesContainer.innerHTML = "<p>Error al cargar las sesiones. Intenta de nuevo más tarde.</p>";
     }
+}
+
+// Formatear fecha
+function formatDate(dateString) {
+    const date = new Date(dateString);
+    return date.toLocaleDateString("es-ES", { weekday: 'short', day: 'numeric', month: 'short' });
+}
+
+// Redirigir a la selección de asientos
+function redirectToSeatSelection(movieTitle, cineName, date, time, room) {
+    const queryParams = new URLSearchParams({
+        cineName,
+        movieTitle,
+        date,
+        time,
+        room
+    });
+    window.location.href = `/cine_web_app/front-end/views/butacas.html?${queryParams.toString()}`;
+}
+
+// Cargar detalles de la película si hay un `movieId`
+if (movieId) loadMovieDetails(movieId);
+
+// Cargar cines desde la URL si hay un `cineId`
+if (cineId) fetchCinemaName(cineId);
+else {
+    console.warn("No se detectó cineId. Esperando selección de cine.");
+    showtimesContainer.innerHTML = "<p>Por favor, selecciona un cine para ver las sesiones disponibles.</p>";
 }
