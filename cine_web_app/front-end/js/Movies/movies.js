@@ -253,7 +253,8 @@ async function renderShowtimesByDate(day, cineId) {
                     cineSeleccionado,
                     day,
                     sesion.hora,
-                    sesion.sala
+                    sesion.sala,
+                    sesion.id // Pasar el ID de la sesión
                 );
             });
 
@@ -272,13 +273,14 @@ function formatDate(dateString) {
 }
 
 // Redirigir a la selección de asientos
-function redirectToSeatSelection(movieTitle, cineName, date, time, room) {
+function redirectToSeatSelection(movieTitle, cineName, date, time, room, sesionId) {
     const queryParams = new URLSearchParams({
         cineName,
         movieTitle,
         date,
         time,
-        room
+        room,
+        sesionId // Asegúrate de incluir el sesionId aquí
     });
     window.location.href = `/cine_web_app/front-end/views/butacas.html?${queryParams.toString()}`;
 }

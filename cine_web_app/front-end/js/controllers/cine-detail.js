@@ -3,6 +3,11 @@ document.addEventListener("DOMContentLoaded", () => {
     const showtimesContainer = document.getElementById("showtimes-container");
     let diaSeleccionado; // Variable para almacenar el día actualmente seleccionado
 
+    // Obtén el cineId de la URL
+    const urlParams = new URLSearchParams(window.location.search);
+    const cineId = urlParams.get("cineId"); // Captura cineId dinámicamente
+    const movieId = urlParams.get('id'); // Captura movieId dinámicamente
+
     async function fetchMovies() {
         try {
             const response = await fetch("http://localhost:5006/api/Movie/GetPeliculas");
@@ -34,8 +39,6 @@ document.addEventListener("DOMContentLoaded", () => {
         background.style.opacity = "1";
 
         // Renderizar sesiones para el cine actual
-        const urlParams = new URLSearchParams(window.location.search);
-        const cineId = urlParams.get("cineId"); // Captura cineId dinámicamente
         const cineName = movie.sesiones && Object.keys(movie.sesiones).find(key => key.includes("Gran Casa")); // Ejemplo para detectar dinámicamente
         const sessions = cineName ? movie.sesiones[cineName] : null;
 
@@ -117,6 +120,8 @@ document.addEventListener("DOMContentLoaded", () => {
                     date: diaSeleccionado || day,
                     time: sesion.hora,
                     room: sesion.sala,
+                    sesionId: sesion.id, // Añadir el ID de la sesión
+                    cineId: cineId // Incluir el cineId
                 });
 
                 // Redirigir a la página de butacas
@@ -137,18 +142,14 @@ document.addEventListener("DOMContentLoaded", () => {
         const isMobile = window.innerWidth <= 768; // Detectar si es móvil
         const isMacScreen = window.innerWidth > 1440; // Detectar si es pantalla Mac o grande
 
-        // Obtener el cineId de la URL actual
-        const urlParams = new URLSearchParams(window.location.search);
-        const cineId = urlParams.get('cineId');
-
         // Crear los slides del carrusel dinámicamente
         peliculas.forEach((movie, index) => {
             const slide = `
-        <li class="carousel__slide" data-index="${index}" data-title="${movie.titulo}" data-id="${movie.id}">
-            <a href="/cine_web_app/front-end/views/movies.html?id=${movie.id}&cineId=${cineId}" class="carousel__link">
-                <img src="${movie.cartel}" alt="${movie.titulo}" class="carousel__image">
-            </a>
-        </li>`;
+            <li class="carousel__slide" data-index="${index}" data-title="${movie.titulo}" data-id="${movie.id}">
+                <a href="/cine_web_app/front-end/views/movies.html?id=${movie.id}&cineId=${cineId}" class="carousel__link">
+                    <img src="${movie.cartel}" alt="${movie.titulo}" class="carousel__image">
+                </a>
+            </li>`;
             track.append(slide);
         });
 
