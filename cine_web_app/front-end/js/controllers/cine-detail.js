@@ -152,18 +152,18 @@ document.addEventListener("DOMContentLoaded", () => {
             track.append(slide);
         });
 
-        track.addClass("owl-carousel").owlCarousel({
+        track.owlCarousel({
             loop: true,
-            margin: isMacScreen ? 20 : 10, // Margen mayor en pantallas grandes
-            mouseDrag: isMobile,
-            touchDrag: isMobile,
+            margin: 10,
+            nav: false, // Siempre deshabilitamos la navegación por defecto
+            mouseDrag: isMobile, // Habilitar drag solo en móvil
+            touchDrag: isMobile, // Habilitar drag táctil solo en móvil
             responsive: {
-                0: { items: 1 },
-                600: { items: 2 },
-                1000: { items: 3 },
-                1440: { items: 5 }, // Ajuste para pantallas grandes (Mac)
-                1920: { items: 7 }, // Ajuste para pantallas ultra anchas
-            },
+                0: { items: 1 }, // 1 elemento en pantallas pequeñas
+                600: { items: 2 }, // 2 elementos en pantallas medianas
+                1000: { items: 3 }, // 3 elementos en pantallas grandes
+                1200: { items: 5 } // 5 elementos en pantallas muy grandes
+            }
         });
 
         track.on("changed.owl.carousel", function (event) {

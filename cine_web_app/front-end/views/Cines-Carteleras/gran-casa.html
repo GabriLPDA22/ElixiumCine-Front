@@ -11,6 +11,7 @@
     <link rel="stylesheet" href="/cine_web_app/front-end/css/footer.css">
     <link rel="stylesheet" href="/cine_web_app/front-end/css/carousel-cines.css">
 
+
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.carousel.min.css">
     <link rel="stylesheet"
         href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.theme.default.min.css">
@@ -92,27 +93,29 @@
                     </div>
                 </div>
             </div>
-            <section class="cine-detail__carousel">
-                <!-- Botón de flecha izquierda -->
-                <button class="carousel__button carousel__button--left">
-                    <span class="carousel__button-content">
-                        <img src="/cine_web_app/front-end/images/left-arrow.png" alt="Left Arrow">
-                    </span>
-                </button>
-
-                <!-- Contenedor del carrusel -->
-                <div class="carousel__track-container">
-                    <ul id="carousel-track" class="carousel__track">
-                        <!-- Las películas se cargarán dinámicamente aquí -->
-                    </ul>
+            <section class="main__top-movies">
+                <div class="carousel">
+                    <!-- Botón izquierdo -->
+                    <button class="carousel__button carousel__button--left">
+                        <span class="carousel__button-content">
+                            <img src="/cine_web_app/front-end/images/left-arrow.png" alt="Left Arrow">
+                        </span>
+                    </button>
+    
+                    <!-- Carrusel de películas -->
+                    <div class="carousel__track-container">
+                        <ul class="carousel__track" id="carousel-track">
+                            <!-- Las películas se cargarán dinámicamente aquí -->
+                        </ul>
+                    </div>
+    
+                    <!-- Botón derecho -->
+                    <button class="carousel__button carousel__button--right">
+                        <span class="carousel__button-content">
+                            <img src="/cine_web_app/front-end/images/right-arrow.png" alt="Right Arrow">
+                        </span>
+                    </button>
                 </div>
-
-                <!-- Botón de flecha derecha -->
-                <button class="carousel__button carousel__button--right">
-                    <span class="carousel__button-content">
-                        <img src="/cine_web_app/front-end/images/right-arrow.png" alt="Right Arrow">
-                    </span>
-                </button>
             </section>
 
 

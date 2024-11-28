@@ -20,14 +20,9 @@
   flex: 0 0 auto;
   text-align: center;
   padding: 0 8px;
-  opacity: 0.6;
   transform: scale(0.9);
   transition: all 0.3s ease;
   list-style: none;
-}
-.carousel__track .carousel__slide.active {
-  opacity: 1;
-  transform: scale(1);
 }
 .carousel__track .carousel__slide .carousel__image {
   width: 250px;

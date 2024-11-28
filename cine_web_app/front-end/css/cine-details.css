@@ -55,6 +55,7 @@ body {
   color: #dcdcdc;
   margin: 0.5rem 0;
   display: flex;
+  align-items: center;
 }
 .cine-detail__info-metadata span:first-child {
   background: #ff2c78;

@@ -10,13 +10,15 @@ body {
     color: #fff;
     padding: 2rem;
 
+
     &__header {
         display: flex;
         justify-content: space-between;
         align-items: center;
         margin-bottom: 2rem;
         max-width: 1200px;
-        margin: 0 auto;
+        margin: 13px auto;
+        flex-direction: column;
     }
 
     &__title {
@@ -60,8 +62,8 @@ body {
 }
 
 .promotion-card {
-    display: grid;
-    grid-template-columns: 30% 60% 10%; /* Ajustar proporciones: Imagen, contenido, botón */
+    display: flex;
+    flex-direction: column;
     background-color: #13173d;
     border-radius: 10px;
     overflow: hidden;
@@ -120,3 +122,20 @@ body {
 }
 
 
+@media (min-width: 768px) {
+
+    .promotion-card {
+        display: grid;
+        grid-template-columns: 30% 60% 10%;
+    }
+
+    .promotion__header{
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 2rem;
+        max-width: 1200px;
+        margin: 0 auto;
+
+    }
+}
