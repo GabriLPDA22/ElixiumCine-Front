@@ -63,6 +63,7 @@ function getQueryParams() {
         const [key, value] = pair.split('=');
         params[decodeURIComponent(key)] = decodeURIComponent(value.replace(/\+/g, ' '));
     });
+    console.log(params); // Añadir esto para verificar los parámetros extraídos
     return params;
 }
 
@@ -117,7 +118,7 @@ function fetchProductData(productIds) {
                     const product = data.find(product => product.id === productId);
                     if (product) {
                         const productElement = document.createElement('p');
-                        productElement.innerHTML = `${product.nombre}`;
+                        productElement.innerHTML = `${product.nombre} - ${product.precio}€`;
                         productContainer.appendChild(productElement);
                     }
                 });
@@ -128,22 +129,29 @@ function fetchProductData(productIds) {
         });
 }
 
-// Función para crear el pedido
+// Crear el pedido con un SesionId como número
 async function createOrder() {
+    // Obtener los parámetros de la URL
     const params = getQueryParams();
 
-    // Parsear los productos desde los parámetros de la URL
-    const parsedProducts = parseProducts(params.products);
+    // Asegúrate de que sesionId sea un entero
+    const sesionId = parseInt(params.sesionId, 10);
 
-    // Obtener detalles de los productos desde la API
-    const products = await fetchProductDetails(parsedProducts.map(p => p.id));
+    // Validación de sesionId: debe ser un número entero mayor que 0
+    if (isNaN(sesionId) || sesionId <= 0) {
+        alert("El ID de sesión no es válido.");
+        return; // Salir si sesionId no es válido
+    }
 
-    // Calcular el número de entradas normales
-    const totalSeats = params.seats ? params.seats.split(',').length : 0;
-    const vipCount = parseInt(params.vipCount) || 0;
-    const normalCount = totalSeats - vipCount; // Entradas normales = Total - VIP
+    // Asegúrate de que los otros parámetros de la URL sean válidos
+    const normalCount = parseInt(params.normalCount, 10) || 0;
+    const vipCount = parseInt(params.vipCount, 10) || 0;
 
-    // Crear el objeto del pedido
+    // Obtener los productos del carrito (si están en la URL)
+    const productParam = params.products;
+    const parsedProducts = parseProducts(productParam);
+
+    // Datos del pedido a enviar
     const pedidoData = {
         nombreCliente: params.name || 'No disponible',
         emailCliente: params.email || 'No disponible',
@@ -154,7 +162,7 @@ async function createOrder() {
         hora: params.time || 'No disponible',
         sala: params.room || 'No disponible',
         butacasReservadas: params.seats ? params.seats.split(',') : [],
-        totalPago: parseFloat(params.cartTotal) || 0,
+        totalPago: parseFloat(params.cartTotal) || 0,  // Asegurarse de que cartTotal sea un número
         entradas: [
             {
                 tipo: 'Normal',
@@ -178,29 +186,32 @@ async function createOrder() {
                 precio: productDetails ? productDetails.precio : 0,
             };
         }),
+        sesionId: sesionId,  // Aquí pasamos el sesionId como un número entero
     };
 
     console.log('Enviando datos del pedido a la API:', JSON.stringify(pedidoData, null, 2));
 
-    fetch('http://localhost:5006/api/Pedido/CreatePedido', {
-        method: 'POST',
-        headers: {
-            'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(pedidoData),
-    })
-        .then(response => {
-            if (!response.ok) {
-                throw new Error(`Error al crear el pedido: ${response.statusText}`);
-            }
-            return response.json();
-        })
-        .then(data => {
-            console.log('Pedido creado con éxito:', data);
-        })
-        .catch(error => {
-            console.error('Error al crear el pedido:', error);
+    // Enviar el pedido al backend
+    try {
+        const response = await fetch('http://localhost:5006/api/Pedido/CreatePedido', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(pedidoData), // Enviamos los datos como JSON
         });
+
+        if (!response.ok) {
+            throw new Error(`Error al crear el pedido: ${response.statusText}`);
+        }
+
+        const data = await response.json();
+        console.log('Pedido creado con éxito:', data);
+        alert('Pedido creado con éxito');
+    } catch (error) {
+        console.error('Error al crear el pedido:', error);
+        alert('Hubo un error al crear el pedido. Intenta nuevamente.');
+    }
 }
 
 // Función para parsear los productos desde la URL
@@ -219,32 +230,6 @@ function parseProducts(productParam) {
     }
 
     return productData;
-}
-
-// Función para obtener los detalles de productos
-async function fetchProductDetails(productIds) {
-    if (!productIds || productIds.length === 0) return [];
-    const apiUrl = `http://localhost:5006/api/Productos/GetProductos?ids=${productIds.join(',')}`;
-    try {
-        const response = await fetch(apiUrl);
-        if (!response.ok) throw new Error('Error al obtener los detalles de los productos.');
-        return await response.json();
-    } catch (error) {
-        console.error('Error al cargar los productos:', error);
-        return [];
-    }
-}
-
-// Función para obtener los parámetros de la URL
-function getQueryParams() {
-    const params = {};
-    const queryString = window.location.search.slice(1);
-    const pairs = queryString.split('&');
-    pairs.forEach(pair => {
-        const [key, value] = pair.split('=');
-        params[decodeURIComponent(key)] = decodeURIComponent(value.replace(/\+/g, ' '));
-    });
-    return params;
 }
 
 // Llamar a la función para rellenar el resumen
