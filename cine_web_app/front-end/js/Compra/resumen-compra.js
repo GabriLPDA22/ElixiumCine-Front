@@ -128,30 +128,27 @@ function fetchProductData(productIds) {
             console.error('Error al cargar los datos de la API de productos:', error);
         });
 }
-
-// Crear el pedido con un SesionId como número
 async function createOrder() {
-    // Obtener los parámetros de la URL
     const params = getQueryParams();
 
-    // Asegúrate de que sesionId sea un entero
     const sesionId = parseInt(params.sesionId, 10);
-
-    // Validación de sesionId: debe ser un número entero mayor que 0
     if (isNaN(sesionId) || sesionId <= 0) {
         alert("El ID de sesión no es válido.");
-        return; // Salir si sesionId no es válido
+        return;
     }
 
-    // Asegúrate de que los otros parámetros de la URL sean válidos
     const normalCount = parseInt(params.normalCount, 10) || 0;
     const vipCount = parseInt(params.vipCount, 10) || 0;
 
-    // Obtener los productos del carrito (si están en la URL)
     const productParam = params.products;
     const parsedProducts = parseProducts(productParam);
 
-    // Datos del pedido a enviar
+    let products = [];
+    if (parsedProducts.length > 0) {
+        const productIds = parsedProducts.map(p => p.id);
+        products = await fetchProductDetails(productIds);
+    }
+
     const pedidoData = {
         nombreCliente: params.name || 'No disponible',
         emailCliente: params.email || 'No disponible',
@@ -162,20 +159,10 @@ async function createOrder() {
         hora: params.time || 'No disponible',
         sala: params.room || 'No disponible',
         butacasReservadas: params.seats ? params.seats.split(',') : [],
-        totalPago: parseFloat(params.cartTotal) || 0,  // Asegurarse de que cartTotal sea un número
+        totalPago: parseFloat(params.cartTotal) || 0,
         entradas: [
-            {
-                tipo: 'Normal',
-                cantidad: normalCount,
-                precioUnitario: 6.9,
-                precioTotal: normalCount * 6.9,
-            },
-            {
-                tipo: 'VIP',
-                cantidad: vipCount,
-                precioUnitario: 8.1,
-                precioTotal: vipCount * 8.1,
-            },
+            { tipo: 'Normal', cantidad: normalCount, precioUnitario: 6.9, precioTotal: normalCount * 6.9 },
+            { tipo: 'VIP', cantidad: vipCount, precioUnitario: 8.1, precioTotal: vipCount * 8.1 }
         ],
         productos: parsedProducts.map(p => {
             const productDetails = products.find(product => product.id === p.id);
@@ -183,22 +170,17 @@ async function createOrder() {
                 id: p.id,
                 cantidad: p.quantity,
                 nombre: productDetails ? productDetails.nombre : 'Desconocido',
-                precio: productDetails ? productDetails.precio : 0,
+                precio: productDetails ? productDetails.precio : 0
             };
         }),
-        sesionId: sesionId,  // Aquí pasamos el sesionId como un número entero
+        sesionId: sesionId
     };
 
-    console.log('Enviando datos del pedido a la API:', JSON.stringify(pedidoData, null, 2));
-
-    // Enviar el pedido al backend
     try {
         const response = await fetch('http://localhost:5006/api/Pedido/CreatePedido', {
             method: 'POST',
-            headers: {
-                'Content-Type': 'application/json',
-            },
-            body: JSON.stringify(pedidoData), // Enviamos los datos como JSON
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(pedidoData)
         });
 
         if (!response.ok) {
@@ -206,7 +188,6 @@ async function createOrder() {
         }
 
         const data = await response.json();
-        console.log('Pedido creado con éxito:', data);
         alert('Pedido creado con éxito');
     } catch (error) {
         console.error('Error al crear el pedido:', error);
@@ -231,7 +212,20 @@ function parseProducts(productParam) {
 
     return productData;
 }
-
+// Nueva función para obtener detalles de productos desde la API
+async function fetchProductDetails(productIds) {
+    const apiUrl = `http://localhost:5006/api/Productos/GetProductos?ids=${productIds.join(',')}`;
+    try {
+        const response = await fetch(apiUrl);
+        if (!response.ok) {
+            throw new Error('Error al obtener los detalles de los productos');
+        }
+        return await response.json();
+    } catch (error) {
+        console.error('Error al cargar los detalles de los productos:', error);
+        return [];
+    }
+}
 // Llamar a la función para rellenar el resumen
 populateSummary();
 

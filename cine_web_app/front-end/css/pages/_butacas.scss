@@ -216,7 +216,12 @@ h3 {
     display: inline-block;
     margin-right: 5px;
     border-radius: 3px;
-
+    &.seat--reserved {
+        background-color: purple;
+        cursor: not-allowed;
+        pointer-events: none; /* Evita que se puedan seleccionar */
+    }
+    
     &.seat--vip{
         border: 2px solid orange;
     } 
