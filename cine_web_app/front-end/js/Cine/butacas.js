@@ -1,4 +1,3 @@
-
 // ==========================================================
 // Variables globales
 // ==========================================================
@@ -97,6 +96,20 @@ async function inicializarButacas() {
 // ==========================================================
 // Cargar las butacas desde el backend y renderizarlas
 // ==========================================================
+async function fetchReservedSeats() {
+    try {
+        const response = await fetch('http://localhost:5006/api/Pedido/GetButacasReservadas');
+        if (!response.ok) {
+            throw new Error('Error al obtener las butacas reservadas');
+        }
+        const reservedSeats = await response.json();
+        console.log('Butacas reservadas obtenidas:', reservedSeats);
+        return reservedSeats;
+    } catch (error) {
+        console.error('Error al obtener las butacas reservadas:', error);
+        return [];
+    }
+}
 
 async function cargarButacas() {
     try {
@@ -113,7 +126,9 @@ async function cargarButacas() {
     }
 }
 
-function renderSeatMap(butacas) {
+async function renderSeatMap() {
+    const reservedSeats = await fetchReservedSeats(); // Obtener las butacas reservadas
+
     seatMapContainer.innerHTML = "";
 
     seatLayout.forEach((row, rowIndex) => {
@@ -123,25 +138,23 @@ function renderSeatMap(butacas) {
 
             if (seat === 1) {
                 const coord = `${rowIndex}-${colIndex}`;
-                const butaca = butacas.find(b => b.descripcion === coord);
+                const isReserved = reservedSeats.includes(coord); // Verificar si está reservada
                 const isVip = vipSeats[rowIndex][colIndex] === 1;
 
-                if (butaca) {
-                    if (butaca.estaOcupado) {
-                        seatElement.classList.add('reserved');
+                if (isReserved) {
+                    seatElement.classList.add('reserved'); // Clase para las reservadas
+                } else {
+                    seatElement.classList.add('available');
+                    seatElement.dataset.seatId = coord;
+                    seatElement.dataset.categoria = isVip ? "VIP" : "Estandar";
+
+                    if (isVip) {
+                        seatElement.classList.add('seat--vip');
                     } else {
-                        seatElement.classList.add('available');
-                        seatElement.dataset.seatId = coord;
-                        seatElement.dataset.categoria = isVip ? "VIP" : "Estandar";
-
-                        if (isVip) {
-                            seatElement.classList.add('seat--vip');
-                        }else{
-                            seatElement.classList.add('seat--no-vip');
-                        }
-
-                        seatElement.addEventListener('click', () => toggleSeatSelection(seatElement));
+                        seatElement.classList.add('seat--no-vip');
                     }
+
+                    seatElement.addEventListener('click', () => toggleSeatSelection(seatElement));
                 }
             } else {
                 seatElement.classList.add('empty');
@@ -151,6 +164,7 @@ function renderSeatMap(butacas) {
         });
     });
 }
+
 
 // ==========================================================
 // Gestión de la selección de asientos

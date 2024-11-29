@@ -216,29 +216,28 @@ h3 {
     display: inline-block;
     margin-right: 5px;
     border-radius: 3px;
-    &.seat--reserved {
-        background-color: purple;
-        cursor: not-allowed;
-        pointer-events: none; /* Evita que se puedan seleccionar */
-    }
     
+    &.available {
+        background-color: $seat-available-color;
+        border: 2px solid $seat-available-color;
+        cursor: pointer;
+    }
+    &.selected {
+        background-color: $seat-selected-color;
+        border: 2px solid $seat-selected-color;
+    }
+
     &.seat--vip{
         border: 2px solid orange;
     } 
+    &.reserved {
+        background-color: purple;
+        cursor: not-allowed;
+        border: 2px solid purple;
+        pointer-events: none;
+    }
+
     
-    &.seat--no-vip{
-        border: 2px solid $seat-available-color;
-    }
-
-    &.available {
-        background-color: $seat-available-color;
-        cursor: pointer;
-    }
-
-    &.selected {
-        background-color: $seat-selected-color;
-    }
-
 
 
 }

@@ -174,23 +174,23 @@ h3 {
   margin-right: 5px;
   border-radius: 3px;
 }
-.seat.seat--reserved {
-  background-color: purple;
-  cursor: not-allowed;
-  pointer-events: none; /* Evita que se puedan seleccionar */
-}
-.seat.seat--vip {
-  border: 2px solid orange;
-}
-.seat.seat--no-vip {
-  border: 2px solid #bfbfbf;
-}
 .seat.available {
   background-color: #bfbfbf;
+  border: 2px solid #bfbfbf;
   cursor: pointer;
 }
 .seat.selected {
   background-color: #ff2c78;
+  border: 2px solid #ff2c78;
+}
+.seat.seat--vip {
+  border: 2px solid orange;
+}
+.seat.reserved {
+  background-color: purple;
+  cursor: not-allowed;
+  border: 2px solid purple;
+  pointer-events: none;
 }
 
 .continue-btn {
