@@ -187,8 +187,6 @@ async function createOrder() {
             throw new Error(`Error al crear el pedido: ${response.statusText}`);
         }
 
-        const data = await response.json();
-        alert('Pedido creado con éxito');
     } catch (error) {
         console.error('Error al crear el pedido:', error);
         alert('Hubo un error al crear el pedido. Intenta nuevamente.');

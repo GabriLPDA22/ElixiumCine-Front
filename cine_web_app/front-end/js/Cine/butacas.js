@@ -94,22 +94,34 @@ async function inicializarButacas() {
 }
 
 // ==========================================================
-// Cargar las butacas desde el backend y renderizarlas
+// Cargar las butacas reservadas desde el backend
 // ==========================================================
 async function fetchReservedSeats() {
+    const params = new URLSearchParams(window.location.search);
+    const cineName = params.get('cineName'); // Nombre del cine
+    const date = params.get('date');         // Fecha de la sesión
+    const sesionId = parseInt(params.get('sesionId'), 10); // ID de la sesión
+
+    if (!cineName || !date || isNaN(sesionId)) {
+        console.error("Parámetros faltantes para obtener butacas reservadas:", { cineName, date, sesionId });
+        return [];
+    }
+
     try {
-        const response = await fetch('http://localhost:5006/api/Pedido/GetButacasReservadas');
+        const response = await fetch(`http://localhost:5006/api/Pedido/GetButacasReservadas?cineName=${encodeURIComponent(cineName)}&date=${encodeURIComponent(date)}&sesionId=${sesionId}`);
         if (!response.ok) {
-            throw new Error('Error al obtener las butacas reservadas');
+            throw new Error(`Error al obtener las butacas reservadas: ${response.statusText}`);
         }
+
         const reservedSeats = await response.json();
-        console.log('Butacas reservadas obtenidas:', reservedSeats);
+        console.log("Butacas reservadas obtenidas del backend:", reservedSeats);
         return reservedSeats;
     } catch (error) {
-        console.error('Error al obtener las butacas reservadas:', error);
+        console.error("Error al obtener las butacas reservadas:", error);
         return [];
     }
 }
+
 
 async function cargarButacas() {
     try {
@@ -126,6 +138,9 @@ async function cargarButacas() {
     }
 }
 
+// ==========================================================
+// Renderizar el mapa de asientos
+// ==========================================================
 async function renderSeatMap() {
     const reservedSeats = await fetchReservedSeats(); // Obtener las butacas reservadas
 
@@ -142,7 +157,9 @@ async function renderSeatMap() {
                 const isVip = vipSeats[rowIndex][colIndex] === 1;
 
                 if (isReserved) {
-                    seatElement.classList.add('reserved'); // Clase para las reservadas
+                    seatElement.classList.add('reserved'); // Clase para las butacas reservadas
+                    seatElement.dataset.seatId = coord; // Añade el ID de la butaca
+                    seatElement.textContent = 'R'; // Marcar como reservada
                 } else {
                     seatElement.classList.add('available');
                     seatElement.dataset.seatId = coord;
@@ -157,15 +174,13 @@ async function renderSeatMap() {
                     seatElement.addEventListener('click', () => toggleSeatSelection(seatElement));
                 }
             } else {
-                seatElement.classList.add('empty');
+                seatElement.classList.add('empty'); // Clase para los espacios vacíos
             }
 
             seatMapContainer.appendChild(seatElement);
         });
     });
 }
-
-
 // ==========================================================
 // Gestión de la selección de asientos
 // ==========================================================
