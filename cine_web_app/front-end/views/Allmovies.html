@@ -8,53 +8,47 @@
     <link rel="stylesheet" href="../css/home.css">
     <link rel="stylesheet" href="../css/footer.css">
     <link rel="stylesheet" href="../css/header.css">
-     <link rel="stylesheet" href="../css/carrousel-top-movies.css"> 
-    <link rel="stylesheet" href="../css/Scrollbar.css">
-    <link rel="stylesheet" href="/cine_web_app/front-end/css/AllMovies.css">
+    <link rel="stylesheet" href="../css/carrousel-top-movies.css">
+    <link rel="stylesheet" href="../css/scrollbar.css">
+    <link rel="stylesheet" href="../css/allmovies.css">
 
     <!-- CSS de Owl Carousel -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.carousel.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.theme.default.min.css">
-
 </head>
 
 <body>
-
     <!-- Navbar para pantallas grandes -->
     <header class="header header--desktop">
-        <a href="/cine_web_app/front-end/views/home.html" class="header__logo">Elixium</a>
+        <a href="home" class="header__logo">elixium</a>
         <nav class="header__nav">
             <ul class="header__menu">
-                <li class="header__menu-item"><a href="/cine_web_app/front-end/views/Cinemas.html">Cines</a></li>
-                <li class="header__menu-item"><a href="#">Películas</a></li>
-                <li class="header__menu-item"><a href="#">Promociones</a></li>
+                <li class="header__menu-item"><a href="Cinemas">cines</a></li>
+                <li class="header__menu-item"><a href="Allmovies">películas</a></li>
+                <li class="header__menu-item"><a href="Promociones">promociones</a></li>
             </ul>
         </nav>
         <div class="header__actions">
-            <a href="/cine_web_app/front-end/views/security/register.html"
-                class="header__link header__register">Registrarse</a>
-            <a href="/cine_web_app/front-end/views/security/login.html" class="header__link header__login">Iniciar
-                sesión</a>
+            <a href="register" class="header__link header__register">registrarse</a>
+            <a href="login" class="header__link header__login">iniciar sesión</a>
         </div>
     </header>
 
     <!-- Navbar responsive para móviles -->
     <header class="header header--responsive">
-        <a href="/cine_web_app/front-end/views/home.html" class="header__logo">Elixium</a>
+        <a href="home" class="header__logo">elixium</a>
         <div class="header__hamburger">&#9776;</div>
         <nav class="header__nav overlay">
             <ul class="header__menu">
-                <li class="header__menu-item"><a href="/cine_web_app/front-end/views/Cinemas.html">Cines</a></li>
-                <li class="header__menu-item"><a href="#">Películas</a></li>
-                <li class="header__menu-item"><a href="#">Promociones</a></li>
-                <li class="header__menu-item"><a href="/cine_web_app/front-end/views/security/register.html"
-                        class="header__link header__register">Registrarse</a></li>
-                <li class="header__menu-item"><a href="/cine_web_app/front-end/views/security/login.html"
-                        class="header__link header__login">Iniciar sesión</a></li>
+                <li class="header__menu-item"><a href="Cinemas">cines</a></li>
+                <li class="header__menu-item"><a href="Allmovies">películas</a></li>
+                <li class="header__menu-item"><a href="Promociones">promociones</a></li>
+                <li class="header__menu-item"><a href="register" class="header__link header__register">registrarse</a>
+                </li>
+                <li class="header__menu-item"><a href="login" class="header__link header__login">iniciar sesión</a></li>
             </ul>
         </nav>
     </header>
-
 
     <!-- Main Content -->
     <main class="main">
@@ -65,48 +59,47 @@
                 <!-- Botón izquierdo -->
                 <button class="carousel__button carousel__button--left">
                     <span class="carousel__button-content">
-                        <img src="/cine_web_app/front-end/images/left-arrow.png" alt="Left Arrow">
+                        <img src="./images/left-arrow.png" alt="Left Arrow">
                     </span>
                 </button>
-    
+
                 <!-- Carrusel de películas -->
                 <div class="carousel__track-container">
                     <ul class="carousel__track owl-carousel" id="carousel-track">
                         <!-- Las películas se cargarán dinámicamente aquí -->
                     </ul>
                 </div>
-    
+
                 <!-- Botón derecho -->
                 <button class="carousel__button carousel__button--right">
                     <span class="carousel__button-content">
-                        <img src="/cine_web_app/front-end/images/right-arrow.png" alt="Right Arrow">
+                        <img src="./images/right-arrow.png" alt="Right Arrow">
                     </span>
                 </button>
             </div>
         </section>
+
+        <h2>Todas las Películas</h2>
+        <!-- Filtros -->
+        <div class="movies__filters">
+            <button class="filter-button active" data-filter="all">Todas</button>
+            <button class="filter-button" data-filter="inTheater">En cartelera</button>
+            <button class="filter-button" data-filter="comingSoon">Próximos</button>
+            <button class="filter-button" data-filter="preSale">Venta anticipada</button>
+        </div>
+
+        <!-- Contenedor de Películas -->
+        <div class="movies__container">
+            <div class="movie-card">
+                <img src="" alt="Movie 1" class="movie-card__image">
+                <h3 class="movie-card__title">Movie 1</h3>
+            </div>
+            <div class="movie-card">
+                <img src="" alt="Movie 2" class="movie-card__image">
+                <h3 class="movie-card__title">Movie 2</h3>
+            </div>
+        </div>
     </main>
-    
-
-    <h2>Todas las Películas</h2>
-
-    <!-- Filtros -->
-    <div class="movies__filters">
-        <button class="filter-button active" data-filter="all">Todas</button>
-        <button class="filter-button" data-filter="inTheater">En cartelera</button>
-        <button class="filter-button" data-filter="comingSoon">Próximos</button>
-        <button class="filter-button" data-filter="preSale">Venta anticipada</button>
-    </div>
-
-    <div class="movies__container">
-        <div class="movie-card">
-            <img src="" alt="Movie 1" class="movie-card__image">
-            <h3 class="movie-card__title">Movie 1</h3>
-        </div>
-        <div class="movie-card">
-            <img src="" alt="Movie 2" class="movie-card__image">
-            <h3 class="movie-card__title">Movie 2</h3>
-        </div>
-    </div>
 
     <footer class="footer">
         <div class="footer__social">
@@ -149,10 +142,10 @@
 
         <div class="footer__links">
             <ul class="footer__link-group">
-                <li><a href="#">Quiénes somos</a></li>
-                <li><a href="#">Trabaja con nosotros</a></li>
-                <li><a href="#">Cinesa Business</a></li>
-                <li><a href="#">Atención al cliente</a></li>
+                <li><a href="quienessomos">Quiénes somos</a></li>
+                <li><a href="trabajaconnosotros">Trabaja con nosotros</a></li>
+                <li><a href="cookies">Política de Cookies</a></li>
+                <li><a href="#">Política de privacidad</a></li>
                 <li><a href="#">Apoyo Institucional</a></li>
             </ul>
             <ul class="footer__link-group">
@@ -163,24 +156,24 @@
                 <li><a href="#">Blog</a></li>
             </ul>
             <ul class="footer__link-group">
-                <li><a href="#">Aviso Legal</a></li>
-                <li><a href="#">Condiciones de compra</a></li>
-                <li><a href="#">Política de privacidad</a></li>
-                <li><a href="#">Política de Cookies</a></li>
-                <li><a href="#">Código de ética</a></li>
-                <li><a href="#">Política de denuncia</a></li>
+                <li><a href="https://www.youtube.com/watch?v=dQw4w9WgXcQ">Aviso Legal</a></li>
+                <li><a href="https://www.youtube.com/watch?v=dQw4w9WgXcQ">Condiciones de compra</a></li>
+                <li><a href="https://www.youtube.com/watch?v=dQw4w9WgXcQ">Atención al cliente</a></li>
+                <li><a href="https://www.youtube.com/watch?v=dQw4w9WgXcQ">Cinesa Business</a></li>
+                <li><a href="https://www.youtube.com/watch?v=dQw4w9WgXcQ">Código de ética</a></li>
+                <li><a href="https://www.youtube.com/watch?v=dQw4w9WgXcQ">Política de denuncia</a></li>
             </ul>
         </div>
     </footer>
 
+    <!-- Scripts -->
+    <script src="../js/home/carruselcontroller.js"></script>
+    <script src="../js/home/navbarresponsive.js"></script>
+    <script src="../js/movies/main-allmovies.js"></script>
 
+    <!-- JS de jQuery y Owl Carousel -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.min.js"></script>
 </body>
-<script src="/cine_web_app/front-end/js/home/CarruselController.js"></script>
-<script src="/cine_web_app/front-end/js/home/navbarresponsive.js"></script>
-<script src="/cine_web_app/front-end/js/Movies/main-allmovies.js"></script>
-
-<!-- JS de jQuery y Owl Carousel -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.min.js"></script>
 
 </html>

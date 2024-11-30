@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Productos Bar</title>
+    <link rel="stylesheet" href="../css/header.css">
+    <link rel="stylesheet" href="../css/Scrollbar.css">
+    <link rel="stylesheet" href="../css/alergenos.css">
+</head>
+
+<body>
+    <!-- Navbar para pantallas grandes -->
+    <header class="header header--desktop">
+        <div class="header__logo">Elixium</div>
+        <nav class="header__nav">
+            <ul class="header__menu">
+                <li class="header__menu-item"><a href="Cinemas">Cines</a></li>
+                <li class="header__menu-item"><a href="Allmovies">Películas</a></li>
+                <li class="header__menu-item"><a href="Promociones">Promociones</a></li>
+            </ul>
+        </nav>
+        <div class="header__actions">
+            <a href="register"
+                class="header__link header__register">Registrarse</a>
+            <a href="login" class="header__link header__login">Iniciar
+                sesión</a>
+        </div>
+    </header>
+
+    <!-- Navbar responsive para móviles -->
+    <header class="header header--responsive">
+        <div class="header__logo">Elixium</div>
+        <div class="header__hamburger">&#9776;</div>
+        <nav class="header__nav overlay">
+            <ul class="header__menu">
+                <li class="header__menu-item"><a href="Cinemas">Cines</a></li>
+                <li class="header__menu-item"><a href="Allmovies">Películas</a></li>
+                <li class="header__menu-item"><a href="Promociones">Promociones</a></li>
+                <li class="header__menu-item"><a href="register"
+                        class="header__link header__register">Registrarse</a></li>
+                <li class="header__menu-item"><a href="login"
+                        class="header__link header__login">Iniciar sesión</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <div id="allergen-modal" class="modal hidden">
+        <div class="modal__overlay"></div>
+        <div class="modal__content">
+            <h2>Listado de alérgenos</h2>
+            <ul id="allergen-list" class="allergen-list">
+                <!-- Aquí se generan dinámicamente los productos -->
+            </ul>
+        </div>
+    </div>
+    
+
+
+</body>
+        <script src="/cine_web_app/front-end/js/Cine/Alergenos.js"></script>
+</html>

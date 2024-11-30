@@ -11,47 +11,43 @@
     <link rel="stylesheet" href="../css/carrousel-top-movies.css">
     <link rel="stylesheet" href="../css/Scrollbar.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.carousel.min.css">
-    <link rel="icon" href="/cine_web_app/front-end/images/Logoweb.png"type="image/x-icon" />
+    <link rel="icon" href="../images/Logoweb.png" type="image/x-icon" />
     <link rel="stylesheet"
         href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.theme.default.min.css">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.min.js"></script>
-
 </head>
 
 <body>
 
     <!-- Navbar para pantallas grandes -->
     <header class="header header--desktop">
-        <div class="header__logo">Elixium</div>
+        <a href="home" class="header__logo">elixium</a>
         <nav class="header__nav">
             <ul class="header__menu">
-                <li class="header__menu-item"><a href="/cine_web_app/front-end/views/Cinemas.html">Cines</a></li>
-                <li class="header__menu-item"><a href="../views/Allmovies.html">Películas</a></li>
-                <li class="header__menu-item"><a href="/cine_web_app/front-end/views/Promociones.html">Promociones</a></li>
+                <li class="header__menu-item"><a href="Cinemas">cines</a></li>
+                <li class="header__menu-item"><a href="Allmovies">películas</a></li>
+                <li class="header__menu-item"><a href="Promociones">promociones</a></li>
             </ul>
         </nav>
         <div class="header__actions">
-            <a href="/cine_web_app/front-end/views/security/register.html"
-                class="header__link header__register">Registrarse</a>
-            <a href="/cine_web_app/front-end/views/security/login.html" class="header__link header__login">Iniciar
-                sesión</a>
+            <a href="register" class="header__link header__register">registrarse</a>
+            <a href="login" class="header__link header__login">iniciar sesión</a>
         </div>
     </header>
 
     <!-- Navbar responsive para móviles -->
     <header class="header header--responsive">
-        <div class="header__logo">Elixium</div>
+        <a href="home" class="header__logo">elixium</a>
         <div class="header__hamburger">&#9776;</div>
         <nav class="header__nav overlay">
             <ul class="header__menu">
-                <li class="header__menu-item"><a href="/cine_web_app/front-end/views/Cinemas.html">Cines</a></li>
-                <li class="header__menu-item"><a href="#">Películas</a></li>
-                <li class="header__menu-item"><a href="#">Promociones</a></li>
-                <li class="header__menu-item"><a href="/cine_web_app/front-end/views/security/register.html"
-                        class="header__link header__register">Registrarse</a></li>
-                <li class="header__menu-item"><a href="/cine_web_app/front-end/views/security/login.html"
-                        class="header__link header__login">Iniciar sesión</a></li>
+                <li class="header__menu-item"><a href="Cinemas">cines</a></li>
+                <li class="header__menu-item"><a href="Allmovies">películas</a></li>
+                <li class="header__menu-item"><a href="Promociones">promociones</a></li>
+                <li class="header__menu-item"><a href="register" class="header__link header__register">registrarse</a>
+                </li>
+                <li class="header__menu-item"><a href="login" class="header__link header__login">iniciar sesión</a></li>
             </ul>
         </nav>
     </header>
@@ -65,7 +61,7 @@
                 <!-- Botón izquierdo -->
                 <button class="carousel__button carousel__button--left">
                     <span class="carousel__button-content">
-                        <img src="/cine_web_app/front-end/images/left-arrow.png" alt="Left Arrow">
+                        <img src="../images/left-arrow.png" alt="Left Arrow">
                     </span>
                 </button>
 
@@ -79,7 +75,7 @@
                 <!-- Botón derecho -->
                 <button class="carousel__button carousel__button--right">
                     <span class="carousel__button-content">
-                        <img src="/cine_web_app/front-end/images/right-arrow.png" alt="Right Arrow">
+                        <img src="../images/right-arrow.png" alt="Right Arrow">
                     </span>
                 </button>
             </div>
@@ -97,7 +93,7 @@
                         una nueva oportunidad de disfrutar y descubrir lo que más te apasiona
                         en la pantalla grande.
                     </p>
-                    <a href="/cine_web_app/front-end/views/quienessomos.html">
+                    <a href="quienessomos">
                         <button class="about-section__button">
                             <div style="text-decoration: none; color:white;">Ver Más</div>
                         </button>
@@ -118,7 +114,7 @@
                             a 3 amigos contigo.
                         </p>
                     </div>
-                    <img src="/cine_web_app/front-end/images/cumpleanos.png" alt="Palomitas de maíz" class="offer-card__image">
+                    <img src="../images/cumpleanos.png" alt="Palomitas de maíz" class="offer-card__image">
                 </div>
 
                 <!-- Repetir tarjeta de oferta para otras tres tarjetas -->
@@ -126,10 +122,10 @@
                     <div class="offer-card__content">
                         <h3 class="offer-card__title">Estreno Joker con amigos</h3>
                         <p class="offer-card__description">
-                            Unete a nosotros en el estreno del Joker este 11 de noviembre y trae a un amigo para tener 50% descuento en el primer menu joker funko que compreis.
+                            Únete a nosotros en el estreno del Joker este 11 de noviembre y trae a un amigo para tener 50% descuento en el primer menú joker funko que compréis.
                         </p>
                     </div>
-                    <img src="/cine_web_app/front-end/images/ofertajoker.png" alt="Palomitas de maíz" class="offer-card__image">
+                    <img src="../images/ofertajoker.png" alt="Palomitas de maíz" class="offer-card__image">
                 </div>
 
                 <div class="offer-card">
@@ -139,7 +135,7 @@
                             Al asistir al estreno de ciertas películas seleccionadas, ¡llévate un llavero exclusivo de la película completamente gratis! (Hasta agotar existencias).
                         </p>
                     </div>
-                    <img src="/cine_web_app/front-end/images/Oferta-Llavero.png" alt="Palomitas de maíz" class="offer-card__image">
+                    <img src="../images/Oferta-Llavero.png" alt="Palomitas de maíz" class="offer-card__image">
                 </div>
 
                 <div class="offer-card">
@@ -149,13 +145,12 @@
                             Asiste el primer día del estreno y recibe un póster oficial de la película como recuerdo. Una forma de celebrar tu pasión por el cine.
                         </p>
                     </div>
-                    <img src="/cine_web_app/front-end/images/Oferta-Poster.png" alt="Palomitas de maíz" class="offer-card__image">
+                    <img src="../images/Oferta-Poster.png" alt="Palomitas de maíz" class="offer-card__image">
                 </div>
             </div>
         </section>
 
     </main>
-
 
     <footer class="footer">
         <div class="footer__social">
@@ -198,9 +193,9 @@
 
         <div class="footer__links">
             <ul class="footer__link-group">
-                <li><a href="/cine_web_app/front-end/views/quienessomos.html">Quiénes somos</a></li>
-                <li><a href="/cine_web_app/front-end/views/trabajaconnosotros.html">Trabaja con nosotros</a></li>
-                <li><a href="/cine_web_app/front-end/views/security/cookies.html">Política de Cookies</a></li>
+                <li><a href="quienessomos">Quiénes somos</a></li>
+                <li><a href="trabajaconnosotros">Trabaja con nosotros</a></li>
+                <li><a href="cookies">Política de Cookies</a></li>
                 <li><a href="#">Política de privacidad</a></li>
                 <li><a href="#">Apoyo Institucional</a></li>
             </ul>
@@ -221,8 +216,9 @@
             </ul>
         </div>
     </footer>
-    <script src="/cine_web_app/front-end/js/home/CarruselController.js"></script>
-    <script src="/cine_web_app/front-end/js/home/navbarresponsive.js"></script>
+
+    <script src="../js/home/CarruselController.js"></script>
+    <script src="../js/home/navbarresponsive.js"></script>
 </body>
 
 </html>

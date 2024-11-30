@@ -4,96 +4,93 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Nuestros Cines</title>
+    <title>nuestros cines</title>
     <link rel="stylesheet" href="../css/nuestros-cines.css">
     <link rel="stylesheet" href="../css/footer.css">
     <link rel="stylesheet" href="../css/header.css">
-    <link rel="stylesheet" href="../css/Scrollbar.css">
+    <link rel="stylesheet" href="../css/scrollbar.css">
 </head>
 
 <body class="cines-page">
+    <!-- Navbar para pantallas grandes -->
     <header class="header header--desktop">
-        <a href="/cine_web_app/front-end/views/home.html" class="header__logo">Elixium</a>
+        <a href="home" class="header__logo">elixium</a>
         <nav class="header__nav">
             <ul class="header__menu">
-                <li class="header__menu-item"><a href="/cine_web_app/front-end/views/Cinemas.html">Cines</a></li>
-                <li class="header__menu-item"><a href="#">Películas</a></li>
-                <li class="header__menu-item"><a href="#">Promociones</a></li>
+                <li class="header__menu-item"><a href="Cinemas">cines</a></li>
+                <li class="header__menu-item"><a href="Allmovies">películas</a></li>
+                <li class="header__menu-item"><a href="Promociones">promociones</a></li>
             </ul>
         </nav>
         <div class="header__actions">
-            <a href="/cine_web_app/front-end/views/security/register.html"
-                class="header__link header__register">Registrarse</a>
-            <a href="/cine_web_app/front-end/views/security/login.html" class="header__link header__login">Iniciar
-                sesión</a>
+            <a href="register" class="header__link header__register">registrarse</a>
+            <a href="login" class="header__link header__login">iniciar sesión</a>
         </div>
     </header>
 
     <!-- Navbar responsive para móviles -->
     <header class="header header--responsive">
-        <a href="/cine_web_app/front-end/views/home.html" class="header__logo">Elixium</a>
+        <a href="home" class="header__logo">elixium</a>
         <div class="header__hamburger">&#9776;</div>
         <nav class="header__nav overlay">
             <ul class="header__menu">
-                <li class="header__menu-item"><a href="/cine_web_app/front-end/views/Cinemas.html">Cines</a></li>
-                <li class="header__menu-item"><a href="#">Películas</a></li>
-                <li class="header__menu-item"><a href="#">Promociones</a></li>
-                <li class="header__menu-item"><a href="/cine_web_app/front-end/views/security/register.html"
-                        class="header__link header__register">Registrarse</a></li>
-                <li class="header__menu-item"><a href="/cine_web_app/front-end/views/security/login.html"
-                        class="header__link header__login">Iniciar sesión</a></li>
+                <li class="header__menu-item"><a href="Cinemas">cines</a></li>
+                <li class="header__menu-item"><a href="Allmovies">películas</a></li>
+                <li class="header__menu-item"><a href="Promociones">promociones</a></li>
+                <li class="header__menu-item"><a href="register" class="header__link header__register">registrarse</a>
+                </li>
+                <li class="header__menu-item"><a href="login" class="header__link header__login">iniciar sesión</a></li>
             </ul>
         </nav>
     </header>
 
     <!-- Banner -->
     <section class="banner">
-        <img src="../images/banner-cines.jpg" alt="Sala de cine" class="banner__image">
+        <img src="../images/banner-cines.jpg" alt="sala de cine" class="banner__image">
     </section>
 
     <!-- Main Content -->
     <main class="cines">
-        <h1 class="cines__title">NUESTROS CINES</h1>
+        <h1 class="cines__title">nuestros cines</h1>
         <div class="cines__grid">
 
-            <a id="linkGranCasa" href="../views/Cines-Carteleras/gran-casa.html?cine=Gran Casa" class="cines__link">
+            <a id="linkGranCasa" href="gran-casa?cineid=2" class="cines__link">
                 <div class="cines__card" style="background-image: url('../images/gran-casa.jpg');">
-                    <div class="cines__card-title">GRAN CASA</div>
+                    <div class="cines__card-title">gran casa</div>
                     <p class="cines__card-description">
-                        <strong>Butacas estándar y premium:</strong> Comodidad asegurada para todos los gustos. <br>
-                        <strong>Tecnología de sonido:</strong> Dolby Atmos para una experiencia inmersiva. <br>
-                        <strong>Ambiente familiar:</strong> Perfecto para disfrutar en familia o con amigos.
+                        <strong>butacas estándar y premium:</strong> comodidad asegurada para todos los gustos. <br>
+                        <strong>tecnología de sonido:</strong> dolby atmos para una experiencia inmersiva. <br>
+                        <strong>ambiente familiar:</strong> perfecto para disfrutar en familia o con amigos.
                     </p>
                 </div>
             </a>
-            <a id="linkPuertoVenecia" class="cines__link" href="../Cines-Carteleras/cine-detail.html?cine=1">
+            <a id="linkPuertoVenecia" href="puerto-venecia?cineid=1" class="cines__link">
                 <div class="cines__card" style="background-image: url('../images/puerto-venecia.jpg');">
-                    <div class="cines__card-title">PUERTO VENECIA</div>
+                    <div class="cines__card-title">puerto venecia</div>
                     <p class="cines__card-description">
-                        <strong>Butacas reclinables de lujo:</strong> Para una experiencia de máximo confort. <br>
-                        <strong>Sistema de sonido envolvente:</strong> Para que sientas cada escena. <br>
-                        <strong>Ideal para ir en pareja:</strong> Un ambiente cómodo y moderno.
+                        <strong>butacas reclinables de lujo:</strong> para una experiencia de máximo confort. <br>
+                        <strong>sistema de sonido envolvente:</strong> para que sientas cada escena. <br>
+                        <strong>ideal para ir en pareja:</strong> un ambiente cómodo y moderno.
                     </p>
                 </div>
             </a>
-            <a id="linkTorreOutlet" class="cines__link">
+            <a id="linkTorreOutlet" href="torre-outlet?cineid=3" class="cines__link">
                 <div class="cines__card" style="background-image: url('../images/torre-outlet.jpg');">
-                    <div class="cines__card-title">TORRE OUTLET</div>
+                    <div class="cines__card-title">torre outlet</div>
                     <p class="cines__card-description">
-                        <strong>Sala estándar:</strong> Para los amantes del cine tradicional. <br>
-                        <strong>Iluminación tenue:</strong> Crea un ambiente acogedor para una experiencia de calidad.
-                        <br>
-                        <strong>Accesibilidad:</strong> Diseño pensado para comodidad y accesibilidad.
+                        <strong>sala estándar:</strong> para los amantes del cine tradicional. <br>
+                        <strong>iluminación tenue:</strong> crea un ambiente acogedor para una experiencia de calidad. <br>
+                        <strong>accesibilidad:</strong> diseño pensado para comodidad y accesibilidad.
                     </p>
                 </div>
             </a>
-            <a id="linkCascoAntiguo" class="cines__link">
+            <a id="linkCascoAntiguo" href="casco-antiguo?cineid=4" class="cines__link">
                 <div class="cines__card" style="background-image: url('../images/casco-antiguo.jpg');">
-                    <div class="cines__card-title">CASCO ANTIGUO</div>
+                    <div class="cines__card-title">casco antiguo</div>
                     <p class="cines__card-description">
-                        <strong>Salas VIP:</strong> Asientos exclusivos tipo lounge. <br>
-                        <strong>Servicio a butacas:</strong> Disfruta de comida y bebida sin moverte del asiento. <br>
-                        <strong>Ambiente sofisticado:</strong> Perfecto para una experiencia de cine más lujosa.
+                        <strong>salas vip:</strong> asientos exclusivos tipo lounge. <br>
+                        <strong>servicio a butacas:</strong> disfruta de comida y bebida sin moverte del asiento. <br>
+                        <strong>ambiente sofisticado:</strong> perfecto para una experiencia de cine más lujosa.
                     </p>
                 </div>
             </a>
@@ -141,10 +138,10 @@
 
         <div class="footer__links">
             <ul class="footer__link-group">
-                <li><a href="#">Quiénes somos</a></li>
-                <li><a href="#">Trabaja con nosotros</a></li>
-                <li><a href="#">Cinesa Business</a></li>
-                <li><a href="#">Atención al cliente</a></li>
+                <li><a href="quienessomos">Quiénes somos</a></li>
+                <li><a href="trabajaconnosotros">Trabaja con nosotros</a></li>
+                <li><a href="cookies">Política de Cookies</a></li>
+                <li><a href="#">Política de privacidad</a></li>
                 <li><a href="#">Apoyo Institucional</a></li>
             </ul>
             <ul class="footer__link-group">
@@ -155,42 +152,35 @@
                 <li><a href="#">Blog</a></li>
             </ul>
             <ul class="footer__link-group">
-                <li><a href="#">Aviso Legal</a></li>
-                <li><a href="#">Condiciones de compra</a></li>
-                <li><a href="#">Política de privacidad</a></li>
-                <li><a href="#">Política de Cookies</a></li>
-                <li><a href="#">Código de ética</a></li>
-                <li><a href="#">Política de denuncia</a></li>
+                <li><a href="https://www.youtube.com/watch?v=dQw4w9WgXcQ">Aviso Legal</a></li>
+                <li><a href="https://www.youtube.com/watch?v=dQw4w9WgXcQ">Condiciones de compra</a></li>
+                <li><a href="https://www.youtube.com/watch?v=dQw4w9WgXcQ">Atención al cliente</a></li>
+                <li><a href="https://www.youtube.com/watch?v=dQw4w9WgXcQ">Cinesa Business</a></li>
+                <li><a href="https://www.youtube.com/watch?v=dQw4w9WgXcQ">Código de ética</a></li>
+                <li><a href="https://www.youtube.com/watch?v=dQw4w9WgXcQ">Política de denuncia</a></li>
             </ul>
         </div>
     </footer>
 
+    <script src="../js/home/navbarresponsive.js"></script>
 
+    <script>
+        document.addEventListener("DOMContentLoaded", () => {
+            const cines = [
+                { id: "linkGranCasa", name: "gran-casa", cineId: 2 },
+                { id: "linkPuertoVenecia", name: "puerto-venecia", cineId: 1 },
+                { id: "linkTorreOutlet", name: "torre-outlet", cineId: 3 },
+                { id: "linkCascoAntiguo", name: "casco-antiguo", cineId: 4 },
+            ];
+
+            cines.forEach((cine) => {
+                const linkElement = document.getElementById(cine.id);
+                if (linkElement) {
+                    linkElement.href = `../views/cines-carteleras/${cine.name}.html?cineid=${cine.cineId}`;
+                }
+            });
+        });
+    </script>
 </body>
-<script src="/cine_web_app/front-end/js/home/navbarresponsive.js"></script>
-
-<script>
-document.addEventListener("DOMContentLoaded", () => {
-    const cines = [
-        { id: "linkGranCasa", name: "gran-casa", cineId: 2 },
-        { id: "linkPuertoVenecia", name: "puerto-venecia", cineId: 1 },
-        { id: "linkTorreOutlet", name: "torre-outlet", cineId: 3 },
-        { id: "linkCascoAntiguo", name: "casco-antiguo", cineId: 4 },
-    ];
-
-    // Recorre todos los cines definidos en el array
-    cines.forEach((cine) => {
-        const linkElement = document.getElementById(cine.id);
-        if (linkElement) {
-            // Actualiza el atributo href dinámicamente
-            linkElement.href = `../views/Cines-Carteleras/${cine.name}.html?cineId=${cine.cineId}`;
-        } else {
-            console.error(`El elemento con id ${cine.id} no existe en el DOM.`);
-        }
-    });
-});
-
-
-</script>
 
 </html>

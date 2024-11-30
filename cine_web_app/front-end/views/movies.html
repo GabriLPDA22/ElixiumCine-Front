@@ -4,93 +4,88 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Detalles de la Película</title>
-    <!-- <link rel="stylesheet" href="../css/home.css"> Compilación del SCSS -->
+    <title>detalles de la película</title>
     <link rel="stylesheet" href="../css/header.css">
     <link rel="stylesheet" href="../css/movies.css">
     <link rel="stylesheet" href="../css/footer.css">
-    <link rel="stylesheet" href="../css/Scrollbar.css">
+    <link rel="stylesheet" href="../css/scrollbar.css">
 </head>
 
 <body>
+    <!-- Navbar para pantallas grandes -->
     <header class="header header--desktop">
-        <a href="/cine_web_app/front-end/views/home.html" class="header__logo">Elixium</a>
+        <a href="home" class="header__logo">elixium</a>
         <nav class="header__nav">
             <ul class="header__menu">
-                <li class="header__menu-item"><a href="/cine_web_app/front-end/views/Cinemas.html">Cines</a></li>
-                <li class="header__menu-item"><a href="#">Películas</a></li>
-                <li class="header__menu-item"><a href="#">Promociones</a></li>
+                <li class="header__menu-item"><a href="Cinemas">cines</a></li>
+                <li class="header__menu-item"><a href="Allmovies">películas</a></li>
+                <li class="header__menu-item"><a href="Promociones">promociones</a></li>
             </ul>
         </nav>
         <div class="header__actions">
-            <a href="/cine_web_app/front-end/views/security/register.html"
-                class="header__link header__register">Registrarse</a>
-            <a href="/cine_web_app/front-end/views/security/login.html" class="header__link header__login">Iniciar
-                sesión</a>
+            <a href="register" class="header__link header__register">registrarse</a>
+            <a href="login" class="header__link header__login">iniciar sesión</a>
         </div>
     </header>
 
     <!-- Navbar responsive para móviles -->
     <header class="header header--responsive">
-        <a href="/cine_web_app/front-end/views/home.html" class="header__logo">Elixium</a>
+        <a href="home" class="header__logo">elixium</a>
         <div class="header__hamburger">&#9776;</div>
         <nav class="header__nav overlay">
             <ul class="header__menu">
-                <li class="header__menu-item"><a href="/cine_web_app/front-end/views/Cinemas.html">Cines</a></li>
-                <li class="header__menu-item"><a href="#">Películas</a></li>
-                <li class="header__menu-item"><a href="#">Promociones</a></li>
-                <li class="header__menu-item"><a href="/cine_web_app/front-end/views/security/register.html"
-                        class="header__link header__register">Registrarse</a></li>
-                <li class="header__menu-item"><a href="/cine_web_app/front-end/views/security/login.html"
-                        class="header__link header__login">Iniciar sesión</a></li>
+                <li class="header__menu-item"><a href="Cinemas">cines</a></li>
+                <li class="header__menu-item"><a href="Allmovies">películas</a></li>
+                <li class="header__menu-item"><a href="Promociones">promociones</a></li>
+                <li class="header__menu-item"><a href="register" class="header__link header__register">registrarse</a>
+                </li>
+                <li class="header__menu-item"><a href="login" class="header__link header__login">iniciar sesión</a></li>
             </ul>
         </nav>
     </header>
 
     <main class="movie">
         <div class="movie__banner">
-            <img id="movie-banner" src="" alt="Banner de la película" class="movie__banner-image">
+            <img id="movie-banner" src="../images/banner.png" alt="banner de la película" class="movie__banner-image">
         </div>
         <section class="movie__details">
             <div class="movie__poster">
-                <img id="movie-poster" src="" alt="Cartel de la película" class="movie__poster-image">
+                <img id="movie-poster" src="../images/poster.png" alt="cartel de la película"
+                    class="movie__poster-image">
             </div>
             <div class="movie__info">
                 <div class="calificacion" style="display: flex; gap:20px;">
-                    <h2 id="movie-title" class="movie__title">Título de la Película</h2>
-                    <img id="age-rating-icon" src="" alt="Clasificación de Edad" class="age-rating-icon"
-                        style="height: 30px;" width="20px">
+                    <h2 id="movie-title" class="movie__title">título de la película</h2>
+                    <img id="age-rating-icon" src="../images/age-rating.png" alt="clasificación de edad"
+                        class="age-rating-icon" style="height: 30px;" width="20px">
                 </div>
-                <p class="movie__section-title">Directores</p>
+                <p class="movie__section-title">directores</p>
                 <p id="movie-director" class="movie__director"></p>
-                <p class="movie__section-title">Actores</p>
+                <p class="movie__section-title">actores</p>
                 <p id="movie-actors" class="movie__actors"></p>
-                <p class="movie__section-title">Sinopsis</p>
+                <p class="movie__section-title">sinopsis</p>
                 <p id="movie-description" class="movie__description"></p>
             </div>
             <div class="movie__additional-info">
-                <p class="movie__section-title">Duración</p>
+                <p class="movie__section-title">duración</p>
                 <p id="movie-duration" class="movie__duration"></p>
-                <p class="movie__section-title">Fecha de Estreno</p>
+                <p class="movie__section-title">fecha de estreno</p>
                 <p id="movie-release-date" class="movie__release-date"></p>
-                <p class="movie__section-title">Género</p>
+                <p class="movie__section-title">género</p>
                 <p id="movie-genre" class="movie__genre"></p>
-                <p class="movie__section-title">Calificación</p>
+                <p class="movie__section-title">calificación</p>
                 <p id="movie-rating" class="movie__rating"></p>
             </div>
-
         </section>
 
         <div class="daily-selector">
-            <div class="daily-selector__left">Mostrarme horarios para:</div>
+            <div class="daily-selector__left">mostrarme horarios para:</div>
             <div class="daily-selector__right">
                 <div class="location" onclick="openCinemaModal()">
-                    <span>Seleccionar cine</span>
-                    <svg> <!-- Icono de localización --> </svg>
+                    <span>seleccionar cine</span>
                 </div>
                 <div class="filter">
-                    <span>Filtrar por</span>
-                    <svg> <!-- Icono de filtro (opcional) --> </svg>
+                    <span>filtrar por</span>
                 </div>
             </div>
         </div>
@@ -98,42 +93,13 @@
         <!-- Modal para seleccionar cine -->
         <div id="cinema-modal" class="modal hidden">
             <div class="modal-content">
-                <h2>Selecciona un Cine</h2>
-                <ul id="cinema-list"></ul> <!-- Aquí se listarán los cines -->
-                <button onclick="closeCinemaModal()">Cerrar</button>
+                <h2>selecciona un cine</h2>
+                <ul id="cinema-list"></ul>
+                <button onclick="closeCinemaModal()">cerrar</button>
             </div>
         </div>
 
-
-        <!-- Contenedor de los botones para los días -->
-        <div class="day-selector" id="day-selector">
-            <button class="day-button active" onclick="selectDay('2024-11-11')">lun, 11 nov</button>
-            <button class="day-button" onclick="selectDay('2024-11-12')">mar, 12 nov</button>
-            <button class="day-button" onclick="selectDay('2024-11-13')">mié, 13 nov</button>
-            <button class="day-button" onclick="selectDay('2024-11-14')">jue, 14 nov</button>
-        </div>
-
-        <div id="showtimes-container" class="cine-detail__info-showtimes">
-            <div class="session">
-                <div class="session__time"></div>
-                <div class="session__room"></div>
-                <div class="session__tag session__tag--isense"></div>
-            </div>
-            <div class="session">
-                <div class="session__time"></div>
-                <div class="session__room"></div>
-            </div>
-            <div class="session">
-                <div class="session__time"></div>
-                <div class="session__room"></div>
-                <div class="session__tags">
-                    <div class="session__tag session__tag--isense"></div>
-                    <div class="session__tag session__tag--vose"></div>
-                </div>
-            </div>
-        </div>
-
-
+        <div id="showtimes-container" class="cine-detail__info-showtimes"></div>
     </main>
 
     <footer class="footer">
@@ -174,35 +140,33 @@
                 </svg>
             </a>
         </div>
-
         <div class="footer__links">
             <ul class="footer__link-group">
-                <li><a href="#">Quiénes somos</a></li>
-                <li><a href="#">Trabaja con nosotros</a></li>
-                <li><a href="#">Cinesa Business</a></li>
-                <li><a href="#">Atención al cliente</a></li>
-                <li><a href="#">Apoyo Institucional</a></li>
+                <li><a href="quienessomos">quiénes somos</a></li>
+                <li><a href="trabajaconnosotros">trabaja con nosotros</a></li>
+                <li><a href="#">cinesa business</a></li>
+                <li><a href="#">atención al cliente</a></li>
+                <li><a href="#">apoyo institucional</a></li>
             </ul>
             <ul class="footer__link-group">
-                <li><a href="#">Eventos</a></li>
-                <li><a href="#">Salas Premium</a></li>
-                <li><a href="#">Infantil y colegios</a></li>
-                <li><a href="#">Ciclos</a></li>
-                <li><a href="#">Blog</a></li>
+                <li><a href="#">eventos</a></li>
+                <li><a href="#">salas premium</a></li>
+                <li><a href="#">infantil y colegios</a></li>
+                <li><a href="#">ciclos</a></li>
+                <li><a href="#">blog</a></li>
             </ul>
             <ul class="footer__link-group">
-                <li><a href="#">Aviso Legal</a></li>
-                <li><a href="#">Condiciones de compra</a></li>
-                <li><a href="#">Política de privacidad</a></li>
-                <li><a href="#">Política de Cookies</a></li>
-                <li><a href="#">Código de ética</a></li>
-                <li><a href="#">Política de denuncia</a></li>
+                <li><a href="#">aviso legal</a></li>
+                <li><a href="#">condiciones de compra</a></li>
+                <li><a href="#">política de privacidad</a></li>
+                <li><a href="#">política de cookies</a></li>
+                <li><a href="#">código de ética</a></li>
+                <li><a href="#">política de denuncia</a></li>
             </ul>
         </div>
     </footer>
 
-    <script src="../js/Movies/movies.js"></script>
-        
+    <script src="../js/movies/movies.js"></script>
 </body>
 
 </html>
