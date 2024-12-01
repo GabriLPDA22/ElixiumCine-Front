@@ -243,6 +243,7 @@ main.guest-purchase {
         font-weight: bold;
         margin-bottom: 0.5rem; // Espaciado entre el label y el input
         color: $text-light;
+        min-height: 50px;
       }
 
       input {

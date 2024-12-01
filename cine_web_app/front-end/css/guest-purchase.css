@@ -208,6 +208,7 @@ main.guest-purchase .total-summary .continue-btn:hover {
   font-weight: bold;
   margin-bottom: 0.5rem;
   color: #ffffff;
+  min-height: 50px;
 }
 .customer-info .form-row .form-group input {
   width: 100%;
