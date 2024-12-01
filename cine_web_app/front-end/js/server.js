@@ -3,9 +3,9 @@ const path = require('path');
 const app = express();
 
 // Configurar carpetas estáticas
-app.use('/css', express.static(path.join(__dirname, '../front-end/css')));
-app.use('/js', express.static(path.join(__dirname, '../front-end/js')));
-app.use('/images', express.static(path.join(__dirname, '../front-end/images')));
+app.use('/css', express.static(path.join(__dirname, '../css')));
+app.use('/js', express.static(path.join(__dirname, '../js')));
+app.use('/images', express.static(path.join(__dirname, '../images')));
 
 // Servir páginas HTML dinámicamente
 app.get('/:page', (req, res) => {
