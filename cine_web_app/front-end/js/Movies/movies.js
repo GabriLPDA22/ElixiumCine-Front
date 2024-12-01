@@ -116,14 +116,38 @@ async function loadCinemas() {
 }
 
 // Seleccionar un cine y actualizar la interfaz
+// Seleccionar un cine y actualizar la interfaz
 async function selectCinema(cinemaName, cinemaId) {
     try {
         cineSeleccionado = cinemaName; // Actualizar el cine seleccionado globalmente
         document.querySelector(".location span").textContent = cinemaName; // Actualizar en la interfaz
 
-        // Mostrar los elementos de día y sesiones
-        if (daySelector) daySelector.style.display = "flex";
-        if (showtimesContainer) showtimesContainer.style.display = "flex";
+        // Determinar si estamos en desktop o mobile
+        const isDesktop = window.innerWidth >= 768; // Puedes ajustar este breakpoint
+
+        // Mostrar los elementos de día y sesiones con el layout adecuado
+        if (daySelector) {
+            daySelector.style.display = isDesktop ? "flex" : "grid"; // Flex para desktop, grid para móvil
+            if (isDesktop) {
+                daySelector.style.flexDirection = "row"; // Aseguramos que sea fila en desktop
+                daySelector.style.justifyContent = "space-between";
+                daySelector.style.alignItems = "center";
+            } else {
+                daySelector.style.gridTemplateColumns = "repeat(2, 1fr)"; // Para móvil
+                daySelector.style.gap = "1rem";
+            }
+        }
+
+        if (showtimesContainer) {
+            showtimesContainer.style.display = isDesktop ? "flex" : "grid"; // Flex para desktop, grid para móvil
+            if (isDesktop) {
+                showtimesContainer.style.flexWrap = "wrap"; // Ajustamos para que las sesiones se distribuyan
+                showtimesContainer.style.justifyContent = "space-around";
+            } else {
+                showtimesContainer.style.gridTemplateColumns = "repeat(2, 1fr)"; // Para móvil
+                showtimesContainer.style.gap = "1rem";
+            }
+        }
 
         // Cargar los días y las sesiones del cine seleccionado
         await loadDaysAndSessions(cinemaId);
@@ -131,6 +155,7 @@ async function selectCinema(cinemaName, cinemaId) {
         console.error("Error al seleccionar el cine:", error);
     }
 }
+
 
 // Cargar los días y las sesiones
 async function loadDaysAndSessions(cineId) {

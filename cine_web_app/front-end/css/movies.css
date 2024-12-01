@@ -141,7 +141,8 @@ body {
   min-height: 150px;
 }
 .movie .cine-detail__info-showtimes {
-  display: flex;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
   overflow-x: auto;
   gap: 1rem;
   margin-top: 1rem;
@@ -157,11 +158,12 @@ body {
   padding: 0.5rem;
   border: 1px solid #ff2c78;
   border-radius: 8px;
-  width: 170px;
+  width: 150px;
   color: #ffffff;
   background: rgba(0, 0, 0, 0.6);
   transition: all 0.3s ease;
   cursor: pointer;
+  height: 90px;
 }
 .movie .cine-detail__info-showtimes .session:hover {
   background: rgba(255, 44, 120, 0.2);
@@ -207,14 +209,15 @@ body {
 }
 .movie .daily-selector {
   display: flex;
+  flex-direction: column;
   justify-content: space-between;
   align-items: center;
   padding: 0.7rem 1rem;
   background-color: #07051e;
   border-bottom: 1px solid rgba(255, 255, 255, 0.2);
   font-size: 0.95rem;
-  gap: 100px;
-  width: 800px;
+  gap: 17px;
+  width: 300px;
 }
 .movie .daily-selector .daily-selector__left {
   color: #b0b0b0;
@@ -246,7 +249,8 @@ body {
   fill: #ff2c78;
 }
 .movie .day-selector {
-  display: flex;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
   justify-content: space-around;
   padding: 1rem;
   border-bottom: 1px solid rgba(255, 255, 255, 0.2);
@@ -323,7 +327,7 @@ body {
   transition: background 0.3s;
 }
 .movie .modal .modal-content button:hover {
-  background: #f80059;
+  background: #ff2c78;
 }
 
 @media (min-width: 480px) {
@@ -338,6 +342,34 @@ body {
   }
   .movie__banner {
     display: block;
+  }
+  .movie .daily-selector {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0.7rem 1rem;
+    background-color: #07051e;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+    font-size: 0.95rem;
+    gap: 100px;
+    width: 800px;
+  }
+  .movie .day-selector {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    padding: 1rem;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+    margin-bottom: 2%;
+  }
+  .movie .cine-detail__info-showtimes {
+    display: flex;
+    flex-direction: row;
+    overflow-x: auto;
+    gap: 1rem;
+    margin-top: 1rem;
+    padding-bottom: 1rem;
   }
 }
 

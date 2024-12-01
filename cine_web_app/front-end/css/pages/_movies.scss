@@ -184,7 +184,8 @@ body {
       }
 
       &-showtimes {
-        display: flex;
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
         overflow-x: auto; // Habilita el desplazamiento horizontal para que todas las sesiones se muestren en línea
         gap: 1rem;
         margin-top: 1rem;
@@ -201,11 +202,12 @@ body {
           padding: 0.5rem;
           border: 1px solid #ff2c78;
           border-radius: 8px;
-          width: 170px;
+          width: 150px;
           color: #ffffff;
           background: rgba(0, 0, 0, 0.6);
           transition: all 0.3s ease;
           cursor: pointer;
+          height: 90px;
 
           &:hover {
             background: rgba(255, 44, 120, 0.2);
@@ -273,14 +275,15 @@ body {
   // Contenedor principal de la barra de selección de días
   .daily-selector {
     display: flex;
+    flex-direction: column;
     justify-content: space-between;
     align-items: center;
     padding: 0.7rem 1rem; // Reduce padding para un diseño más compacto
     background-color: $primary-bg;
     border-bottom: 1px solid $border-color;
     font-size: 0.95rem; // Reduce el tamaño de la fuente para hacerlo más compacto
-    gap: 100px;
-    width: 800px;
+    gap: 17px;
+    width: 300px;
 
     .daily-selector__left {
       color: $subtle-text-color;
@@ -317,7 +320,8 @@ body {
 
   // Estilos para el contenedor de los días
   .day-selector {
-    display: flex;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
     justify-content: space-around;
     padding: 1rem;
     border-bottom: 1px solid $border-color;
@@ -405,7 +409,7 @@ body {
         transition: background 0.3s;
 
         &:hover {
-          background: darken($highlight-color, 10%); // Oscurece el color en hover
+          background: $highlight-color; // Oscurece el color en hover
         }
       }
     }
@@ -426,6 +430,37 @@ body {
 
   .movie__banner{
     display: block;
+  }
+
+  .movie .daily-selector {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0.7rem 1rem;
+    background-color: #07051e;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+    font-size: 0.95rem;
+    gap: 100px;
+    width: 800px;
+  }
+
+  .movie .day-selector {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    padding: 1rem;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+    margin-bottom: 2%;
+  }
+
+  .movie .cine-detail__info-showtimes {
+    display: flex;
+    flex-direction: row;
+    overflow-x: auto;
+    gap: 1rem;
+    margin-top: 1rem;
+    padding-bottom: 1rem;
   }
 
 }
