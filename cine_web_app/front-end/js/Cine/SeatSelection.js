@@ -50,7 +50,7 @@ async function loadGuestPurchaseInfo() {
         // Actualizar la imagen del banner
         const bannerImageElement = document.querySelector('.movie-details__background-image');
         if (bannerImageElement) {
-            bannerImageElement.src = data.bannerImage || '/cine_web_app/front-end/images/default-banner.jpg'; // Imagen por defecto
+            bannerImageElement.src = data.bannerImage || '../images/default-banner.jpg'; // Imagen por defecto
             bannerImageElement.alt = `Banner de ${data.movieTitle || "la película"}`;
         }
 

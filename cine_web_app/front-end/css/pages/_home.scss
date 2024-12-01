@@ -36,7 +36,7 @@ body{
 
   &__background {
     background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), 
-    url('/cine_web_app/front-end/images/banner-cines.jpg'); // Ruta de la imagen
+    url('../images/banner-cines.jpg'); // Ruta de la imagen
     background-size: cover;
     background-position: center;
     padding: 2rem;
