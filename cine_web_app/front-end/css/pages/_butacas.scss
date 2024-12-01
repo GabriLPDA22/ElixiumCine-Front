@@ -193,7 +193,6 @@ h3 {
             width: 20px;
             height: 20px;
             display: inline-block;
-            margin-right: 5px;
             border-radius: 3px;
         }
     }
@@ -214,7 +213,6 @@ h3 {
     width: 20px;
     height: 20px;
     display: inline-block;
-    margin-right: 5px;
     border-radius: 3px;
     
     &.available {
@@ -265,7 +263,7 @@ h3 {
     gap: 7px; // Espaciado original
     justify-content: center;
     width: 100%; // Ajusta al ancho disponible
-    max-width: 910px; // Máximo ancho para pantallas grandes
+    max-width: 600px; // Máximo ancho para pantallas grandes
     margin: 0 auto; // Centrado horizontal
     transition: transform 0.3s ease-in-out; // Suaviza la transición al cambiar la escala
 }
@@ -358,4 +356,3 @@ h3 {
     }
 
 }
-
