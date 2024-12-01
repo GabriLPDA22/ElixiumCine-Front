@@ -182,7 +182,7 @@ document.addEventListener("DOMContentLoaded", () => {
         const linkElement = document.getElementById(cine.id);
         if (linkElement) {
             // Actualiza el atributo href dinámicamente
-            linkElement.href = `../views/Cines-Carteleras/${cine.name}.html?cineId=${cine.cineId}`;
+            linkElement.href = `${cine.name}?cineId=${cine.cineId}`;
         } else {
             console.error(`El elemento con id ${cine.id} no existe en el DOM.`);
         }
