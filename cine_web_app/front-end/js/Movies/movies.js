@@ -43,6 +43,7 @@ async function loadMovieDetails(id) {
 }
 
 // Función para cargar el nombre del cine y actualizar la UI
+// Función para cargar el nombre del cine y actualizar la UI
 async function fetchCinemaName(cineId) {
     try {
         if (!cineId) {
@@ -52,7 +53,7 @@ async function fetchCinemaName(cineId) {
         }
 
         const response = await fetch(`http://localhost:5006/api/Cine/GetCineById?cineId=${cineId}`);
-        if (!response.ok) throw new Error('Error al obtener el cine');
+        if (!response.ok) throw new Error("Error al obtener el cine");
 
         const cine = await response.json();
         console.log("Cine encontrado:", cine);
@@ -64,9 +65,32 @@ async function fetchCinemaName(cineId) {
         // Guardar el nombre del cine seleccionado
         cineSeleccionado = cine.nombre;
 
+        // Determinar si estamos en desktop o móvil
+        const isDesktop = window.innerWidth >= 768;
+
         // Mostrar elementos relacionados con sesiones
-        if (daySelector) daySelector.style.display = "flex";
-        if (showtimesContainer) showtimesContainer.style.display = "flex";
+        if (daySelector) {
+            daySelector.style.display = isDesktop ? "flex" : "grid";
+            if (isDesktop) {
+                daySelector.style.flexDirection = "row";
+                daySelector.style.justifyContent = "space-between";
+                daySelector.style.alignItems = "center";
+            } else {
+                daySelector.style.gridTemplateColumns = "repeat(2, 1fr)";
+                daySelector.style.gap = "1rem";
+            }
+        }
+
+        if (showtimesContainer) {
+            showtimesContainer.style.display = isDesktop ? "flex" : "grid";
+            if (isDesktop) {
+                showtimesContainer.style.flexWrap = "wrap";
+                showtimesContainer.style.justifyContent = "space-around";
+            } else {
+                showtimesContainer.style.gridTemplateColumns = "repeat(2, 1fr)";
+                showtimesContainer.style.gap = "1rem";
+            }
+        }
 
         // Cargar los días y las sesiones del cine seleccionado
         loadDaysAndSessions(cine.id);
@@ -74,6 +98,7 @@ async function fetchCinemaName(cineId) {
         console.error("Error al obtener el cine:", error);
     }
 }
+
 
 // Abre el modal para selección de cine
 function openCinemaModal() {
@@ -115,7 +140,6 @@ async function loadCinemas() {
     }
 }
 
-// Seleccionar un cine y actualizar la interfaz
 // Seleccionar un cine y actualizar la interfaz
 async function selectCinema(cinemaName, cinemaId) {
     try {
