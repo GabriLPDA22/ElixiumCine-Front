@@ -98,7 +98,7 @@
     <script>
         document.getElementById('guest-purchase-btn').addEventListener('click', function () {
             const params = new URLSearchParams(window.location.search);
-            const url = `/cine_web_app/front-end/views/Compra/Productos-bar.html?${params.toString()}`;
+            const url = `Productos-bar?${params.toString()}`;
             window.location.href = url;
         });
     </script>
