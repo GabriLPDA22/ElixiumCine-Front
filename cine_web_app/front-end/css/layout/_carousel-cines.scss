@@ -20,19 +20,19 @@
         .carousel__slide {
             flex: 0 0 auto;
             text-align: center;
-            padding: 0 8px; // Espaciado ajustado para 5 elementos
+            padding: 0 8px;
             transform: scale(0.9);
             transition: all 0.3s ease;
             list-style: none;
 
             .carousel__image {
-                width: 200px; // Tamaño adaptado para mostrar 5 elementos
-                height: 300px; // Mantiene proporción
+                width: 200px;
+                height: 300px;
                 object-fit: cover;
                 border-radius: 15px;
                 box-shadow: 0 10px 20px rgba(0, 0, 0, 0.5);
                 transition: transform 0.3s ease;
-                margin: auto; // Centra la imagen dentro del contenedor
+                margin: auto;
             }
 
             .carousel__title {
@@ -50,7 +50,7 @@
         background: #ffffff;
         border: none;
         cursor: pointer;
-        width: 40px; // Ajustamos el tamaño de los botones
+        width: 40px;
         height: 40px;
         display: flex;
         align-items: center;
@@ -64,13 +64,13 @@
         }
 
         img {
-            width: 15px; // Ajustamos el tamaño del ícono
+            width: 15px;
             height: 15px;
-            filter: invert(1); // Icono visible en fondo oscuro
+            filter: invert(1);
         }
 
         &--left {
-            left: 10px; // Colocamos las flechas visibles
+            left: 10px;
         }
 
         &--right {
@@ -79,12 +79,11 @@
     }
 }
 
-// Owl Carousel adjustments
 .owl-carousel {
     display: flex;
     justify-content: center;
     align-items: center;
-    transform: translate3d(0, 0, 0); // Suaviza animaciones y transformaciones
+    transform: translate3d(0, 0, 0);
 }
 
 .owl-stage {
@@ -102,7 +101,7 @@
 
 .owl-nav,
 .owl-dots {
-    display: none; // Ocultar controles predeterminados de Owl Carousel
+    display: none;
 }
 
 @media (max-width: 768px) {
@@ -111,8 +110,8 @@
     }
 
     .carousel__track {
-        flex-direction: column; // Cambia a columna para mejor alineación en móvil
-        align-items: center; // Centra los elementos verticalmente
+        flex-direction: column;
+        align-items: center;
         padding: 0;
     }
 }

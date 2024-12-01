@@ -66,8 +66,5 @@ body {
   cursor: pointer;
   transition: background-color 0.3s;
 }
-.main .jobs__item-apply:hover {
-  background-color: #f80059;
-}
 
 /*# sourceMappingURL=trabajaconnosotros.css.map */

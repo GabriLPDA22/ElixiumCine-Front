@@ -1,4 +1,3 @@
-@charset "UTF-8";
 body {
   margin: 0;
   padding: 0;
@@ -27,7 +26,7 @@ main.guest-purchase .ticket-selection .section-title {
   border-bottom: 2px solid #ff2c78;
   padding-bottom: 0.5rem;
   margin-bottom: 1rem;
-  text-align: center; /* Cambiado para centrar el título */
+  text-align: center;
   color: #ff2c78;
 }
 main.guest-purchase .ticket-selection .ticket-table .table-header,

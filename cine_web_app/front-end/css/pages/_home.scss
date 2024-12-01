@@ -1,4 +1,3 @@
-// _home.scss
 body{
   margin: 0;
   padding: 0;
@@ -6,16 +5,15 @@ body{
   background-color: rgb(5, 7, 19);
 }
 
-// main
 .main {
   background: linear-gradient(180deg, #0a0e27 0%, #000000 100%);
-  padding: 0; // Elimina el margen/padding de la sección principal
+  padding: 0;
   color: #ffffff;
   height: auto;
 
   &__top-movies {
     text-align: center;
-    margin-top: 0; // Elimina el margen superior de esta sección
+    margin-top: 0;
   }
 
   &__title {
@@ -37,7 +35,7 @@ body{
 
   &__background {
     background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), 
-    url('/cine_web_app/front-end/images/banner-cines.jpg'); // Ruta de la imagen
+    url('/cine_web_app/front-end/images/banner-cines.jpg');
     background-size: cover;
     background-position: center;
     padding: 2rem;
@@ -54,7 +52,7 @@ body{
     padding: 2rem;
     border-radius: 8px;
     color: #ffffff;
-    max-width: 800px; // Aumenta el ancho máximo del contenido también
+    max-width: 800px;
     text-align: center;
   }
 
@@ -107,7 +105,7 @@ body{
 
   &__grid {
       display: grid;
-      grid-template-columns: repeat(2, 1fr); // Dos columnas en pantallas grandes
+      grid-template-columns: repeat(2, 1fr);
       gap: 2rem;
       max-width: 1200px;
       margin-bottom: 20px;
@@ -158,7 +156,7 @@ body{
 @media (max-width: 768px) {
   .offers-section__grid {
     display: grid;
-    grid-template-columns: 1fr; // Una columna en pantallas pequeñas
+    grid-template-columns: 1fr;
     max-width: 400px;
   }
 

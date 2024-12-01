@@ -1,11 +1,9 @@
-// Variables de colores
-$primary-color: #FF2C78; // Rosa principal
-$gray-dark: #ACACAC;     // Gris oscuro
-$gray-light: #D9D9D9;    // Gris claro
-$bg-dark: #1D1731;       // Fondo oscuro
+$primary-color: #FF2C78;
+$gray-dark: #ACACAC;     
+$gray-light: #D9D9D9;    
+$bg-dark: #1D1731;      
 $text-color: $gray-light;
 
-// Estilo global
 body {
   font-family: Arial, sans-serif;
   margin: 0;
@@ -15,7 +13,6 @@ body {
 }
 
 .main {
-  // Sección de historia y valores
   .about {
     margin: 40px 0;
     text-align: center;
@@ -39,7 +36,6 @@ body {
     }
   }
 
-  // Sección de equipo
   .team {
     text-align: center;
     padding: 40px 0;

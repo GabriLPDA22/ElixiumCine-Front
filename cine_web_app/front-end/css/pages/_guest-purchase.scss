@@ -1,4 +1,3 @@
-// Variables de colores
 $text-light: #ffffff;
 $primary-color: #ff2c78;
 $input-border: rgba(255, 255, 255, 0.3);
@@ -33,7 +32,7 @@ main.guest-purchase {
       border-bottom: 2px solid #ff2c78;
       padding-bottom: 0.5rem;
       margin-bottom: 1rem;
-      text-align: center; /* Cambiado para centrar el título */
+      text-align: center;
       color: #ff2c78;
     }
 
@@ -212,7 +211,6 @@ main.guest-purchase {
   object-fit: cover;
 }
 
-// Contenedor principal
 .customer-info {
   width: 100%;
   max-width: 900px;
@@ -231,8 +229,8 @@ main.guest-purchase {
   .form-row {
     display: flex;
     justify-content: space-between;
-    align-items: flex-start; // Alineación superior para evitar "escalera"
-    gap: 20px; // Separación horizontal entre los elementos
+    align-items: flex-start;
+    gap: 20px;
 
     .form-group {
       flex: 1;
@@ -241,7 +239,7 @@ main.guest-purchase {
         display: block;
         font-size: 1rem;
         font-weight: bold;
-        margin-bottom: 0.5rem; // Espaciado entre el label y el input
+        margin-bottom: 0.5rem;
         color: $text-light;
         min-height: 50px;
       }
@@ -264,7 +262,6 @@ main.guest-purchase {
     }
   }
 
-  // Espaciado uniforme entre filas de la tabla
   .form-row + .form-row {
     margin-top: 1.5rem;
   }

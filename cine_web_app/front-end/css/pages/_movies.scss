@@ -1,6 +1,5 @@
-// Variables de colores
 $text-white: #ffffff;
-$text-gray: #b0b0b0; // Gris claro para detalles
+$text-gray: #b0b0b0;
 $section-title-weight: bold;
 $detail-text-weight: normal;
 $detail-text-size: 1.1rem;
@@ -12,7 +11,6 @@ $subtle-text-color: #b0b0b0;
 $highlight-color: #ff2c78;
 $border-color: rgba(255, 255, 255, 0.2);
 
-// Estilos globales
 body {
   margin: 0;
   padding: 0;
@@ -21,7 +19,6 @@ body {
   color: $text-white;
 }
 
-// Estilos de la película
 .movie {
   display: flex;
   flex-direction: column;
@@ -62,7 +59,7 @@ body {
     flex: 2;
     display: flex;
     flex-direction: column;
-    gap: 0.2rem; // Reducido para estar más pegados
+    gap: 0.2rem;
 
     &-title {
       font-size: 2rem;
@@ -71,14 +68,14 @@ body {
     }
 
     &-age-rating-icon {
-      width: 20px; // Ajusta el tamaño del icono según sea necesario
+      width: 20px;
       height: auto;
 
       &-section-title {
         font-size: $section-title-size;
         font-weight: $section-title-weight;
         color: $text-white;
-        margin-top: 0; // Sin margen superior
+        margin-top: 0; 
       }
 
       &-director,
@@ -87,7 +84,7 @@ body {
         font-size: $detail-text-size;
         font-weight: $detail-text-weight;
         color: $text-gray;
-        line-height: 1.2; // Compactado aún más
+        line-height: 1.2;
       }
     }
 
@@ -100,7 +97,7 @@ body {
         font-size: $section-title-size;
         font-weight: $section-title-weight;
         color: $text-white;
-        margin-top: 0; // Sin margen superior
+        margin-top: 0;
       }
 
       &-duration,
@@ -110,12 +107,11 @@ body {
         font-size: $detail-text-size;
         font-weight: $detail-text-weight;
         color: $text-gray;
-        line-height: 1.2; // Compactado aún más
+        line-height: 1.2;
       }
     }
   }
 
-  /**/
 
   .cine-detail {
     height: 1000px;
@@ -186,14 +182,14 @@ body {
       &-showtimes {
         display: grid;
         grid-template-columns: repeat(2, 1fr);
-        overflow-x: auto; // Habilita el desplazamiento horizontal para que todas las sesiones se muestren en línea
+        overflow-x: auto;
         gap: 1rem;
         margin-top: 1rem;
-        padding-bottom: 1rem; // Espacio inferior para que el borde de las tarjetas no toque el límite
+        padding-bottom: 1rem;
 
 
         .session {
-          flex: 0 0 auto; // Evita que las tarjetas se expandan y se ajusten en una sola fila
+          flex: 0 0 auto;
           position: relative;
           display: flex;
           flex-direction: column;
@@ -251,7 +247,7 @@ body {
             border-radius: 5%;
             color: #ffffff;
             padding: 0.2rem 0.4rem;
-            margin-top: 0.5rem; // Asegura espacio entre etiquetas
+            margin-top: 0.5rem;
           }
 
           &.four-sessions {
@@ -264,7 +260,6 @@ body {
     }
   }
 
-  // Variables de colores
   $primary-bg: #07051e;
   $secondary-bg: #07051e;
   $text-color: #ffffff;
@@ -272,16 +267,15 @@ body {
   $highlight-color: #ff2c78;
   $border-color: rgba(255, 255, 255, 0.2);
 
-  // Contenedor principal de la barra de selección de días
   .daily-selector {
     display: flex;
     flex-direction: column;
     justify-content: space-between;
     align-items: center;
-    padding: 0.7rem 1rem; // Reduce padding para un diseño más compacto
+    padding: 0.7rem 1rem;
     background-color: $primary-bg;
     border-bottom: 1px solid $border-color;
-    font-size: 0.95rem; // Reduce el tamaño de la fuente para hacerlo más compacto
+    font-size: 0.95rem;
     gap: 17px;
     width: 300px;
 
@@ -302,7 +296,7 @@ body {
         cursor: pointer;
 
         svg {
-          width: 0.75rem; // Ajusta el tamaño del icono
+          width: 0.75rem;
           height: 0.75rem;
           fill: $subtle-text-color;
         }
@@ -318,7 +312,6 @@ body {
     }
   }
 
-  // Estilos para el contenedor de los días
   .day-selector {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
@@ -349,7 +342,6 @@ body {
   }
 
 
-  // Estilos del modal
   .modal {
     position: fixed;
     top: 0;
@@ -367,7 +359,7 @@ body {
     }
 
     .modal-content {
-      background: $secondary-bg; // Fondo del contenido del modal
+      background: $secondary-bg;
       padding: 1.5rem;
       border-radius: 8px;
       width: 80%;
@@ -376,7 +368,7 @@ body {
 
       h2 {
         margin-top: 0;
-        color: $highlight-color; // Color del título del modal
+        color: $highlight-color;
       }
 
       ul {
@@ -394,14 +386,14 @@ body {
         transition: background 0.3s;
 
         &:hover {
-          background-color: $highlight-color; // Color de fondo al hacer hover
+          background-color: $highlight-color;
           color: #fff;
         }
       }
 
       button {
         padding: 0.5rem 1rem;
-        background: $highlight-color; // Color de fondo del botón
+        background: $highlight-color;
         color: #fff;
         border: none;
         border-radius: 4px;
@@ -409,7 +401,7 @@ body {
         transition: background 0.3s;
 
         &:hover {
-          background: $highlight-color; // Oscurece el color en hover
+          background: $highlight-color;
         }
       }
     }

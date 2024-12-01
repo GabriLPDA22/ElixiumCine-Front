@@ -1,4 +1,3 @@
-@charset "UTF-8";
 body {
   font-family: "Poppins", sans-serif;
   color: #fff;
@@ -10,7 +9,7 @@ body {
 
 .cine-detail {
   display: flex;
-  flex-direction: column; /* Mobile-first */
+  flex-direction: column;
   position: relative;
 }
 .cine-detail__background {
@@ -41,7 +40,7 @@ body {
   display: flex;
   flex-direction: column;
   align-items: center;
-  z-index: 5; /* Asegura que está encima del fondo */
+  z-index: 5;
 }
 .cine-detail__info-title {
   font-size: 2rem;
@@ -68,14 +67,13 @@ body {
   color: #ffffff;
   margin-top: 1rem;
   text-align: center;
-  max-width: 80%; /* Limita el ancho en móviles */
+  max-width: 80%;
 }
 .cine-detail__info-showtimes {
   display: grid;
-  gap: 1rem; /* Espaciado entre los elementos */
+  gap: 1rem;
   justify-content: center;
   margin-top: 1.5rem;
-  /* Configuración para móviles: 2 columnas */
   grid-template-columns: repeat(2, 1fr);
 }
 .cine-detail__info-showtimes .session {
@@ -85,7 +83,7 @@ body {
   justify-content: center;
   border: 1px solid #ff2c78;
   border-radius: 8px;
-  width: 100%; /* Ajuste para que ocupe el ancho del grid */
+  width: 100%;
   background: rgba(0, 0, 0, 0.6);
   cursor: pointer;
   transition: all 0.3s ease;
@@ -177,15 +175,15 @@ body {
     text-align: left;
   }
   .cine-detail__info-showtimes {
-    grid-template-columns: repeat(4, 1fr); /* 4 columnas en escritorio */
+    grid-template-columns: repeat(4, 1fr);
     justify-content: flex-start;
-    gap: 2rem; /* Más espacio entre las sesiones */
+    gap: 2rem;
   }
   .cine-detail__logo {
     width: 200px;
   }
   .cine-detail .day-selector {
-    justify-content: flex-start; /* Alineado al inicio en escritorio */
+    justify-content: flex-start;
   }
 }
 

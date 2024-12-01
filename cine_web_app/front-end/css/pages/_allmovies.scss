@@ -1,11 +1,10 @@
-// Variables de colores
 $background-color: #1c1e2b;
 $border-color: #3a3d4d;
 $shadow-color: rgba(0, 0, 0, 0.5);
 $text-color: #ffffff;
 $highlight-color: #ff2c78;
 
-// Body y diseño general
+
 body {
   font-family: Arial, sans-serif;
   background-color: #070a1d;
@@ -19,22 +18,20 @@ h2{
     font-size: xx-large;
 }
 
-// Contenedor de las películas
 .movies__container {
-  max-width: 1200px; // Ancho máximo del contenedor
-  margin: 0 auto; // Centrar el contenedor horizontalmente
-  display: flex; // Cambiado a flexbox para un mejor centrado
-  flex-wrap: wrap; // Permite que las tarjetas se muevan a la siguiente línea
-  gap: 20px; // Espaciado uniforme entre las tarjetas
-  justify-content: center; // Centra todas las tarjetas horizontalmente
-  align-items: center; // Centra las tarjetas verticalmente en la fila
+  max-width: 1200px;
+  margin: 0 auto;
+  display: flex;
+  flex-wrap: wrap; 
+  gap: 20px;
+  justify-content: center;
+  align-items: center;
   padding: 20px;
 }
 
-// Tarjeta de película
 .movie-card {
-  width: 200px; // Ancho fijo
-  height: 300px; // Altura fija
+  width: 200px;
+  height: 300px;
   display: flex;
   flex-direction: column;
   background-color: #1c1e2b;
@@ -51,8 +48,8 @@ h2{
 
   &__image {
     width: 100%;
-    height: 70%; // Ajusta la altura relativa de la imagen
-    object-fit: cover; // Evita distorsiones en la imagen
+    height: 70%;
+    object-fit: cover;
   }
 
   &__title {
@@ -65,7 +62,6 @@ h2{
   }
 }
 
-// Estilos de los filtros
 .movies__filters {
   display: flex;
   justify-content: center;
@@ -93,15 +89,12 @@ h2{
   }
 }
 
-// Mensajes de error o sin datos
 .error-message {
   text-align: center;
   font-size: 1.2rem;
   color: $highlight-color;
   margin: 20px 0;
 }
-
-
 
 @media (max-width: 480px) {
    .movies__filters{

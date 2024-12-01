@@ -1,11 +1,9 @@
-// Variables
 $primary-color: #1D1731;
 $secondary-color: #f5f5f5;
 $text-color: #333;
 $table-border: #ACACAC;
 $font-family: 'Arial', sans-serif;
 
-// Global styles
 * {
     margin: 0;
     padding: 0;
@@ -25,7 +23,6 @@ body {
     padding: 0 15px;
 }
 
-// Header
 .header {
     background: $primary-color;
     color: white;
@@ -42,7 +39,6 @@ body {
     }
 }
 
-// Main Content
 .main-content {
     padding: 2rem 0;
 
@@ -97,7 +93,6 @@ body {
     }
 }
 
-// Footer
 .footer {
     background: $primary-color;
     color: white;

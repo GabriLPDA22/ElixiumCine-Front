@@ -2,7 +2,7 @@ body {
     margin: 0;
     padding: 0;
     font-family: "Poppins", sans-serif;
-    background-color: #0a0e27; /* Fondo general de la página */
+    background-color: #0a0e27;
 }
 
 .promotions {
@@ -56,8 +56,8 @@ body {
         display: flex;
         flex-direction: column;
         gap: 2rem;
-        max-width: 900px; /* Limitar el ancho máximo de las tarjetas */
-        margin: 0 auto; /* Centrar horizontalmente */
+        max-width: 900px;
+        margin: 0 auto;
     }
 }
 
@@ -68,7 +68,7 @@ body {
     border-radius: 10px;
     overflow: hidden;
     padding: 1rem;
-    align-items: center; /* Centrar elementos verticalmente */
+    align-items: center;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
 
     &__image {
@@ -112,7 +112,7 @@ body {
         cursor: pointer;
         border-radius: 5px;
         font-size: 0.9rem;
-        height: fit-content; /* Tamaño automático */
+        height: fit-content;
         transition: background-color 0.3s;
 
         &:hover {

@@ -8,7 +8,6 @@ body {
     box-sizing: border-box;
 }
 
-// Header Styles
 .header {
     display: flex;
     justify-content: space-between;
@@ -55,13 +54,13 @@ body {
       &__link {
         color: #ffffff;
         text-decoration: none;
-        font-weight: 600; // Semi-bold para hacer que se vea más fuerte
+        font-weight: 600;
         font-family: "Poppins", sans-serif;
         transition: color 0.3s;
         text-decoration: none;
   
         &:hover {
-          color: #ff2c78; // Color de hover
+          color: #ff2c78;
         }
       }
   
@@ -73,7 +72,6 @@ body {
     }
   }
 
-// Banner Section
 .banner {
     &__image {
         width: 100%;
@@ -81,7 +79,6 @@ body {
     }
 }
 
-// Cines section styles
 .cines {
     text-align: center;
     padding: 2rem;
@@ -104,7 +101,6 @@ body {
     }
 }
 
-// Card styles
 .cines__card {
     position: relative;
     background-size: cover;
@@ -142,11 +138,9 @@ body {
     }
 }
 
-
-// Responsive para móviles
 @media (max-width: 768px) {
   .cines__grid {
-    grid-template-columns: 1fr; // Una sola columna
-    gap: 1rem; // Opcional: reducir el espacio entre tarjetas
+    grid-template-columns: 1fr;
+    gap: 1rem;
   }
 }

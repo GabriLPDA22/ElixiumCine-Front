@@ -1,4 +1,3 @@
-// Variables de colores
 $background-color: #10141e;
 $text-color: #ffffff;
 $button-color: #ff2c78;
@@ -6,7 +5,6 @@ $link-color: #ff2c78;
 $seat-available-color: #bfbfbf;
 $seat-selected-color: #ff2c78;
 
-// Estilos globales
 body {
     font-family: "Poppins", sans-serif;
     background-color: #020510;
@@ -24,7 +22,6 @@ h3 {
     color: $text-color;
 }
 
-// Estilos específicos para la sección de detalles de la película
 .movie-details {
     position: relative;
     color: $text-color;
@@ -72,7 +69,7 @@ h3 {
                     color: $text-color;
                     margin-bottom: 10px;
                     letter-spacing: 0.1rem;
-                    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5); // Sombra para destacar
+                    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
                 }
             }
         }
@@ -102,7 +99,6 @@ h3 {
     }
 }
 
-// Estilos del botón de retroceso
 .booking-go-back {
     display: flex;
     align-items: center;
@@ -126,7 +122,6 @@ h3 {
     }
 }
 
-// Estilos para la selección de asientos
 .seat-selection {
     &__details {
         position: relative;
@@ -209,8 +204,6 @@ h3 {
     }
 }
 
-
-// Clases para los asientos
 .seat {
     width: 20px;
     height: 20px;
@@ -236,13 +229,9 @@ h3 {
         border: 2px solid purple;
         pointer-events: none;
     }
-
-    
-
-
 }
 
-// Estilo del botón de continuar
+
 .continue-btn {
     background-color: $button-color;
     color: $text-color;
@@ -258,16 +247,15 @@ h3 {
     }
 }
 
-// Estilo del mapa de asientos
 #seat-map {
     display: grid;
     grid-template-columns: repeat(20, 1fr);
-    gap: 7px; // Espaciado original
+    gap: 7px;
     justify-content: center;
-    width: 100%; // Ajusta al ancho disponible
-    max-width: 600px; // Máximo ancho para pantallas grandes
-    margin: 0 auto; // Centrado horizontal
-    transition: transform 0.3s ease-in-out; // Suaviza la transición al cambiar la escala
+    width: 100%;
+    max-width: 600px;
+    margin: 0 auto;
+    transition: transform 0.3s ease-in-out;
 }
 
 .screen {
@@ -283,28 +271,27 @@ h3 {
     }
 
     &__background {
-        fill: #e0e0e0; // Color de fondo del trapecio
-        stroke: #b0b0b0; // Borde del trapecio
+        fill: #e0e0e0;
+        stroke: #b0b0b0;
         stroke-width: 2;
     }
 
     &__text {
         font-size: 15px;
         font-weight: bold;
-        fill: #333; // Color del texto
+        fill: #333;
         font-family: "Poppins", sans-serif;
-        text-transform: uppercase; // Texto en mayúsculas
+        text-transform: uppercase;
     }
 }
 
 
-// Media queries para dispositivos móviles
 @media (max-width: 480px) {
     .seat-map {
-        gap: 3px; // Ajusta el espacio entre butacas
-        justify-content: center; // Centrado horizontal
-        width: 100%; // Asegura que el mapa ocupe todo el ancho del dispositivo móvil
-        transform-origin: top center; // Mantén el centro al escalar
+        gap: 3px;
+        justify-content: center;
+        width: 100%;
+        transform-origin: top center;
         padding: 10px;
         transform: scale(0.4);
     }
@@ -312,7 +299,7 @@ h3 {
         max-height: 200px;
     }
     .seat {
-        aspect-ratio: 1 / 1; // Garantiza proporciones cuadradas
+        aspect-ratio: 1 / 1;
         display: inline-block;
         margin-right: 5px;
         border-radius: 3px;
@@ -340,7 +327,7 @@ h3 {
     .screen {
         text-align: center;
         margin: 15px 0;
-        font-size: 0.8rem; // Tamaño reducido para la etiqueta de pantalla
+        font-size: 0.8rem;
         color: $text-color;
     }
     .screen__text{
