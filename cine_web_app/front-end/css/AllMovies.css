@@ -6,12 +6,6 @@ body {
   padding: 0;
 }
 
-header {
-  text-align: center;
-  margin: 20px 0;
-  color: #ffffff;
-}
-
 h2 {
   text-align: center;
   font-size: xx-large;
@@ -97,4 +91,4 @@ h2 {
   }
 }
 
-/*# sourceMappingURL=AllMovies.css.map */
+/*# sourceMappingURL=allmovies.css.map */
