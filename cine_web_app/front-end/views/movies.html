@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Elixium - Movies</title>
-    <link rel="icon" href="/cine_web_app/front-end/images/Logoweb.png"type="image/x-icon" />
+    <link rel="icon" href="/cine_web_app/front-end/images/Logoweb.png" type="image/x-icon" />
     <link rel="stylesheet" href="../css/header.css">
     <link rel="stylesheet" href="../css/movies.css">
     <link rel="stylesheet" href="../css/footer.css">
@@ -21,7 +21,8 @@
             <ul class="header__menu">
                 <li class="header__menu-item"><a href="/cine_web_app/front-end/views/Cinemas.html">Cines</a></li>
                 <li class="header__menu-item"><a href="../views/Allmovies.html">Películas</a></li>
-                <li class="header__menu-item"><a href="/cine_web_app/front-end/views/Promociones.html">Promociones</a></li>
+                <li class="header__menu-item"><a href="/cine_web_app/front-end/views/Promociones.html">Promociones</a>
+                </li>
             </ul>
         </nav>
         <div class="header__actions">
@@ -40,7 +41,8 @@
             <ul class="header__menu">
                 <li class="header__menu-item"><a href="/cine_web_app/front-end/views/Cinemas.html">Cines</a></li>
                 <li class="header__menu-item"><a href="/cine_web_app/front-end/views/Allmovies.html">Películas</a></li>
-                <li class="header__menu-item"><a href="/cine_web_app/front-end/views/Promociones.html">Promociones</a></li>
+                <li class="header__menu-item"><a href="/cine_web_app/front-end/views/Promociones.html">Promociones</a>
+                </li>
                 <li class="header__menu-item"><a href="/cine_web_app/front-end/views/security/register.html"
                         class="header__link header__register">Registrarse</a></li>
                 <li class="header__menu-item"><a href="/cine_web_app/front-end/views/security/login.html"
@@ -90,10 +92,12 @@
                     <span>Seleccionar cine</span>
                     <svg> <!-- Icono de localización --> </svg>
                 </div>
-                <div class="filter">
+                <!-- Botón de Filtrar -->
+                <div class="filter" onclick="openFilterModal()">
                     <span>Filtrar por</span>
-                    <svg> <!-- Icono de filtro (opcional) --> </svg>
+                    <svg><!-- Icono de filtro (opcional) --></svg>
                 </div>
+
             </div>
         </div>
 
@@ -106,6 +110,30 @@
             </div>
         </div>
 
+        <!-- Modal para filtrar sesiones -->
+        <div id="filter-modal" class="modal hidden">
+            <div class="modal-content">
+                <h2>Filtrar Sesiones</h2>
+                <ul id="filter-list">
+                    <li>
+                        <label>
+                            <input type="checkbox" id="filter-isense" onchange="applyFilters()"> ISense
+                        </label>
+                    </li>
+                    <li>
+                        <label>
+                            <input type="checkbox" id="filter-vose" onchange="applyFilters()"> VOSE
+                        </label>
+                    </li>
+                    <li>
+                        <label>
+                            <input type="checkbox" id="filter-normales" onchange="applyFilters()"> Normales
+                        </label>
+                    </li>
+                </ul>
+                <button onclick="closeFilterModal()">Cerrar</button>
+            </div>
+        </div>
 
         <!-- Contenedor de los botones para los días -->
         <div class="day-selector" id="day-selector">
@@ -204,7 +232,7 @@
     </footer>
 
     <script src="../js/Movies/movies.js"></script>
-        
+
 </body>
 
 </html>

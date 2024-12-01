@@ -181,6 +181,70 @@ async function selectCinema(cinemaName, cinemaId) {
 }
 
 
+// Abre el modal de filtro
+function openFilterModal() {
+    document.getElementById("filter-modal").classList.remove("hidden");
+    document.body.style.overflow = "hidden";
+}
+
+// Cierra el modal de filtro
+function closeFilterModal() {
+    document.getElementById("filter-modal").classList.add("hidden");
+    document.body.style.overflow = "auto";
+    updateFilterText();
+}
+
+// Actualiza el texto del botón "Filtrar por" según las opciones seleccionadas
+function updateFilterText() {
+    const isenseChecked = document.getElementById("filter-isense").checked;
+    const voseChecked = document.getElementById("filter-vose").checked;
+    const normalesChecked = document.getElementById("filter-normales").checked;
+
+    let filterText = "Filtrar por";
+
+    if (isenseChecked || voseChecked || normalesChecked) {
+        filterText = "";
+        if (isenseChecked) filterText += " ISense";
+        if (voseChecked) filterText += (filterText ? " + " : "") + "VOSE";
+        if (normalesChecked) filterText += (filterText ? " + " : "") + "Normales";
+    }
+
+    document.querySelector(".filter span").textContent = filterText.trim();
+}
+
+
+// Aplica los filtros seleccionados
+function applyFilters() {
+    const isenseChecked = document.getElementById("filter-isense").checked;
+    const voseChecked = document.getElementById("filter-vose").checked;
+    const normalesChecked = document.getElementById("filter-normales").checked;
+
+    // Obtén todas las sesiones visibles actualmente
+    const sessions = document.querySelectorAll(".session");
+
+    sessions.forEach((session) => {
+        // Verifica las etiquetas (tags) dentro de la sesión
+        const hasISense = session.querySelector(".session__tag--isense") !== null;
+        const hasVOSE = session.querySelector(".session__tag--vose") !== null;
+        const isNormal = !hasISense && !hasVOSE;
+
+        // Decide si mostrar u ocultar la sesión
+        if (
+            (isenseChecked && hasISense) ||
+            (voseChecked && hasVOSE) ||
+            (normalesChecked && isNormal)
+        ) {
+            session.style.display = "flex"; // Mostrar si cumple el filtro
+        } else {
+            session.style.display = "none"; // Ocultar si no cumple
+        }
+    });
+
+    // Actualiza el texto del botón "Filtrar por"
+    updateFilterText();
+}
+
+
 // Cargar los días y las sesiones
 async function loadDaysAndSessions(cineId) {
     try {
@@ -284,13 +348,14 @@ async function renderShowtimesByDate(day, cineId) {
                 voseTag.textContent = "VOSE";
                 tagsDiv.appendChild(voseTag);
             }
-
+            
             if (sesion.esISense) {
                 const isenseTag = document.createElement("div");
                 isenseTag.classList.add("session__tag", "session__tag--isense");
                 isenseTag.textContent = "iSense";
                 tagsDiv.appendChild(isenseTag);
             }
+            
 
             sessionDiv.appendChild(timeDiv);
             sessionDiv.appendChild(roomDiv);
