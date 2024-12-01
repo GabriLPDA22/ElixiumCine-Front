@@ -5,9 +5,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Elixium - Login Invitado</title>
-    <link rel="icon" href="/cine_web_app/front-end/images/Logoweb.png"type="image/x-icon" />
-    <link rel="stylesheet" href="/cine_web_app/front-end/css/login.css">
-    <link rel="stylesheet" href="/cine_web_app/front-end/css/Scrollbar.css">
+    <link rel="icon" href="../images/Logoweb.png"type="image/x-icon" />
+    <link rel="stylesheet" href="../css/login.css">
+    <link rel="stylesheet" href="../css/Scrollbar.css">
     <!-- Incluye SweetAlert para los mensajes de éxito o error -->
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 </head>
@@ -15,11 +15,11 @@
 <body class="login-page">
     <!-- Header -->
     <header class="header">
-        <a href="../home.html" class="header__logo">Elixium</a>
+        <a href="home" class="header__logo">Elixium</a>
         <div class="header__language">
             <button class="header__language-btn" id="language-toggle">
                 <span id="current-language">Español</span>
-                <img src="/cine_web_app/front-end/images/globo.png" alt="Language Icon" class="header__language-icon">
+                <img src="../images/globo.png" alt="Language Icon" class="header__language-icon">
             </button>
             <div class="header__language-dropdown">
                 <div class="header__language-option" data-en="English" data-es="English">English</div>
@@ -27,7 +27,6 @@
         </div>
     </header>
 
-    <!-- Background Grid with Posters -->
     <!-- Background Grid with Posters -->
     <div class="background-grid">
         <div class="poster poster--1 poster--small"
@@ -73,7 +72,7 @@
                     <label class="auth__checkbox-label" data-en="Remember me" data-es="Recuérdame">
                         <input type="checkbox" class="auth__checkbox"> Recuérdame
                     </label>
-                    <a href="/cine_web_app/front-end/views/security/register.html" class="auth__link"
+                    <a href="register" class="auth__link"
                         data-en="Don't have an account? Sign up" data-es="¿No tienes una cuenta? Regístrate">¿No tienes
                         una cuenta? Regístrate</a>
                 </div>
