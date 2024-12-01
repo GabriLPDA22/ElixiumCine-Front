@@ -8,7 +8,7 @@ h3 {
   font-size: 2.5rem;
   font-weight: bold;
   text-align: center;
-  margin-top: 10px;
+  margin-top: 30px;
   margin-bottom: 20px;
   color: #ffffff;
 }
@@ -156,7 +156,6 @@ h3 {
   width: 20px;
   height: 20px;
   display: inline-block;
-  margin-right: 5px;
   border-radius: 3px;
 }
 .seat-selection__footer {
@@ -171,7 +170,6 @@ h3 {
   width: 20px;
   height: 20px;
   display: inline-block;
-  margin-right: 5px;
   border-radius: 3px;
 }
 .seat.available {
@@ -209,11 +207,11 @@ h3 {
 
 #seat-map {
   display: grid;
-  grid-template-columns: repeat(30, 1fr);
+  grid-template-columns: repeat(20, 1fr);
   gap: 7px;
   justify-content: center;
   width: 100%;
-  max-width: 910px;
+  max-width: 600px;
   margin: 0 auto;
   transition: transform 0.3s ease-in-out;
 }
@@ -244,32 +242,39 @@ h3 {
 
 @media (max-width: 480px) {
   .seat-map {
-    display: grid;
-    grid-template-columns: repeat(30, 1fr);
     gap: 3px;
     justify-content: center;
     width: 100%;
-    transform: scale(0.8);
     transform-origin: top center;
     padding: 10px;
+    transform: scale(0.4);
+  }
+  .seat-map-container {
+    max-height: 200px;
   }
   .seat {
     aspect-ratio: 1/1;
-    background-color: #bfbfbf;
-    width: 10px;
-    height: 10px;
-    border-radius: 2px;
-    border: 1px solid #444;
+    display: inline-block;
+    margin-right: 5px;
+    border-radius: 3px;
   }
-  .seat.vip {
-    border: 1px solid orange;
+  .seat.available {
+    background-color: #bfbfbf;
+    border: 2px solid #bfbfbf;
+    cursor: pointer;
   }
   .seat.selected {
     background-color: #ff2c78;
+    border: 2px solid #ff2c78;
+  }
+  .seat.seat--vip {
+    border: 2px solid orange;
   }
   .seat.reserved {
-    background-color: #444;
+    background-color: purple;
     cursor: not-allowed;
+    border: 2px solid purple;
+    pointer-events: none;
   }
   .screen {
     text-align: center;
@@ -277,13 +282,8 @@ h3 {
     font-size: 0.8rem;
     color: #ffffff;
   }
-  .continue-btn {
-    margin: 15px auto;
-    display: block;
-    width: 90%;
-    max-width: 300px;
-    font-size: 12px;
-    padding: 8px;
+  .screen__text {
+    font-size: 25px;
   }
   .movie-details__info-wrapper--poster .movie-title .movie-title__text {
     color: #ffffff;
@@ -293,11 +293,6 @@ h3 {
   .movie-details__content-wrapper {
     flex-direction: column;
     align-items: center;
-  }
-  .movie-details__session-info .session-info-container .session-details {
-    font-size: 1.1rem;
-    color: #ffffff;
-    text-align: left;
   }
 }
 
