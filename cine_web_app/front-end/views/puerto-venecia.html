@@ -5,12 +5,12 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Elixium - Puerto Venecia</title>
-    <link rel="icon" href="/cine_web_app/front-end/images/Logoweb.png"type="image/x-icon" />
-    <link rel="stylesheet" href="/cine_web_app/front-end/css/cine-details.css" type="text/css" />
-    <link rel="stylesheet" href="/cine_web_app/front-end/css/header.css" type="text/css" />
-    <link rel="stylesheet" href="/cine_web_app/front-end/css/Scrollbar.css">
-    <link rel="stylesheet" href="/cine_web_app/front-end/css/footer.css">
-    <link rel="stylesheet" href="/cine_web_app/front-end/css/carousel-cines.css">
+    <link rel="icon" href="../images/Logoweb.png"type="image/x-icon" />
+    <link rel="stylesheet" href="../css/cine-details.css" type="text/css" />
+    <link rel="stylesheet" href="../css/header.css" type="text/css" />
+    <link rel="stylesheet" href="../css/Scrollbar.css">
+    <link rel="stylesheet" href="../css/footer.css">
+    <link rel="stylesheet" href="../carousel-cines.css">
 
 
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.carousel.min.css">
@@ -45,8 +45,10 @@
                 <li class="header__menu-item"><a href="Cinemas">Cines</a></li>
                 <li class="header__menu-item"><a href="Allmovies">Películas</a></li>
                 <li class="header__menu-item"><a href="Promociones">Promociones</a></li>
-                <li class="header__menu-item"><a href="register" class="header__link header__register">Registrarse</a></li>
-                <li class="header__menu-item"><a href="login.html" class="header__link header__login">Iniciar sesión</a></li>
+                <li class="header__menu-item"><a href="register"
+                        class="header__link header__register">Registrarse</a></li>
+                <li class="header__menu-item"><a href="login"
+                        class="header__link header__login">Iniciar sesión</a></li>
             </ul>
         </nav>
     </header>
@@ -55,7 +57,7 @@
     <main class="cine-detail">
         <!-- Fondo e Información de la película -->
         <div id="background-image" class="cine-detail__background"></div>
-        <img id="cinema-logo" src="/cine_web_app/front-end/images/gran-casa.svg" alt="Gran Casa Logo"
+        <img id="cinema-logo" src="../images/gran-casa.svg" alt="Gran Casa Logo"
         class="cine-detail__logo" />
         <section class="cine-detail__info">
             <h1 id="movie-title" class="cine-detail__info-title">
@@ -94,7 +96,7 @@
                     <!-- Botón izquierdo -->
                     <button class="carousel__button carousel__button--left">
                         <span class="carousel__button-content">
-                            <img src="/cine_web_app/front-end/images/left-arrow.png" alt="Left Arrow">
+                            <img src="../images/left-arrow.png" alt="Left Arrow">
                         </span>
                     </button>
     
@@ -108,7 +110,7 @@
                     <!-- Botón derecho -->
                     <button class="carousel__button carousel__button--right">
                         <span class="carousel__button-content">
-                            <img src="/cine_web_app/front-end/images/right-arrow.png" alt="Right Arrow">
+                            <img src="../right-arrow.png" alt="Right Arrow">
                         </span>
                     </button>
                 </div>
@@ -184,8 +186,8 @@
     </footer>
 
     <!-- Script de funcionalidad de detalle del cine -->
-    <script src="/cine_web_app/front-end/js/controllers/cine-detail.js"></script>
-    <script src="/cine_web_app/front-end/js/home/navbarresponsive.js"></script>
+    <script src="../js/controllers/cine-detail.js"></script>
+    <script src="../js/home/navbarresponsive.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.min.js"></script>
 </body>
