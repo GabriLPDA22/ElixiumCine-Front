@@ -1,6 +1,6 @@
 async function loadMovies() {
     try {
-        const response = await fetch('http://3.210.64.89:3000/api/Movie/GetPeliculas', {
+        const response = await fetch('http://3.210.64.89:80/api/Movie/GetPeliculas', {
             headers: {
                 'Accept': 'application/json',
             },

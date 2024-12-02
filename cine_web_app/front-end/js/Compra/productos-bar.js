@@ -47,7 +47,7 @@ document.addEventListener("DOMContentLoaded", async () => {
     // Función para cargar productos por categoría
     const loadProducts = async (category = "") => {
         try {
-            const response = await fetch(`http://3.210.64.89:3000/api/Productos/GetProductos?categoria=${encodeURIComponent(category)}`);
+            const response = await fetch(`http://3.210.64.89:80/api/Productos/GetProductos?categoria=${encodeURIComponent(category)}`);
             if (!response.ok) throw new Error("Error al cargar productos del bar.");
 
             const products = await response.json();
@@ -132,7 +132,7 @@ document.addEventListener("DOMContentLoaded", async () => {
     // Función para cargar categorías
     const loadCategories = async () => {
         try {
-            const response = await fetch("http://3.210.64.89:3000/api/Productos/GetCategorias");
+            const response = await fetch("http://3.210.64.89:80/api/Productos/GetCategorias");
             if (!response.ok) throw new Error("Error al cargar categorías.");
 
             const categories = await response.json();
@@ -229,7 +229,7 @@ if (continueButton) {
         params.set('cartTotal', cartTotal.toFixed(2)); // También almacena el total del carrito
 
         // Redirigir a la página de compra con los nuevos parámetros
-        window.location.href = `/cine_web_app/front-end/views/Compra/guest-purchase.html?${params.toString()}`;
+        window.location.href = `guest-purchase?${params.toString()}`;
     });
 }
 

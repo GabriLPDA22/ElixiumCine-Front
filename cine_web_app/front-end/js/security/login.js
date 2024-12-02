@@ -17,7 +17,7 @@ document.addEventListener("DOMContentLoaded", () => {
             }
 
             try {
-                const response = await fetch("http://3.210.64.89:3000/api/Auth/login", {
+                const response = await fetch("http://3.210.64.89:80/api/Auth/login", {
                     method: "POST",
                     headers: { "Content-Type": "application/json" },
                     body: JSON.stringify({ Correo: correo, Contraseña: contraseña }) // Nombres de campos consistentes
@@ -30,7 +30,7 @@ document.addEventListener("DOMContentLoaded", () => {
                 if (response.ok) {
                     const nombreUsuario = data.nombre;
                     localStorage.setItem("usuario", nombreUsuario);
-                    window.location.replace("/cine_web_app/front-end/views/home.html");
+                    window.location.replace("home");
                 } else {
                     const errorText = data.mensaje || "Error desconocido.";
                     alert(`Error en el inicio de sesión: ${errorText}`);
@@ -65,7 +65,7 @@ document.addEventListener("DOMContentLoaded", () => {
             }
 
             try {
-                const response = await fetch("http://3.210.64.89:3000/api/Auth/register", {
+                const response = await fetch("http://3.210.64.89:80/api/Auth/register", {
                     method: "POST",
                     headers: { "Content-Type": "application/json" },
                     body: JSON.stringify({ Correo: correo, Contraseña: contraseña, Nombre: nombre })

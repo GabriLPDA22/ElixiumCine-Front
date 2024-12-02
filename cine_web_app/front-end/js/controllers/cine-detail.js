@@ -10,7 +10,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
     async function fetchMovies() {
         try {
-            const response = await fetch("http://3.210.64.89:3000/api/Movie/GetPeliculas");
+            const response = await fetch("http://3.210.64.89:80/api/Movie/GetPeliculas");
             if (!response.ok) throw new Error("Error al obtener detalles de las películas");
             const peliculas = await response.json();
 
@@ -125,7 +125,7 @@ document.addEventListener("DOMContentLoaded", () => {
                 });
 
                 // Redirigir a la página de butacas
-                window.location.href = `/cine_web_app/front-end/views/butacas.html?${queryParams.toString()}`;
+                window.location.href = `butacas?${queryParams.toString()}`;
             });
 
             showtimesContainer.appendChild(sessionDiv);
@@ -146,7 +146,7 @@ document.addEventListener("DOMContentLoaded", () => {
         peliculas.forEach((movie, index) => {
             const slide = `
             <li class="carousel__slide" data-index="${index}" data-title="${movie.titulo}" data-id="${movie.id}">
-                <a href="/cine_web_app/front-end/views/movies.html?id=${movie.id}&cineId=${cineId}" class="carousel__link">
+                <a href="movies?id=${movie.id}&cineId=${cineId}" class="carousel__link">
                     <img src="${movie.cartel}" alt="${movie.titulo}" class="carousel__image">
                 </a>
             </li>`;

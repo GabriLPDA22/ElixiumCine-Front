@@ -7,7 +7,7 @@ const selectedSeatsDisplay = document.getElementById('selected-seats');
 const continueBtn = document.getElementById('continue-btn');
 let selectedSeats = []; // Array que almacena los IDs de los asientos seleccionados
 
-const API_BASE_URL = 'http://3.210.64.89:3000/api/Butacas'; // URL de la API
+const API_BASE_URL = 'http://3.210.64.89:80/api/Butacas'; // URL de la API
 
 
     // Definición de la forma de los asientos (1 = asiento, 0 = vacío)
@@ -108,7 +108,7 @@ async function fetchReservedSeats() {
     }
 
     try {
-        const response = await fetch(`http://3.210.64.89:3000/api/Pedido/GetButacasReservadas?cineName=${encodeURIComponent(cineName)}&date=${encodeURIComponent(date)}&sesionId=${sesionId}`);
+        const response = await fetch(`http://3.210.64.89:80/api/Pedido/GetButacasReservadas?cineName=${encodeURIComponent(cineName)}&date=${encodeURIComponent(date)}&sesionId=${sesionId}`);
         if (!response.ok) {
             throw new Error(`Error al obtener las butacas reservadas: ${response.statusText}`);
         }
@@ -271,7 +271,7 @@ continueBtn.addEventListener('click', () => {
         const totalPrice = selectedSeats.reduce((total, seat) => total + seat.price, 0);
         params.set('totalPrice', totalPrice.toFixed(2));
 
-        window.location.href = `/cine_web_app/front-end/views/security/login-guest.html?${params.toString()}`;
+        window.location.href = `login-guest?${params.toString()}`;
     } else {
         alert('Selecciona al menos un asiento');
     }
