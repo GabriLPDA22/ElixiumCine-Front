@@ -42,7 +42,7 @@ body {
   gap: 0.5rem;
 }
 .header__language-btn .header__language-icon {
-  content: url("/cine_web_app/front-end/images/globo.png");
+  content: url("../images/globo.png");
   width: 1rem;
   height: 1rem;
 }

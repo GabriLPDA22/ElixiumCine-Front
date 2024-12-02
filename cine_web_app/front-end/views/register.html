@@ -5,19 +5,19 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Elixium - Registrar</title>
-    <link rel="icon" href="/cine_web_app/front-end/images/Logoweb.png"type="image/x-icon" />
-    <link rel="stylesheet" href="/cine_web_app/front-end/css/login.css">
+    <link rel="icon" href="../images/Logoweb.png"type="image/x-icon" />
+    <link rel="stylesheet" href="../css/login.css">
     <link rel="stylesheet" href="../css/Scrollbar.css">
 </head>
 
 <body class="register-page">
     <!-- Header -->
     <header class="header">
-        <a href="../home.html" class="header__logo">Elixium</a>
+        <a href="../home" class="header__logo">Elixium</a>
         <div class="header__language">
             <button class="header__language-btn" id="language-toggle">
                 <span id="current-language">English</span>
-                <img src="/cine_web_app/front-end/images/globo.png" alt="Language Icon" class="header__language-icon">
+                <img src="../images/globo.png" alt="Language Icon" class="header__language-icon">
             </button>
             <div class="header__language-dropdown">
                 <div class="header__language-option" data-language="es">English</div>
@@ -28,14 +28,14 @@
 
     <!-- Background Grid with Posters -->
     <div class="background-grid">
-        <div class="poster poster--1 poster--small" style="background-image: url('/cine_web_app/front-end/images/dune_parte_dos.jpg');"></div>
-        <div class="poster poster--2 poster--large" style="background-image: url('/cine_web_app/front-end/images/Vengadores_Infinity_War.jpg');"></div>
-        <div class="poster poster--3 poster--small" style="background-image: url('/cine_web_app/front-end/images/escuadron_suicida-cartel.jpg');"></div>
-        <div class="poster poster--4 poster--large" style="background-image: url('/cine_web_app/front-end/images/doctor-strange.jpg');"></div>
-        <div class="poster poster--5 poster--large" style="background-image: url('/cine_web_app/front-end/images/Venom_Habraa_matanza.jpg');"></div>
-        <div class="poster poster--6 poster--small" style="background-image: url('/cine_web_app/front-end/images/transformer-5.jpeg');"></div>
-        <div class="poster poster--7 poster--large" style="background-image: url('/cine_web_app/front-end/images/harry-potter.jpeg');"></div>
-        <div class="poster poster--8 poster--small" style="background-image: url('/cine_web_app/front-end/images/up.jpg');"></div>
+        <div class="poster poster--1 poster--small" style="background-image: url('../images/dune_parte_dos.jpg');"></div>
+        <div class="poster poster--2 poster--large" style="background-image: url('../images/Vengadores_Infinity_War.jpg');"></div>
+        <div class="poster poster--3 poster--small" style="background-image: url('../images/escuadron_suicida-cartel.jpg');"></div>
+        <div class="poster poster--4 poster--large" style="background-image: url('../images/doctor-strange.jpg');"></div>
+        <div class="poster poster--5 poster--large" style="background-image: url('../images/Venom_Habraa_matanza.jpg');"></div>
+        <div class="poster poster--6 poster--small" style="background-image: url('../images/transformer-5.jpeg');"></div>
+        <div class="poster poster--7 poster--large" style="background-image: url('../images/harry-potter.jpeg');"></div>
+        <div class="poster poster--8 poster--small" style="background-image: url('../images/up.jpg');"></div>
     </div>
     
     
@@ -64,14 +64,14 @@
                     <label class="auth__checkbox-label" data-en="Remember me" data-es="Recuérdame">
                         <input type="checkbox" class="auth__checkbox">
                     </label>
-                    <a href="/cine_web_app/front-end/views/security/login.html" class="auth__link" data-en="Already have an account? Log in" data-es="¿Ya tienes una cuenta? Inicia sesión">Already have an account? Log in</a>
+                    <a href="login" class="auth__link" data-en="Already have an account? Log in" data-es="¿Ya tienes una cuenta? Inicia sesión">Already have an account? Log in</a>
                 </div>
             </form>
         </div>
     </main>
 
     <!-- JavaScript for Registration -->
-    <script src="/cine_web_app/front-end/js/security/login.js"></script>
-    <script src="/cine_web_app/front-end/js/security/LenguageSelector.js"></script>
+    <script src="../js/login.js"></script>
+    <script src="../js/LenguageSelector.js"></script>
 </body>
 </html>

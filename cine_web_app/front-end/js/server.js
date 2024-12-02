@@ -24,7 +24,7 @@ app.get('*', (req, res, next) => {
   if (req.path.startsWith('/css') || req.path.startsWith('/js') || req.path.startsWith('/images')) {
     return next();
   }
-  res.sendFile(path.join(__dirname, '../views/home.html'), (err) => {
+  res.sendFile(path.join(__dirname, 'home.html'), (err) => {
     if (err) {
       console.error('Error al cargar home.html:', err);
       res.status(500).send('Error en el servidor');

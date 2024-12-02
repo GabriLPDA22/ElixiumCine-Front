@@ -99,7 +99,7 @@ document.addEventListener('DOMContentLoaded', async function () {
             normalRow.classList.add('table-row');
             normalRow.innerHTML = `
                 <span>
-                    <img src="/cine_web_app/front-end/images/ticket-normal.svg" alt="Entrada Normal" class="ticket-image">
+                    <img src="../images/ticket-normal.svg" alt="Entrada Normal" class="ticket-image">
                     ${normalCount}x Entrada Normal
                 </span>
                 <span>${normalPrice.toFixed(2)} €</span>
@@ -117,7 +117,7 @@ document.addEventListener('DOMContentLoaded', async function () {
             vipRow.classList.add('table-row');
             vipRow.innerHTML = `
                 <span>
-                    <img src="/cine_web_app/front-end/images/ticket-vip.svg" alt="Entrada VIP" class="ticket-image">
+                    <img src="../images/ticket-vip.svg" alt="Entrada VIP" class="ticket-image">
                     ${vipCount}x Entrada VIP
                 </span>
                 <span>${vipPrice.toFixed(2)} €</span>
@@ -179,7 +179,7 @@ document.getElementById('finalize-purchase').addEventListener('click', function 
 
         // Redirigir a la página de resumen con todos los parámetros
         const newQueryString = currentParams.toString();
-        window.location.href = `Sumary.html?${newQueryString}`;
+        window.location.href = `sumary?${newQueryString}`;
     }
 });
 

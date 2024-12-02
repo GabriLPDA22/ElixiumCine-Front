@@ -32,7 +32,7 @@ body {
   background-color: rgb(5, 7, 19);
 }
 .about-section__background {
-  background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url("/cine_web_app/front-end/images/banner-cines.jpg");
+  background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url("../images/banner-cines.jpg");
   background-size: cover;
   background-position: center;
   padding: 2rem;
