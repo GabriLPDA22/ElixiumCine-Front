@@ -229,7 +229,7 @@ if (continueButton) {
         params.set('cartTotal', cartTotal.toFixed(2)); // También almacena el total del carrito
 
         // Redirigir a la página de compra con los nuevos parámetros
-        window.location.href = `Compra/guest-purchase?${params.toString()}`;
+        window.location.href = `guest-purchase?${params.toString()}`;
     });
 }
 
