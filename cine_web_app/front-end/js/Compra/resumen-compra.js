@@ -69,7 +69,7 @@ function getQueryParams() {
 
 // Función para cargar los datos de la película desde la API
 function fetchMovieData(movieTitle) {
-    const apiUrl = 'http://localhost:5006/api/Movie/GetPeliculas';
+    const apiUrl = 'http://3.210.64.89:8080/api/Movie/GetPeliculas';
 
     console.log(`Llamando a la API de películas en: ${apiUrl}`);
 
@@ -99,7 +99,7 @@ function fetchMovieData(movieTitle) {
 
 // Función para cargar los datos del producto desde la API
 function fetchProductData(productIds) {
-    const apiUrl = `http://localhost:5006/api/Productos/GetProductos?ids=${productIds.join(',')}`;
+    const apiUrl = `http://3.210.64.89:8080/api/Productos/GetProductos?ids=${productIds.join(',')}`;
 
     console.log(`Llamando a la API de productos en: ${apiUrl}`);
 
@@ -177,7 +177,7 @@ async function createOrder() {
     };
 
     try {
-        const response = await fetch('http://localhost:5006/api/Pedido/CreatePedido', {
+        const response = await fetch('http://3.210.64.89:8080/api/Pedido/CreatePedido', {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify(pedidoData)
@@ -212,7 +212,7 @@ function parseProducts(productParam) {
 }
 // Nueva función para obtener detalles de productos desde la API
 async function fetchProductDetails(productIds) {
-    const apiUrl = `http://localhost:5006/api/Productos/GetProductos?ids=${productIds.join(',')}`;
+    const apiUrl = `http://3.210.64.89:8080/api/Productos/GetProductos?ids=${productIds.join(',')}`;
     try {
         const response = await fetch(apiUrl);
         if (!response.ok) {
