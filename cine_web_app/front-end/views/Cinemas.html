@@ -58,7 +58,7 @@
         <h1 class="cines__title">NUESTROS CINES</h1>
         <div class="cines__grid">
 
-            <a id="linkGranCasa" href="Cines-Carteleras/gran-casa?cine=Gran Casa" class="cines__link">
+            <a id="linkGranCasa" href="gran-casa?cine=Gran Casa" class="cines__link">
                 <div class="cines__card" style="background-image: url('../images/gran-casa.jpg');">
                     <div class="cines__card-title">GRAN CASA</div>
                     <p class="cines__card-description">
@@ -68,7 +68,7 @@
                     </p>
                 </div>
             </a>
-            <a id="linkPuertoVenecia" class="cines__link" href="../Cines-Carteleras/cine-detail?cine=1">
+            <a id="linkPuertoVenecia" class="cines__link" href="puerto-venecia?cine=puerto-venecia">
                 <div class="cines__card" style="background-image: url('../images/puerto-venecia.jpg');">
                     <div class="cines__card-title">PUERTO VENECIA</div>
                     <p class="cines__card-description">
@@ -78,7 +78,7 @@
                     </p>
                 </div>
             </a>
-            <a id="linkTorreOutlet" class="cines__link">
+            <a id="linkTorreOutlet" class="cines__link" href="torre-outlet?cine=torre-outlet">
                 <div class="cines__card" style="background-image: url('../images/torre-outlet.jpg');">
                     <div class="cines__card-title">TORRE OUTLET</div>
                     <p class="cines__card-description">
@@ -89,7 +89,7 @@
                     </p>
                 </div>
             </a>
-            <a id="linkCascoAntiguo" class="cines__link">
+            <a id="linkCascoAntiguo" class="cines__link" href="casco-antiguo?cine=torre-outlet">
                 <div class="cines__card" style="background-image: url('../images/casco-antiguo.jpg');">
                     <div class="cines__card-title">CASCO ANTIGUO</div>
                     <p class="cines__card-description">
@@ -185,7 +185,7 @@ document.addEventListener("DOMContentLoaded", () => {
         const linkElement = document.getElementById(cine.id);
         if (linkElement) {
             // Actualiza el atributo href dinámicamente
-            linkElement.href = `Cines-Carteleras/${cine.name}?cineId=${cine.cineId}`;
+            linkElement.href = `${cine.name}?cineId=${cine.cineId}`;
         } else {
             console.error(`El elemento con id ${cine.id} no existe en el DOM.`);
         }
