@@ -1,5 +1,5 @@
 document.addEventListener('DOMContentLoaded', () => {
-    const API_BASE_URL = "http://localhost:5006/api/Movie"; // Cambia el puerto si es necesario
+    const API_BASE_URL = "http://3.210.64.89:3000/api/Movie"; // Cambia el puerto si es necesario
     const filterButtons = document.querySelectorAll('.filter-button');
     const moviesContainer = document.querySelector('.movies__container');
 
@@ -110,18 +110,18 @@ async function loadMovies() {
     try {
         // Obtener el filtro guardado del localStorage, o usar "all" por defecto
         const savedFilter = localStorage.getItem('selectedFilter') || 'all';
-        let url = 'http://localhost:5006/api/Movie/GetPeliculas'; // Default: todas las películas
+        let url = 'http://3.210.64.89:3000/api/Movie/GetPeliculas'; // Default: todas las películas
 
         // Ajustar la URL según el filtro seleccionado
         switch (savedFilter) {
             case 'inTheater':
-                url = 'http://localhost:5006/api/Movie/GetPeliculasEnCartelera';
+                url = 'http://3.210.64.89:3000/api/Movie/GetPeliculasEnCartelera';
                 break;
             case 'comingSoon':
-                url = 'http://localhost:5006/api/Movie/GetPeliculasProximas';
+                url = 'http://3.210.64.89:3000/api/Movie/GetPeliculasProximas';
                 break;
             case 'preSale':
-                url = 'http://localhost:5006/api/Movie/GetPeliculasEnVentaAnticipada';
+                url = 'http://3.210.64.89:3000/api/Movie/GetPeliculasEnVentaAnticipada';
                 break;
         }
 
