@@ -150,7 +150,7 @@ body {
   color: #ff2c78;
 }
 
-@media (min-width: 768px) {
+@media (max-width: 768px) {
   .cine-detail {
     flex-direction: row;
   }
