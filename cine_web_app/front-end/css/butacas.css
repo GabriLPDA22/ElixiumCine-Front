@@ -1,0 +1,301 @@
+body {
+  font-family: "Poppins", sans-serif;
+  background-color: #020510;
+  color: #ffffff;
+  margin: 0;
+  padding: 0;
+}
+
+h3 {
+  font-size: 2.5rem;
+  font-weight: bold;
+  text-align: center;
+  margin-top: 30px;
+  margin-bottom: 20px;
+  color: #ffffff;
+}
+
+.movie-details {
+  position: relative;
+  color: #ffffff;
+  height: 350px;
+  display: flex;
+  align-items: center;
+  padding: 0 2rem;
+  overflow: hidden;
+  background-color: rgba(0, 0, 0, 0.6);
+}
+.movie-details__backdrop {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: -1;
+}
+.movie-details__backdrop .movie-details__background-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  opacity: 3;
+}
+.movie-details__content-wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  position: relative;
+  z-index: 1;
+  width: 100%;
+  padding: 1rem;
+}
+.movie-details__info-wrapper--poster .movie-title .movie-title__text {
+  font-size: 3rem;
+  font-weight: bold;
+  text-transform: uppercase;
+  color: #ffffff;
+  margin-bottom: 10px;
+  letter-spacing: 0.1rem;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+}
+.movie-details__session-info {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: flex-end;
+  padding: 1rem;
+  color: #ffffff;
+  font-size: 1.2rem;
+}
+.movie-details__session-info .session-info-container .session-details {
+  font-size: 1.1rem;
+  color: #ffffff;
+  text-align: right;
+}
+.movie-details__session-info .session-info-container .session-details p {
+  margin: 0.5rem 0;
+  line-height: 1.4;
+}
+
+.booking-go-back {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  color: #ff2c78;
+  font-size: 1rem;
+  text-decoration: none;
+  padding: 0.5rem 1rem;
+  margin-left: 2rem;
+  margin-top: 10px;
+}
+.booking-go-back:hover {
+  text-decoration: underline;
+  color: #ff2c78;
+}
+.booking-go-back__arrow {
+  width: 20px;
+  height: 20px;
+  fill: #ff2c78;
+}
+
+.seat-selection__details {
+  position: relative;
+  color: #ffffff;
+  height: 350px;
+  display: flex;
+  align-items: center;
+  padding: 0 2rem;
+  background-color: rgba(0, 0, 0, 0.6);
+  overflow: hidden;
+}
+.seat-selection__details .background-image {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  z-index: -1;
+  opacity: 0.5;
+  filter: blur(4px);
+}
+.seat-selection__details .info-container {
+  position: relative;
+  z-index: 1;
+  padding: 1rem;
+  color: #ffffff;
+  text-align: left;
+}
+.seat-selection__details .info-container .movie__title {
+  font-size: 2.8rem;
+  font-weight: bold;
+  text-transform: uppercase;
+  color: #ffffff;
+  margin-bottom: 10px;
+  letter-spacing: 0.1rem;
+}
+.seat-selection__details .info-container .movie__session-info {
+  font-size: 1.2rem;
+  color: #ffffff;
+  text-align: left;
+  margin-top: 5px;
+}
+.seat-selection__details .info-container .movie__session-info p {
+  margin: 0.5rem 0;
+  line-height: 1.4;
+}
+.seat-selection__legend {
+  display: flex;
+  justify-content: center;
+  gap: 15px;
+  padding: 10px;
+  font-size: 14px;
+  border-top: 1px solid #ff2c78;
+  border-bottom: 1px solid #ff2c78;
+  margin-left: 25%;
+  margin-right: 25%;
+}
+.seat-selection__legend .seat {
+  width: 20px;
+  height: 20px;
+  display: inline-block;
+  border-radius: 3px;
+}
+.seat-selection__footer {
+  text-align: center;
+  padding: 20px;
+}
+.seat-selection__footer #selected-seats {
+  font-weight: bold;
+}
+
+.seat {
+  width: 20px;
+  height: 20px;
+  display: inline-block;
+  border-radius: 3px;
+}
+.seat.available {
+  background-color: #bfbfbf;
+  border: 2px solid #bfbfbf;
+  cursor: pointer;
+}
+.seat.selected {
+  background-color: #ff2c78;
+  border: 2px solid #ff2c78;
+}
+.seat.seat--vip {
+  border: 2px solid orange;
+}
+.seat.reserved {
+  background-color: purple;
+  cursor: not-allowed;
+  border: 2px solid purple;
+  pointer-events: none;
+}
+
+.continue-btn {
+  background-color: #ff2c78;
+  color: #ffffff;
+  border: none;
+  padding: 10px 20px;
+  cursor: pointer;
+  font-weight: bold;
+  font-size: 16px;
+  border-radius: 5px;
+}
+.continue-btn:hover {
+  background-color: #ff2c78;
+}
+
+#seat-map {
+  display: grid;
+  grid-template-columns: repeat(20, 1fr);
+  gap: 7px;
+  justify-content: center;
+  width: 100%;
+  max-width: 600px;
+  margin: 0 auto;
+  transition: transform 0.3s ease-in-out;
+}
+
+.screen {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 20px 0;
+}
+.screen__svg {
+  width: 100%;
+  max-width: 910px;
+  height: auto;
+}
+.screen__background {
+  fill: #e0e0e0;
+  stroke: #b0b0b0;
+  stroke-width: 2;
+}
+.screen__text {
+  font-size: 15px;
+  font-weight: bold;
+  fill: #333;
+  font-family: "Poppins", sans-serif;
+  text-transform: uppercase;
+}
+
+@media (max-width: 480px) {
+  .seat-map {
+    gap: 3px;
+    justify-content: center;
+    width: 100%;
+    transform-origin: top center;
+    padding: 10px;
+    transform: scale(0.4);
+  }
+  .seat-map-container {
+    max-height: 200px;
+  }
+  .seat {
+    aspect-ratio: 1/1;
+    display: inline-block;
+    margin-right: 5px;
+    border-radius: 3px;
+  }
+  .seat.available {
+    background-color: #bfbfbf;
+    border: 2px solid #bfbfbf;
+    cursor: pointer;
+  }
+  .seat.selected {
+    background-color: #ff2c78;
+    border: 2px solid #ff2c78;
+  }
+  .seat.seat--vip {
+    border: 2px solid orange;
+  }
+  .seat.reserved {
+    background-color: purple;
+    cursor: not-allowed;
+    border: 2px solid purple;
+    pointer-events: none;
+  }
+  .screen {
+    text-align: center;
+    margin: 15px 0;
+    font-size: 0.8rem;
+    color: #ffffff;
+  }
+  .screen__text {
+    font-size: 25px;
+  }
+  .movie-details__info-wrapper--poster .movie-title .movie-title__text {
+    color: #ffffff;
+    letter-spacing: 0;
+    font-size: 2.5rem;
+  }
+  .movie-details__content-wrapper {
+    flex-direction: column;
+    align-items: center;
+  }
+}
+
+/*# sourceMappingURL=butacas.css.map */

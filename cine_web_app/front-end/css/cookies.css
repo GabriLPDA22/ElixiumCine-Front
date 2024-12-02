@@ -1,0 +1,87 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: "Arial", sans-serif;
+  color: #333;
+  background-color: #f5f5f5;
+  line-height: 1.6;
+}
+
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 15px;
+}
+
+.header {
+  background: #1D1731;
+  color: white;
+  text-align: center;
+  padding: 2rem 0;
+}
+.header h1 {
+  font-size: 2.5rem;
+  margin-bottom: 0.5rem;
+}
+.header p {
+  font-size: 1rem;
+}
+
+.main-content {
+  padding: 2rem 0;
+}
+.main-content .section {
+  margin-bottom: 2rem;
+}
+.main-content .section h2 {
+  font-size: 1.8rem;
+  color: #1D1731;
+  margin-bottom: 1rem;
+}
+.main-content .section p {
+  font-size: 1rem;
+  margin-bottom: 1rem;
+}
+.main-content .section ul {
+  list-style: none;
+}
+.main-content .section ul li {
+  margin-bottom: 0.5rem;
+}
+.main-content .section ul li a {
+  color: #1D1731;
+  text-decoration: underline;
+}
+.main-content .section table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 1rem;
+}
+.main-content .section table th, .main-content .section table td {
+  border: 1px solid #ACACAC;
+  padding: 0.75rem;
+  text-align: left;
+}
+.main-content .section table th {
+  background: #1D1731;
+  color: white;
+}
+.main-content .section table tr:nth-child(even) {
+  background: #f5f5f5;
+}
+
+.footer {
+  background: #1D1731;
+  color: white;
+  text-align: center;
+  padding: 1rem 0;
+}
+.footer p {
+  font-size: 0.9rem;
+}
+
+/*# sourceMappingURL=cookies.css.map */

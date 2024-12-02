@@ -1,0 +1,88 @@
+$primary-color: #FF2C78;
+$gray-dark: #ACACAC;    
+$gray-light: #D9D9D9;   
+$bg-dark: #1D1731;      
+$text-color: $gray-light;
+
+body {
+  font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+  background-color: $bg-dark;
+  color: $text-color;
+}
+
+.main {
+  .jobs {
+    padding: 40px 20px;
+
+    &__header {
+      text-align: center;
+      margin-bottom: 40px;
+
+      &__title {
+        color: $primary-color;
+        font-size: 2.5rem;
+        margin-bottom: 20px;
+      }
+
+      &__subtitle {
+        font-size: 1.2rem;
+        line-height: 1.6;
+        color: $text-color;
+        max-width: 800px;
+        margin: 0 auto;
+      }
+    }
+
+    &__positions {
+      &-title {
+        color: $primary-color;
+        text-align: center;
+        font-size: 2rem;
+        margin-bottom: 30px;
+      }
+    }
+
+    &__list {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 20px;
+    }
+
+    &__item {
+      background-color: $gray-dark;
+      border: 1px solid $gray-light;
+      border-radius: 8px;
+      width: 280px;
+      padding: 20px;
+      text-align: center;
+
+      &-title {
+        font-size: 1.5rem;
+        color: white;
+        margin-bottom: 10px;
+      }
+
+      &-description {
+        font-size: 1rem;
+        line-height: 1.4;
+        color: $text-color;
+        margin-bottom: 20px;
+      }
+
+      &-apply {
+        background-color: $primary-color;
+        color: white;
+        border: none;
+        padding: 10px 20px;
+        font-size: 1rem;
+        border-radius: 5px;
+        cursor: pointer;
+        transition: background-color 0.3s;
+
+      }
+    }
+  }
+}
