@@ -17,7 +17,7 @@ document.addEventListener("DOMContentLoaded", () => {
             }
 
             try {
-                const response = await fetch("http://3.210.64.89:80/api/Auth/login", {
+                const response = await fetch("http://3.210.64.89:8080/api/Auth/login", {
                     method: "POST",
                     headers: { "Content-Type": "application/json" },
                     body: JSON.stringify({ Correo: correo, Contraseña: contraseña }) // Nombres de campos consistentes
@@ -65,7 +65,7 @@ document.addEventListener("DOMContentLoaded", () => {
             }
 
             try {
-                const response = await fetch("http://3.210.64.89:80/api/Auth/register", {
+                const response = await fetch("http://3.210.64.89:8080/api/Auth/register", {
                     method: "POST",
                     headers: { "Content-Type": "application/json" },
                     body: JSON.stringify({ Correo: correo, Contraseña: contraseña, Nombre: nombre })

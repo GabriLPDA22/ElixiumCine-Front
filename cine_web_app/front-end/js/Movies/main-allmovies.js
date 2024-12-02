@@ -1,5 +1,5 @@
 document.addEventListener('DOMContentLoaded', () => {
-    const API_BASE_URL = "http://3.210.64.89:80/api/Movie"; // Cambia el puerto si es necesario
+    const API_BASE_URL = "http://3.210.64.89:8080/api/Movie"; // Cambia el puerto si es necesario
     const filterButtons = document.querySelectorAll('.filter-button');
     const moviesContainer = document.querySelector('.movies__container');
 
@@ -110,18 +110,18 @@ async function loadMovies() {
     try {
         // Obtener el filtro guardado del localStorage, o usar "all" por defecto
         const savedFilter = localStorage.getItem('selectedFilter') || 'all';
-        let url = 'http://3.210.64.89:80/api/Movie/GetPeliculas'; // Default: todas las películas
+        let url = 'http://3.210.64.89:8080/api/Movie/GetPeliculas'; // Default: todas las películas
 
         // Ajustar la URL según el filtro seleccionado
         switch (savedFilter) {
             case 'inTheater':
-                url = 'http://3.210.64.89:80/api/Movie/GetPeliculasEnCartelera';
+                url = 'http://3.210.64.89:8080/api/Movie/GetPeliculasEnCartelera';
                 break;
             case 'comingSoon':
-                url = 'http://3.210.64.89:80/api/Movie/GetPeliculasProximas';
+                url = 'http://3.210.64.89:8080/api/Movie/GetPeliculasProximas';
                 break;
             case 'preSale':
-                url = 'http://3.210.64.89:80/api/Movie/GetPeliculasEnVentaAnticipada';
+                url = 'http://3.210.64.89:8080/api/Movie/GetPeliculasEnVentaAnticipada';
                 break;
         }
 
