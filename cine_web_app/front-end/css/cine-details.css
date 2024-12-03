@@ -27,13 +27,6 @@ body {
   width: 150px;
   z-index: 10;
 }
-@media (min-width: 1024px) {
-  .cine-detail__logo {
-    top: 20px;
-    right: 40px;
-    width: 180px;
-  }
-}
 .cine-detail__info {
   position: relative;
   padding: 1rem;
@@ -74,7 +67,7 @@ body {
   gap: 1rem;
   justify-content: center;
   margin-top: 1.5rem;
-  grid-template-columns: repeat(2, 1fr);
+  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
 }
 .cine-detail__info-showtimes .session {
   position: relative;
@@ -128,8 +121,8 @@ body {
   height: 72px;
 }
 .cine-detail .day-selector {
-  display: flex;
-  justify-content: center;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
   gap: 1rem;
   margin-top: 1.5rem;
 }
@@ -140,6 +133,7 @@ body {
   border: none;
   cursor: pointer;
   padding-bottom: 5px;
+  text-align: center;
   transition: color 0.3s ease;
 }
 .cine-detail .day-selector .day-button.active {
@@ -181,9 +175,21 @@ body {
   }
   .cine-detail__logo {
     width: 200px;
+    top: 20px;
+    right: 40px;
+    width: 180px;
   }
   .cine-detail .day-selector {
     justify-content: flex-start;
+    display: flex;
+  }
+}
+@media (max-width: 768px) {
+  .day-selector {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  .cine-detail__info-showtimes {
+    grid-template-columns: repeat(2, 1fr);
   }
 }
 
