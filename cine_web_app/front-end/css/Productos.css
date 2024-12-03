@@ -1,4 +1,3 @@
-@charset "UTF-8";
 body {
   margin: 0;
   padding: 0;
@@ -27,7 +26,7 @@ body {
   justify-content: space-between;
   align-items: center;
   position: relative;
-  margin-top: -150px; /* Superpone contenido sobre el fondo */
+  margin-top: -180px;
   padding: 0 2rem;
   z-index: 2;
 }
@@ -76,7 +75,7 @@ body {
 }
 .products-bar__allergies {
   background-color: transparent;
-  color: #007bff; /* Color azul */
+  color: #007bff;
   border: none;
   font-size: 1rem;
   font-weight: bold;
@@ -86,7 +85,7 @@ body {
 }
 .products-bar__allergies:hover {
   text-decoration: none;
-  color: #0056b3; /* Un azul más oscuro para el hover */
+  color: #0056b3;
 }
 .products-bar__categories {
   margin-bottom: 2rem;
