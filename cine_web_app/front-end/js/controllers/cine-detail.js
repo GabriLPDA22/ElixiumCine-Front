@@ -10,7 +10,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
     async function fetchMovies() {
         try {
-            const response = await fetch("http://localhost:5006/api/Movie/GetPeliculas");
+            const response = await fetch("http://localhost:22951/api/Movie/GetPeliculas");
             if (!response.ok) throw new Error("Error al obtener detalles de las películas");
             const peliculas = await response.json();
 

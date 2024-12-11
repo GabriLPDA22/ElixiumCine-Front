@@ -33,7 +33,7 @@ app.get('*', (req, res, next) => {
 });
 
 // Configurar el puerto y arrancar el servidor
-const PORT = process.env.PORT || 3000;
+const PORT = process.env.PORT || 22950;
 app.listen(PORT, () => {
   console.log(`Servidor corriendo en el puerto ${PORT}`);
 });
