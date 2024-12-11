@@ -16,7 +16,7 @@ if (showtimesContainer) showtimesContainer.style.display = "none";
 // Función para cargar los detalles de la película
 async function loadMovieDetails(id) {
     try {
-        const response = await fetch(`http://3.210.64.89:8080/api/Movie/GetPeliculaById?id=${id}`);
+        const response = await fetch(`http://localhost:5006/api/Movie/GetPeliculaById?id=${id}`);
         if (!response.ok) throw new Error(`Error al obtener la película: ${response.status}`);
 
         const movie = await response.json();
@@ -33,6 +33,9 @@ async function loadMovieDetails(id) {
         document.getElementById('movie-release-date').textContent = movie.fechaEstreno;
         document.getElementById('movie-genre').textContent = movie.genero;
         document.getElementById('movie-rating').textContent = movie.calificacion;
+        document.getElementById('movie-opinion').textContent = movie.opinion;
+        document.getElementById('movie-puntuacion').textContent = movie.puntuacion;
+
 
         const ageRatingIcon = document.getElementById('age-rating-icon');
         ageRatingIcon.src = movie.imagenEdadRecomendada;
@@ -42,7 +45,7 @@ async function loadMovieDetails(id) {
     }
 }
 
-// Función para cargar el nombre del cine y actualizar la UI
+
 // Función para cargar el nombre del cine y actualizar la UI
 async function fetchCinemaName(cineId) {
     try {
@@ -52,7 +55,7 @@ async function fetchCinemaName(cineId) {
             return;
         }
 
-        const response = await fetch(`http://3.210.64.89:8080/api/Cine/GetCineById?cineId=${cineId}`);
+        const response = await fetch(`http://localhost:5006/api/Cine/GetCineById?cineId=${cineId}`);
         if (!response.ok) throw new Error("Error al obtener el cine");
 
         const cine = await response.json();
@@ -116,7 +119,7 @@ function closeCinemaModal() {
 // Cargar la lista de cines desde el backend
 async function loadCinemas() {
     try {
-        const response = await fetch('http://3.210.64.89:8080/api/Cine/GetCines');
+        const response = await fetch('http://localhost:5006/api/Cine/GetCines');
         if (!response.ok) throw new Error('Error al cargar los cines');
 
         const cinemas = await response.json();
@@ -255,7 +258,7 @@ async function loadDaysAndSessions(cineId) {
             return;
         }
 
-        const response = await fetch(`http://3.210.64.89:8080/api/Cine/GetCineConPeliculas?cineId=${cineId}`);
+        const response = await fetch(`http://localhost:5006/api/Cine/GetCineConPeliculas?cineId=${cineId}`);
         if (!response.ok) throw new Error('Error al cargar las películas del cine');
 
         const cine = await response.json();
@@ -307,7 +310,7 @@ async function renderShowtimesByDate(day, cineId) {
             return;
         }
 
-        const response = await fetch(`http://3.210.64.89:8080/api/Cine/GetCineConPeliculas?cineId=${cineId}`);
+        const response = await fetch(`http://localhost:5006/api/Cine/GetCineConPeliculas?cineId=${cineId}`);
         if (!response.ok) throw new Error('Error al cargar las sesiones del cine');
 
         const cine = await response.json();

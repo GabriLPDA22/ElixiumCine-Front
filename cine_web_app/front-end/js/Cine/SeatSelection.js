@@ -28,7 +28,7 @@ async function loadGuestPurchaseInfo() {
     }
 
     try {
-        const response = await fetch(`http://3.210.64.89:8080/api/Cine/GetSeatSelectionInfo?cineName=${encodeURIComponent(cinemaName)}&movieTitle=${encodeURIComponent(movieTitle)}&sessionDate=${encodeURIComponent(date)}&sessionTime=${encodeURIComponent(time)}`);
+        const response = await fetch(`http://localhost:5006/api/Cine/GetSeatSelectionInfo?cineName=${encodeURIComponent(cinemaName)}&movieTitle=${encodeURIComponent(movieTitle)}&sessionDate=${encodeURIComponent(date)}&sessionTime=${encodeURIComponent(time)}`);
         
         if (!response.ok) {
             throw new Error("Error al obtener la información de la sesión.");
