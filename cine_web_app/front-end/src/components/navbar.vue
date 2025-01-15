@@ -4,7 +4,7 @@
         <a href="/cine_web_app/front-end/views/home.html" class="header__logo">Elixium</a>
         <nav class="header__nav">
             <ul class="header__menu">
-                <li class="header__menu-item"><a href="/cine_web_app/front-end/views/Cinemas.html">Cines</a></li>
+                <li class="header__menu-item"><a href="/cines">Cines</a></li>
                 <li class="header__menu-item"><a href="../views/Allmovies.html">Películas</a></li>
                 <li class="header__menu-item"><a href="/cine_web_app/front-end/views/Promociones.html">Promociones</a>
                 </li>
@@ -24,7 +24,8 @@
         <div class="header__hamburger">&#9776;</div>
         <nav class="header__nav overlay">
             <ul class="header__menu">
-                <li class="header__menu-item"><a href="/cine_web_app/front-end/views/Cinemas.html">Cines</a></li>
+                <!-- <li class="header__menu-item"><a href="/cine_web_app/front-end/views/Cinemas.html">Cines</a></li> -->
+                <li class="header__menu-item"><a href="/cines">Cines</a></li>
                 <li class="header__menu-item"><a href="/cine_web_app/front-end/views/Allmovies.html">Películas</a>
                 </li>
                 <li class="header__menu-item"><a href="/cine_web_app/front-end/views/Promociones.html">Promociones</a>
