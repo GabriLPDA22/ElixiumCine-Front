@@ -1,7 +1,7 @@
 <script setup lang="ts">
-import Ofertas from './components/Ofertas.vue';
-import Navbar from './components/navbar.vue';
+import Navbar from './components/Navbar.vue';
 import CustomFooter from './components/CustomFooter.vue';
+import Home from './components/views/Home.vue';
 </script>
 
 <template>
@@ -10,8 +10,7 @@ import CustomFooter from './components/CustomFooter.vue';
             <Navbar />
         </header>
         <main>
-            <Ofertas />
-
+            <Home />
         </main>
         <footer>
             <CustomFooter />
