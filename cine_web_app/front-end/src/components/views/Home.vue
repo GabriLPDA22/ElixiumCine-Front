@@ -1,8 +1,8 @@
 <script setup>
-import cumpleanos from '../images/cumpleanos.png';
-import ofertajoker from '../images/ofertajoker.png';
-import ofertaLlavero from '../images/Oferta-Llavero.png';
-import ofertaPoster from '../images/Oferta-Poster.png';
+import cumpleanos from '../../images/cumpleanos.png';
+import ofertajoker from '../../images/ofertajoker.png';
+import ofertaLlavero from '../../images/Oferta-Llavero.png';
+import ofertaPoster from '../../images/Oferta-Poster.png';
 </script>
 
 <template>
