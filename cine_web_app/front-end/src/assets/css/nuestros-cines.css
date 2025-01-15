@@ -7,61 +7,6 @@ body {
   box-sizing: border-box;
 }
 
-.header {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 1rem 2rem;
-  background-color: #020510;
-}
-.header__logo {
-  font-size: 1.5rem;
-  font-weight: 600;
-  font-family: "Poppins", sans-serif;
-  background: radial-gradient(circle, #ff2c78, #dca4ff);
-  -webkit-background-clip: text;
-  color: transparent;
-}
-.header__nav {
-  flex-grow: 1;
-  margin-left: 2rem;
-}
-.header__menu {
-  list-style: none;
-  display: flex;
-  gap: 2rem;
-}
-.header__menu-item a {
-  color: #ffffff;
-  text-decoration: none;
-  font-weight: 500;
-  font-family: "Poppins", sans-serif;
-  transition: color 0.3s;
-}
-.header__menu-item a:hover {
-  color: #ff2c78;
-}
-.header__actions {
-  display: flex;
-  gap: 1.5rem;
-}
-.header__actions__link {
-  color: #ffffff;
-  text-decoration: none;
-  font-weight: 600;
-  font-family: "Poppins", sans-serif;
-  transition: color 0.3s;
-  text-decoration: none;
-}
-.header__actions__link:hover {
-  color: #ff2c78;
-}
-.header__actions__icon {
-  color: #ffffff;
-  font-size: 1.2rem;
-  cursor: pointer;
-}
-
 .banner__image {
   width: 100%;
   height: auto;

@@ -98,3 +98,10 @@ import ofertaPoster from '../../images/Oferta-Poster.png';
         </div>
     </section>
 </template>
+
+
+<script>
+export default {
+  name: 'Home',
+};
+</script>

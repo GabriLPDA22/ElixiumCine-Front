@@ -1,46 +1,59 @@
 <template>
     <!-- Navbar para pantallas grandes -->
     <header class="header header--desktop">
-        <a href="/cine_web_app/front-end/views/home.html" class="header__logo">Elixium</a>
+        <router-link to="/" class="header__logo">Elixium</router-link>
         <nav class="header__nav">
             <ul class="header__menu">
-                <li class="header__menu-item"><a href="/cines">Cines</a></li>
-                <li class="header__menu-item"><a href="../views/Allmovies.html">Películas</a></li>
-                <li class="header__menu-item"><a href="/cine_web_app/front-end/views/Promociones.html">Promociones</a>
+                <li class="header__menu-item">
+                    <router-link to="/cines">Cines</router-link>
+                </li>
+                <li class="header__menu-item">
+                    <router-link to="/peliculas">Películas</router-link>
+                </li>
+                <li class="header__menu-item">
+                    <router-link to="/promociones">Promociones</router-link>
                 </li>
             </ul>
         </nav>
         <div class="header__actions">
-            <a href="/cine_web_app/front-end/views/security/register.html"
-                class="header__link header__register">Registrarse</a>
-            <a href="/cine_web_app/front-end/views/security/login.html" class="header__link header__login">Iniciar
-                sesión</a>
+            <router-link to="/registrarse" class="header__link header__register">Registrarse</router-link>
+            <router-link to="/iniciar-sesion" class="header__link header__login">Iniciar sesión</router-link>
         </div>
     </header>
 
     <!-- Navbar responsive para móviles -->
     <header class="header header--responsive">
-        <a href="/cine_web_app/front-end/views/home.html" class="header__logo">Elixium</a>
+        <router-link to="/" class="header__logo">Elixium</router-link>
         <div class="header__hamburger">&#9776;</div>
         <nav class="header__nav overlay">
             <ul class="header__menu">
-                <!-- <li class="header__menu-item"><a href="/cine_web_app/front-end/views/Cinemas.html">Cines</a></li> -->
-                <li class="header__menu-item"><a href="/cines">Cines</a></li>
-                <li class="header__menu-item"><a href="/cine_web_app/front-end/views/Allmovies.html">Películas</a>
+                <li class="header__menu-item">
+                    <router-link to="/cines">Cines</router-link>
                 </li>
-                <li class="header__menu-item"><a href="/cine_web_app/front-end/views/Promociones.html">Promociones</a>
+                <li class="header__menu-item">
+                    <router-link to="/peliculas">Películas</router-link>
                 </li>
-                <li class="header__menu-item"><a href="/cine_web_app/front-end/views/security/register.html"
-                        class="header__link header__register">Registrarse</a></li>
-                <li class="header__menu-item"><a href="/cine_web_app/front-end/views/security/login.html"
-                        class="header__link header__login">Iniciar sesión</a></li>
+                <li class="header__menu-item">
+                    <router-link to="/promociones">Promociones</router-link>
+                </li>
+                <li class="header__menu-item">
+                    <router-link to="/registrarse" class="header__link header__register">Registrarse</router-link>
+                </li>
+                <li class="header__menu-item">
+                    <router-link to="/iniciar-sesion" class="header__link header__login">Iniciar sesión</router-link>
+                </li>
             </ul>
         </nav>
     </header>
 </template>
 
 <script setup>
-// Aplicar ajustes al cargar la página (sino no pilla el js)
+
+defineOptions({
+    name: 'Navbar',
+});
+
+// Código para manejar el DOM al cargar la página
 document.addEventListener('DOMContentLoaded', () => {
     cargarElementos();
 });
@@ -54,7 +67,5 @@ function cargarElementos() {
         responsiveHeader.classList.toggle('is-open');
         body.classList.toggle('menu-open'); // Evita el scroll cuando el menú está abierto
     });
-
 }
-
 </script>
