@@ -1,8 +1,38 @@
-<script setup>
-import cumpleanos from '../../images/cumpleanos.png';
-import ofertajoker from '../../images/ofertajoker.png';
-import ofertaLlavero from '../../images/Oferta-Llavero.png';
-import ofertaPoster from '../../images/Oferta-Poster.png';
+<script setup lang="ts">
+import { ref, onMounted } from 'vue';
+import { Pelicula } from '../models/Pelicula';
+
+// Define el nombre del componente
+defineOptions({
+    name: 'Home',
+});
+
+// Estado de las películas
+const movies = ref < Pelicula[] > ([]);
+
+// Función para cargar películas
+const loadMovies = async () => {
+    try {
+        const response = await fetch('http://localhost:5006/api/Movie/GetPeliculas', {
+            headers: {
+                Accept: 'application/json',
+            },
+        });
+
+        if (!response.ok) {
+            throw new Error(`Error al cargar las películas: ${response.status}`);
+        }
+
+        movies.value = await response.json();
+    } catch (error) {
+        console.error('Error al cargar las películas:', error);
+    }
+};
+
+// Llama a la función al montar el componente
+onMounted(() => {
+    loadMovies();
+});
 </script>
 
 <template>
@@ -95,10 +125,3 @@ import ofertaPoster from '../../images/Oferta-Poster.png';
         </div>
     </section>
 </template>
-
-
-<script>
-export default {
-    name: 'Home',
-};
-</script>
