@@ -1,16 +1,15 @@
 <script setup lang="ts">
 import { ref, onMounted } from 'vue';
-import { Pelicula } from '../models/Pelicula';
+import { Pelicula } from '../../models/Pelicula';
 
-// Define el nombre del componente
 defineOptions({
     name: 'Home',
 });
 
 // Estado de las películas
-const movies = ref < Pelicula[] > ([]);
+const movies = ref<Pelicula[]>([]);
 
-// Función para cargar películas
+// Función para cargar las películas
 const loadMovies = async () => {
     try {
         const response = await fetch('http://localhost:5006/api/Movie/GetPeliculas', {
@@ -23,10 +22,33 @@ const loadMovies = async () => {
             throw new Error(`Error al cargar las películas: ${response.status}`);
         }
 
-        movies.value = await response.json();
+        // Ajustar URLs de las imágenes si son relativas
+        movies.value = (await response.json()).map((movie: Pelicula) => {
+            console.log(`URL de la imagen: http://localhost:5006/${movie.cartel}`);
+            return {
+                ...movie,
+                cartel: `http://localhost:5006/${movie.cartel}`,
+            };
+        });
+
     } catch (error) {
         console.error('Error al cargar las películas:', error);
     }
+};
+
+// Métodos y propiedades faltantes
+const prevSlide = () => {
+    // Implement your logic here
+};
+
+const currentSlide = 0; // Set the initial value
+
+const navigateToMovie = (id: number) => {
+    // Implement your logic here
+};
+
+const nextSlide = () => {
+    // Implement your logic here
 };
 
 // Llama a la función al montar el componente
@@ -35,17 +57,21 @@ onMounted(() => {
 });
 </script>
 
+
 <template>
     <section class="main__top-movies">
         <h2 class="main__title">Top Películas</h2>
         <div class="carousel">
+            <!-- Botón izquierdo -->
             <button class="carousel__button carousel__button--left" @click="prevSlide">
                 <img src="../../images/left-arrow.png" alt="Left Arrow" />
             </button>
 
+            <!-- Carrusel de películas -->
             <div class="carousel__track-container">
                 <ul class="carousel__track">
-                    <li v-for="movie in movies" :key="movie.id" class="carousel__slide">
+                    <li v-for="(movie, index) in movies" :key="movie.id" class="carousel__slide"
+                        :class="{ active: index === currentSlide }">
                         <img :src="movie.cartel" :alt="movie.titulo" class="carousel__image"
                             @click="navigateToMovie(movie.id)" />
                         <p class="carousel__title">{{ movie.titulo }}</p>
@@ -53,6 +79,7 @@ onMounted(() => {
                 </ul>
             </div>
 
+            <!-- Botón derecho -->
             <button class="carousel__button carousel__button--right" @click="nextSlide">
                 <img src="../../images/right-arrow.png" alt="Right Arrow" />
             </button>
@@ -90,7 +117,7 @@ onMounted(() => {
                         Regístrate y recibe una entrada gratis en el mes de tu cumpleaños si traes a 3 amigos contigo.
                     </p>
                 </div>
-                <img :src="cumpleanos" alt="Cumpleaños" class="offer-card__image">
+                <img src="../../images/cumpleanos.png" alt="Cumpleaños" class="offer-card__image">
             </div>
 
             <div class="offer-card">
@@ -100,7 +127,7 @@ onMounted(() => {
                         Únete al estreno del Joker este 11 de noviembre y trae a un amigo para obtener 50% de descuento.
                     </p>
                 </div>
-                <img :src="ofertajoker" alt="Joker" class="offer-card__image">
+                <img src="../../images/ofertajoker.png" alt="Joker" class="offer-card__image">
             </div>
 
             <div class="offer-card">
@@ -110,7 +137,7 @@ onMounted(() => {
                         Asiste al estreno y llévate un llavero exclusivo. ¡Hasta agotar existencias!
                     </p>
                 </div>
-                <img :src="ofertaLlavero" alt="Llavero" class="offer-card__image">
+                <img src="../../images/Oferta-Llavero.png" alt="Llavero" class="offer-card__image">
             </div>
 
             <div class="offer-card">
@@ -120,7 +147,7 @@ onMounted(() => {
                         Recibe un póster oficial el primer día del estreno.
                     </p>
                 </div>
-                <img :src="ofertaPoster" alt="Póster" class="offer-card__image">
+                <img src="../../images/Oferta-Poster.png" alt="Póster" class="offer-card__image">
             </div>
         </div>
     </section>
