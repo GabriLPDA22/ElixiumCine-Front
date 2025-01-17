@@ -9,30 +9,27 @@ import ofertaPoster from '../../images/Oferta-Poster.png';
     <section class="main__top-movies">
         <h2 class="main__title">Top Películas</h2>
         <div class="carousel">
-            <!-- Botón izquierdo -->
-            <button class="carousel__button carousel__button--left">
-                <span class="carousel__button-content">
-                    <img src="../../images/left-arrow.png" alt="Left Arrow">
-                </span>
+            <button class="carousel__button carousel__button--left" @click="prevSlide">
+                <img src="../../images/left-arrow.png" alt="Left Arrow" />
             </button>
 
-            <!-- Carrusel de películas -->
             <div class="carousel__track-container">
-                <ul class="carousel__track" id="carousel-track">
-                    <!-- Las películas se cargarán dinámicamente aquí -->
+                <ul class="carousel__track">
+                    <li v-for="movie in movies" :key="movie.id" class="carousel__slide">
+                        <img :src="movie.cartel" :alt="movie.titulo" class="carousel__image"
+                            @click="navigateToMovie(movie.id)" />
+                        <p class="carousel__title">{{ movie.titulo }}</p>
+                    </li>
                 </ul>
             </div>
 
-            <!-- Botón derecho -->
-            <button class="carousel__button carousel__button--right">
-                <span class="carousel__button-content">
-                    <img src="../../images/right-arrow.png" alt="Right Arrow">
-                </span>
+            <button class="carousel__button carousel__button--right" @click="nextSlide">
+                <img src="../../images/right-arrow.png" alt="Right Arrow" />
             </button>
         </div>
     </section>
 
-           <!-- Sección de ¿Quiénes somos? -->
+    <!-- Sección de ¿Quiénes somos? -->
     <section class="about-section">
         <div class="about-section__background">
             <div class="about-section__content">
@@ -102,6 +99,6 @@ import ofertaPoster from '../../images/Oferta-Poster.png';
 
 <script>
 export default {
-  name: 'Home',
+    name: 'Home',
 };
 </script>

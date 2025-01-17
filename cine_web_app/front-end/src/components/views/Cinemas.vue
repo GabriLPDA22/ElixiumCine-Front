@@ -10,7 +10,7 @@
             <h1 class="cines__title">NUESTROS CINES</h1>
             <div class="cines__grid">
 
-                <a id="linkGranCasa" href="../views/Cines-Carteleras/gran-casa.html?cine=Gran Casa" class="cines__link">
+                <router-link to="/gran-casa" class="cines__link">
                     <div class="cines__card" style="background-image: url('../../images/gran-casa.jpg');">
                         <div class="cines__card-title">GRAN CASA</div>
                         <p class="cines__card-description">
@@ -19,8 +19,8 @@
                             <strong>Ambiente familiar:</strong> Perfecto para disfrutar en familia o con amigos.
                         </p>
                     </div>
-                </a>
-                <a id="linkPuertoVenecia" class="cines__link" href="../Cines-Carteleras/cine-detail.html?cine=1">
+                </router-link>
+                <router-link to="/puerto-venecia" class="cines__link">
                     <div class="cines__card" style="background-image: url('../../images/puerto-venecia.jpg');">
                         <div class="cines__card-title">PUERTO VENECIA</div>
                         <p class="cines__card-description">
@@ -29,20 +29,19 @@
                             <strong>Ideal para ir en pareja:</strong> Un ambiente cómodo y moderno.
                         </p>
                     </div>
-                </a>
-                <a id="linkTorreOutlet" class="cines__link">
+                </router-link>
+                <router-link to="/torre-outlet" class="cines__link">
                     <div class="cines__card" style="background-image: url('../../images/torre-outlet.jpg');">
                         <div class="cines__card-title">TORRE OUTLET</div>
                         <p class="cines__card-description">
                             <strong>Sala estándar:</strong> Para los amantes del cine tradicional. <br>
-                            <strong>Iluminación tenue:</strong> Crea un ambiente acogedor para una experiencia de
-                            calidad.
+                            <strong>Iluminación tenue:</strong> Crea un ambiente acogedor para una experiencia de calidad.
                             <br>
                             <strong>Accesibilidad:</strong> Diseño pensado para comodidad y accesibilidad.
                         </p>
                     </div>
-                </a>
-                <a id="linkCascoAntiguo" class="cines__link">
+                </router-link>
+                <router-link to="/palafox" class="cines__link">
                     <div class="cines__card" style="background-image: url('../../images/casco-antiguo.jpg');">
                         <div class="cines__card-title">CASCO ANTIGUO</div>
                         <p class="cines__card-description">
@@ -52,12 +51,8 @@
                             <strong>Ambiente sofisticado:</strong> Perfecto para una experiencia de cine más lujosa.
                         </p>
                     </div>
-                </a>
+                </router-link>
             </div>
         </main>
     </App>
 </template>
-
-<script>
-import App from '@/app.vue';
-</script>
