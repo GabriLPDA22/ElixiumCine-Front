@@ -3,7 +3,7 @@ import { ref, onMounted } from 'vue';
 import { Pelicula } from '../../models/Pelicula';
 
 defineOptions({
-    name: 'Home',
+    name: 'HomeView',
 });
 
 // Estado de las películas
@@ -44,6 +44,7 @@ const prevSlide = () => {
 const currentSlide = 0; // Set the initial value
 
 const navigateToMovie = (id: number) => {
+    console.log(`Navigating to movie with ID: ${id}`);
     // Implement your logic here
 };
 

@@ -1,3 +1,9 @@
+<script setup lang="ts">
+
+import App from '@/app.vue'; // Import the App component
+
+</script>
+
 <template>
     <App>
         <!-- Banner -->
@@ -35,7 +41,8 @@
                         <div class="cines__card-title">TORRE OUTLET</div>
                         <p class="cines__card-description">
                             <strong>Sala estándar:</strong> Para los amantes del cine tradicional. <br>
-                            <strong>Iluminación tenue:</strong> Crea un ambiente acogedor para una experiencia de calidad.
+                            <strong>Iluminación tenue:</strong> Crea un ambiente acogedor para una experiencia de
+                            calidad.
                             <br>
                             <strong>Accesibilidad:</strong> Diseño pensado para comodidad y accesibilidad.
                         </p>
