@@ -1,4 +1,10 @@
 {
+  // Este archivo de configuración es para el compilador de TypeScript.
+  // La sección "compilerOptions" especifica varias configuraciones para el compilador.
+  // La opción "module" está configurada a "esnext", lo que significa que el compilador generará código de módulo ECMAScript Next.
+  "compilerOptions": {
+    "module": "esnext"
+  },
   "files": [],
   "references": [
     {

@@ -1,6 +1,6 @@
 import { createRouter, createWebHistory } from 'vue-router';
-import Home from '../src/components/views/Home.vue';
-import Cinemas from './components/views/Cinemas.vue';
+import HomeView from './components/views/HomeView.vue';
+import Cinemas from './components/views/CinemaList.vue';
 import GranCasa from './components/views/GranCasa.vue';
 import PuertoVenecia from './components/views/PuertoVenecia.vue';
 import TorreOutlet from './components/views/TorreOutlet.vue';
@@ -10,7 +10,7 @@ const routes = [
   {
     path: '/',
     name: 'Home',
-    component: Home,
+    component: HomeView,
   },
   {
     path: '/cines',
