@@ -10,7 +10,7 @@
             <h1 class="cines__title">NUESTROS CINES</h1>
             <div class="cines__grid">
 
-                <router-link to="/gran-casa" class="cines__link">
+                <router-link to="/cines/gran-casa" class="cines__link">
                     <div class="cines__card" style="background-image: url('../../images/gran-casa.jpg');">
                         <div class="cines__card-title">GRAN CASA</div>
                         <p class="cines__card-description">
@@ -20,7 +20,7 @@
                         </p>
                     </div>
                 </router-link>
-                <router-link to="/puerto-venecia" class="cines__link">
+                <router-link to="/cines/puerto-venecia" class="cines__link">
                     <div class="cines__card" style="background-image: url('../../images/puerto-venecia.jpg');">
                         <div class="cines__card-title">PUERTO VENECIA</div>
                         <p class="cines__card-description">
@@ -30,7 +30,7 @@
                         </p>
                     </div>
                 </router-link>
-                <router-link to="/torre-outlet" class="cines__link">
+                <router-link to="/cines/torre-outlet" class="cines__link">
                     <div class="cines__card" style="background-image: url('../../images/torre-outlet.jpg');">
                         <div class="cines__card-title">TORRE OUTLET</div>
                         <p class="cines__card-description">
@@ -41,7 +41,7 @@
                         </p>
                     </div>
                 </router-link>
-                <router-link to="/palafox" class="cines__link">
+                <router-link to="/cines/palafox" class="cines__link">
                     <div class="cines__card" style="background-image: url('../../images/casco-antiguo.jpg');">
                         <div class="cines__card-title">CASCO ANTIGUO</div>
                         <p class="cines__card-description">

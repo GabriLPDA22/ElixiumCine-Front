@@ -18,22 +18,22 @@ const routes = [
     component: Cinemas,
   },
   {
-    path: '/gran-casa',
+    path: '/cines/gran-casa',
     name: 'GranCasa',
     component: GranCasa,
   },
   {
-    path: '/puerto-venecia',
+    path: '/cines/puerto-venecia',
     name: 'PuertoVenecia',
     component: PuertoVenecia,
   },
   {
-    path: '/torre-outlet',
+    path: '/cines/torre-outlet',
     name: 'TorreOutlet',
     component: TorreOutlet,
   },
   {
-    path: '/palafox',
+    path: '/cines/palafox',
     name: 'Palafox',
     component: Palafox,
   },
