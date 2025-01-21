@@ -1,39 +1,41 @@
 # Cine-Front 🎥
-
-Este proyecto es el frontend del sistema de gestión de cine, desarrollado con **HTML**, **SCSS/CSS**, y **JavaScript**. Proporciona una interfaz de usuario interactiva para gestionar películas, reservas y usuarios, conectándose a un backend local.
-
----
-
-## 🚀 Tecnologías utilizadas
-
-- **HTML**: Estructura de las páginas web.
-- **SCSS/CSS**: Estilización de la interfaz de usuario.
-- **JavaScript**: Lógica y funcionalidad interactiva.
-- **Fetch API**: Para consumir los servicios del backend.
+This project is the frontend of the cinema management system, developed with **Vue.js**, **TypeScript**, **SCSS/CSS**, and **HTML**. It provides an interactive user interface for managing movies, bookings, and users, connecting to a local backend.
 
 ---
 
-## 🌐 Configuración para entorno local
+## 🚀 Technologies Used
 
-### Backend requerido
-
-Asegúrate de que el backend está corriendo localmente en `http://localhost:5006`. Consulta el [README del backend](https://github.com/GabriLPDA22/Cine-Back) para más detalles.
-
----
-
-## 🛠️ Requisitos previos
-
-1. **Un navegador moderno**: Recomendamos Google Chrome, Firefox o Microsoft Edge.
-2. **Un servidor local opcional**: Puedes usar extensiones como **Live Server** en VSCode o cualquier otro servidor para servir el proyecto.
+- ![Vue.js](https://img.shields.io/badge/-Vue.js-4FC08D?logo=vue.js&logoColor=white): JavaScript framework for building user interfaces.
+- ![TypeScript](https://img.shields.io/badge/-TypeScript-007ACC?logo=typescript&logoColor=white): Typed superset of JavaScript that compiles to plain JavaScript.
+- ![SCSS/CSS](https://img.shields.io/badge/-SCSS/CSS-CC6699?logo=sass&logoColor=white): Styling the user interface.
+- ![HTML](https://img.shields.io/badge/-HTML-E34F26?logo=html5&logoColor=white): Structure of web pages.
+- ![Fetch API](https://img.shields.io/badge/-Fetch%20API-007ACC?logo=javascript&logoColor=white): For consuming backend services.
+- ![Swagger](https://img.shields.io/badge/-Swagger-85EA2D?logo=swagger&logoColor=black): For documenting and testing APIs.
+- ![PostgreSQL](https://img.shields.io/badge/-PostgreSQL-336791?logo=postgresql&logoColor=white): Relational database management system.
 
 ---
 
-## 📦 Instalación
+## 🌐 Local Environment Setup
 
-1. **Clona el repositorio:**
+### Required Backend
+
+Make sure the backend is running locally at `http://localhost:5006`. Refer to the [backend README](https://github.com/GabriLPDA22/Cine-Back) for more details.
+
+---
+
+## 🛠️ Prerequisites
+
+1. **A modern web browser**: We recommend Google Chrome, Firefox, or Microsoft Edge.
+2. **Optional local server**: You can use extensions like **Live Server** in VSCode or any other server to serve the project.
+
+---
+
+## 📦 Installation
+
+1. **Clone the repository**:
 
    ```bash
    git clone https://github.com/GabriLPDA22/Cine-Front.git
    cd Cine-Front
-
+   ```
 
