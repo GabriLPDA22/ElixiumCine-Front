@@ -1,0 +1,150 @@
+body {
+  margin: 0;
+  padding: 0;
+  font-family: "Poppins", sans-serif;
+  background-color: rgb(5, 7, 19);
+}
+
+.main {
+  background: linear-gradient(180deg, #0a0e27 0%, #000000 100%);
+  padding: 0;
+  color: #ffffff;
+  height: auto;
+}
+.main__top-movies {
+  text-align: center;
+  margin-top: 0;
+}
+.main__title {
+  font-size: 2rem;
+  font-family: "Poppins", sans-serif;
+  font-weight: 600;
+  color: #ffffff;
+  margin: 0;
+  padding-top: 20px;
+}
+
+.about-section {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 3rem 1rem;
+  background-color: rgb(5, 7, 19);
+}
+.about-section__background {
+  background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url("../../images/banner-cines.jpg");
+  background-size: cover;
+  background-position: center;
+  padding: 2rem;
+  max-width: 1000px;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.about-section__content {
+  position: relative;
+  z-index: 2;
+  padding: 2rem;
+  border-radius: 8px;
+  color: #ffffff;
+  max-width: 800px;
+  text-align: center;
+}
+.about-section__title {
+  font-size: 2rem;
+  font-weight: bold;
+  margin-bottom: 1rem;
+  color: #ffffff;
+}
+.about-section__description {
+  font-size: 1rem;
+  line-height: 1.6;
+  margin-bottom: 1.5rem;
+  color: #dcdcdc;
+}
+.about-section__button {
+  display: inline-block;
+  padding: 0.7rem 2.5rem;
+  background-color: #ff2c78;
+  color: #ffffff;
+  font-weight: bold;
+  font-size: 1rem;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+.about-section__button:hover {
+  background-color: #d3005a;
+}
+
+.offers-section {
+  padding: 2rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-color: rgb(5, 7, 19);
+  margin-bottom: 2rem;
+}
+.offers-section__title {
+  font-size: 2rem;
+  font-weight: bold;
+  color: #ffffff;
+  margin-bottom: 1.5rem;
+}
+.offers-section__grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 2rem;
+  max-width: 1200px;
+  margin-bottom: 20px;
+}
+
+.offer-card {
+  background-color: #ffffff;
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  padding: 1.5rem;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  transition: transform 0.3s;
+  width: 100%;
+  max-width: 500px;
+}
+.offer-card:hover {
+  transform: scale(1.05);
+}
+.offer-card__content {
+  flex: 1;
+  padding-right: 1rem;
+}
+.offer-card__title {
+  font-size: 1.3rem;
+  font-weight: bold;
+  color: #333333;
+  margin-bottom: 0.5rem;
+}
+.offer-card__description {
+  font-size: 1rem;
+  color: #555555;
+  line-height: 1.4;
+}
+.offer-card__image {
+  width: 100px;
+  height: auto;
+  border-radius: 8px;
+}
+
+@media (max-width: 768px) {
+  .offers-section__grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    max-width: 400px;
+  }
+  .offer-card {
+    padding: 0.5rem;
+  }
+}
+
+/*# sourceMappingURL=home.css.map */

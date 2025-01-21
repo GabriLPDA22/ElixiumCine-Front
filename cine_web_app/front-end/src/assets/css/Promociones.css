@@ -1,0 +1,124 @@
+body {
+  margin: 0;
+  padding: 0;
+  font-family: "Poppins", sans-serif;
+  background-color: #0a0e27;
+}
+
+.promotions {
+  background-color: #0a0e27;
+  color: #fff;
+  padding: 2rem;
+}
+.promotions__header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 2rem;
+  max-width: 1200px;
+  margin: 13px auto;
+  flex-direction: column;
+}
+.promotions__title {
+  font-size: 2rem;
+  font-weight: bold;
+}
+.promotions__filters {
+  display: flex;
+  gap: 1rem;
+}
+.promotions__filter {
+  background: none;
+  color: #fff;
+  border: 1px solid #fff;
+  padding: 0.5rem 1.5rem;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: all 0.3s;
+}
+.promotions__filter--active {
+  background-color: #ff2c78;
+  border-color: #ff2c78;
+  color: #fff;
+}
+.promotions__filter:hover {
+  background-color: #ff2c78;
+  color: #fff;
+}
+.promotions__list {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+.promotion-card {
+  display: flex;
+  flex-direction: column;
+  background-color: #13173d;
+  border-radius: 10px;
+  overflow: hidden;
+  padding: 1rem;
+  align-items: center;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+.promotion-card__image {
+  width: 100%;
+  max-height: 150px;
+  object-fit: cover;
+  border-radius: 8px;
+}
+.promotion-card__content {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 0 1rem;
+}
+.promotion-card__title {
+  font-size: 1.4rem;
+  font-weight: bold;
+  margin-bottom: 0.5rem;
+}
+.promotion-card__description {
+  font-size: 1rem;
+  margin-bottom: 0.5rem;
+}
+.promotion-card__date {
+  font-size: 0.9rem;
+  color: #ccc;
+}
+.promotion-card__button {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #ff2c78;
+  color: #fff;
+  border: none;
+  padding: 0.5rem 0.1rem;
+  cursor: pointer;
+  border-radius: 5px;
+  font-size: 0.9rem;
+  height: fit-content;
+  transition: background-color 0.3s;
+}
+.promotion-card__button:hover {
+  background-color: #e12268;
+}
+
+@media (min-width: 768px) {
+  .promotion-card {
+    display: grid;
+    grid-template-columns: 30% 60% 10%;
+  }
+  .promotion__header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 2rem;
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+}
+
+/*# sourceMappingURL=promociones.css.map */
