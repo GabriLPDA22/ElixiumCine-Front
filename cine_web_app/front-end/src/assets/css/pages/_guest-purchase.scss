@@ -47,7 +47,7 @@ main.guest-purchase {
         align-items: center;
         color: #ffffff;
         gap:20px;
-        
+
         &:last-child {
           border-bottom: none;
         }
@@ -267,3 +267,19 @@ main.guest-purchase {
   }
 }
 
+.delete-product {
+  background: none;
+  border: none;
+  cursor: pointer;
+  color: #ff2c78;
+  padding: 0;
+  margin-left: 10px;
+  transition: transform 0.2s ease;
+  &:hover {
+      transform: scale(1.1);
+  }
+  .icon-trash {
+      width: 20px;
+      height: 20px;
+  }
+}
