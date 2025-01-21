@@ -43,7 +43,7 @@ document.addEventListener('DOMContentLoaded', async function () {
             }
 
             // Hacer fetch de los productos desde el backend
-            const url = `http://3.210.64.89:8080/api/Productos/GetProductos?ids=${productIds.join(',')}`;
+            const url = `http://localhost:5006/api/Productos/GetProductos?ids=${productIds.join(',')}`;
             console.log("URL construida para fetch:", url);
 
             const response = await fetch(url);
@@ -99,7 +99,7 @@ document.addEventListener('DOMContentLoaded', async function () {
             normalRow.classList.add('table-row');
             normalRow.innerHTML = `
                 <span>
-                    <img src="../images/ticket-normal.svg" alt="Entrada Normal" class="ticket-image">
+                    <img src="../images/Ticket-Normal.png" alt="Entrada Normal" class="ticket-image">
                     ${normalCount}x Entrada Normal
                 </span>
                 <span>${normalPrice.toFixed(2)} €</span>
@@ -117,7 +117,7 @@ document.addEventListener('DOMContentLoaded', async function () {
             vipRow.classList.add('table-row');
             vipRow.innerHTML = `
                 <span>
-                    <img src="../images/ticket-vip.svg" alt="Entrada VIP" class="ticket-image">
+                    <img src="../images/Ticket-Vip.png" alt="Entrada VIP" class="ticket-image">
                     ${vipCount}x Entrada VIP
                 </span>
                 <span>${vipPrice.toFixed(2)} €</span>

@@ -27,7 +27,7 @@ body {
   justify-content: space-between;
   align-items: center;
   position: relative;
-  margin-top: -150px; /* Superpone contenido sobre el fondo */
+  margin-top: -180px; /* Superpone contenido sobre el fondo */
   padding: 0 2rem;
   z-index: 2;
 }
