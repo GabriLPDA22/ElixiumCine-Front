@@ -1,6 +1,6 @@
 <script setup lang="ts">
-import navbar from './components/navbar.vue';
-import CustomFooter from './components/CustomFooter.vue';
+import navbar from './components/NavbarComponent.vue';
+import FooterComponent from '@/components/FooterComponent.vue';
 </script>
 
 <template>
@@ -12,7 +12,7 @@ import CustomFooter from './components/CustomFooter.vue';
       <router-view></router-view> <!-- Renderiza el contenido de la ruta activa -->
     </main>
     <footer>
-      <CustomFooter />
+      <FooterComponent />
     </footer>
   </div>
 </template>
