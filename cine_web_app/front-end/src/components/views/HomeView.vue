@@ -4,15 +4,9 @@ import { Pelicula } from '@/models/Pelicula'; // Modelo para las películas
 
 // Estado para las películas
 const movies = ref<Pelicula[]>([]);
-
-// Estado para el índice del carrusel
 const currentSlide = ref(0);
-
-// Cantidad de películas visibles al mismo tiempo
 const visibleSlides = 7;
-
-// Espaciado entre las imágenes
-const gap = 10; // En píxeles
+const gap = 10; 
 
 // Función para cargar las películas desde el backend
 const loadMovies = async () => {
@@ -41,12 +35,10 @@ const getImagePath = (filename: string) => {
 
 // Funciones del carrusel
 const prevSlide = () => {
-  // Ajuste para evitar problemas de índice negativo
   currentSlide.value = (currentSlide.value - 1 + movies.value.length) % movies.value.length;
 };
 
 const nextSlide = () => {
-  // Ajuste para evitar desbordamientos
   currentSlide.value = (currentSlide.value + 1) % movies.value.length;
 };
 
