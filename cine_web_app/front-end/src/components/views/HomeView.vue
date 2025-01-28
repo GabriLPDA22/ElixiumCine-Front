@@ -1,12 +1,13 @@
 <script setup lang="ts" name="HomeView">
 import { ref, onMounted } from 'vue';
 import { Pelicula } from '@/models/Pelicula'; // Modelo para las películas
+import CardOfferComponent from '@/components/OfferCards/CardOfferComponent.vue';
 
 // Estado para las películas
 const movies = ref<Pelicula[]>([]);
 const currentSlide = ref(0);
 const visibleSlides = 7;
-const gap = 10; 
+const gap = 10;
 
 // Función para cargar las películas desde el backend
 const loadMovies = async () => {
@@ -42,6 +43,11 @@ const nextSlide = () => {
   currentSlide.value = (currentSlide.value + 1) % movies.value.length;
 };
 
+// Manejar clics en las ofertas
+const handleCardClick = (title: string) => {
+  console.log(`Oferta seleccionada: ${title}`);
+};
+
 // Carga las películas al montar el componente
 onMounted(() => {
   loadMovies().catch((error) => console.error('Error al cargar las películas:', error));
@@ -62,24 +68,13 @@ onMounted(() => {
 
       <!-- Carrusel -->
       <div class="carousel__track-container">
-        <ul
-          class="carousel__track"
-          :style="{
-            transform: `translateX(calc(-${currentSlide} * (100% + ${gap}px) / ${visibleSlides}))`,
-          }"
-        >
-          <li
-            v-for="(movie, index) in movies"
-            :key="movie.id"
+        <ul class="carousel__track" :style="{
+          transform: `translateX(calc(-${currentSlide} * (100% + ${gap}px) / ${visibleSlides}))`,
+        }">
+          <li v-for="(movie, index) in movies" :key="movie.id"
             :style="{ flex: `0 0 calc((100% - (${gap}px * (${visibleSlides} - 1))) / ${visibleSlides})`, marginRight: `${gap}px` }"
-            class="carousel__item"
-            :class="{ active: index === currentSlide }"
-          >
-            <img
-              :src="getImagePath(movie.cartel)"
-              :alt="movie.titulo"
-              class="carousel__image"
-            />
+            class="carousel__item" :class="{ active: index === currentSlide }">
+            <img :src="getImagePath(movie.cartel)" :alt="movie.titulo" class="carousel__image" />
             <p class="carousel__title">{{ movie.titulo }}</p>
           </li>
         </ul>
@@ -115,47 +110,7 @@ onMounted(() => {
   <!-- Sección de Ofertas -->
   <section class="offers-section">
     <h2 class="offers-section__title">Ofertas</h2>
-    <div class="offers-section__grid">
-      <div class="offer-card">
-        <div class="offer-card__content">
-          <h3 class="offer-card__title">Entrada gratis en tu cumpleaños</h3>
-          <p class="offer-card__description">
-            Regístrate y recibe una entrada gratis en el mes de tu cumpleaños si traes a 3 amigos contigo.
-          </p>
-        </div>
-        <img src="@/images/cumpleanos.png" alt="Cumpleaños" class="offer-card__image" />
-      </div>
-
-      <div class="offer-card">
-        <div class="offer-card__content">
-          <h3 class="offer-card__title">Estreno Joker con amigos</h3>
-          <p class="offer-card__description">
-            Únete al estreno del Joker este 11 de noviembre y trae a un amigo para obtener 50% de descuento.
-          </p>
-        </div>
-        <img src="@/images/ofertajoker.png" alt="Joker" class="offer-card__image" />
-      </div>
-
-      <div class="offer-card">
-        <div class="offer-card__content">
-          <h3 class="offer-card__title">Llavero de Película</h3>
-          <p class="offer-card__description">
-            Asiste al estreno y llévate un llavero exclusivo. ¡Hasta agotar existencias!
-          </p>
-        </div>
-        <img src="@/images/Oferta-Llavero.png" alt="Llavero" class="offer-card__image" />
-      </div>
-
-      <div class="offer-card">
-        <div class="offer-card__content">
-          <h3 class="offer-card__title">Póster de Estreno</h3>
-          <p class="offer-card__description">
-            Recibe un póster oficial el primer día del estreno.
-          </p>
-        </div>
-        <img src="@/images/Oferta-Poster.png" alt="Póster" class="offer-card__image" />
-      </div>
-    </div>
+    <CardOfferComponent @card-clicked="handleCardClick" />
   </section>
 </template>
 
@@ -202,7 +157,7 @@ onMounted(() => {
 
 /* Botones del carrusel */
 .carousel__button {
-  background: white; /* Fondo blanco del círculo */
+  background: white;
   border: none;
   cursor: pointer;
   position: absolute;
@@ -212,15 +167,15 @@ onMounted(() => {
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 50px; /* Tamaño del círculo */
-  height: 50px; /* Tamaño del círculo */
-  border-radius: 50%; /* Hace el botón circular */
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2); /* Sombra */
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
   transition: background-color 0.3s ease;
 }
 
 .carousel__button:hover {
-  background-color: #f0f0f0; /* Cambio de color al pasar el mouse */
+  background-color: #f0f0f0;
 }
 
 .carousel__button--left {
@@ -236,4 +191,3 @@ onMounted(() => {
   height: 24px;
 }
 </style>
-
