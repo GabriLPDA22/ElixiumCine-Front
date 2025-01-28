@@ -1,18 +1,23 @@
-<script setup lang="ts" name="HomeView">
+<script setup lang="ts">
 import { ref, onMounted } from 'vue';
-import { Pelicula } from '@/models/Pelicula'; // Modelo para las películas
-import CardOfferComponent from '@/components/OfferCards/CardOfferComponent.vue';
+import { Pelicula } from '@/models/Pelicula';
 
-// Estado para las películas
+// Acceso a variables de entorno usando Vite
+const apiUrl = import.meta.env.VITE_API_URL;
+const googleClientId = import.meta.env.VITE_GOOGLE_CLIENT_ID;
+
+console.log("API URL:", apiUrl);
+console.log("Google Client ID:", googleClientId);
+
+// Estado de las películas
 const movies = ref<Pelicula[]>([]);
 const currentSlide = ref(0);
-const visibleSlides = 7;
-const gap = 10;
+const gap = 20; // Adjust the gap value as needed
+const visibleSlides = 3; // Adjust the number of visible slides as needed
 
-// Función para cargar las películas desde el backend
 const loadMovies = async () => {
   try {
-    const response = await fetch('http://localhost:5006/api/Movie/GetPeliculas', {
+    const response = await fetch(`${apiUrl}/api/Movie/GetPeliculas`, {
       headers: {
         Accept: 'application/json',
       },
@@ -22,7 +27,6 @@ const loadMovies = async () => {
       throw new Error(`Error al cargar las películas: ${response.status}`);
     }
 
-    // El backend devuelve un array de objetos con datos de películas
     movies.value = await response.json();
   } catch (error) {
     console.error('Error al cargar las películas:', error);
