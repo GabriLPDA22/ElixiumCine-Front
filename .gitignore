@@ -29,7 +29,7 @@ coverage
 *.tsbuildinfo
 
 # Archivos JSON
-*.json
+lock.json
 
 # Archivos binarios
 *.bin

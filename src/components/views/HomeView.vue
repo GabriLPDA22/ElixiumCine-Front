@@ -1,13 +1,7 @@
 <script setup lang="ts">
 import { ref, onMounted } from 'vue';
-import { Pelicula } from '@/models/Pelicula';
+import { Pelicula } from '../../models/Pelicula';
 
-// Acceso a variables de entorno usando Vite
-const apiUrl = import.meta.env.VITE_API_URL;
-const googleClientId = import.meta.env.VITE_GOOGLE_CLIENT_ID;
-
-console.log("API URL:", apiUrl);
-console.log("Google Client ID:", googleClientId);
 
 // Estado de las películas
 const movies = ref<Pelicula[]>([]);
@@ -17,7 +11,7 @@ const visibleSlides = 3; // Adjust the number of visible slides as needed
 
 const loadMovies = async () => {
   try {
-    const response = await fetch(`${apiUrl}/api/Movie/GetPeliculas`, {
+    const response = await fetch(`http://localhost:5167/api/Movie/GetPeliculas`, {
       headers: {
         Accept: 'application/json',
       },
@@ -59,32 +53,21 @@ onMounted(() => {
 </script>
 
 <template>
-  <!-- Sección de Top Películas -->
-  <section class="main__top-movies">
-    <h2 class="main__title">Top Películas</h2>
-    <div class="carousel">
-      <!-- Botón izquierdo -->
+  <section class="carousel">
+    <div class="carousel__container">
       <button class="carousel__button carousel__button--left" @click="prevSlide">
         <span class="carousel__button-content">
           <img :src="getImagePath('left-arrow.png')" alt="Left Arrow" />
         </span>
       </button>
-
-      <!-- Carrusel -->
-      <div class="carousel__track-container">
-        <ul class="carousel__track" :style="{
-          transform: `translateX(calc(-${currentSlide} * (100% + ${gap}px) / ${visibleSlides}))`,
-        }">
-          <li v-for="(movie, index) in movies" :key="movie.id"
-            :style="{ flex: `0 0 calc((100% - (${gap}px * (${visibleSlides} - 1))) / ${visibleSlides})`, marginRight: `${gap}px` }"
-            class="carousel__item" :class="{ active: index === currentSlide }">
-            <img :src="getImagePath(movie.cartel)" :alt="movie.titulo" class="carousel__image" />
-            <p class="carousel__title">{{ movie.titulo }}</p>
-          </li>
-        </ul>
-      </div>
-
-      <!-- Botón derecho -->
+      <ul class="carousel__list" :style="{ transform: `translateX(calc(-${currentSlide} * (100% + ${gap}px) / ${visibleSlides}))` }">
+        <li v-for="(movie, index) in movies" :key="movie.id"
+          :style="{ flex: `0 0 calc((100% - (${gap}px * (${visibleSlides} - 1))) / ${visibleSlides})`, marginRight: `${gap}px` }"
+          class="carousel__item" :class="{ active: index === currentSlide }">
+          <img :src="getImagePath(movie.cartel)" :alt="movie.titulo" class="carousel__image" />
+          <p class="carousel__title">{{ movie.titulo }}</p>
+        </li>
+      </ul>
       <button class="carousel__button carousel__button--right" @click="nextSlide">
         <span class="carousel__button-content">
           <img :src="getImagePath('right-arrow.png')" alt="Right Arrow" />
@@ -118,80 +101,7 @@ onMounted(() => {
   </section>
 </template>
 
-<style scoped>
-/* Contenedor principal del carrusel */
-.carousel__track-container {
-  overflow: hidden;
-  position: relative;
-  width: 100%;
-}
 
-/* Estilo del carrusel */
-.carousel__track {
-  display: flex;
-  transition: transform 0.5s ease-in-out;
-  list-style: none;
-  padding: 0;
-  margin: 0;
-}
-
-.carousel__item {
-  text-align: center;
-  transition: transform 0.3s ease, opacity 0.3s ease;
-  opacity: 0.7;
-}
-
-.carousel__item.active {
-  transform: scale(1.05);
-  opacity: 1;
-}
-
-/* Estilo de las imágenes */
-.carousel__image {
-  width: 200px;
-  height: 300px;
-  object-fit: cover;
-  border-radius: 10px;
-  transition: transform 0.3s ease;
-}
-
-.carousel__item.active .carousel__image {
-  transform: scale(1.1);
-}
-
-/* Botones del carrusel */
-.carousel__button {
-  background: white;
-  border: none;
-  cursor: pointer;
-  position: absolute;
-  top: 50%;
-  transform: translateY(-50%);
-  z-index: 10;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: 50px;
-  height: 50px;
-  border-radius: 50%;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
-  transition: background-color 0.3s ease;
-}
-
-.carousel__button:hover {
-  background-color: #f0f0f0;
-}
-
-.carousel__button--left {
-  left: 10px;
-}
-
-.carousel__button--right {
-  right: 10px;
-}
-
-.carousel__button img {
-  width: 24px;
-  height: 24px;
-}
+<style lang="scss">
+@import '../../assets/styles.scss';
 </style>
