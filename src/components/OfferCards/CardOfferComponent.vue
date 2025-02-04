@@ -38,78 +38,80 @@ const handleCardClick = (title: string) => {
 </script>
 
 <style lang="scss" scoped>
-.offers-section__grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
-  gap: 20px;
-  padding: 20px;
+.offers-section {
+  padding: 2rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-color: rgb(5, 7, 19);
+  margin-bottom: 2rem;
+
+  &__title {
+      font-size: 2rem;
+      font-weight: bold;
+      color: #ffffff;
+      margin-bottom: 1.5rem;
+  }
+
+  &__grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 2rem;
+      max-width: 1200px;
+      margin-bottom: 20px;
+  }
 }
 
 .offer-card {
-  background: #fff;
+  background-color: #ffffff;
   border-radius: 10px;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-  overflow: hidden;
-  transition: transform 0.3s ease-in-out;
-  cursor: pointer;
+  display: flex;
+  align-items: center;
+  padding: 1.5rem;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  transition: transform 0.3s;
+  width: 100%;
+  max-width: 500px;
+
+  &:hover {
+      transform: scale(1.05);
+  }
 
   &__content {
-    padding: 15px;
+      flex: 1;
+      padding-right: 1rem;
   }
 
   &__title {
-    font-size: 1.2rem;
-    font-weight: bold;
-    margin-bottom: 10px;
+      font-size: 1.3rem;
+      font-weight: bold;
+      color: #333333;
+      margin-bottom: 0.5rem;
   }
 
   &__description {
-    font-size: 1rem;
-    color: #666;
-    margin-bottom: 10px;
-  }
-
-  &__tags {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 5px;
-  }
-
-  &__tag {
-    background: #f0f0f0;
-    padding: 5px 10px;
-    border-radius: 5px;
-    font-size: 0.9rem;
-  }
-
-  &__image-container {
-    position: relative;
+      font-size: 1rem;
+      color: #555555;
+      line-height: 1.4;
   }
 
   &__image {
-    width: 100%;
-    height: auto;
-    display: block;
+      width: 100px;
+      height: auto;
+      border-radius: 8px;
   }
 
-  &__badge {
-    position: absolute;
-    top: 10px;
-    right: 10px;
-    background: red;
-    color: white;
-    padding: 5px 10px;
-    border-radius: 5px;
-    font-size: 0.8rem;
+}
+
+@media (max-width: 768px) {
+  .offers-section__grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    max-width: 400px;
   }
 
-  &--inactive {
-    opacity: 0.5;
-    pointer-events: none;
-  }
-
-  &:hover {
-    transform: translateY(-5px);
+  .offer-card {
+    padding: 0.5rem;
   }
 }
 </style>
