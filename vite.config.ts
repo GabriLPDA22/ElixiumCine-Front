@@ -8,16 +8,16 @@ export default defineConfig({
     vue(),
     vueDevTools(),
   ],
-  resolve: {
-    alias: {
-      '@': fileURLToPath(new URL('./src', import.meta.url)),
-    },
-  },
-  css: {
-    preprocessorOptions: {
-      scss: {
-        additionalData: `@use "@/assets/styles.scss" as *;`, // Nota: usamos alias y carga globalmente
-      },
-    },
-  },
+  //resolve: {
+  //  alias: {
+  //    '@': fileURLToPath(new URL('./src', import.meta.url)),
+  //  },
+  //},
+  //css: {
+  //  preprocessorOptions: {
+  //    scss: {
+  //      additionalData: `@use "@/assets/styles.scss" as *;`, // Nota: usamos alias y carga globalmente
+  //    },
+  //  },
+  //},
 });

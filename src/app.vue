@@ -1,6 +1,6 @@
 <script setup lang="ts">
-import NavbarComponent from '@/components/NavbarComponent.vue';
-import FooterComponent from '@/components/FooterComponent.vue';
+import NavbarComponent from './components/NavbarComponent.vue';
+import FooterComponent from './components/FooterComponent.vue';
 </script>
 
 <template>
@@ -18,5 +18,5 @@ import FooterComponent from '@/components/FooterComponent.vue';
 </template>
 
 <style lang="scss" scoped>
-@use "@/assets/styles.scss" as *;
+@use "./assets/styles.scss" as *;
 </style>
