@@ -47,18 +47,18 @@ const handleCardClick = (title: string) => {
   margin-bottom: 2rem;
 
   &__title {
-      font-size: 2rem;
-      font-weight: bold;
-      color: #ffffff;
-      margin-bottom: 1.5rem;
+    font-size: 2rem;
+    font-weight: bold;
+    color: #ffffff;
+    margin-bottom: 1.5rem;
   }
 
   &__grid {
-      display: grid;
-      grid-template-columns: repeat(2, 1fr);
-      gap: 2rem;
-      max-width: 1200px;
-      margin-bottom: 20px;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 2rem;
+    max-width: 1200px;
+    margin-bottom: 20px;
   }
 }
 
@@ -74,31 +74,31 @@ const handleCardClick = (title: string) => {
   max-width: 500px;
 
   &:hover {
-      transform: scale(1.05);
+    transform: scale(1.05);
   }
 
   &__content {
-      flex: 1;
-      padding-right: 1rem;
+    flex: 1;
+    padding-right: 1rem;
   }
 
   &__title {
-      font-size: 1.3rem;
-      font-weight: bold;
-      color: #333333;
-      margin-bottom: 0.5rem;
+    font-size: 1.3rem;
+    font-weight: bold;
+    color: #333333;
+    margin-bottom: 0.5rem;
   }
 
   &__description {
-      font-size: 1rem;
-      color: #555555;
-      line-height: 1.4;
+    font-size: 1rem;
+    color: #555555;
+    line-height: 1.4;
   }
 
   &__image {
-      width: 100px;
-      height: auto;
-      border-radius: 8px;
+    width: 100px;
+    height: auto;
+    border-radius: 8px;
   }
 
 }

@@ -43,9 +43,9 @@ const loadMovies = async () => {
 // };
 
 // Manejar clics en las ofertas
-const handleCardClick = (title: string) => {
-  console.log(`Oferta seleccionada: ${title}`);
-};
+// const handleCardClick = (title: string) => {
+//   console.log(`Oferta seleccionada: ${title}`);
+// };
 
 // Carga las películas al montar el componente
 onMounted(() => {
