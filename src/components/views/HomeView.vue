@@ -1,13 +1,14 @@
 <script setup lang="ts">
 import { ref, onMounted } from 'vue';
 import { Pelicula } from '../../models/Pelicula';
+import CardOfferComponent from '../OfferCards/CardOfferComponent.vue';
 
 
 // Estado de las películas
 const movies = ref<Pelicula[]>([]);
-const currentSlide = ref(0);
-const gap = 20; // Adjust the gap value as needed
-const visibleSlides = 3; // Adjust the number of visible slides as needed
+// const currentSlide = ref(0);
+// const gap = 20; // Adjust the gap value as needed
+// const visibleSlides = 3; // Adjust the number of visible slides as needed
 
 const loadMovies = async () => {
   try {
@@ -27,19 +28,19 @@ const loadMovies = async () => {
   }
 };
 
-// Función para obtener la ruta de la imagen
-const getImagePath = (filename: string) => {
-  return `/src/images/${filename}`;
-};
+// // Función para obtener la ruta de la imagen
+// const getImagePath = (filename: string) => {
+//   return `/src/images/${filename}`;
+// };
 
-// Funciones del carrusel
-const prevSlide = () => {
-  currentSlide.value = (currentSlide.value - 1 + movies.value.length) % movies.value.length;
-};
+// // Funciones del carrusel
+// const prevSlide = () => {
+//   currentSlide.value = (currentSlide.value - 1 + movies.value.length) % movies.value.length;
+// };
 
-const nextSlide = () => {
-  currentSlide.value = (currentSlide.value + 1) % movies.value.length;
-};
+// const nextSlide = () => {
+//   currentSlide.value = (currentSlide.value + 1) % movies.value.length;
+// };
 
 // Manejar clics en las ofertas
 const handleCardClick = (title: string) => {
@@ -53,7 +54,7 @@ onMounted(() => {
 </script>
 
 <template>
-  <section class="carousel">
+  <!-- <section class="carousel">
     <div class="carousel__container">
       <button class="carousel__button carousel__button--left" @click="prevSlide">
         <span class="carousel__button-content">
@@ -74,7 +75,7 @@ onMounted(() => {
         </span>
       </button>
     </div>
-  </section>
+  </section> -->
 
   <!-- Sección de ¿Quiénes somos? -->
   <section class="about-section">
@@ -97,7 +98,7 @@ onMounted(() => {
   <!-- Sección de Ofertas -->
   <section class="offers-section">
     <h2 class="offers-section__title">Ofertas</h2>
-    <CardOfferComponent @card-clicked="handleCardClick" />
+    <CardOfferComponent />
   </section>
 </template>
 
@@ -139,7 +140,7 @@ onMounted(() => {
   background-color: rgb(5, 7, 19);
 
   &__background {
-    background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), 
+    background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)),
     url('/cine_web_app/front-end/images/banner-cines.jpg');
     background-size: cover;
     background-position: center;
@@ -269,6 +270,4 @@ onMounted(() => {
     padding: 0.5rem;
   }
 }
-
-
 </style>
