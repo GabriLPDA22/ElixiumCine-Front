@@ -17,7 +17,7 @@
     </nav>
     <div class="header__actions">
       <router-link to="/registrarse" class="header__link header__register">Registrarse</router-link>
-      <router-link to="/iniciar-sesion" class="header__link header__login">Iniciar sesión</router-link>
+      <router-link to="/Login" class="header__link header__login">Iniciar sesión</router-link>
     </div>
   </header>
 

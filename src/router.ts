@@ -5,6 +5,8 @@ import GranCasa from './components/views/GranCasa.vue';
 import PuertoVenecia from './components/views/PuertoVenecia.vue';
 import TorreOutlet from './components/views/TorreOutlet.vue';
 import Palafox from './components/views/Palafox.vue';
+import Login from './components/Security/LoginView.vue'
+import path from 'path';
 
 const routes = [
   {
@@ -37,6 +39,12 @@ const routes = [
     name: 'Palafox',
     component: Palafox,
   },
+  {
+    path: '/Login',
+    name: 'Login',
+    component: Login,
+  }
+
 ];
 
 const router = createRouter({

@@ -1,15 +1,2 @@
 // styles.scss
 
-// Layout
-@use './layout/header';
-@use './layout/footer';
-
-
-// Components
-
-@use './components/Scrollbar';
-
-// Pages
-@use './pages/home';
-@use './pages/movies';
-@use './pages/login';

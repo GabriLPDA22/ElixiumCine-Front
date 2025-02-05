@@ -2,6 +2,7 @@
 import { ref, onMounted } from 'vue';
 import { Pelicula } from '../../models/Pelicula';
 import CardOfferComponent from '../OfferCards/CardOfferComponent.vue';
+import Carrusel from '/src/components/Carrusel.vue'
 
 
 // Estado de las películas
@@ -54,29 +55,8 @@ onMounted(() => {
 </script>
 
 <template>
-  <!-- <section class="carousel">
-    <div class="carousel__container">
-      <button class="carousel__button carousel__button--left" @click="prevSlide">
-        <span class="carousel__button-content">
-          <img :src="getImagePath('left-arrow.png')" alt="Left Arrow" />
-        </span>
-      </button>
-      <ul class="carousel__list" :style="{ transform: `translateX(calc(-${currentSlide} * (100% + ${gap}px) / ${visibleSlides}))` }">
-        <li v-for="(movie, index) in movies" :key="movie.id"
-          :style="{ flex: `0 0 calc((100% - (${gap}px * (${visibleSlides} - 1))) / ${visibleSlides})`, marginRight: `${gap}px` }"
-          class="carousel__item" :class="{ active: index === currentSlide }">
-          <img :src="getImagePath(movie.cartel)" :alt="movie.titulo" class="carousel__image" />
-          <p class="carousel__title">{{ movie.titulo }}</p>
-        </li>
-      </ul>
-      <button class="carousel__button carousel__button--right" @click="nextSlide">
-        <span class="carousel__button-content">
-          <img :src="getImagePath('right-arrow.png')" alt="Right Arrow" />
-        </span>
-      </button>
-    </div>
-  </section> -->
 
+  <Carrusel />
   <!-- Sección de ¿Quiénes somos? -->
   <section class="about-section">
     <div class="about-section__background">
@@ -86,7 +66,7 @@ onMounted(() => {
           Nos dedicamos a ofrecerte lo mejor del cine, acercándote a los últimos estrenos, críticas y todo lo
           que necesitas saber sobre el séptimo arte.
         </p>
-        <a href="/cine_web_app/front-end/views/quienessomos.html">
+        <a href="">
           <button class="about-section__button">
             <div style="text-decoration: none; color: white;">Ver Más</div>
           </button>
@@ -141,7 +121,7 @@ onMounted(() => {
 
   &__background {
     background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)),
-    url('/cine_web_app/front-end/images/banner-cines.jpg');
+    url('/src/images/banner-cines.jpg');
     background-size: cover;
     background-position: center;
     padding: 2rem;

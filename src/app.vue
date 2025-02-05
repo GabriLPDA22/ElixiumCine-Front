@@ -1,7 +1,6 @@
 <script setup lang="ts">
 import NavbarComponent from './components/NavbarComponent.vue';
 import FooterComponent from './components/FooterComponent.vue';
-import Carrusel from './components/Carrusel.vue';
 </script>
 
 <template>
@@ -10,7 +9,6 @@ import Carrusel from './components/Carrusel.vue';
       <NavbarComponent />
     </header>
     <main>
-      <Carrusel />
       <router-view></router-view> <!--Renderiza el contenido de la ruta activa -->
     </main>
     <footer>
