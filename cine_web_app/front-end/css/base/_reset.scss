@@ -1,0 +1,30 @@
+// _reset.scss
+
+*,
+*::before,
+*::after {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html, body {
+    height: 100%;
+    font-family: 'Poppins', sans-serif;  // Ajusta a la fuente que estás usando
+    color: #ffffff;  // Ajuste general para el color de texto
+    background-color: #000000;  // Fondo general en negro para evitar áreas blancas
+}
+
+ul, ol {
+    list-style: none;  // Elimina los puntos de lista en ul y ol
+}
+
+img {
+    display: block;
+    max-width: 100%;
+}
+
+a {
+    color: inherit;  // Para que los enlaces hereden el color de su contenedor y no aparezcan en azul
+    text-decoration: none;
+}

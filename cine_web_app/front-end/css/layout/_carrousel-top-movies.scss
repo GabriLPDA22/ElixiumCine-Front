@@ -1,0 +1,108 @@
+.carousel {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    overflow: hidden;
+
+    &__track-container {
+        width: 90%;
+        max-width: 1700px;
+        overflow: hidden;
+    }
+
+    &__track {
+        display: flex;
+        align-items: center;
+        padding: 10px;
+
+        .carousel__slide {
+            flex: 0 0 auto;
+            text-align: center;
+            padding: 0 8px; // Espaciado ajustado para 5 elementos
+            transform: scale(0.9);
+            transition: all 0.3s ease;
+            list-style: none;
+
+            .carousel__image {
+                width: 250px; // Tamaño adaptado para mostrar 5 elementos
+                height: 350px; // Mantiene proporción
+                object-fit: cover;
+                border-radius: 15px;
+                box-shadow: 0 10px 20px rgba(0, 0, 0, 0.5);
+                transition: transform 0.3s ease;
+                margin: auto; // Centra la imagen dentro del contenedor
+            }
+
+            .carousel__title {
+                margin-top: 0.8rem;
+                font-size: 0.9rem;
+                font-weight: bold;
+                color: #ffffff;
+            }
+        }
+    }
+
+    &__button {
+        position: absolute;
+        top: 50%;
+        background: #ffffff;
+        border: none;
+        cursor: pointer;
+        width: 40px; // Ajustamos el tamaño de los botones
+        height: 40px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        z-index: 10;
+        border-radius: 50%;
+
+        &:hover {
+            background-color: #ff2c78;
+            transform: scale(1.1);
+        }
+
+        img {
+            width: 15px; // Ajustamos el tamaño del ícono
+            height: 15px;
+            filter: invert(1); // Icono visible en fondo oscuro
+        }
+
+        &--left {
+            left: 10px; // Colocamos las flechas visibles
+        }
+
+        &--right {
+            right: 10px;
+        }
+    }
+}
+
+// Owl Carousel adjustments
+.owl-carousel {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transform: translate3d(0, 0, 0); // Suaviza animaciones y transformaciones
+}
+
+.owl-stage {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.owl-item {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: transform 0.3s ease;
+}
+
+.owl-nav,
+.owl-dots {
+    display: none; // Ocultar controles predeterminados de Owl Carousel
+}
+
+
