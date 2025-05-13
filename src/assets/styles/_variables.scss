@@ -1,0 +1,103 @@
+/* src/assets/styles/_variables.scss */
+
+// Colores principales
+$color-primary: #ff2c78;
+$color-primary-light: #ff8a2c;
+$color-primary-dark: #e12268;
+
+// Colores de fondo
+$color-background-dark: #0a0e27;
+$color-background-darker: #07051e;
+$color-background-card: #1c1e2b;
+$color-background-light: #13173d;
+
+// Colores de texto
+$color-text: #ffffff;
+$color-text-secondary: #aaaaaa;
+$color-text-tertiary: #888888;
+
+// Colores de estado
+$color-success: #4CAF50;
+$color-warning: #FFC107;
+$color-error: #F44336;
+
+// Tipografía
+$font-family-primary: 'Poppins', sans-serif;
+$font-family-secondary: 'Arial', sans-serif;
+
+// Tamaños de fuente
+$font-size-xs: 0.75rem;    // 12px
+$font-size-sm: 0.875rem;   // 14px
+$font-size-base: 1rem;     // 16px
+$font-size-md: 1.125rem;   // 18px
+$font-size-lg: 1.25rem;    // 20px
+$font-size-xl: 1.5rem;     // 24px
+$font-size-2xl: 1.875rem;  // 30px
+$font-size-3xl: 2.25rem;   // 36px
+$font-size-4xl: 3rem;      // 48px
+
+// Espacio
+$space-1: 0.25rem;
+$space-2: 0.5rem;
+$space-3: 0.75rem;
+$space-4: 1rem;
+$space-5: 1.5rem;
+$space-6: 2rem;
+$space-8: 3rem;
+$space-10: 4rem;
+$space-12: 6rem;
+
+// Border radius
+$border-radius-sm: 4px;
+$border-radius-md: 8px;
+$border-radius-lg: 16px;
+$border-radius-xl: 24px;
+
+// Breakpoints
+$breakpoint-xs: 360px;
+$breakpoint-sm: 576px;
+$breakpoint-md: 768px;
+$breakpoint-lg: 992px;
+$breakpoint-xl: 1200px;
+$breakpoint-xxl: 1400px;
+
+// Transitions
+$transition-fast: 0.2s ease;
+$transition-normal: 0.3s ease;
+$transition-slow: 0.5s ease;
+
+// Z-index
+$z-index-dropdown: 1000;
+$z-index-sticky: 1020;
+$z-index-fixed: 1030;
+$z-index-modal-backdrop: 1040;
+$z-index-modal: 1050;
+$z-index-tooltip: 1070;
+
+// Exportar variables para usar con v-bind en Vue
+:root {
+  --color-primary: #{$color-primary};
+  --color-primary-light: #{$color-primary-light};
+  --color-primary-dark: #{$color-primary-dark};
+
+  --color-background-dark: #{$color-background-dark};
+  --color-background-darker: #{$color-background-darker};
+  --color-background-card: #{$color-background-card};
+  --color-background-light: #{$color-background-light};
+
+  --color-text: #{$color-text};
+  --color-text-secondary: #{$color-text-secondary};
+  --color-text-tertiary: #{$color-text-tertiary};
+
+  --color-success: #{$color-success};
+  --color-warning: #{$color-warning};
+  --color-error: #{$color-error};
+
+  --font-family-primary: #{$font-family-primary};
+  --font-family-secondary: #{$font-family-secondary};
+
+  --border-radius-sm: #{$border-radius-sm};
+  --border-radius-md: #{$border-radius-md};
+  --border-radius-lg: #{$border-radius-lg};
+  --border-radius-xl: #{$border-radius-xl};
+}

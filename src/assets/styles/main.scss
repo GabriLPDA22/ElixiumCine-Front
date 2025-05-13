@@ -1,0 +1,291 @@
+/* src/assets/styles/main.scss */
+
+// Base styles
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: $font-family-primary;
+  scrollbar-width: thin;
+  scrollbar-color: $color-primary $color-background-darker;
+}
+
+html, body {
+  font-size: 16px;
+  background-color: $color-background-darker;
+  color: $color-text;
+  min-height: 100vh;
+  line-height: 1.6;
+  @include custom-scrollbar;
+}
+
+a {
+  text-decoration: none;
+  color: $color-primary;
+  transition: color $transition-fast;
+
+  &:hover {
+    color: $color-primary-light;
+  }
+}
+
+button {
+  cursor: pointer;
+  border: none;
+  outline: none;
+  font-family: $font-family-primary;
+}
+
+// Typography
+h1, h2, h3, h4, h5, h6 {
+  font-weight: 700;
+  margin-bottom: 1rem;
+}
+
+h1 {
+  font-size: $font-size-3xl;
+
+  @include md {
+    font-size: $font-size-4xl;
+  }
+}
+
+h2 {
+  font-size: $font-size-2xl;
+
+  @include md {
+    font-size: $font-size-3xl;
+  }
+}
+
+h3 {
+  font-size: $font-size-xl;
+
+  @include md {
+    font-size: $font-size-2xl;
+  }
+}
+
+h4 {
+  font-size: $font-size-lg;
+
+  @include md {
+    font-size: $font-size-xl;
+  }
+}
+
+p {
+  margin-bottom: 1rem;
+}
+
+// Utilities
+.container {
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 $space-4;
+}
+
+.text-center {
+  text-align: center;
+}
+
+.text-right {
+  text-align: right;
+}
+
+.hidden {
+  display: none !important;
+}
+
+.flex {
+  display: flex;
+}
+
+.flex-column {
+  flex-direction: column;
+}
+
+.flex-center {
+  @include flex-center;
+}
+
+.flex-between {
+  @include flex-between;
+}
+
+.mt-1 { margin-top: $space-1; }
+.mt-2 { margin-top: $space-2; }
+.mt-3 { margin-top: $space-3; }
+.mt-4 { margin-top: $space-4; }
+.mt-5 { margin-top: $space-5; }
+
+.mb-1 { margin-bottom: $space-1; }
+.mb-2 { margin-bottom: $space-2; }
+.mb-3 { margin-bottom: $space-3; }
+.mb-4 { margin-bottom: $space-4; }
+.mb-5 { margin-bottom: $space-5; }
+
+.my-1 { margin-top: $space-1; margin-bottom: $space-1; }
+.my-2 { margin-top: $space-2; margin-bottom: $space-2; }
+.my-3 { margin-top: $space-3; margin-bottom: $space-3; }
+.my-4 { margin-top: $space-4; margin-bottom: $space-4; }
+.my-5 { margin-top: $space-5; margin-bottom: $space-5; }
+
+.mx-auto {
+  margin-left: auto;
+  margin-right: auto;
+}
+
+// Button styles
+.btn {
+  @include button-style;
+
+  &--primary {
+    @include button-style($color-primary);
+  }
+
+  &--secondary {
+    @include button-style($color-background-light, $color-text);
+  }
+
+  &--outline {
+    @include button-style(transparent, $color-text);
+    border: 1px solid $color-primary;
+
+    &:hover {
+      background-color: $color-primary;
+    }
+  }
+
+  &--block {
+    display: block;
+    width: 100%;
+  }
+
+  &--sm {
+    padding: 0.5rem 1rem;
+    font-size: $font-size-sm;
+  }
+
+  &--lg {
+    padding: 1rem 2rem;
+    font-size: $font-size-lg;
+  }
+}
+
+// Card styles
+.card {
+  background-color: $color-background-card;
+  border-radius: $border-radius-md;
+  overflow: hidden;
+  @include box-shadow('medium');
+  transition: transform $transition-normal;
+
+  &:hover {
+    transform: translateY(-5px);
+    @include box-shadow('strong');
+  }
+
+  &__image {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+  }
+
+  &__content {
+    padding: $space-4;
+  }
+
+  &__title {
+    font-size: $font-size-lg;
+    margin-bottom: $space-2;
+  }
+
+  &__description {
+    color: $color-text-secondary;
+    @include truncate(3);
+  }
+}
+
+// Grid
+.grid {
+  display: grid;
+  grid-template-columns: repeat(1, 1fr);
+  gap: $space-4;
+
+  @include sm {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  @include md {
+    grid-template-columns: repeat(3, 1fr);
+  }
+
+  @include lg {
+    grid-template-columns: repeat(4, 1fr);
+  }
+}
+
+// Animations
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes slideInUp {
+  from {
+    transform: translateY(20px);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+@keyframes scroll-thumb-gradient {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+.fade-in {
+  animation: fadeIn 0.5s ease forwards;
+}
+
+.slide-in-up {
+  animation: slideInUp 0.5s ease forwards;
+}
+
+// Transitions for Vue
+.fade-enter-active,
+.fade-leave-active {
+  transition: opacity 0.3s ease;
+}
+
+.fade-enter-from,
+.fade-leave-to {
+  opacity: 0;
+}
+
+.slide-enter-active,
+.slide-leave-active {
+  transition: transform 0.3s ease, opacity 0.3s ease;
+}
+
+.slide-enter-from,
+.slide-leave-to {
+  transform: translateY(20px);
+  opacity: 0;
+}
